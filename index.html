@@ -16,16 +16,15 @@
     }
     .container{max-width:1200px;margin:0 auto;padding:0 16px;width:100%}
 
-    /* Header (hamburger at LEFT) */
+    /* Header (hamburger on the RIGHT) */
     .site-header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:100;padding:12px 0;border-bottom:2px solid rgba(0,0,0,.1)}
-    .header-row{display:flex;align-items:center;gap:12px;min-height:44px}
+    .header-row{display:flex;align-items:center;min-height:44px}
     .branding{display:flex;align-items:center;gap:10px;flex:1}
     .logo-circle{width:44px;height:44px;background:linear-gradient(135deg,#000,#333);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
     .brand-name{font-size:22px;font-weight:700;color:#000;white-space:nowrap}
 
-    /* Hamburger on the far left */
-    .left-wrap{display:flex;align-items:center;gap:10px}
-    .hamburger-menu{background:none;border:none;width:44px;height:44px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:8px;border-radius:8px;transition:background-color .3s ease;-webkit-tap-highlight-color:rgba(0,0,0,.2)}
+    /* Hamburger on the far RIGHT */
+    .hamburger-menu{background:none;border:none;width:44px;height:44px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:8px;border-radius:8px;transition:background-color .3s ease;-webkit-tap-highlight-color:rgba(0,0,0,.2);margin-left:12px}
     .hamburger-menu:active{background-color:rgba(0,0,0,.1)}
     .hamburger-menu span{width:24px;height:3px;background:#000;border-radius:2px;transition:all .3s cubic-bezier(.68,-.55,.265,1.55);transform-origin:center}
     .hamburger-menu.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
@@ -154,6 +153,7 @@
       .container{padding:0 32px}
       .mobile-menu{display:none}
       .nav-actions{display:flex;margin-left:auto}
+      .hamburger-menu{display:none;} /* hide the hamburger on desktop */
       .section-title{font-size:36px}
       .cards-grid{grid-template-columns:repeat(3,1fr);gap:30px}
       .contact-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:start}
@@ -171,16 +171,9 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container header-row">
-      <!-- Left: Hamburger + Logo -->
-      <div class="left-wrap">
-        <button class="hamburger-menu" id="hamburgerBtn" aria-label="Open menu">
-          <span></span><span></span><span></span>
-        </button>
-        <div class="logo-circle" aria-hidden="true">II</div>
-      </div>
-
-      <!-- Brand (center/left on small screens) -->
+      <!-- Brand (left) -->
       <div class="branding">
+        <div class="logo-circle" aria-hidden="true">II</div>
         <div class="brand-name">IITuitions</div>
       </div>
 
@@ -192,6 +185,11 @@
         <a class="btn btn-outline" href="tuitions.html">Tuitions</a>
         <a class="btn" href="register.html">Register as Tutor</a>
       </nav>
+
+      <!-- Hamburger on the FAR RIGHT (mobile) -->
+      <button class="hamburger-menu" id="hamburgerBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
 
     <!-- Mobile menu overlay -->
@@ -309,97 +307,96 @@
       </div>
     </div>
   </section>
+
   <!-- === Founder Story (self-contained) === -->
-<style>
-  /* Scoped styles only for the founder section */
-  .founder-wrap { margin: 20px 0 50px; }
-  .founder-card{
-    background: linear-gradient(180deg,#0e0f12 0%, #111317 100%);
-    color:#eef1f5; border-radius:24px; padding:22px;
-    border:1px solid rgba(255,255,255,.08);
-    box-shadow:0 12px 40px rgba(0,0,0,.25);
-  }
-  .founder-grid{ display:grid; grid-template-columns:1fr; gap:22px; align-items:start; }
-  .founder-pic{
-    width:180px; height:180px; border-radius:50%; object-fit:cover;
-    border:4px solid rgba(255,255,255,.1); box-shadow:0 10px 28px rgba(0,0,0,.45);
-  }
-  .founder-head h3{
-    font-size:32px; line-height:1.15; font-weight:800; letter-spacing:.2px;
-    color:#fff; margin-bottom:6px;
-  }
-  .founder-sub{ color:#aeb5c1; font-style:italic; margin-bottom:16px; }
-  .founder-copy{ color:#d7dde7; }
-  .founder-copy b{ color:#ffffff; }
-  .kpis{ list-style:none; margin:14px 0 10px; padding:0; }
-  .kpis li{ display:flex; gap:10px; align-items:center; margin:8px 0; color:#e6ebf5; font-weight:600; }
-  .kpis .ico{ width:22px; text-align:center; font-size:18px; }
-  .founder-para{ margin:14px 0 16px; color:#cfd6e3; }
-  .founder-block h4{ font-size:22px; color:#fff; margin:12px 0 8px; }
-  .founder-list{ color:#d7dde7; }
-  .founder-list li{ margin:8px 0; }
-  .founder-quote{ margin-top:14px; color:#c7cedb; font-style:italic; }
-  .founder-attrib{ margin-top:8px; color:#fff; font-weight:700; }
-  @media (min-width:900px){
-    .founder-card{ padding:30px 34px; }
-    .founder-grid{ grid-template-columns:220px 1fr; gap:26px; }
-    .founder-pic{ width:220px; height:220px; }
-    .founder-head h3{ font-size:44px; }
-  }
-</style>
+  <style>
+    /* Scoped styles only for the founder section */
+    .founder-wrap { margin: 20px 0 50px; }
+    .founder-card{
+      background: linear-gradient(180deg,#0e0f12 0%, #111317 100%);
+      color:#eef1f5; border-radius:24px; padding:22px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 12px 40px rgba(0,0,0,.25);
+    }
+    .founder-grid{ display:grid; grid-template-columns:1fr; gap:22px; align-items:start; }
+    .founder-pic{
+      width:180px; height:180px; border-radius:50%; object-fit:cover;
+      border:4px solid rgba(255,255,255,.1); box-shadow:0 10px 28px rgba(0,0,0,.45);
+    }
+    .founder-head h3{
+      font-size:32px; line-height:1.15; font-weight:800; letter-spacing:.2px;
+      color:#fff; margin-bottom:6px;
+    }
+    .founder-sub{ color:#aeb5c1; font-style:italic; margin-bottom:16px; }
+    .founder-copy{ color:#d7dde7; }
+    .founder-copy b{ color:#ffffff; }
+    .kpis{ list-style:none; margin:14px 0 10px; padding:0; }
+    .kpis li{ display:flex; gap:10px; align-items:center; margin:8px 0; color:#e6ebf5; font-weight:600; }
+    .kpis .ico{ width:22px; text-align:center; font-size:18px; }
+    .founder-para{ margin:14px 0 16px; color:#cfd6e3; }
+    .founder-block h4{ font-size:22px; color:#fff; margin:12px 0 8px; }
+    .founder-list{ color:#d7dde7; }
+    .founder-list li{ margin:8px 0; }
+    .founder-quote{ margin-top:14px; color:#c7cedb; font-style:italic; }
+    .founder-attrib{ margin-top:8px; color:#fff; font-weight:700; }
+    @media (min-width:900px){
+      .founder-card{ padding:30px 34px; }
+      .founder-grid{ grid-template-columns:220px 1fr; gap:26px; }
+      .founder-pic{ width:220px; height:220px; }
+      .founder-head h3{ font-size:44px; }
+    }
+  </style>
 
-<section class="container founder-wrap" id="founder">
-  <div class="founder-card">
-    <div class="founder-grid">
-      <div style="display:flex;justify-content:center">
-        <!-- Replace src with your real image path -->
-        <img src="assets/founder.jpg" alt="Prudhvi — Founder, iiTuitions" class="founder-pic">
-      </div>
-
-      <div class="founder-content">
-        <header class="founder-head">
-          <h3>Founded by Prudhvi —<br/>NIT Warangal</h3>
-          <div class="founder-sub">(Former Physics HOD Hyderabad)</div>
-        </header>
-
-        <div class="founder-copy">
-          I worked as a <b>Physics HOD</b> in a large coaching centre. Classes of <b>80+ </b>
-          raced through the syllabus; many slipped behind because <b>batches were too big</b>.
-          In <b>2017</b>, I decided to build the opposite.
+  <section class="container founder-wrap" id="founder">
+    <div class="founder-card">
+      <div class="founder-grid">
+        <div style="display:flex;justify-content:center">
+          <!-- Replace src with your real image path -->
+          <img src="assets/founder.jpg" alt="Prudhvi — Founder, iiTuitions" class="founder-pic">
         </div>
 
-        <ul class="kpis">
-          <li><span class="ico">🎓</span><span><b>100% 1-on-1 classes</b> with IIT/NIT mentors</span></li>
-          <li><span class="ico">🎯</span><span><b>Only 50 students/year</b> = quality over quantity</span></li>
-          <li><span class="ico">📞</span><span><b>Weekly parent reviews</b> • instant strategy corrections</span></li>
-        </ul>
+        <div class="founder-content">
+          <header class="founder-head">
+            <h3>Founded by Prudhvi —<br/>NIT Warangal</h3>
+            <div class="founder-sub">(Former Physics HOD Hyderabad)</div>
+          </header>
 
-        <p class="founder-para">
-          At <b>iiTuitions</b>, we teach <b>one child at a time</b>. With limited intake, every child
-          gets a plan, a mentor, and attention that’s impossible in big batches.
-        </p>
+          <div class="founder-copy">
+            I worked as a <b>Physics HOD</b> in a large coaching centre. Classes of <b>80+ </b>
+            raced through the syllabus; many slipped behind because <b>batches were too big</b>.
+            In <b>2017</b>, I decided to build the opposite.
+          </div>
 
-        <div class="founder-block">
-          <h4>What I stand for</h4>
-          <ul class="founder-list">
-            <li>• <b>Quality over quantity</b> — always</li>
-            <li>• <b>1-on-1 mentorship</b> by sharp, caring IIT/NIT faculty</li>
-            <li>• <b>Weekly parent reviews</b> and <b>course-corrections now</b>, not after results</li>
-            <li>• If a mentor’s style doesn’t fit your child, <b>we switch—no ego</b></li>
+          <ul class="kpis">
+            <li><span class="ico">🎓</span><span><b>100% 1-on-1 classes</b> with IIT/NIT mentors</span></li>
+            <li><span class="ico">🎯</span><span><b>Only 50 students/year</b> = quality over quantity</span></li>
+            <li><span class="ico">📞</span><span><b>Weekly parent reviews</b> • instant strategy corrections</span></li>
           </ul>
 
-          <p class="founder-quote">
-            “Even if it’s one student, give 100% and teach them how to learn.
-            Motivation first. Mastery next.”
+          <p class="founder-para">
+            At <b>iiTuitions</b>, we teach <b>one child at a time</b>. With limited intake, every child
+            gets a plan, a mentor, and attention that’s impossible in big batches.
           </p>
-          <div class="founder-attrib">— Prudhvi, Founder, iiTuitions</div>
+
+          <div class="founder-block">
+            <h4>What I stand for</h4>
+            <ul class="founder-list">
+              <li>• <b>Quality over quantity</b> — always</li>
+              <li>• <b>1-on-1 mentorship</b> by sharp, caring IIT/NIT faculty</li>
+              <li>• <b>Weekly parent reviews</b> and <b>course-corrections now</b>, not after results</li>
+              <li>• If a mentor’s style doesn’t fit your child, <b>we switch—no ego</b></li>
+            </ul>
+
+            <p class="founder-quote">
+              “Even if it’s one student, give 100% and teach them how to learn.
+              Motivation first. Mastery next.”
+            </p>
+            <div class="founder-attrib">— Prudhvi, Founder, iiTuitions</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
+  </section>
 
   <!-- Footer -->
   <footer class="footer-pro">
