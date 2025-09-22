@@ -2,159 +2,564 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Register as a Tutor | IITuitions</title>
-  <meta name="description" content="Apply to teach with iiTuitions. Register as a tutor for Home/Online, IIT-JEE, and SAT." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+  <title>iiTuitions • Tutor Registration</title>
+  <meta name="description" content="Register as a tutor with iiTuitions. No joining fee, competitive pay, online & offline classes, skill-growth workshops." />
+  <link rel="preconnect" href="https://wa.me" />
   <style>
-    /* ========== Base ========== */
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#0b1220;background:#fff;line-height:1.6;overflow-x:hidden}
-    a{text-decoration:none}
+    /* ===== Base ===== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:#fff;color:#0b1220;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1160px;margin:0 auto;padding:24px 16px}
 
-    .container{max-width:1100px;margin:0 auto;padding:0 14px}
+    /* ===== Header ===== */
+    .header{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #e5e7eb}
+    .header .row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+    .logo{font-weight:800;font-size:20px}
 
-    /* ========== Header ========== */
-    .site-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eef2f7}
-    .header-row{display:flex;align-items:center;justify-content:space-between;min-height:56px}
-    .logo{font-weight:900;color:#0b1220;font-size:20px;display:flex;gap:8px;align-items:center}
-    .logo:before{content:"📘"}
-
-    /* Hamburger (3 lines visible) */
-    .global-hamb{
-      width:44px;height:44px;border:none;background:#fff;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:5px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);
-      cursor:pointer
+    /* Hamburger (replaces Home) */
+    .hamburger{
+      width:44px;height:44px;border-radius:12px;border:1.5px solid #0b1220;
+      display:grid;place-items:center;cursor:pointer;background:#fff
     }
-    .global-hamb span{width:22px;height:2.5px;background:#111;border-radius:2px;transition:.25s}
-    .global-hamb.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-    .global-hamb.active span:nth-child(2){opacity:0;transform:scale(.6)}
-    .global-hamb.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+    .hamburger .bars{display:grid;gap:6px}
+    .hamburger .bars span{display:block;width:20px;height:2.5px;background:#0b1220;border-radius:4px}
 
-    /* ========== Full-screen overlay menu (like image-4) ========== */
-    .global-mmenu{
-      position:fixed;inset:0;background:rgba(0,0,0,.96);
-      display:flex;align-items:center;justify-content:center;flex-direction:column;
-      opacity:0;visibility:hidden;transform:translateY(6px);
-      transition:opacity .25s,transform .25s,visibility .25s;z-index:1000
+    /* ===== Overlay Menu ===== */
+    .menu-overlay{
+      position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.88);
+      z-index:60;padding:24px
     }
-    .global-mmenu.open{opacity:1;visibility:visible;transform:none}
-    .global-mmenu a{
-      color:#fff;font-size:34px;font-weight:900;letter-spacing:.2px;
-      padding:14px 24px;border-radius:14px;margin:6px 0;display:flex;gap:12px;align-items:center
+    .menu-overlay.open{display:grid}
+    .menu-panel{display:flex;flex-direction:column;gap:26px;text-align:center}
+    .menu-link{
+      color:#fff;font-weight:800;font-size:34px;letter-spacing:.2px;display:inline-flex;gap:10px;justify-content:center;align-items:center
     }
-    .global-mmenu a:hover{background:rgba(255,255,255,.12)}
-    .mmenu-close{
-      position:fixed;top:10px;right:14px;width:44px;height:44px;border-radius:999px;
-      background:#fff;border:none;font-size:22px;cursor:pointer;
-      box-shadow:0 14px 34px rgba(0,0,0,.35)
+    .menu-link small{opacity:.8;font-weight:700}
+    .menu-close{
+      position:absolute;right:18px;top:12px;width:44px;height:44px;border-radius:999px;border:1.5px solid #fff;color:#fff;
+      display:grid;place-items:center;font-size:22px;cursor:pointer
     }
 
-    /* ========== Page title & frame ========== */
-    .page{padding:18px 0 28px}
-    .h1{font-size:42px;font-weight:900;margin:12px 0 16px}
-    .frame{
-      background:#fff;border:1px solid #e5e7eb;border-radius:18px;
-      box-shadow:0 18px 60px rgba(2,6,23,.06);padding:12px
-    }
+    /* ===== Hero ===== */
+    .hero{padding:40px 16px 24px;border-bottom:1px solid #f1f5f9}
+    .hero h1{font-size:28px;line-height:1.2;margin-bottom:10px}
+    .hero p{color:#374151;margin-bottom:16px;max-width:720px}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:999px;border:2px solid #000;font-weight:700;cursor:pointer}
+    .btn.primary{background:#000;color:#fff}
+    .btn.secondary{background:#fff;color:#000}
+    .btn:active{transform:scale(.98)}
+    .btn.small{padding:10px 14px;border-width:1px;border-radius:12px}
 
-    /* ========== WhatsApp Float (icon forced white) ========== */
-    .wa-float{
-      position:fixed;left:16px;bottom:16px;width:56px;height:56px;border-radius:50%;
-      background:#25D366;color:#fff;display:grid;place-items:center;
-      box-shadow:0 12px 26px rgba(37,211,102,.45);z-index:1001
+    /* ===== Layout ===== */
+    .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:28px}
+    @media (max-width:960px){ .grid{grid-template-columns:1fr} }
+
+    .section-title{font-size:22px;font-weight:800;margin:22px 0 12px}
+
+    /* ===== Left content (short) ===== */
+    .benefit-list{display:block}
+    .benefit{position:relative;margin:16px 0 16px 8px;background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 10px 22px rgba(0,0,0,.06);padding:18px 22px}
+    .benefit::before{content:"";position:absolute;left:-8px;top:10px;bottom:10px;width:8px;background:#000;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+    .benefit-inner{display:flex;gap:14px}
+    .benefit-ic{width:30px;height:30px;display:grid;place-items:center;border-radius:6px;background:#f5f5f5;border:1px solid #e5e7eb;font-size:18px}
+    .benefit h4{font-size:18px;margin-bottom:6px}
+    .benefit p{color:#374151;font-size:15px}
+
+    /* ===== Right column: Form card ===== */
+    .r-card{position:sticky;top:76px;border:1px solid #e5e7eb;border-radius:18px;padding:18px;background:#fff}
+    @media (max-width:960px){ .r-card{position:static} }
+    .r-card h3{font-size:26px;line-height:1.2}
+    .r-muted{color:#374151;margin:8px 0 14px;font-size:16px}
+
+    /* ===== Google-Form like, single-column questions ===== */
+    .fieldset{border:1px dashed #cbd5e1;border-radius:16px;padding:18px;margin-top:10px}
+    .question{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+    .question label{font-weight:800;font-size:18px}
+    .required::after{content:" *";color:#ef4444}
+    .hint{color:#6b7280;font-size:13px;line-height:1.4}
+    input[type="text"],input[type="tel"],input[type="number"],input[type="email"],textarea,select{
+      width:100%;padding:14px 14px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;font-size:16px
     }
-    .wa-float svg{width:26px;height:26px;display:block}
-    /* Call-to-action float (optional) */
+    textarea{min-height:100px;resize:vertical}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{display:flex;align-items:center;gap:8px;border:1px solid #e5e7eb;border-radius:999px;padding:10px 12px;background:#fff;font-size:14px}
+    .section-tabs{display:flex;gap:8px;margin:10px 0}
+    .tab{padding:8px 12px;border-radius:999px;border:1px solid #e5e7eb;background:#fff;font-weight:700}
+    .tab.active{background:#000;color:#fff;border-color:#000}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    /* ===== Floating buttons ===== */
     .cta-float{
-      position:fixed;right:16px;bottom:16px;background:#000;color:#fff;
-      padding:14px 18px;border-radius:999px;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.35);z-index:1001
+      position:fixed;right:16px;bottom:16px;z-index:50;
+      background:#111;color:#fff;border-radius:999px;padding:14px 18px;border:1px solid #111;
+      box-shadow:0 12px 24px rgba(0,0,0,.25);font-weight:800;display:flex;align-items:center;gap:10px
     }
+    .cta-float:active{transform:scale(.97)}
 
-    @media (max-width:520px){
-      .h1{font-size:32px}
-      .global-mmenu a{font-size:28px}
-      .frame{padding:8px}
+    .wa-float{
+      position:fixed;left:16px;bottom:16px;width:56px;height:56px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;background:#25D366;color:#fff;
+      box-shadow:0 10px 24px rgba(0,0,0,.15);z-index:50;font-weight:900;font-size:22px
     }
+    .wa-float:active{transform:scale(.94)}
+
+    /* ===== Footer ===== */
+    footer{border-top:1px solid #e5e7eb;margin-top:28px;padding:18px 0;color:#6b7280;font-size:14px}
+    .spacer{height:6px}
   </style>
 </head>
 <body>
-
   <!-- Header -->
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="logo" href="index.html">IITuitions</a>
-      <button class="global-hamb" id="hamb"><span></span><span></span><span></span></button>
+  <header class="header">
+    <div class="row container">
+      <div class="logo">iiTuitions • Tutors</div>
+      <!-- hamburger replaces Home -->
+      <button class="hamburger" id="menuBtn" aria-label="Open menu">
+        <span class="bars"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </header>
 
-  <!-- Full-screen overlay menu (same look as IIT/SAT/Tuitions) -->
-  <nav class="global-mmenu" id="globalMenu" aria-label="Main">
-    <button class="mmenu-close" type="button" aria-label="Close">✕</button>
-    <a href="index.html">🏠 Home</a>
-    <a href="iit.html">🎓 IIT</a>
-    <a href="sat.html">📚 SAT</a>
-    <a href="tuitions.html">🏛️ Tuitions</a>
-    <a href="register.html">👩‍🏫 Register as Tutor</a>
-  </nav>
+  <!-- Overlay Menu -->
+  <div class="menu-overlay" id="menu">
+    <button class="menu-close" id="menuClose" aria-label="Close">✕</button>
+    <nav class="menu-panel" aria-label="Main">
+      <a class="menu-link" href="index.html">🏠 Home</a>
+      <a class="menu-link" href="iit.html">🎓 IIT</a>
+      <a class="menu-link" href="sat.html">📚 SAT</a>
+      <a class="menu-link" href="tuitions.html">🏛️ Tuitions</a>
+      <a class="menu-link" href="register.html">👩‍🏫 Register as Tutor</a>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero container">
+    <h1>Become an Elite Tutor with iiTuitions</h1>
+    <p>Teach online or offline at your convenience. No joining fee. Competitive pay. Skill-growth workshops for Cambridge, IB, ICSE.</p>
+    <div class="hero-ctas">
+      <a class="btn primary" href="#tutor-form">Register as a Tutor</a>
+      <a class="btn secondary" href="#tutor-faqs">Read FAQs</a>
+    </div>
+  </section>
 
   <!-- Main -->
-  <main class="page">
-    <div class="container">
-      <h1 class="h1">Register as a Tutor</h1>
-
-      <!-- Google Form -->
-<div class="form-frame">
-  <iframe
-    title="Tutor Enrollment Form"
-    src="https://forms.gle/ywczkAcYTDxs4j9F9?embedded=true"
-    width="100%"
-    height="1450"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0"
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
-
+  <main class="container grid">
+    <!-- LEFT (kept minimal to focus on form) -->
+    <div>
+      <h2 class="section-title">Why Join iiTuitions?</h2>
+      <div class="benefit-list">
+        <div class="benefit"><div class="benefit-inner"><div class="benefit-ic">🏅</div><div><h4>Elite Tutor Network</h4><p>Join a selected group of top mentors trusted by parents across India.</p></div></div></div>
+        <div class="benefit"><div class="benefit-inner"><div class="benefit-ic">💻</div><div><h4>Online &amp; Offline Opportunities</h4><p>Teach from anywhere or take premium home tuitions near you.</p></div></div></div>
+        <div class="benefit"><div class="benefit-inner"><div class="benefit-ic">✅</div><div><h4>Zero Registration Fee</h4><p>No joining or hidden charges. Only genuine, verified student leads.</p></div></div></div>
+      </div>
+      <div class="spacer"></div>
     </div>
+
+    <!-- RIGHT: Single-column, 2-section Form -->
+    <aside>
+      <div class="r-card" id="tutor-form">
+        <h3>Register as a Tutor</h3>
+        <p class="r-muted">Fill the form to join iiTuitions’ tutor network. No fees, flexible hours, competitive pay. We’ll verify your profile and start sending matched students.</p>
+
+        <!-- Section tabs -->
+        <div class="section-tabs">
+          <button type="button" class="tab active" data-step="1">Section 1</button>
+          <button type="button" class="tab" data-step="2">Section 2</button>
+        </div>
+
+        <form id="iit-form" class="fieldset" novalidate>
+          <!-- =============== STEP 1 =============== -->
+          <div class="step" data-step="1">
+            <div class="question">
+              <label class="required" for="fullName">Tutor Full Name</label>
+              <input id="fullName" name="fullName" type="text" required />
+            </div>
+
+            <div class="question">
+              <label class="required" for="mobile">Primary Mobile Number</label>
+              <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="10 digits" required />
+              <div class="hint">WhatsApp leads will go to this number</div>
+            </div>
+
+            <div class="question">
+              <label class="required" for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select</option>
+                <option>Female</option><option>Male</option><option>Prefer not to say</option>
+              </select>
+            </div>
+
+            <div class="question">
+              <label class="required" for="city">City</label>
+              <input id="city" name="city" type="text" required />
+            </div>
+
+            <div class="question">
+              <label class="required" for="locality">Home Area / Locality</label>
+              <input id="locality" name="locality" type="text" required />
+            </div>
+
+            <div class="question">
+              <label class="required" for="pincode">Area Pincode (6 digits)</label>
+              <input id="pincode" name="pincode" type="text" pattern="\\d{6}" placeholder="560001" required />
+            </div>
+
+            <div class="question">
+              <label for="workAddress">If you want to take tuitions near your workplace, give workplace address</label>
+              <textarea id="workAddress" name="workAddress" placeholder="School/college/office address"></textarea>
+            </div>
+
+            <div class="question">
+              <label for="workPincode">Workplace area pincode</label>
+              <input id="workPincode" name="workPincode" type="text" pattern="\\d{6}" placeholder="560001" />
+            </div>
+
+            <div class="question">
+              <label class="required" for="expYears">Years of Teaching Experience</label>
+              <select id="expYears" name="expYears" required>
+                <option value="" disabled selected>Select</option>
+                <option>0–1 years</option><option>2–3 years</option><option>4–6 years</option><option>7–10 years</option><option>10+ years</option>
+              </select>
+              <div class="hint">Include any home-tutoring experience as well</div>
+            </div>
+
+            <div class="question">
+              <label class="required" for="highestEdu">Highest education qualification</label>
+              <input id="highestEdu" name="highestEdu" type="text" required />
+            </div>
+
+            <div class="question">
+              <label class="required" for="college">Graduated College Name</label>
+              <input id="college" name="college" type="text" required />
+            </div>
+
+            <div class="question">
+              <label class="required" for="workingFullTime">Are you currently working full-time?</label>
+              <select id="workingFullTime" name="workingFullTime" required>
+                <option value="" disabled selected>Select</option>
+                <option>Yes</option><option>No</option><option>Other</option>
+              </select>
+            </div>
+
+            <div class="question">
+              <label for="orgName">Organisation name you are currently working in (school/college/company)</label>
+              <input id="orgName" name="orgName" type="text" />
+            </div>
+
+            <div class="question">
+              <label class="required" for="openOffers">Open to better school/institute offers?</label>
+              <select id="openOffers" name="openOffers" required>
+                <option value="" disabled selected>Select</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+
+            <div class="question">
+              <label class="required">Boards you can teach (tick all that apply)</label>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="boards" value="State Board"> State Board</label>
+                <label class="chip"><input type="checkbox" name="boards" value="CBSE"> CBSE</label>
+                <label class="chip"><input type="checkbox" name="boards" value="ICSE"> ICSE</label>
+                <label class="chip"><input type="checkbox" name="boards" value="Cambridge (IGCSE)"> Cambridge (IGCSE)</label>
+                <label class="chip"><input type="checkbox" name="boards" value="Cambridge (AS/A Level)"> Cambridge (AS/A Level)</label>
+                <label class="chip"><input type="checkbox" name="boards" value="IB (IBDP)"> IB (IBDP)</label>
+                <label class="chip"><input type="checkbox" name="boards" value="Other"> Other</label>
+              </div>
+              <div class="hint">Note: In Cambridge, Grade 10 is IGCSE; AS/A Level are separate; IB Diploma is IBDP.</div>
+            </div>
+
+            <div class="question">
+              <label class="required">Grades/Programs you can teach (tick all)</label>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 1"> Grade 1</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 2"> Grade 2</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 3"> Grade 3</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 4"> Grade 4</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 5"> Grade 5</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 6"> Grade 6</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 7"> Grade 7</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 8"> Grade 8</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 9"> Grade 9</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 10"> Grade 10</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 11"> Grade 11</label>
+                <label class="chip"><input type="checkbox" name="grades" value="Grade 12"> Grade 12</label>
+                <label class="chip"><input type="checkbox" name="grades" value="IGCSE"> IGCSE</label>
+                <label class="chip"><input type="checkbox" name="grades" value="IBDP 1"> IBDP 1</label>
+                <label class="chip"><input type="checkbox" name="grades" value="IBDP 2"> IBDP 2</label>
+                <label class="chip"><input type="checkbox" name="grades" value="AS Level"> AS Level</label>
+                <label class="chip"><input type="checkbox" name="grades" value="A Level"> A Level</label>
+              </div>
+            </div>
+
+            <div class="question">
+              <label class="required">Subjects you can teach (tick all)</label>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="subjects" value="Mathematics"> Mathematics</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Physics"> Physics</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Chemistry"> Chemistry</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Biology"> Biology</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Social sciences"> Social sciences</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="English"> English</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Telugu"> Telugu</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Hindi"> Hindi</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Accounts"> Accounts</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Economics"> Economics</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Statistics"> Statistics</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="Business Studies"> Business Studies</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="All subjects up to Grade 5"> All up to Grade 5</label>
+                <label class="chip"><input type="checkbox" name="subjects" value="All subjects up to Grade 10"> All up to Grade 10</label>
+              </div>
+            </div>
+
+            <div class="question">
+              <label for="otherSubjects">If you teach any other subjects (IIT JEE Physics, French, Vedic Maths), specify</label>
+              <input id="otherSubjects" name="otherSubjects" type="text" />
+            </div>
+
+            <div class="question">
+              <label class="required">Available days / time slots (multiple)</label>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="availability" value="monday-friday"> Monday–Friday</label>
+                <label class="chip"><input type="checkbox" name="availability" value="monday-sunday"> Monday–Sunday</label>
+                <label class="chip"><input type="checkbox" name="availability" value="only on weekends"> Weekends only</label>
+                <label class="chip"><input type="checkbox" name="availability" value="morning session"> Morning session</label>
+                <label class="chip"><input type="checkbox" name="availability" value="evening session"> Evening session</label>
+                <label class="chip"><input type="checkbox" name="availability" value="day time as well"> Day time as well</label>
+              </div>
+            </div>
+
+            <div class="question">
+              <label class="required">Preferred teaching mode (multiple)</label>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="mode" value="Offline at students location"> Offline at student's location</label>
+                <label class="chip"><input type="checkbox" name="mode" value="Offline at tutor's Home"> Offline at tutor's home</label>
+                <label class="chip"><input type="checkbox" name="mode" value="Online only"> Online only</label>
+                <label class="chip"><input type="checkbox" name="mode" value="Anyone (if right price)"> Anyone (if right price)</label>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="button" class="btn small secondary" id="nextBtn">Next → Section 2</button>
+            </div>
+          </div>
+
+          <!-- =============== STEP 2 =============== -->
+          <div class="step" data-step="2" style="display:none">
+            <div class="question">
+              <label for="desc">Description (optional)</label>
+              <textarea id="desc" name="desc" placeholder="Short profile / highlights"></textarea>
+            </div>
+
+            <div class="question">
+              <label for="radius">Travel radius (km) for offline leads</label>
+              <input id="radius" name="radius" type="number" min="0" step="1" placeholder="e.g., 2, 5, 8" />
+            </div>
+
+            <div class="question">
+              <label for="vehicle">Do you have a vehicle to travel to student location?</label>
+              <select id="vehicle" name="vehicle">
+                <option value="" disabled selected>Select</option>
+                <option>Yes</option><option>No</option><option>Will take Rapido/any other option available</option>
+              </select>
+            </div>
+
+            <div class="question">
+              <label class="required" for="monthlyFee">Expected monthly fee per student (approx)</label>
+              <input id="monthlyFee" name="monthlyFee" type="number" min="0" step="100" required />
+              <div class="hint">Honest pricing → faster matches</div>
+            </div>
+
+            <div class="question">
+              <label class="required" for="offlineRate">Your usual base hourly rate for offline/home tuitions (₹)</label>
+              <input id="offlineRate" name="offlineRate" type="number" min="0" step="50" required />
+            </div>
+
+            <div class="question">
+              <label for="onlineRate">Usual online hourly rate (₹)</label>
+              <input id="onlineRate" name="onlineRate" type="number" min="0" step="50" />
+            </div>
+
+            <div class="question">
+              <label class="required" for="usuk">Are you comfortable taking US/UK timezone classes?</label>
+              <select id="usuk" name="usuk" required>
+                <option value="" disabled selected>Select</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+
+            <div class="question">
+              <label for="abroadYears">How many years of experience teaching abroad students? (optional)</label>
+              <input id="abroadYears" name="abroadYears" type="number" min="0" step="1" />
+            </div>
+
+            <div class="question">
+              <label class="required" for="intlConsent">Consent to list your profile internationally</label>
+              <select id="intlConsent" name="intlConsent" required>
+                <option value="" disabled selected>Select</option>
+                <option>Yes</option><option>No</option>
+              </select>
+            </div>
+
+            <div class="question">
+              <label class="required" for="upskill">Interested in our IGCSE / IB upskilling workshops &amp; AI tools?</label>
+              <select id="upskill" name="upskill" required>
+                <option value="" disabled selected>Select</option>
+                <option>Yes</option><option>No</option><option>Maybe Later</option>
+              </select>
+            </div>
+
+            <div class="question">
+              <label class="required" for="savedNumbers">Did you save both coordinator numbers (8639221271, 7680012036)?</label>
+              <select id="savedNumbers" name="savedNumbers" required>
+                <option value="" disabled selected>Select</option>
+                <option>yes</option><option>not yet,will do</option>
+              </select>
+            </div>
+
+            <div class="actions">
+              <button type="button" class="btn small secondary" id="backBtn">← Back</button>
+              <button type="submit" class="btn small primary">Submit</button>
+            </div>
+          </div>
+        </form>
+
+        <p id="submitMsg" class="hint" style="display:none;margin-top:10px"></p>
+      </div>
+    </aside>
   </main>
 
+  <footer class="container">© <span id="yr"></span> iiTuitions • Tutors</footer>
+
   <!-- Floating buttons -->
-  <a class="wa-float" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20to%20register%20as%20a%20tutor" aria-label="Chat on WhatsApp">
-    <!-- Force solid white glyph -->
-    <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374A9.86 9.86 0 011.166 11.883C1.167 6.433 5.602 2 11.054 2c2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z"/>
+  <<a class="wa-float" aria-label="Chat on WhatsApp" href="https://wa.me/917207467565" target="_blank" rel="noopener">
+    <!-- WhatsApp logo (white) -->
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+      <path fill="#FFFFFF" d="M19.11 17.38c-.26-.13-1.52-.75-1.77-.83-.24-.09-.42-.13-.6.13-.18.26-.7.83-.86 1-.16.17-.32.2-.58.07-.26-.13-1.08-.4-2.06-1.28-.76-.67-1.27-1.5-1.42-1.76-.15-.26-.02-.4.11-.53.12-.12.26-.32.39-.48.13-.16.17-.26.26-.44.08-.18.04-.33-.02-.46-.06-.13-.6-1.45-.83-1.99-.22-.53-.45-.45-.6-.45-.16 0-.33-.02-.5-.02s-.46.07-.7.33c-.24.26-.92.9-.92 2.2s.94 2.55 1.07 2.72c.13.17 1.86 2.84 4.52 3.96.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.52-.62 1.74-1.22.22-.6.22-1.12.15-1.22-.07-.1-.24-.16-.5-.29zM16 3.2c-7.1 0-12.8 5.7-12.8 12.8 0 2.26.6 4.41 1.75 6.31L3.2 28.8l6.68-1.74A12.73 12.73 0 0 0 16 28.8c7.1 0 12.8-5.7 12.8-12.8S23.1 3.2 16 3.2zm7.53 20.32c-1.02 1.02-2.21 1.82-3.54 2.38-1.37.58-2.83.87-4.34.87-1.95 0-3.84-.5-5.51-1.45l-.4-.23-3.93 1.03 1.05-3.83-.24-.39a10.22 10.22 0 0 1-1.58-5.52c0-5.63 4.58-10.22 10.22-10.22 2.73 0 5.29 1.06 7.22 2.99a10.2 10.2 0 0 1 2.99 7.22c0 1.5-.3 2.97-.88 4.34-.56 1.33-1.36 2.51-2.38 3.53z"/>
     </svg>
   </a>
-  <a class="cta-float" href="index.html#form">📋 Book Free Assessment</a>
+  
+  <a class="cta-float" href="index.html#book" aria-label="Book Free Assessment">📘 Book Free Assessment</a>
 
   <script>
-    // === Overlay menu toggling (shared behaviour) ===
-    const hamb = document.getElementById('hamb');
-    const globalMenu = document.getElementById('globalMenu');
-    const closeBtn = globalMenu.querySelector('.mmenu-close');
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
-    function openMenu(){
-      hamb.classList.add('active');
-      globalMenu.classList.add('open');
-      document.body.style.overflow='hidden';
+    // Hamburger menu open/close
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    const menuClose = document.getElementById('menuClose');
+    const toggleMenu = (open) => {
+      if (open) {
+        menu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    };
+    menuBtn.addEventListener('click', ()=>toggleMenu(true));
+    menuClose.addEventListener('click', ()=>toggleMenu(false));
+    menu.addEventListener('click', (e)=>{ if(e.target===menu) toggleMenu(false); });
+
+    /* =======================
+       GOOGLE FORM HOOK
+       =======================
+       Replace FORM_ID and each entry.XXXX with your actual IDs.
+    */
+    const FORM_ACTION = "https://docs.google.com/forms/d/e/FORM_ID/formResponse"; // <-- replace
+
+    const ENTRY_MAP = {
+      fullName: "entry.XXXX",
+      mobile: "entry.XXXX",
+      gender: "entry.XXXX",
+      city: "entry.XXXX",
+      locality: "entry.XXXX",
+      pincode: "entry.XXXX",
+      workAddress: "entry.XXXX",
+      workPincode: "entry.XXXX",
+      expYears: "entry.XXXX",
+      highestEdu: "entry.XXXX",
+      college: "entry.XXXX",
+      workingFullTime: "entry.XXXX",
+      orgName: "entry.XXXX",
+      openOffers: "entry.XXXX",
+      boards: "entry.XXXX",
+      grades: "entry.XXXX",
+      subjects: "entry.XXXX",
+      otherSubjects: "entry.XXXX",
+      availability: "entry.XXXX",
+      mode: "entry.XXXX",
+      desc: "entry.XXXX",
+      radius: "entry.XXXX",
+      vehicle: "entry.XXXX",
+      monthlyFee: "entry.XXXX",
+      offlineRate: "entry.XXXX",
+      onlineRate: "entry.XXXX",
+      usuk: "entry.XXXX",
+      abroadYears: "entry.XXXX",
+      intlConsent: "entry.XXXX",
+      upskill: "entry.XXXX",
+      savedNumbers: "entry.XXXX"
+    };
+
+    // step tabs
+    const tabs = document.querySelectorAll('.tab');
+    const steps = document.querySelectorAll('.step');
+    const nextBtn = document.getElementById('nextBtn');
+    const backBtn = document.getElementById('backBtn');
+
+    tabs.forEach(t=>t.addEventListener('click', ()=>switchStep(+t.dataset.step)));
+    if(nextBtn) nextBtn.addEventListener('click', ()=>switchStep(2));
+    if(backBtn) backBtn.addEventListener('click', ()=>switchStep(1));
+    function switchStep(n){
+      steps.forEach(s=>s.style.display = (s.dataset.step==n)?'block':'none');
+      tabs.forEach(t=>t.classList.toggle('active', +t.dataset.step===n));
+      window.scrollTo({ top: document.getElementById('tutor-form').offsetTop - 12, behavior:'smooth' });
     }
-    function closeMenu(){
-      hamb.classList.remove('active');
-      globalMenu.classList.remove('open');
-      document.body.style.overflow='';
-    }
-    function toggleMenu(){
-      globalMenu.classList.contains('open') ? closeMenu() : openMenu();
-    }
-    hamb.addEventListener('click', toggleMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    globalMenu.addEventListener('click', (e)=>{ if(e.target === globalMenu) closeMenu(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+
+    // submit to Google Form
+    const form = document.getElementById('iit-form');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      if(!form.reportValidity()) return;
+
+      const data = new FormData();
+
+      const setField = (name)=>{
+        const el = form.elements[name];
+        if(!el) return;
+        const entry = ENTRY_MAP[name];
+        if(!entry || entry==="entry.XXXX") return;
+        const v = (el.value||"").toString().trim();
+        if(v) data.append(entry, v);
+      };
+
+      const setGroup = (name)=>{
+        const entry = ENTRY_MAP[name];
+        if(!entry || entry==="entry.XXXX") return;
+        form.querySelectorAll(`input[name="${name}"]:checked`).forEach(n=>{
+          data.append(entry, n.value);
+        });
+      };
+
+      ["fullName","mobile","gender","city","locality","pincode","workAddress","workPincode","expYears","highestEdu","college","workingFullTime","orgName","openOffers","otherSubjects","desc","radius","vehicle","monthlyFee","offlineRate","onlineRate","usuk","abroadYears","intlConsent","upskill","savedNumbers"].forEach(setField);
+      ["boards","grades","subjects","availability","mode"].forEach(setGroup);
+
+      const msg = document.getElementById('submitMsg');
+      try{
+        await fetch(FORM_ACTION, { method:"POST", mode:"no-cors", body:data });
+        msg.style.display = 'block';
+        msg.textContent = "Submitted! Thank you. We’ll reach out after verification.";
+        form.reset(); switchStep(1);
+      }catch{
+        msg.style.display = 'block';
+        msg.textContent = "Could not submit. Please try again or ping us on WhatsApp.";
+      }
+    });
   </script>
-
 </body>
 </html>
-
