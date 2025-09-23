@@ -13,6 +13,8 @@
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:#fff;color:#0b1220;line-height:1.55}
     a{color:inherit;text-decoration:none}
     .container{max-width:1160px;margin:0 auto;padding:24px 16px}
+    .section-title{font-size:34px;font-weight:900;margin:18px 0 14px;letter-spacing:.2px}
+    @media (max-width:640px){ .section-title{font-size:28px} }
 
     /* ===== Header ===== */
     .header{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #e5e7eb}
@@ -45,8 +47,9 @@
 
     /* ===== Hero ===== */
     .hero{padding:40px 16px 24px;border-bottom:1px solid #f1f5f9}
-    .hero h1{font-size:28px;line-height:1.2;margin-bottom:10px}
-    .hero p{color:#374151;margin-bottom:16px;max-width:720px}
+    .hero h1{font-size:36px;line-height:1.2;margin-bottom:10px;font-weight:900}
+    .hero p{color:#374151;margin-bottom:16px;max-width:760px;font-size:18px}
+    @media (max-width:640px){ .hero h1{font-size:28px} .hero p{font-size:16px} }
     .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:999px;border:2px solid #000;font-weight:700;cursor:pointer}
     .btn.primary{background:#000;color:#fff}
@@ -58,24 +61,79 @@
     .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:28px}
     @media (max-width:960px){ .grid{grid-template-columns:1fr} }
 
-    .section-title{font-size:22px;font-weight:800;margin:22px 0 12px}
+    /* ===== Benefit Cards ===== */
+    .benefit-list{display:flex;flex-direction:column;gap:18px;margin-top:10px}
+    .benefit{
+      position:relative;display:flex;gap:16px;align-items:flex-start;
+      background:#fff;border:1px solid #eceff3;border-radius:26px;padding:18px 22px;
+      box-shadow:0 12px 34px rgba(0,0,0,.07)
+    }
+    .benefit::before{
+      content:"";position:absolute;left:-10px;top:14px;bottom:14px;width:10px;background:#0b0b0b;border-radius:10px
+    }
+    .b-ic{
+      width:42px;height:42px;border-radius:12px;background:#f8fafc;border:1px solid #e5e7eb;display:grid;place-items:center;font-size:24px;flex:0 0 42px
+    }
+    .benefit h4{font-size:28px;line-height:1.25;margin-bottom:6px;font-weight:900}
+    .benefit p{color:#374151;font-size:18px}
+    @media (max-width:640px){
+      .benefit h4{font-size:20px}
+      .benefit p{font-size:16px}
+    }
 
-    /* ===== Left content (short) ===== */
-    .benefit-list{display:block}
-    .benefit{position:relative;margin:16px 0 16px 8px;background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 10px 22px rgba(0,0,0,.06);padding:18px 22px}
-    .benefit::before{content:"";position:absolute;left:-8px;top:10px;bottom:10px;width:8px;background:#000;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-    .benefit-inner{display:flex;gap:14px}
-    .benefit-ic{width:30px;height:30px;display:grid;place-items:center;border-radius:6px;background:#f5f5f5;border:1px solid #e5e7eb;font-size:18px}
-    .benefit h4{font-size:18px;margin-bottom:6px}
-    .benefit p{color:#374151;font-size:15px}
+    /* ===== How it works ===== */
+    .how-list{list-style:none;padding-left:0;margin-top:8px}
+    .how-list li{position:relative;padding-left:22px;margin:12px 0;font-size:20px}
+    .how-list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:#0b1220;border-radius:50%}
+    @media (max-width:640px){ .how-list li{font-size:18px} }
+
+    /* ===== Reviews ===== */
+    .reviews{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+    .review{
+      display:flex;gap:14px;align-items:flex-start;padding:18px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 6px 16px rgba(0,0,0,.06)
+    }
+    .avatar{width:54px;height:54px;border-radius:999px;overflow:hidden;border:1px solid #e5e7eb;background:#f1f5f9;display:grid;place-items:center;font-size:12px;color:#111}
+    .review .header{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .review .name{font-weight:900;color:#0b1220;font-size:18px}
+    .review .stars{font-size:14px;letter-spacing:1px}
+    .review blockquote{margin-top:6px;font-size:18px;line-height:1.55;color:#0b1220}
+    @media (max-width:640px){ .review blockquote{font-size:16px} }
+
+    /* ===== Accordion (FAQs) ===== */
+    .accordion{margin-top:6px}
+    .accordion details{
+      border:1px solid #e5e7eb;border-radius:18px;background:#fff;
+      padding:16px 18px;margin:14px 0;box-shadow:0 6px 16px rgba(0,0,0,.04)
+    }
+    .accordion summary{
+      list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;
+      font-size:24px;font-weight:900;color:#0b1220;outline:none
+    }
+    .accordion summary::-webkit-details-marker{display:none}
+    .qdot{
+      width:24px;height:24px;border-radius:999px;display:grid;place-items:center;
+      border:2px solid #ef4444;color:#ef4444;font-weight:900;font-size:14px;flex:0 0 24px
+    }
+    .caret{margin-left:auto;transition:transform .2s ease}
+    details[open] .caret{transform:rotate(180deg)}
+    .answer{margin-top:12px;padding:14px;border-radius:14px;background:#f8fafc;color:#374151;font-size:18px;line-height:1.6}
+    .content-wrap{overflow:hidden;transition:grid-template-rows .25s ease;display:grid;grid-template-rows:0fr}
+    details[open] .content-wrap{grid-template-rows:1fr}
+    .content{min-height:0}
+
+    /* ===== Final Nudge ===== */
+    .nudge{border:1px solid #e5e7eb;border-radius:16px;padding:18px;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.04)}
+    .nudge h3{font-size:22px;font-weight:900;margin-bottom:8px}
+    .nudge p{color:#374151;margin:6px 0 12px;font-size:18px}
+    .nudge .hero-ctas .btn{border-width:2px}
 
     /* ===== Right column: Form card ===== */
     .r-card{position:sticky;top:76px;border:1px solid #e5e7eb;border-radius:18px;padding:18px;background:#fff}
     @media (max-width:960px){ .r-card{position:static} }
-    .r-card h3{font-size:26px;line-height:1.2}
+    .r-card h3{font-size:26px;line-height:1.2;font-weight:900}
     .r-muted{color:#374151;margin:8px 0 14px;font-size:16px}
 
-    /* ===== Google-Form like, single-column questions ===== */
+    /* ===== Form (single-column Qs) ===== */
     .fieldset{border:1px dashed #cbd5e1;border-radius:16px;padding:18px;margin-top:10px}
     .question{display:flex;flex-direction:column;gap:8px;margin:12px 0}
     .question label{font-weight:800;font-size:18px}
@@ -94,18 +152,16 @@
 
     /* ===== Floating buttons ===== */
     .cta-float{
-      position:fixed;right:16px;bottom:16px;z-index:50;
-      background:#111;color:#fff;border-radius:999px;padding:14px 18px;border:1px solid #111;
+      position:fixed;right:16px;bottom:16px;z-index:50;background:#111;color:#fff;border-radius:999px;padding:14px 18px;border:1px solid #111;
       box-shadow:0 12px 24px rgba(0,0,0,.25);font-weight:800;display:flex;align-items:center;gap:10px
     }
     .cta-float:active{transform:scale(.97)}
-
     .wa-float{
       position:fixed;left:16px;bottom:16px;width:56px;height:56px;border-radius:999px;
       display:flex;align-items:center;justify-content:center;background:#25D366;color:#fff;
-      box-shadow:0 10px 24px rgba(0,0,0,.15);z-index:50;font-weight:900;font-size:22px
+      box-shadow:0 10px 24px rgba(0,0,0,.15);z-index:50
     }
-    .wa-float:active{transform:scale(.94)}
+    .wa-float svg{display:block}
 
     /* ===== Footer ===== */
     footer{border-top:1px solid #e5e7eb;margin-top:28px;padding:18px 0;color:#6b7280;font-size:14px}
@@ -146,21 +202,185 @@
     </div>
   </section>
 
-  <!-- Main -->
-  <main class="container grid">
-    <!-- LEFT (kept minimal to focus on form) -->
-    <div>
+  <!-- Main two-column -->
+  <main class="container grid" id="content-grid">
+    <!-- LEFT COLUMN: benefits, how, reviews, faqs, nudge -->
+    <div aria-label="Left Column (Benefits & Info)">
       <h2 class="section-title">Why Join iiTuitions?</h2>
       <div class="benefit-list">
-        <div class="benefit"><div class="benefit-inner"><div class="benefit-ic">🏅</div><div><h4>Elite Tutor Network</h4><p>Join a selected group of top mentors trusted by parents across India.</p></div></div></div>
-        <div class="benefit"><div class="benefit-inner"><div class="benefit-ic">💻</div><div><h4>Online &amp; Offline Opportunities</h4><p>Teach from anywhere or take premium home tuitions near you.</p></div></div></div>
-        <div class="benefit"><div class="benefit-inner"><div class="benefit-ic">✅</div><div><h4>Zero Registration Fee</h4><p>No joining or hidden charges. Only genuine, verified student leads.</p></div></div></div>
+        <article class="benefit">
+          <div class="b-ic">🏅</div>
+          <div>
+            <h4>Elite Tutor Network</h4>
+            <p>Join a selected group of top mentors trusted by parents across India.</p>
+          </div>
+        </article>
+
+        <article class="benefit">
+          <div class="b-ic">💻</div>
+          <div>
+            <h4>Online &amp; Offline Opportunities</h4>
+            <p>Choose your mode—teach from anywhere or take premium home tuitions near you.</p>
+          </div>
+        </article>
+
+        <article class="benefit">
+          <div class="b-ic">✅</div>
+          <div>
+            <h4>Zero Registration Fee</h4>
+            <p>No joining or hidden charges. We only send you genuine, verified student leads.</p>
+          </div>
+        </article>
+
+        <article class="benefit">
+          <div class="b-ic">💰</div>
+          <div>
+            <h4>Competitive Pay</h4>
+            <p>Market-aligned hourly rates. Senior faculty → senior pay; junior faculty → best possible market rate.</p>
+          </div>
+        </article>
+
+        <article class="benefit">
+          <div class="b-ic">🗓️</div>
+          <div>
+            <h4>Flexible Schedule</h4>
+            <p>You control your calendar. Take classes when it suits you.</p>
+          </div>
+        </article>
+
+        <article class="benefit">
+          <div class="b-ic">📈</div>
+          <div>
+            <h4>Skill Growth Workshops</h4>
+            <p>Regular training on Cambridge, IB, ICSE to expand your student base and earnings.</p>
+          </div>
+        </article>
+
+        <article class="benefit">
+          <div class="b-ic">⚡</div>
+          <div>
+            <h4>Fast, Transparent Payouts</h4>
+            <p>Weekly/bi-weekly transfers with clear class logs and attendance.</p>
+          </div>
+        </article>
+
+        <article class="benefit">
+          <div class="b-ic">🤝</div>
+          <div>
+            <h4>Zero Parent Hassle</h4>
+            <p>Our coordinators handle parent communication and scheduling — you focus on teaching.</p>
+          </div>
+        </article>
+      </div>
+
+      <h2 class="section-title">How It Works ?</h2>
+      <ul class="how-list">
+        <li>Fill the form &amp; accept T&amp;Cs</li>
+        <li>Quick verification call</li>
+        <li>Get matched with suitable students</li>
+        <li>Start teaching &amp; get paid</li>
+      </ul>
+
+      <h2 class="section-title">What tutors say (Reviews)</h2>
+      <div class="reviews">
+        <div class="review">
+          <div class="avatar">Senior</div>
+          <div>
+            <div class="header">
+              <span class="name">Senior Physics Tutor • Hyderabad</span>
+              <span class="stars"><i>★★★★★</i></span>
+            </div>
+            <blockquote>
+              “I focus only on teaching—iiTuitions handles parents and payments. I crossed ₹60,000/month in 3 months.”
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="avatar">Maths</div>
+          <div>
+            <div class="header">
+              <span class="name">Mathematics Tutor • Bengaluru</span>
+              <span class="stars"><i>★★★★★</i></span>
+            </div>
+            <blockquote>
+              “IB &amp; Cambridge workshops helped me attract international-board students and increase my hourly rate.”
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <h2 class="section-title" id="tutor-faqs">FAQs</h2>
+      <section class="accordion" aria-label="Frequently Asked Questions">
+        <details>
+          <summary>
+            <span class="qdot"></span>
+            Is there any joining or registration fee?
+            <svg class="caret" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="content-wrap"><div class="content">
+            <div class="answer">No. Joining iiTuitions is 100% free, with no hidden charges.</div>
+          </div></div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="qdot"></span>
+            How are payouts handled?
+            <svg class="caret" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="content-wrap"><div class="content">
+            <div class="answer">Weekly or bi-weekly via bank transfer, backed by transparent class logs.</div>
+          </div></div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="qdot"></span>
+            Can I choose online/offline?
+            <svg class="caret" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="content-wrap"><div class="content">
+            <div class="answer">Yes. Pick your preferred mode and nearby localities; we match accordingly.</div>
+          </div></div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="qdot"></span>
+            Do you provide training?
+            <svg class="caret" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="content-wrap"><div class="content">
+            <div class="answer">Yes. Optional workshops on Cambridge, IB, ICSE, and more to boost your profile.</div>
+          </div></div>
+        </details>
+      </section>
+
+      <!-- Final Nudge -->
+      <h2 class="section-title">Final Nudge + CTA</h2>
+      <div class="nudge">
+        <h3>Ready to grow with iiTuitions?</h3>
+        <p>Join our community of elite tutors today. More students, better pay, flexible schedules—zero hassle.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#tutor-form">Start Registration</a>
+          <a class="btn secondary" href="https://wa.me/917207467565" target="_blank" rel="noopener">Questions? Chat with us on WhatsApp</a>
+        </div>
       </div>
       <div class="spacer"></div>
     </div>
 
-    <!-- RIGHT: Single-column, 2-section Form -->
-    <aside>
+    <!-- RIGHT COLUMN: 2-step form -->
+    <aside aria-label="Right Column (Form & Encouragement)">
       <div class="r-card" id="tutor-form">
         <h3>Register as a Tutor</h3>
         <p class="r-muted">Fill the form to join iiTuitions’ tutor network. No fees, flexible hours, competitive pay. We’ll verify your profile and start sending matched students.</p>
@@ -435,13 +655,12 @@
   <footer class="container">© <span id="yr"></span> iiTuitions • Tutors</footer>
 
   <!-- Floating buttons -->
-  <<a class="wa-float" aria-label="Chat on WhatsApp" href="https://wa.me/917207467565" target="_blank" rel="noopener">
+  <a class="wa-float" aria-label="Chat on WhatsApp" href="https://wa.me/917207467565" target="_blank" rel="noopener">
     <!-- WhatsApp logo (white) -->
     <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
       <path fill="#FFFFFF" d="M19.11 17.38c-.26-.13-1.52-.75-1.77-.83-.24-.09-.42-.13-.6.13-.18.26-.7.83-.86 1-.16.17-.32.2-.58.07-.26-.13-1.08-.4-2.06-1.28-.76-.67-1.27-1.5-1.42-1.76-.15-.26-.02-.4.11-.53.12-.12.26-.32.39-.48.13-.16.17-.26.26-.44.08-.18.04-.33-.02-.46-.06-.13-.6-1.45-.83-1.99-.22-.53-.45-.45-.6-.45-.16 0-.33-.02-.5-.02s-.46.07-.7.33c-.24.26-.92.9-.92 2.2s.94 2.55 1.07 2.72c.13.17 1.86 2.84 4.52 3.96.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.52-.62 1.74-1.22.22-.6.22-1.12.15-1.22-.07-.1-.24-.16-.5-.29zM16 3.2c-7.1 0-12.8 5.7-12.8 12.8 0 2.26.6 4.41 1.75 6.31L3.2 28.8l6.68-1.74A12.73 12.73 0 0 0 16 28.8c7.1 0 12.8-5.7 12.8-12.8S23.1 3.2 16 3.2zm7.53 20.32c-1.02 1.02-2.21 1.82-3.54 2.38-1.37.58-2.83.87-4.34.87-1.95 0-3.84-.5-5.51-1.45l-.4-.23-3.93 1.03 1.05-3.83-.24-.39a10.22 10.22 0 0 1-1.58-5.52c0-5.63 4.58-10.22 10.22-10.22 2.73 0 5.29 1.06 7.22 2.99a10.2 10.2 0 0 1 2.99 7.22c0 1.5-.3 2.97-.88 4.34-.56 1.33-1.36 2.51-2.38 3.53z"/>
     </svg>
   </a>
-  
   <a class="cta-float" href="index.html#book" aria-label="Book Free Assessment">📘 Book Free Assessment</a>
 
   <script>
@@ -464,6 +683,17 @@
     menuBtn.addEventListener('click', ()=>toggleMenu(true));
     menuClose.addEventListener('click', ()=>toggleMenu(false));
     menu.addEventListener('click', (e)=>{ if(e.target===menu) toggleMenu(false); });
+
+    // FAQs: allow only one open at a time
+    document.querySelectorAll('.accordion details').forEach((d)=>{
+      d.addEventListener('toggle', () => {
+        if (d.open) {
+          document.querySelectorAll('.accordion details').forEach(other=>{
+            if (other!==d) other.removeAttribute('open');
+          });
+        }
+      });
+    });
 
     /* =======================
        GOOGLE FORM HOOK
@@ -506,7 +736,7 @@
       savedNumbers: "entry.XXXX"
     };
 
-    // step tabs
+    // Step tabs
     const tabs = document.querySelectorAll('.tab');
     const steps = document.querySelectorAll('.step');
     const nextBtn = document.getElementById('nextBtn');
@@ -521,7 +751,7 @@
       window.scrollTo({ top: document.getElementById('tutor-form').offsetTop - 12, behavior:'smooth' });
     }
 
-    // submit to Google Form
+    // Submit to Google Form
     const form = document.getElementById('iit-form');
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
