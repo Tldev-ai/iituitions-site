@@ -37,7 +37,61 @@
     .hamb{width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center}
     .hamb span{width:24px;height:3px;background:#000;border-radius:2px}
     /* Force-hide hamburger + dropdown on all screens */
-    .hamb, .menu { display:none !important; }
+    /* Header */
+.site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--ring);box-shadow:0 2px 12px var(--shadow1)}
+.header-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0}
+
+/* floating hamburger (top-right) */
+.hamb{
+  position:fixed;           /* make it float */
+  top:14px; right:14px;     /* top-right corner */
+  width:44px; height:44px;
+  border:none; cursor:pointer;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:14px;
+  display:flex; flex-direction:column; gap:5px; align-items:center; justify-content:center;
+  backdrop-filter: blur(8px);
+  z-index:100;              /* above everything */
+}
+.hamb span{width:22px;height:3px;background:#fff;border-radius:2px}
+
+/* full-screen glass menu overlay */
+.menu{
+  position:fixed; inset:0; z-index:99;
+  display:grid; place-items:center;
+  padding:24px;
+  background:rgba(2,6,23,.72);         /* dark blur */
+  backdrop-filter: blur(10px);
+  opacity:0; visibility:hidden; transform:scale(1.02);
+  transition:.18s ease;
+}
+.menu.open{ opacity:1; visibility:visible; transform:scale(1) }
+
+/* big rounded “pills” like your reference image-2 */
+.menu .sheet{
+  width:min(760px,92vw);
+  display:flex; flex-direction:column; gap:16px;
+}
+.menu a{
+  display:block;
+  text-align:center;
+  font-weight:900;
+  font-size:clamp(22px,4.8vw,36px);
+  color:#fff;
+  padding:18px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  text-decoration:none;
+}
+.menu a:hover{ background:rgba(255,255,255,.14) }
+
+/* optional: hide floating button on very small screens if you want it inside header only */
+@media (min-width:768px){
+  .hero h1{font-size:44px}
+}
+
     .nav-actions{display:none}
     .menu{position:absolute;top:100%;right:12px;width:260px;background:#fff;border:1px solid var(--ring);border-radius:14px;box-shadow:0 14px 34px var(--shadow2);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.2s}
     .menu a{display:block;padding:14px 16px;color:#111;font-weight:600;border-bottom:1px solid #f1f5f9}
@@ -645,11 +699,16 @@
       </a>
       <div style="position:relative">
         <button class="hamb" id="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
-        <nav class="menu" id="menu">
-          <a href="#process">How It Works</a>
-          <a href="#founder">Founder</a>
-          <a href="#contact">Contact</a>
-        </nav>
+       <nav class="menu" id="menu" aria-hidden="true">
+  <div class="sheet" role="menu">
+    <a href="/" role="menuitem">🏠 Home</a>
+    <a href="/sat" role="menuitem">📚 SAT</a>
+    <a href="/iit" role="menuitem">🎓 IIT</a>
+    <a href="/tuitions" role="menuitem">🏛️ Tuitions</a>
+    <a href="/tutor-register" role="menuitem">👩‍🏫 Register as a Tutor</a>
+  </div>
+</nav>
+
       </div>
     </div>
   </header>
@@ -1433,7 +1492,42 @@ If we miss a promise, <span class="hl-yellow">you don’t pay for it.</span>
       });
     });
   </script>
-  
+  <script>
+  (function(){
+    const btn = document.getElementById('hamb');
+    const menu = document.getElementById('menu');
+    if(!btn || !menu) return;
+
+    function openMenu(){
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+    }
+
+    btn.addEventListener('click', () => {
+      if(menu.classList.contains('open')) closeMenu(); else openMenu();
+    });
+
+    // close when clicking outside the sheet
+    menu.addEventListener('click', (e) => {
+      if(e.target === menu) closeMenu();
+    });
+
+    // close on ESC
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeMenu();
+    });
+
+    // close after clicking any link
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+</script>
+
 
 </body>
 </html>
