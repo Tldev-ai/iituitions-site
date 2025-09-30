@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>IITuitions — Transform Your Child's IIT Dreams into Reality</title>
+  
   <meta name="description" content="Personal mentorship from IIT/NIT alumni. Only 50 students chosen yearly for true individual attention. Book a free assessment on WhatsApp.">
+    <!-- Favicons / PWA -->
+  <link rel="shortcut icon" href="/favicon.ico?v=2" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <link rel="manifest" href="/site.webmanifest?v=2">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b3b2a"> <!-- optional -->
+  <meta name="theme-color" content="#0b3b2a">
+
   <style>
     :root{
       --primary:#000; --primary-2:#1a1a1a;
@@ -21,15 +31,28 @@
 
     /* Header */
     .site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--ring);box-shadow:0 2px 12px var(--shadow1)}
-    .header-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .header-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0}
+
     .logo{font-weight:900;color:#000;font-size:18px}
     .hamb{width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center}
     .hamb span{width:24px;height:3px;background:#000;border-radius:2px}
+    /* Force-hide hamburger + dropdown on all screens */
+    .hamb, .menu { display:none !important; }
     .nav-actions{display:none}
     .menu{position:absolute;top:100%;right:12px;width:260px;background:#fff;border:1px solid var(--ring);border-radius:14px;box-shadow:0 14px 34px var(--shadow2);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.2s}
     .menu a{display:block;padding:14px 16px;color:#111;font-weight:600;border-bottom:1px solid #f1f5f9}
     .menu a:last-child{border-bottom:none}
     .menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+    /* Accessible helper to keep brand name for screen readers */
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,1,1); white-space:nowrap; border:0;
+    }
+
+    /* Logo image sizing */
+    .logo{ display:inline-flex; align-items:center; gap:10px; font-weight:900; color:#000; font-size:18px }
+    .logo-img{ height:64px; width:auto; display:block }
+    @media (min-width:768px){ .logo-img{ height:88px } }
 
     /* Buttons */
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border-radius:26px;font-weight:800;border:2px solid transparent;cursor:pointer;touch-action:manipulation}
@@ -39,7 +62,8 @@
     .btn-wa:hover{background:#20BA5A}
 
     /* Hero */
-    .hero{background:var(--accent);color:#fff;padding:32px 12px 40px;text-align:center;position:relative}
+    .hero{background:var(--accent);color:#fff;padding:18px 12px 28px;text-align:center;position:relative}
+
     .hero .wrap{max-width:900px;margin:0 auto}
     .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:14px}
     .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);padding:8px 10px;border-radius:14px;font-size:12px;font-weight:800}
@@ -55,17 +79,124 @@
     .big{font-size:20px;font-weight:900}
 
     .section-title{font-size:24px;font-weight:900;text-align:center;margin:24px 0 12px}
+    /* more space between the H2 and the first dark pill */
+.process .section-title{ margin-bottom: 24px; }  /* was 12px */
+
 
     /* Steps & panels */
+    /* Steps overview — vertical with + separators */
+.steps-overview{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+   margin:10px 0 28px;
+  align-items:center;
+}
+.ovr{
+  display:flex; align-items:center; gap:12px;
+  background:#0B112D;          /* dark blue */
+  color:#fff;                   /* white text */
+  border:0; border-radius:16px;
+  padding:16px 18px;
+  box-shadow:0 12px 28px var(--shadow1);
+  font-weight:900;
+    width:fit-content; 
+}
+.ovr .num{
+  width:36px; height:36px; flex:0 0 36px;
+  display:grid; place-items:center;
+  border-radius:999px;
+  background:#0f172a; color:#fff; /* keeps the badge dark */
+  font-size:16px; font-weight:900;
+  line-height:1;
+}
+.plus{
+  display:flex; justify-content:center; align-items:center;
+  font-weight:900; font-size:32px; line-height:1;
+  color:#0B112D;                 /* dark blue plus */
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.08));
+}
+
     .process{padding:8px 0 18px}
-    .steps{display:grid;gap:14px;max-width:1000px;margin:0 auto}
+    .process{padding:8px 0 18px}
+
+/* Steps static image banner */
+.process .steps-banner{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 28px;
+}
+.process .steps-banner img{
+  width:100%;
+  max-width:1000px;
+  border-radius:16px;
+  border:1px solid var(--ring);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+
+    .steps{display:grid;gap:8px;max-width:1000px;margin:0 auto}
+    .step-wrap{
+      background:#fff;
+      border:1px solid var(--ring);
+      border-radius:18px;
+      box-shadow:0 10px 26px var(--shadow1);
+      padding:14px;
+    }
+    .step-wrap > .step{border:none;box-shadow:none;padding:0;background:transparent}
+    .step-wrap > .how-panel{margin-top:12px}
+    
     .step{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:14px;box-shadow:0 10px 26px var(--shadow1)}
-    .step .num{width:40px;height:40px;border-radius:50%;background:#0f172a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+    .step .num{
+      width:44px;
+      height:44px;
+      flex:0 0 44px;
+      aspect-ratio:1 / 1;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:#0f172a;
+      color:#fff;
+      font-weight:900;
+      font-size:18px;
+      line-height:1;
+    }
+
     .step h3{font-size:18px;margin-bottom:2px}
-    .step .sub{color:#111;font-size:16px;margin:2px 0 0}
+    .step .sub{
+      font-size:16px;
+      margin:6px 0 0;
+      color:#0b1220;
+      background:transparent;
+      display:inline-block;
+      padding:0;
+      border-radius:0;
+    }
 
     .how-panel{background:#fff;border:1px solid var(--ring);border-radius:18px;padding:16px;box-shadow:0 8px 22px var(--shadow1)}
     .how-panel h5{font-size:18px;font-weight:900;margin-bottom:6px}
+    .how-panel h5{
+      display:inline-block;
+      background:#ffeb66;
+      color:#0b1220;
+      padding:6px 10px;
+      border-radius:10px;
+      line-height:1.2;
+      box-shadow:0 0 0 1px rgba(0,0,0,0.02) inset;
+    }
+    /* reusable yellow highlight strip */
+.hl-yellow{
+  background:#ffeb66;
+  color:#0b1220;               /* keep text dark for contrast */
+  padding:2px 8px;
+  border-radius:8px;
+  font-weight:900;
+  box-shadow:0 0 0 1px rgba(0,0,0,0.02) inset;
+}
+    /* yellow text (no background strip) */
+.text-yellow{ color:#ffeb66; }
+
+
+
     .muted{color:#475569;font-size:14px;margin-bottom:8px}
     .bullets{margin-left:18px}
     .bullets li{margin:6px 0;color:#111827}
@@ -82,13 +213,7 @@
     .accordion.open .acc-b{display:block}
     .accordion.open .toggle{transform:rotate(180deg)}
     .toggle{transition:.2s}
-    #examAcc, #scenarioAcc { margin-bottom:14px; }
-    #assessment-details, #roadmap-details, #mentorship-details { margin-bottom:14px; }
-
-    #scenarioAcc { margin-bottom: 14px; }  /* space before Step 3 */
     
-
-
     /* Guarantee badge */
     .guarantee-badge{
       display:inline-flex;align-items:center;gap:10px;
@@ -97,7 +222,7 @@
       box-shadow:0 6px 18px rgba(0,0,0,.10);
     }
 
-    /* ======= Carousels (WhatsApp rail + Reviews) ======= */
+    /* Carousels */
     .carousel-wrapper{
       position:relative;
       --fadeW: 36px;
@@ -124,7 +249,6 @@
     .shot{background:#eafff3;border:1px solid #c7f0db}
     .shot .img{
       width:100%;
-      /* TALLER screenshots */
       aspect-ratio:3/4;
       min-height:clamp(360px,56vw,620px);
       background:#f1f5f9;border-radius:12px;
@@ -133,28 +257,35 @@
 
     /* Reviews/Toppers carousel (bigger) */
     .review-card{ position:relative; padding-top:16px; }
-    .badge{
-      position:absolute;top:-10px;right:14px;background:#000;color:#fff;
-      padding:6px 12px;border-radius:12px;font-size:12px;font-weight:800
-    }
+    .badge{ position:absolute;top:-10px;right:14px;background:#000;color:#fff;padding:6px 12px;border-radius:12px;font-size:12px;font-weight:800 }
     .review-name{font-weight:900;font-size:18px;margin:0 0 6px}
     .review-note{color:#374151;font-size:15px}
 
-    /* ======= Large photo student cards (toppers) ======= */
+    /* Large photo student cards (toppers) */
     .student-card{
       scroll-snap-align:start;
-      /* ⬇️ reduced horizontal size */
       min-width:clamp(260px,56vw,460px);
       background:#fff;border:1px solid var(--ring);
       border-radius:18px;overflow:hidden;
       box-shadow:0 12px 28px rgba(0,0,0,.08);
+       position: relative;
     }
+    /* Names shown under the image (not on the ribbon) */
+.student-body .student-name{
+  font-weight:900; font-size:22px; color:#0b1220; margin:0 0 6px;
+}
+/* If any name is still inside the ribbon by mistake, hide it there */
+.student-ribbon .student-name{ display:none; }
+
     .student-photo{
-      position:relative;width:100%;
-      aspect-ratio: 16/12;
-      background-size:cover;background-position:center;
-      border-bottom:1px solid #eef2f7;
-    }
+  position:relative;width:100%;
+  aspect-ratio: 16/12;               /* keeps same card height */
+  background-size: cover;
+  background-position: 50% var(--focusY, 30%); /* 👈 push image down a bit */
+  border-bottom:1px solid #eef2f7;
+  overflow:hidden;    
+}
+
     .student-ribbon{
       position:absolute;left:0;right:0;bottom:0;
       padding:16px 18px;
@@ -174,7 +305,12 @@
       display:grid;grid-template-columns:120px 1fr;gap:18px;box-shadow:0 24px 60px rgba(0,0,0,.45);
       max-width:1100px;margin:0 auto;
     }
-    .f-avatar{width:120px;height:120px;border-radius:999px;object-fit:cover;border:2px solid #334155;box-shadow:0 12px 34px rgba(0,0,0,.5);display:block}
+    .f-avatar{
+  width:120px;height:120px;border-radius:999px;object-fit:cover;
+  object-position:50% 18%;           /* show more forehead */
+  border:2px solid #334155;box-shadow:0 12px 34px rgba(0,0,0,.5);display:block;
+}
+
     .f-title{font-size:28px;line-height:1.2;font-weight:900;color:#fff}
     .f-title-strong{display:block;font-size:32px}
     .f-sub{color:#9ca3af;font-style:italic;margin:6px 0 12px}
@@ -206,7 +342,7 @@
     th{background:#f8fafc;text-align:left;padding:10px 14px}
     td{padding:10px 14px;border-bottom:1px solid #eef2f7}
 
-    /* ===== Google Reviews ===== */
+    /* Google Reviews */
     .ratings-strip{
       display:flex;align-items:center;justify-content:center;gap:10px;
       background:#fff;border:1px solid #eef2f7;border-radius:18px;
@@ -247,7 +383,7 @@
     .addr{line-height:1.7;color:#cbd5e1}
     .bar{border-top:1px solid rgba(255,255,255,.15);text-align:center;padding:12px 0;font-size:13px}
 
-    /* ======= Responsive ======= */
+    /* Responsive */
     @media (max-width:420px){
       .stats{grid-template-columns:1fr}
       .hero h1{font-size:22px}
@@ -263,88 +399,260 @@
       .stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
       .section-title{font-size:36px}
       .f-card{grid-template-columns:220px 1fr;gap:28px}
-      .f-avatar{width:220px;height:220px;border-width:3px}
+      .f-avatar{
+  width:220px;height:220px;border-width:3px;
+  object-position:50% 18%;
+}
+
       .f-title{font-size:40px}.f-title-strong{font-size:44px}
       .card-xl{min-width:420px}
       .carousel-wrapper::before{background:linear-gradient(90deg,#f8fafc,rgba(248,250,252,0))}
       .carousel-wrapper::after{background:linear-gradient(270deg,#f8fafc,rgba(248,250,252,0))}
     }
 
-    /* ======= container width rules for two rails ======= */
-    .wa-rail .container{ max-width:1400px; }              /* keep WhatsApp rail wide */
-    #success .container{ max-width:1200px; }              /* ⬅️ slightly narrower now */
+    /* container width rules for two rails */
+    .wa-rail .container{ max-width:1400px; }
+    #success .container{ max-width:1200px; }
     #success h2{ text-align:center; margin-bottom:14px; }
-    /* === Global Hamburger (top-left) === */
-.global-hamb {
-  position: absolute; left: 12px; top: 10px;
-  width: 44px; height: 44px;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  gap:5px; background:transparent; border:none; cursor:pointer; z-index:210;
-}
-.global-hamb span{ width:24px; height:3px; background:#000; border-radius:2px; transition:.3s }
-.global-hamb.active span:nth-child(1){ transform:rotate(45deg) translate(6px,6px) }
-.global-hamb.active span:nth-child(2){ opacity:0; transform:scale(0) }
-.global-hamb.active span:nth-child(3){ transform:rotate(-45deg) translate(6px,-6px) }
 
-/* full-screen overlay menu (starts hidden) */
-.global-mmenu{
-  position:fixed; inset:0; background:rgba(0,0,0,.96);
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  gap:10px; opacity:0; visibility:hidden; transform:translateY(10px);
-  transition:opacity .25s ease, transform .25s ease, visibility .25s;
-  z-index:200;
-}
-.global-mmenu.open{ opacity:1; visibility:visible; transform:translateY(0) }
-.global-mmenu a{
-  color:#fff; text-decoration:none; font-weight:800; font-size:28px;
-  padding:14px 28px; border-radius:12px;
-}
-.global-mmenu a:hover{ background:rgba(255,255,255,.18) }
+    /* bullets styling */
+    .bullets{ list-style:none; padding-left:0; margin-left:0; }
+    .bullets li{ margin:14px 0 16px; line-height:1.55; position:relative; padding-left:28px; }
+    .bullets li b{ display:inline; margin-left:6px; }
+    .li-sub{ display:block; margin-left:34px; color:#374151; }
+    .bullets li::before{
+      content:""; position:absolute; left:0; top:0.68em; width:10px; height:10px; border-radius:50%;
+      background:#111827; opacity:.95; transform:translateY(-50%);
+    }
+    /* Hide the dark ribbon if there's no text inside it */
+.student-ribbon:empty{ display:none; }
 
-/* give space so the button doesn’t overlap logo */
-.site-header .container.header-row{ position:relative; padding-left:60px; }
-/* move global hamburger to the RIGHT */
-.global-hamb{
-  left: auto;        /* cancel left */
-  right: 12px;       /* stick to right */
+/* Softer fade when ribbon is used */
+.student-ribbon{
+  background: linear-gradient(180deg, rgba(2,6,23,0) 0%, rgba(2,6,23,.35) 55%, rgba(2,6,23,.6) 100%);
 }
 
-/* shift header padding to the right for spacing */
-.site-header .container.header-row{
-  padding-left: 0;   /* undo left spacing */
-  padding-right: 60px;
+/* FAQ styling (dropdown cards) */
+.faqs .accordion{ margin:10px 0; border-radius:14px; overflow:hidden; }
+.faqs .acc-h{ background:#0B112D; color:#fff; border:1px solid #0E1435; }
+.faqs .acc-h .toggle{ color:#fff; }
+.faqs .acc-b{ background:#fff; border:1px solid var(--ring); border-top:0; }
+.faqs .acc-b p, .faqs .acc-b li{ margin:8px 0; }
+    /* FAQs: limit width, center the cards, and center the question text */
+/* FAQs: make each pill only as wide as its text, centered */
+#faqs .final-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;            /* center the pills */
 }
+
+.faqs .accordion{
+  display:inline-block;          /* shrink-to-fit the text */
+  width:auto;
+  max-width:96vw;                /* never overflow screen */
+  margin:14px 0;                 /* small gap between FAQs */
+  border-radius:14px;
+  overflow:hidden;
+}
+
+/* Center the question; keep caret on right without affecting width */
+.faqs .acc-h{
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:16px 56px;             /* room for the caret */
+}
+.faqs .acc-h .toggle{
+  position:absolute;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  transition:transform .2s ease;
+}
+.faqs .accordion.open .acc-h .toggle{
+  transform:translateY(-50%) rotate(180deg);
+}
+
+/* Keep questions in one line on wide screens so pill = text length */
+@media (min-width:768px){
+  .faqs .acc-h span:first-child{ white-space:nowrap; }
+}
+
+
+
+    
+    /* FAQs: make panel text black + add gap between items */
+.faqs .acc-b{ color:#0b1220; }                              /* body text black */
+.faqs .acc-b p, .faqs .acc-b li, .faqs .acc-b b,
+.faqs .acc-b strong{ color:#0b1220; }                       /* ensure all text is black */
+.faqs .acc-b .bullets li::before{ background:#0b1220; }     /* black bullet dots */
+.faqs .accordion{ margin:14px 0; }                          /* a little gap between FAQs */
+
+
+/* Footer copyright — small & subtle */
+.footer .bar{ font-size:12px; color:#cbd5e1; }
+    /* ===== FAQ: remove the question containers, keep centered text ===== */
+#faqs .final-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* kill the pill/card on the wrapper itself */
+.faqs .accordion{
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  display:block;          /* override any inline-block from before */
+  width:100%;
+  max-width:none;         /* override old 980px cap */
+  margin:10px 0;
+}
+
+/* the clickable question row: just text, centered */
+.faqs .acc-h{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:transparent;
+  border:0;
+  color:#fff;
+  padding:14px 56px 14px 20px;  /* space for caret */
+  margin:0 auto;                /* center the row */
+  position:relative;
+  text-align:center;
+}
+.faqs .acc-h span:first-child{ white-space:nowrap; } /* keep one-line text */
+
+/* caret stays on the right */
+.faqs .acc-h .toggle{
+  position:absolute; right:16px; top:50%;
+  transform:translateY(-50%);
+  transition:transform .2s ease;
+  color:#fff;
+}
+.faqs .accordion.open .acc-h .toggle{
+  transform:translateY(-50%) rotate(180deg);
+}
+
+/* subtle divider under each question */
+.faqs .acc-h::after{
+  content:""; position:absolute; left:0; right:0; bottom:-10px; height:1px;
+  background:rgba(255,255,255,.12);
+}
+
+/* the answer stays as a white card with black text */
+.faqs .acc-b{
+  background:#fff;
+  color:#0b1220;
+  border:1px solid var(--ring);
+  border-radius:14px;
+  padding:16px;
+  width:min(980px,96vw);
+  margin:14px auto 2px;
+  box-shadow:0 10px 24px rgba(0,0,0,.10);
+}
+/* How It Works — responsive image strip (touching edges) */
+    /* Make the strip horizontal on desktop */
+.how-photos{
+  display:flex;
+  flex-wrap:wrap;        /* lets them wrap to the next line if needed */
+  gap:12px;              /* space between images */
+  justify-content:center;/* center the row */
+  align-items:flex-start;
+}
+
+/* Desktop: 4 tiles per row; the 5th wraps below and stays centered */
+.how-photos img{
+  flex:0 0 calc((100% - 3*12px)/4);
+  max-width:calc((100% - 3*12px)/4);
+  aspect-ratio: 3 / 4;
+  height:auto;
+  object-fit:contain ;
+  margin:0; padding:0; border:0;
+  border-radius:12px;
+  background:#fff;
+}
+
+
+
+
+
+
+
+/* ── tablet landscape / small desktop: 3 per row ── */
+@media (max-width: 1024px){
+  .how-photos img{
+    flex-basis:33.333%;
+    max-width:33.333%;
+  }
+}
+
+/* ── tablets / larger phones: 2 per row ── */
+@media (max-width: 768px){
+  .how-photos img{
+    flex-basis:50%;
+    max-width:50%;
+  }
+}
+
+/* ── small phones: 1 per row ── */
+@media (max-width: 480px){
+  .how-photos img{
+    flex-basis:100%;
+    max-width:100%;
+    aspect-ratio:auto;       /* avoid over-tall crops on tiny screens */
+    object-fit:cover;        /* keep fill; change to 'contain' if you prefer */
+  }
+}
+
 
 
   </style>
+  <style>
+/* FAQ fix: don't clip the white card and make it fit the parent */
+.faqs .accordion{ 
+  overflow: visible;             /* override the global overflow:hidden */
+}
+
+.faqs .acc-b{
+  display: none;                 /* hidden until opened */
+  width: 100%;                   /* fit parent width */
+  max-width: 900px;              /* cap on wide screens */
+  margin: 16px auto 8px;
+  padding: 22px 28px;
+  background:#fff;
+  color:#0b1220;
+  border:1px solid var(--ring);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(0,0,0,.10);
+  overflow-wrap:anywhere;
+}
+
+/* when opened, show the body */
+.accordion.open .acc-b{ display:block; }
+</style>
+
 </head>
 <body>
   <!-- Header -->
   <header class="site-header">
     <div class="container header-row">
-      <button class="global-hamb" id="globalHamb" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-      
-      <a class="logo" href="#">📘 IITuitions</a>
-
-      <div class="nav-actions">
-        <a class="btn btn-outline" href="#process">How It Works</a>
-        <a class="btn btn-outline" href="#founder">Founder</a>
-        <a class="btn btn-outline" href="#contact">Contact</a>
+      <a class="logo" href="#">
+        <img src="logotree.png" alt="iiTuitions" class="logo-img">
+        <span class="sr-only">iiTuitions</span>
+      </a>
+      <div style="position:relative">
+        <button class="hamb" id="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
+        <nav class="menu" id="menu">
+          <a href="#process">How It Works</a>
+          <a href="#founder">Founder</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-
-      
     </div>
   </header>
-  <nav class="global-mmenu" id="globalMenu" aria-label="Main">
-    <a href="index.html">🏠 Home</a>
-    <a href="iit.html">🎓 IIT</a>
-    <a href="sat.html">📚 SAT</a>
-    <a href="tuitions.html">🏛️ Tuitions</a>
-    <a href="register.html">👨‍🏫 Register as Tutor</a>
-  </nav>
-  
 
   <!-- Hero -->
   <section class="hero">
@@ -375,257 +683,165 @@
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section class="process" id="process">
-    <div class="container">
-      <h2 class="section-title">How It Works</h2>
 
-      <div class="steps">
-        <article class="step">
-          <div class="num">1</div>
-          <div>
-            <h3>Free Assessment</h3>
-            <div class="sub">Know Exactly Where Your Child Stands</div>
-          </div>
-        </article>
-
-        <div class="how-panel" id="assessment-details">
-          <h5>Know Exactly Where Your Child Stands</h5>
-          <div class="muted">(Free 1-on-1 IIT Mentorship Assessment) ✅</div>
-
-          <ul class="bullets">
-            <li><b>Talk 1-on-1</b> with your child about their current journey</li>
-            <li>Understand their <b>strong &amp; weak topics</b></li>
-            <li>Discuss <b>study habits, focus levels, time availability</b></li>
-            <li><b>Teach a small topic live</b> to evaluate real-time understanding</li>
-            <li>Ask <b>conceptual &amp; numerical questions</b> to check:
-              <ul class="subb">
-                <li>Depth of understanding</li>
-                <li>Application skills</li>
-                <li>Problem-solving approach</li>
-              </ul>
-            </li>
-            <li>Identify learning style &amp; communication patterns</li>
-          </ul>
-
-          <div class="receive">
-            <p><b>By the end of the session, you and your child will receive:</b></p>
-            <ul class="bullets">
-              <li>A <b>clear picture</b> of where they stand today</li>
-              <li>A <b>personalized IIT success roadmap</b> designed by experts</li>
-            </ul>
-          </div>
-
-          <!-- Assessment accordion -->
-<div class="accordion" id="examAcc">
-  <div class="acc-h"><span>❓ “Is this an exam?”</span><span class="toggle">⌄</span></div>
-  <div class="acc-b">
-    <p>
-      Nope 🙂 — this isn’t a memory-based test. Our IIT mentors <b>talk 1-on-1</b> with your child,
-      teach a <b>sample concept</b>, and ask a few <b>conceptual &amp; numerical questions</b>
-      to understand their <b>learning style</b>.
-    </p>
-    <p style="margin-top:8px;color:#475569;font-style:italic">
-      No marks. No stress. Pure understanding.
-    </p>
-    <div style="margin-top:8px;font-size:20px">✅</div>
-  </div>
-</div>
-
-
-        <article class="step" id="roadmap-step">
-          <div class="num">2</div>
-          <div>
-            <h3>Personalized Roadmap</h3>
-            <div class="sub">Get a custom IIT Success plan</div>
-          </div>
-        </article>
-
-        <div class="how-panel" id="roadmap-details" aria-labelledby="roadmap-step">
-          <h5>Get Your Child’s Personalised IIT Success Roadmap</h5>
-          <p style="margin:8px 0">Imagine this. Your child has just stepped into <b>Grade 12</b>. Grade 11 is behind them — but deep down, you know something’s not right.</p>
-          <p>Those <b>big coaching centres</b>… Packed classrooms, <b>fast-paced teaching</b>, endless assignments. Even after <b>revision sessions</b>, your child still feels <b>lost</b> in many topics.</p>
-          <p>Now, there are only <b>6 months left</b> for JEE Mains. Your child wants to give their <b>100%</b> — but where should they start?</p>
-          <ul class="bullets">
-            <li><b>Which topics to focus on?</b></li>
-            <li><b>How to balance Grade 11 and Grade 12?</b></li>
-            <li><b>What’s the smartest way to use these 6 months?</b></li>
-          </ul>
-
-          <p style="margin-top:10px"><b>That’s where we step in.</b></p>
-          <p>After our <b>free 1-on-1 assessment</b> session, our IIT/NIT mentor prepares a <b>personalised roadmap</b> just for your child:</p>
-
-          <ul class="bullets">
-            <li>We pick <b>high-scoring topics</b> from Grade 11 that your child can <b>master quickly</b>.</li>
-            <li>We focus on areas where the <b>concepts are clear</b> but <b>numericals need practice</b>.</li>
-            <li>We <b>skip low-ROI confusion topics</b> to save precious time.</li>
-            <li>We align <b>Grade 12 chapters</b> with the school’s pace, so your child doesn’t fall behind.</li>
-            <li>And most importantly — we design a plan that your child can <b>actually follow</b> without getting overwhelmed.</li>
-          </ul>
-
-          <p style="margin-top:10px">Finally, we sit down with <b>you and your child</b> to explain:</p>
-          <ul class="bullets">
-            <li><b>Where they stand right now</b></li>
-            <li><b>What’s achievable in 6 months</b></li>
-            <li><b>Exactly what to focus on for maximum JEE marks</b></li>
-          </ul>
-
-          <!-- Scenario accordion (replaces the dashed .roadmap box) -->
-<div class="accordion" id="scenarioAcc">
-  <div class="acc-h"><span>📖 A real student scenario</span><span class="toggle">⌄</span></div>
-  <div class="acc-b">
-    <h5 style="margin-top:12px">Get Your Child’s Personalised IIT Success Roadmap</h5>
-
-    <p><b>Student (hesitant, during assessment):</b></p>
-    <p><i>
-      "Sir… I’m in Grade 12 now… but honestly…<br>
-      I don’t feel confident about half of my Grade 11 topics.<br>
-      In my coaching centre, there are <b>300 students in one batch</b>…<br>
-      They teach <b>so fast</b>…<br>
-      Even after revision classes, I still <b>don’t get many concepts</b>.<br><br>
-      Sometimes, I try solving questions… but I either <b>blank out</b> or <b>get stuck</b>.<br>
-      And now there are only <b>six months left</b> for JEE Mains…<br>
-      I want to work hard, but I <b>don’t even know where to start</b>."
-    </i></p>
-
-    <p style="margin-top:12px"><b>IIT Mentor (calm, reassuring):</b></p>
-    <p><i>
-      "I understand exactly how you feel.<br>
-      You’re <b>not alone</b> — we see this every year with students like you.
-    </i></p>
-    <p><i>
-      That’s why our process is <b>different</b>.<br>
-      We don’t just <b>throw a plan</b> at you.<br>
-      We <b>sit with you 1-on-1</b>, teach a small topic live, ask a few <b>conceptual</b> and <b>numerical</b> questions, and understand:
-    </i></p>
-
-    <ul class="bullets">
-      <li>Which topics you’re <b>confident</b> in</li>
-      <li>Where you’re <b>losing marks</b></li>
-      <li>How deep your <b>conceptual understanding</b> goes</li>
-      <li>How you <b>learn best</b> — visual, practice-driven, or problem-solving</li>
-    </ul>
-
-    <h5 style="margin-top:14px">After the Assessment</h5>
-    <p><i>"Based on this, we’ll prepare a <b>personalised IIT success roadmap</b> just for you:"</i></p>
-    <ul class="bullets">
-      <li><b>Quick wins first</b> → High-scoring Grade 11 topics that you can <b>master fast</b></li>
-      <li><b>Fix application gaps</b> → Where you <b>know concepts</b> but <b>struggle with numericals</b></li>
-      <li><b>Skip low-value chaos</b> → Chapters that <b>waste time</b> but give <b>low marks</b></li>
-      <li><b>Smartly align Grade 12 topics</b> → So you stay <b>in sync</b> with school and coaching</li>
-      <li><b>Make it realistic</b> → A plan you can <b>actually follow</b> without feeling overwhelmed</li>
-    </ul>
-
-    <p style="margin-top:12px"><b>Student (relieved):</b><br>
-      <i>"So you’ll actually <b>help me decide</b> what to study, what to skip, and <b>how to use these six months wisely</b>?"</i>
-    </p>
-
-    <p style="margin-top:8px"><b>IIT Mentor (smiling):</b><br>
-      <i>"Exactly 🙂<br>
-      Every student is different.<br>
-      This roadmap is <b>built only for you</b>, not for a batch.<br>
-      No stress. No guesswork. Just a <b>clear path</b> to your best JEE rank."</i>
-    </p>
-  </div>
-</div>
-
-
-        <article class="step">
-          <div class="num">3</div>
-          <div><h3>Mentorship Sessions</h3></div>
-        </article>
-
-        <div class="how-panel" id="mentorship-details">
-          <h5>100% Personalised 1-on-1 Mentorship — No Batches. No Distractions. ✅</h5>
-          <p style="margin:8px 0"><i>"In most coaching centres, your child sits in a <b>batch of 200–300 students</b>. The pace is fixed, doubts pile up, and progress slows down."</i></p>
-          <p>At iiTuitions, every single session is <b>1-on-1</b> — just your child and an IIT/NIT mentor.</p>
-          <ul class="bullets" style="margin-top:8px">
-            <li>🎓 <b>IIT/NIT Mentors Only</b> → No junior faculty. No compromises.</li>
-            <li>🟢 <b>Daily WhatsApp Updates</b> → Topics covered, tests done, progress.</li>
-            <li>💬 <b>Unlimited Doubt Support</b> → WhatsApp group access anytime.</li>
-            <li>🔁 <b>Faculty Replacement Guarantee</b> → Switch instantly if needed.</li>
-            <li>👀 <b>Live Session Monitoring</b> → Both cameras ON; zero time waste.</li>
-          </ul>
-          <p style="margin-top:10px"><b>Your Child, Their Mentor, One Goal — Crack JEE.</b></p>
-        </div>
-
-        <article class="step" id="reviews-step">
-          <div class="num">4</div>
-          <div>
-            <h3>Continuous Tracking. Real-Time Corrections. ✅</h3>
-            <div class="sub">Track progress every day</div>
-          </div>
-        </article>
-
-        <div class="how-panel" id="reviews-details" aria-labelledby="reviews-step">
-          <h5>We Track and Improve Performance in Real Time</h5>
-          <p style="margin:8px 0"><i>“We’ve seen it happen everywhere — students spend <b>months</b> attending classes, giving tests,
-            and working hard… only to realise <b>too late</b> that they were going in the <b>wrong direction</b>.”</i></p>
-          <p style="margin:8px 0">At <b>iiTuitions</b>, we don’t let that happen.</p>
-          <p style="margin:12px 0 6px"><b>Here’s how we track and improve performance in real time:</b></p>
-          <ul class="bullets">
-            <li>🍀 <b>Micro Tests After Every Topic</b> → We immediately check if your child has <b>grasped the concept</b>.</li>
-            <li>📚 <b>Macro Tests After 2–3 Topics</b> → To measure <b>concept linking and retention</b>.</li>
-            <li>🗂️ <b>Revision Tests Regularly</b> → Ensuring your child <b>retains, recalls, and applies</b>.</li>
-            <li>📊 <b>Weekly Parent Discussions</b> → We share insights, patterns, and next steps.</li>
-            <li>⚡ <b>Instant Strategy Corrections</b> → If something isn’t working, we <b>fix it then and there</b>.</li>
-            <li>🤝 <b>Parent Support Is Key</b> → Our best results came when <b>parents worked closely with us</b>.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== WhatsApp rail (side-scroll, big) ===== -->
-  <!-- ===== WhatsApp rail (side-scroll, square cards) ===== -->
-<section class="wa-rail" style="background:#fff;padding:24px 0">
-  <style>
-    /* Square, tidy WhatsApp cards just for this section */
-    .wa-rail .carousel { padding:10px var(--padX) 16px; }
-    .wa-rail .card-xl { min-width:clamp(240px,62vw,360px); padding:12px; border-radius:16px; }
-    .wa-rail .shot { background:#ecfdf5; border:1px solid #c7f0db; }
-    .wa-rail .shot .img{
-      aspect-ratio:1/1;                      /* square */
-      min-height:clamp(240px,54vw,360px);    /* responsive height */
-      background-size:cover;
-      background-position:center;
-      border-radius:12px;
-      box-shadow:0 10px 24px rgba(0,0,0,.06);
-    }
-    .wa-rail .shot .title{
-      margin-top:10px; font-weight:900; font-size:18px; line-height:1.35; color:#065f46;
-    }
-  </style>
-
+<!-- How it works -->
+<section id="process">
   <div class="container">
-    <h2 class="section-title">What Parents Text Us</h2>
+    <h2 class="section-title">How it works</h2>
 
-    <div class="carousel-wrapper">
-      <div class="carousel" aria-label="Parent WhatsApp messages">
-
-        <div class="card-xl shot">
-          <div class="img" style="background-image:url('3.png');"></div>
-          <div class="title">58% in Jan → AIR 238 (Roadmap + micro-tests)</div>
-        </div>
-
-        <div class="card-xl shot">
-          <div class="img" style="background-image:url('1.png');"></div>
-          <div class="title">Referral from AIR 55 parent → Free assessment + roadmap</div>
-        </div>
-
-        <div class="card-xl shot">
-          <div class="img" style="background-image:url('2.png');"></div>
-          <div class="title">“Thanks for daily updates, he’s finally consistent”</div>
-        </div>
-
-        
-
-      </div>
+    <div class="how-photos" aria-label="How It Works — image strip">
+      <img src="i1.png" alt="How it works image 1">
+      <img src="i2.png" alt="How it works image 2">
+      <img src="i33.png" alt="How it works image 3">
+      <img src="i4.png" alt="How it works image 4">
+      <img src="i5.png" alt="How it works image 5">
     </div>
   </div>
 </section>
 
-  <!-- ===== Toppers (large photo cards, no profiles) ===== -->
+
+
+
+
+
+  
+
+         <!-- Assessment accordion -->
+          <div class="accordion" id="examAcc">
+            <div class="acc-h"><span>❓ “Is the assessment an exam?”</span><span class="toggle">⌄</span></div>
+            <div class="acc-b">
+              <p>
+                Nope 🙂 — this isn’t a memory-based test. Our IIT mentors <b>talk 1-on-1</b> with your child,
+                teach a <b>sample concept</b>, and ask a few <b>conceptual &amp; numerical questions</b>
+                to understand their <b>learning style</b>.
+              </p>
+              <p style="margin-top:8px;color:#475569;font-style:italic">
+                No marks. No stress. Pure understanding.
+              </p>
+              <div style="margin-top:8px;font-size:20px">✅</div>
+            </div>
+          </div>
+        </div>
+
+   
+
+      
+
+        
+
+       
+
+  <!-- WhatsApp rail -->
+  <section class="wa-rail" style="background:#fff;padding:24px 0">
+    <style>
+      /* Square, tidy WhatsApp cards just for this section */
+      .wa-rail .shot .img{
+        aspect-ratio:3/4;
+        min-height:clamp(400px,64vw,640px);
+        background-size:cover;
+        background-position:center calc(-1 * var(--cropTop, 28px));
+        background-repeat:no-repeat;
+        background-color:#f1f5f9;
+        border-radius:12px;
+        box-shadow:0 10px 24px rgba(0,0,0,.06);
+      }
+      .wa-rail .shot .title{
+        margin-top:10px; font-weight:900; font-size:18px; line-height:1.35; color:#065f46;
+      }
+      .wa-rail .shot .img{ position: relative; }
+      .wa-rail .chip{
+        position: absolute;
+        top: 10px; left: 10px;
+        padding: 6px 10px;
+        background: rgba(255,255,255,0.92);
+        color: #0b1220;
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 14px;
+        backdrop-filter: blur(4px);
+      }
+      .section-sub{
+  font-size:22px;
+  font-weight:900;
+  text-align:center;
+  margin:12px 0 16px;   /* small gap above/below */
+  color:#0b1220;
+}
+
+.process .steps{ 
+  margin-top:12px;     /* gives space after the subheading */
+}
+
+@media (min-width:768px){
+  .section-sub{ font-size:28px; margin:10px 0 16px; }
+}
+      /* Make the "Is this an exam?" header blue with white text */
+#examAcc{ border:0; border-radius:14px; overflow:hidden; }
+#examAcc .acc-h{
+  background:#0B112D;     /* your site’s dark blue */
+  color:#fff;
+  border:1px solid #0E1435;
+}
+#examAcc .acc-h .toggle{ color:#fff; }
+#examAcc .acc-b{ border:1px solid var(--ring); border-top:0; }
+
+
+/* FAQ: hide answers by default; show only on click */
+#faqs .acc-b { display:none; }
+#faqs .accordion.open .acc-b { display:inline-block; }  /* keeps the white card centered */
+      <style>
+/* MOBILE: stack How It Works images one per row */
+@media (max-width: 768px){
+  .how-photos{
+    display:block;          /* stop the flex grid on phones */
+    max-width:100%;
+    margin:12px 0;
+    padding:0 12px;         /* same container side padding */
+  }
+  .how-photos img{
+    display:block;
+    width:100%;             /* full-bleed inside container */
+    height:auto;            /* keep aspect ratio */
+    margin:0 0 12px;        /* gap between images */
+    border-radius:12px;     /* optional: keep your rounded corners */
+    flex:none;              /* cancel flex sizing from desktop rules */
+    max-width:none;         /* ensure no leftover width cap */
+    aspect-ratio:auto;      /* avoid forced crop on tiny screens */
+    object-fit:contain;       /* look good for mixed sizes */
+  }
+  .how-photos img:last-child{ margin-bottom:0; }
+}
+</style>
+
+
+    </style>
+
+    <div class="container">
+      <h2 class="section-title">What Parents Text Us</h2>
+
+      <div class="carousel-wrapper">
+        <div class="carousel" aria-label="Parent WhatsApp messages">
+          <div class="card-xl shot">
+            <div class="img" style="--cropTop:18px; background-image:url('6.png.jpeg');"></div>
+            <div class="title">From 58% in Jan → AIR 1898 — “Your roadmap + micro-tests changed everything”</div>
+          </div>
+
+          <div class="card-xl shot">
+            <div class="img" style="--cropTop:18px; background-image:url('7.png.jpeg');"></div>
+            <div class="title">Micro-test 8/10; school weekly test jumped 9/20 → 14/20 — steady improvement</div>
+          </div>
+
+          <div class="card-xl shot">
+            <div class="img" style="--cropTop:16px; background-image:url('8.png.jpeg');"></div>
+            <div class="title">Referral from IIT-Bombay parent → booked free assessment → personalized roadmap</div>
+          </div>
+        </div> <!-- end .carousel -->
+      </div> <!-- end .carousel-wrapper -->
+    </div> <!-- end .container -->
+  </section>
+
+  <!-- Toppers -->
   <section class="success" id="success" style="padding:24px 0">
     <div class="container">
       <h2>
@@ -636,58 +852,58 @@
       <div class="carousel-wrapper" style="background:#f8fafc;border-radius:16px;padding:8px 0">
         <div class="carousel" aria-label="Topper stories">
           <!-- Card 1 -->
-          <article class="student-card">
-            <div class="student-photo" style="background-image:url('stu1.png');">
-              <div class="student-ribbon">
-                <div class="student-name">Sri Charan</div>
-                <div class="student-score">AIR 23 · 99.7%</div>
-              </div>
-            </div>
-            <div class="student-body">
-              <div class="student-univ">IIT Bombay (Computer Science)</div>
-              <div class="student-quote">“Physics 45% → 96% with targeted mentoring, micro-tests and weekly parent reviews.”</div>
-            </div>
-          </article>
+          <!-- Card 1 -->
+   <article class="student-card">
+  <div class="student-photo" style="--focusY:22%; background-image:url('stu11.png');">
+    <div class="student-ribbon">
+    </div>
+  </div>
+  <div class="student-body">
+    <div class="student-name">Sri Charan</div>
+    <div class="student-univ">IIT Bombay (Computer Science)</div>
+    <div class="student-quote">“Physics 45% → 96% with targeted mentoring, micro-tests and weekly parent reviews.”</div>
+  </div>
+</article>
 
-          <!-- Card 2 -->
-          <article class="student-card">
-            <div class="student-photo" style="background-image:url('stu2.png');">
-              <div class="student-ribbon">
-                <div class="student-name">Yashwitha</div>
-                <div class="student-score">IIT Delhi Admit</div>
-              </div>
-            </div>
-            <div class="student-body">
-              <div class="student-univ">IIT Delhi</div>
-              <div class="student-quote">“Daily reviews → strong consistency. Doubt support + sprint drills fixed accuracy.”</div>
-            </div>
-          </article>
 
-          <!-- Card 3 -->
-          <article class="student-card">
-            <div class="student-photo" style="background-image:url('stu3.png');">
-              <div class="student-ribbon">
-                <div class="student-name">Arjun Sharma</div>
-                <div class="student-score">AIR 45 · 94% Maths</div>
-              </div>
-            </div>
-            <div class="student-body">
-              <div class="student-univ">IIT Madras</div>
-              <div class="student-quote">“Sprint drills + precise feedback → 52% to 94%. Course corrections every 2 weeks.”</div>
-            </div>
-          </article>
+<article class="student-card">
+  <div class="student-photo" style="--focusY:24%; background-image:url('stu22.png');">
+    <div class="student-ribbon">
+     
+    </div>
+  </div>
+  <div class="student-body">
+    <div class="student-name">Yashwitha</div>
+    <div class="student-univ">NIT Delhi</div>
+    <div class="student-quote">“Daily reviews → strong consistency. Doubt support + sprint drills fixed accuracy.”</div>
+  </div>
+</article>
+
+<article class="student-card">
+  <div class="student-photo" style="--focusY:20%; background-image:url('stu33.png');"></div>
+  <div class="student-body">
+    <div class="student-name">Arjun Sharma</div>
+    <div class="student-univ">IIT Madras</div>
+    <div class="student-quote">“Sprint drills + precise feedback → 52% to 94%. Course corrections every 2 weeks.”</div>
+  </div>
+</article>
+
+
+
+
+
         </div>
       </div>
     </div>
   </section>
 
   <!-- Founder -->
-<section class="founder" id="founder">
-  <div class="container">
-    <div class="f-card">
-      <div class="f-left">
-        <img class="f-avatar" src="./prudhvi.png" alt="Prudhvi — Founder of iiTuitions" />
-      </div>
+  <section class="founder" id="founder">
+    <div class="container">
+      <div class="f-card">
+        <div class="f-left">
+          <img class="f-avatar" src="./prudhvi.png" alt="Prudhvi — Founder of iiTuitions" />
+        </div>
 
         <div class="f-right">
           <h2 class="f-title">Founded by Prudhvi — <span class="f-title-strong">NIT Warangal</span></h2>
@@ -699,21 +915,14 @@
 
           <ul class="f-points">
             <li><span class="icon">🎓</span><b>100% 1-on-1 classes</b> with IIT/NIT mentors</li>
-            <li><span class="icon">🎯</span><b>Only 50 students/year</b> = quality over quantity</li>
+            <li><span class="icon">🎯</span><b><span class="text-yellow">Only 50 students/year</span></b> = quality over quantity</li>
+
             <li><span class="icon">📞</span><b>Weekly parent reviews</b> • instant strategy corrections</li>
           </ul>
 
           <p style="margin:16px 0 6px">
             At <b>iiTuitions</b>, we teach <b>one child at a time</b>. With limited intake, every child gets a plan, a mentor, and attention that’s impossible in big batches.
           </p>
-
-          <h3 style="font-size:20px;font-weight:900;margin:16px 0 8px">What I stand for</h3>
-          <ul class="bullets" style="margin-left:18px">
-            <li><b>Quality over quantity</b> — always</li>
-            <li><b>1-on-1 mentorship</b> by sharp, caring IIT/NIT faculty</li>
-            <li><b>Weekly parent reviews</b> and <b>course-corrections now</b>, not after results</li>
-            <li>If a mentor’s style doesn’t fit your child, <b>we switch—no ego</b></li>
-          </ul>
 
           <p style="margin-top:14px;font-style:italic;opacity:.95">“Even if it’s one student, give 100% and teach them how to learn. Motivation first. Mastery next.”</p>
           <p style="margin-top:6px;opacity:.9">— <b>Prudhvi</b>, Founder, iiTuitions</p>
@@ -726,10 +935,10 @@
   <section id="mentoring-video" style="padding:24px 0;background:#fff">
     <div class="container">
       <h2 class="section-title" style="margin-bottom:8px">2-minute walkthrough of the mentoring system</h2>
-    <div class="yt-wrap" style="position:relative; width:100%; max-width:900px; margin:0 auto; border-radius:16px; overflow:hidden; background:#000; box-shadow:0 12px 28px rgba(0,0,0,.12);">
-      <iframe src="https://www.youtube.com/embed/-dA8MyVsFZM" title="iiTuitions video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%;"></iframe>
-      <div style="padding-top:56.25%"></div>
-    </div>
+      <div class="yt-wrap" style="position:relative; width:100%; max-width:900px; margin:0 auto; border-radius:16px; overflow:hidden; background:#000; box-shadow:0 12px 28px rgba(0,0,0,.12);">
+        <iframe src="https://www.youtube.com/embed/-dA8MyVsFZM" title="iiTuitions video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%;"></iframe>
+        <div style="padding-top:56.25%"></div>
+      </div>
     </div>
   </section>
 
@@ -770,14 +979,6 @@
     </div>
   </section>
 
-
-
-
-
-
-
-  
-
   <!-- GOOGLE REVIEWS -->
   <style>
     #reviews{background:#f8fafc;padding:40px 0}
@@ -791,7 +992,7 @@
     .rev-rail{position:relative}
     .rev-list{ display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory; padding:8px 2px 14px }
     .rev-list::-webkit-scrollbar{display:none}
-    .rev-card{ scroll-snap-align:start;min-width:clamp(280px,78vw,360px); background:#fff;border:1px solid #eef2f7;border-radius:18px;padding:16px; box-shadow:0 12px 28px rgba(0,0,0,.06) }
+    .rev-card{ scroll-snap-align=start;min-width:clamp(280px,78vw,360px); background:#fff;border:1px solid #eef2f7;border-radius:18px;padding:16px; box-shadow:0 12px 28px rgba(0,0,0,.06) }
     .rev-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
     .rev-avatar{width:46px;height:46px;border-radius:999px;object-fit:cover;background:#eef2f7;border:1px solid #e5e7eb}
     .rev-name{font-weight:900}
@@ -805,6 +1006,7 @@
     #reviews, #reviews *{ color:#0b1220 !important; }
     #reviews .stars, #reviews .rev-stars{ color:#facc15 !important; }
     #reviews .btn-wa{ color:#fff !important; }
+    
   </style>
 
   <section id="reviews">
@@ -818,8 +1020,6 @@
           <article class="rev-card">
             <div class="rev-head">
               <img class="rev-avatar" src="./Srinivas%20Reddy.png" alt="Srinivas Reddy" width="46" height="46" loading="lazy">
-
-            
               <div>
                 <div class="rev-name">Srinivas Reddy <span class="badge">✔ Verified Parent</span></div>
                 <div class="rev-meta">Posted May 2025</div>
@@ -843,7 +1043,7 @@
 
           <article class="rev-card">
             <div class="rev-head">
-             <img class="rev-avatar" src="./Arun%20Kumar.png" alt="Arun Kumar" width="46" height="46" loading="lazy">
+              <img class="rev-avatar" src="./Arun%20Kumar.png" alt="Arun Kumar" width="46" height="46" loading="lazy">
               <div>
                 <div class="rev-name">Arun Kumar <span class="badge">✔ Verified Parent</span></div>
                 <div class="rev-meta">Posted Feb 2025</div>
@@ -854,109 +1054,124 @@
           </article>
         </div>
       </div>
-
-      
     </div>
   </section>
 
-<!-- ===== Mentors (side-scrollable) ===== -->
-<section id="mentors" style="background:#fff;padding:24px 0">
-  <style>
-    /* Mentors rail */
-    #mentors .wrap{max-width:1100px;margin:0 auto;padding:0 12px}
-    #mentors h2{font-weight:900;text-align:center;margin-bottom:12px}
-    .mentor-rail{position:relative}
-    .mentor-list{
-      display:flex;gap:16px;overflow-x:auto;padding:6px 2px 14px;
-      scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch
-    }
-    .mentor-list::-webkit-scrollbar{display:none}
-    .m-card{
-      scroll-snap-align:start;
-      min-width:clamp(260px,78vw,340px);
-      background:#fff;border:1px solid var(--ring);border-radius:16px;padding:14px;
-      box-shadow:0 10px 26px var(--shadow1)
-    }
-    .m-head{display:flex;align-items:center;gap:12px}
-    /* circular avatar like your screenshot */
-    .m-ava{
-      width:76px;height:76px;border-radius:999px;object-fit:cover;
-      background:#eef2f7;border:3px solid #e5e7eb;box-shadow:0 8px 22px rgba(0,0,0,.08)
-    }
-    .m-name{font-weight:900;font-size:18px;line-height:1.2;color:#0b1220}
-    .m-meta{font-weight:700;font-size:13px;color:#475569}
-    .m-line{margin-top:10px;color:#111827}
-    .m-cta{display:flex;justify-content:center;margin-top:8px}
-  </style>
+  <!-- Mentors -->
+  <section id="mentors" style="background:#fff;padding:24px 0">
+    <style>
+      /* Mentors rail */
+      #mentors .wrap{max-width:1100px;margin:0 auto;padding:0 12px}
+      #mentors h2{font-weight:900;text-align:center;margin-bottom:12px}
+      .mentor-rail{position:relative}
+      .mentor-list{
+        display:flex;gap:16px;overflow-x:auto;padding:6px 2px 14px;
+        scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch
+      }
+      .mentor-list::-webkit-scrollbar{display:none}
+      .m-card{
+        scroll-snap-align:start;
+        min-width:clamp(260px,78vw,340px);
+        background:#0B112D;
+        border:1px solid #0E1435;
+        border-radius:16px;
+        padding:14px;
+        box-shadow:0 10px 26px rgba(11,17,45,.32);
+        color:#fff;
+      }
+      .m-name{ color:#fff; }
+      .m-meta{ color:#C7D2FE; }
+      .m-line{ color:#E5E7EB; }
+      .m-ava{
+        background:#0B112D;
+        border-color:rgba(255,255,255,.22);
+      }
+      .m-head{display:flex;align-items:center;gap:12px}
+      .m-ava{
+        width:76px;
+        height:76px;
+        border-radius:999px;
+        object-fit:cover;
+        object-position:50% 28%;
+        background:#0B112D;
+        border:3px solid rgba(255,255,255,.22);
+        box-shadow:0 8px 22px rgba(0,0,0,.08);
+      }
+      .m-name{font-weight:900;font-size:18px;line-height:1.2;color:#0b1220}
+      .m-meta{font-weight:700;font-size:13px;color:#475569}
+      .m-line{margin-top:10px;color:#111827}
+      #mentors .m-card{ color:#fff; }
+      #mentors .m-card .m-name{ color:#fff !important; }
+      #mentors .m-card .m-meta{ color:#C7D2FE !important; }
+      #mentors .m-card .m-line{ color:#E5E7EB !important; }
+      #mentors .m-card .m-ava{ border-color:rgba(255,255,255,.22); background:#0B112D; }
+      .m-cta{display:flex;justify-content:center;margin-top:8px}
+    </style>
 
-  <div class="wrap">
-    <h2 class="section-title">Your Child’s Mentors</h2>
+    <div class="wrap">
+      <h2 class="section-title">Your Child’s Mentors</h2>
 
-    <div class="mentor-rail">
-      <div class="mentor-list" aria-label="Mentor cards">
+      <div class="mentor-rail">
+        <div class="mentor-list" aria-label="Mentor cards">
 
-        <!-- Keshav -->
-        <article class="m-card">
-          <div class="m-head">
-            <!-- replace src with your real image path -->
-            <img class="m-ava" src="keshav.png.jpeg" alt="Keshav — NIT Delhi, Mathematics" loading="lazy">
-            <div>
-              <div class="m-name">Keshav</div>
-              <div class="m-meta">NIT Delhi • Mathematics</div>
+          <!-- Keshav -->
+          <article class="m-card">
+            <div class="m-head">
+              <img class="m-ava" src="keshav.png.jpeg" alt="Keshav — NIT Delhi, Mathematics" loading="lazy">
+              <div>
+                <div class="m-name">Keshav</div>
+                <div class="m-meta">NIT Delhi • Mathematics</div>
+              </div>
             </div>
-          </div>
-          <p class="m-line">“Small drills daily; big scores monthly.”</p>
-        </article>
+            <p class="m-line">“Small drills daily; big scores monthly.”</p>
+          </article>
 
-        <!-- Jyothi -->
-        <article class="m-card">
-          <div class="m-head">
-            <img class="m-ava" src="jyothi.png" alt="Jyothi — 13+ yrs Experience, Physics" loading="lazy">
-            <div>
-              <div class="m-name">Jyothi</div>
-              <div class="m-meta">13+ yrs Experienced Faculty • Physics</div>
+          <!-- Jyothi -->
+          <article class="m-card">
+            <div class="m-head">
+              <img class="m-ava" src="jyothi.png" alt="Jyothi — 13+ yrs Experience, Physics" loading="lazy">
+              <div>
+                <div class="m-name">Jyothi</div>
+                <div class="m-meta">13+ yrs Experienced Faculty • Physics</div>
+              </div>
             </div>
-          </div>
-          <p class="m-line">“Concept → application in every session.”</p>
-        </article>
+            <p class="m-line">“Concept → application in every session.”</p>
+          </article>
 
-        <!-- Raghu Vamshi -->
-        <article class="m-card">
-          <div class="m-head">
-            <img class="m-ava" src="raghu-vamshi.png" alt="Raghu Vamshi — IIT Kanpur, Chemistry" loading="lazy">
-            <div>
-              <div class="m-name">Raghu Vamshi</div>
-              <div class="m-meta">IIT Kanpur • Chemistry</div>
+          <!-- Raghu Vamshi -->
+          <article class="m-card">
+            <div class="m-head">
+              <img class="m-ava" src="raghu-vamshi.png" alt="Raghu Vamshi — IIT Kanpur, Chemistry" loading="lazy">
+              <div>
+                <div class="m-name">Raghu Vamshi</div>
+                <div class="m-meta">IIT Kanpur • Chemistry</div>
+              </div>
             </div>
-          </div>
-          <p class="m-line">“Organic mechanisms made simple with daily drills.”</p>
-        </article>
+            <p class="m-line">“Organic mechanisms made simple with daily drills.”</p>
+          </article>
 
-        <!-- Abrar -->
-        <article class="m-card">
-          <div class="m-head">
-            <img class="m-ava" src="abrar.png" alt="Abrar — IIT Bombay, Mathematics" loading="lazy">
-            <div>
-              <div class="m-name">Abrar</div>
-              <div class="m-meta">IIT Bombay • Mathematics</div>
+          <!-- Abrar -->
+          <article class="m-card">
+            <div class="m-head">
+              <img class="m-ava" src="abrar.png" alt="Abrar — IIT Bombay, Mathematics" loading="lazy">
+              <div>
+                <div class="m-name">Abrar</div>
+                <div class="m-meta">IIT Bombay • Mathematics</div>
+              </div>
             </div>
-          </div>
-          <p class="m-line">“Calculus clarity that sticks for JEE.”</p>
-        </article>
+            <p class="m-line">“Calculus clarity that sticks for JEE.”</p>
+          </article>
 
+        </div>
+      </div>
+
+      <div class="m-cta">
+        <a class="btn btn-wa" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20please%20match%20a%20mentor%20to%20my%20child" target="_blank" rel="noopener">
+          💬 Match a Mentor to My Child
+        </a>
       </div>
     </div>
-
-    
-
-
-    <div class="m-cta">
-      <a class="btn btn-wa" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20please%20match%20a%20mentor%20to%20my%20child" target="_blank" rel="noopener">
-        💬 Match a Mentor to My Child
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- PROGRESS + TRIPLE GUARANTEE -->
   <style>
@@ -1023,7 +1238,9 @@
         </div>
         <div class="g-row">
           <div class="g-left"><span class="g-ico">🎥</span><div class="g-h">Commitment Fulfillment</div></div>
-          <div class="g-copy">Every session is <span class="strong">recorded</span>, reviewed, and shared in weekly parent updates. If we miss a promise, <span class="strong">you don’t pay for it.</span></div>
+          <div class="g-copy">Every session is <span class="strong">recorded</span>, reviewed, and shared in weekly parent updates. 
+If we miss a promise, <span class="hl-yellow">you don’t pay for it.</span>
+
         </div>
       </div>
     </div>
@@ -1042,6 +1259,16 @@
     #final-cta h2{ font-size:clamp(26px,6vw,44px); line-height:1.15; font-weight:900; margin-bottom:10px; }
     #final-cta p.lead{ opacity:.92; max-width:780px; margin:0 auto 16px; font-size:clamp(15px,3.2vw,18px); }
     .cta-btn{ display:inline-flex; gap:10px; align-items:center; justify-content:center; padding:16px 28px; border-radius:999px; background:#000; color:#fff; font-weight:900; font-size:18px; border:2px solid rgba(255,255,255,0.15); box-shadow:0 14px 34px rgba(0,0,0,.35); transition:all .2s ease; }
+    /* Make final CTA button WhatsApp green */
+.final-dark .cta-btn{
+  background: var(--wa);
+  border-color:#1fbf57;
+  color:#fff;
+}
+.final-dark .cta-btn:hover{
+  background:#20BA5A;
+}
+
     .cta-btn:hover{ background:#111; transform:scale(1.04); }
     .about{ opacity:.85; max-width:760px; margin:18px auto 0; line-height:1.7; text-align:center; }
     .float-btn{ position:fixed; z-index:60; bottom:16px; display:flex; align-items:center; justify-content:center; font-weight:900; box-shadow:0 8px 24px rgba(0,0,0,0.25); cursor:pointer; transition:all 0.2s ease; }
@@ -1058,8 +1285,8 @@
 
   <section id="deadline" class="final-dark">
     <div class="final-wrap">
-      <div class="dead-top"><span>⚡</span><span>Limited seats left for <b id="batchLabel">September</b> batch</span></div>
-      
+      <div class="dead-top"><span>⚡</span><span>Limited 1-1 seats (7/30) for <b id="batchLabel"> October </b> batch</span></div>
+      <div class="dead-timer" id="timerBig">00:00:00</div>
       <div class="dead-sub" id="deadlineSub">Applications close in <b id="daysLeft">2</b> days</div>
     </div>
   </section>
@@ -1069,14 +1296,84 @@
       <h2>Your Child’s IIT Dream Starts Now</h2>
       <p class="lead">Join the exclusive cohort of 50 students who get personal mentorship from IIT/NIT toppers.</p>
       <div class="cta-wrap">
-        <a class="cta-btn" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20please%20book%20my%20free%20assessment" target="_blank" rel="noopener">📋 Book Free Assessment</a>
+        <a class="cta-btn" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20please%20book%20my%20free%20assessment" target="_blank" rel="noopener">📋 Book Your Child  Free Assessment Now</a>
       </div>
       <p class="about">Helping students crack IIT JEE examinations and secure admissions into premier IITs and NITs since 2017.</p>
+      <!-- FAQs -->
+<section id="faqs" class="faqs final-dark" style="padding:26px 0 8px">
+  <div class="final-wrap">
+    <h2 class="section-title" style="margin-bottom:10px">Frequently Asked Questions</h2>
+
+    <div class="accordion">
+      <div class="acc-h"><span>1. Is the free assessment an exam?</span><span class="toggle">⌄</span></div>
+      <div class="acc-b">
+        <p>No — it’s not a test. Our IIT mentor personally interacts with your child, teaches a small topic, and asks conceptual &amp; numerical questions to understand their strengths, gaps, and learning style.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-h"><span>2. Who are the mentors at iiTuitions?</span><span class="toggle">⌄</span></div>
+      <div class="acc-b">
+        <p>Only IIT/NIT alumni and senior faculty with 8–12 years of experience teach here. No junior or part-time teachers.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-h"><span>3. How are classes conducted?</span><span class="toggle">⌄</span></div>
+      <div class="acc-b">
+        <p>Every session is 1-on-1 — just your child and the mentor. Sessions are online (Zoom/Meet) with both cameras on. You get daily WhatsApp updates and full transparency.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-h"><span>4. What if we’re not satisfied with the mentor?</span><span class="toggle">⌄</span></div>
+      <div class="acc-b">
+        <p>You can switch your faculty anytime. We also have a “Progress Guarantee” — if promised milestones aren’t met, you’re eligible for a full refund.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-h"><span>5. What kind of students benefit the most?</span><span class="toggle">⌄</span></div>
+      <div class="acc-b">
+        <p>Students in <b>Grade 11 &amp; 12</b> who are preparing for <b>IIT JEE Mains &amp; Advanced</b>, especially those who:</p>
+        <ul class="bullets" style="margin-top:6px">
+          <li>Struggle to clear doubts in large coaching batches</li>
+          <li>Feel underconfident before exams</li>
+          <li>Want personalized, IIT-level problem-solving support</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer">
+  <div class="bar">
+    © 2017 iiTuitions Hub LLP — All rights reserved • Registered under Ministry of Corporate Affairs, Govt. of India
+  </div>
+</footer>
+
+
+  </div>
+</section>
+      
+
     </div>
   </section>
+ 
 
   <!-- Floating buttons -->
-  <a class="float-btn float-wa" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20please%20book%20my%20free%20assessment" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<!-- Floating buttons -->
+<!-- Floating buttons -->
+<a class="float-btn float-wa"
+   href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20please%20book%20my%20free%20assessment"
+   target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <!-- WhatsApp glyph -->
+  <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none">
+    <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.149-.672.149-.198.297-.77.966-.944 1.164-.173.198-.347.223-.644.074-.297-.149-1.256-.463-2.392-1.476-.885-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.298-.496.099-.198.05-.372-.025-.521-.075-.149-.672-1.611-.921-2.207-.243-.58-.487-.502-.672-.51-.173-.009-.372-.009-.571-.009-.198 0-.521.074-.794.372-.273.297-1.04 1.016-1.04 2.479s1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.718 2.007-1.411.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Zm-5.421 7.341h-.003a9.867 9.867 0 0 1-5.031-1.378l-.361-.214-3.741.981.999-3.648-.236-.374a9.86 9.86 0 0 1-1.51-5.269c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.993c-.003 5.45-4.438 9.884-9.887 9.884Zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.87 11.87 0 0 0 5.709 1.455h.005c6.554 0 11.889-5.335 11.892-11.893a11.821 11.821 0 0 0-3.495-8.48Z"/>
+  </svg>
+</a>
+
+
+
+
   <a class="float-btn float-cta" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20please%20book%20my%20free%20assessment" target="_blank" rel="noopener" aria-label="Book Free Assessment">📋 Book Free Assessment</a>
 
   <script>
@@ -1113,47 +1410,30 @@
     if (batchLabel) batchLabel.textContent = month;
   </script>
   <script>
-  // Make every .accordion clickable (examAcc + scenarioAcc + others)
-  document.querySelectorAll('.accordion').forEach((acc) => {
-    const head = acc.querySelector('.acc-h');
-    const body = acc.querySelector('.acc-b');
-    if (!head || !body) return;
+    // Make every .accordion clickable (examAcc + scenarioAcc + others)
+    document.querySelectorAll('.accordion').forEach((acc) => {
+      const head = acc.querySelector('.acc-h');
+      const body = acc.querySelector('.acc-b');
+      if (!head || !body) return;
 
-    head.setAttribute('role','button');
-    head.setAttribute('tabindex','0');
-    head.setAttribute('aria-expanded','false');
-    body.setAttribute('aria-hidden','true');
+      head.setAttribute('role','button');
+      head.setAttribute('tabindex','0');
+      head.setAttribute('aria-expanded','false');
+      body.setAttribute('aria-hidden','true');
 
-    function toggle() {
-      const isOpen = acc.classList.toggle('open');
-      head.setAttribute('aria-expanded', String(isOpen));
-      body.setAttribute('aria-hidden', String(!isOpen));
-    }
+      function toggle() {
+        const isOpen = acc.classList.toggle('open');
+        head.setAttribute('aria-expanded', String(isOpen));
+        body.setAttribute('aria-hidden', String(!isOpen));
+      }
 
-    head.addEventListener('click', toggle);
-    head.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      head.addEventListener('click', toggle);
+      head.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
     });
-  });
-</script>
-<script>
-  (function(){
-    const btn = document.getElementById('globalHamb');
-    const menu = document.getElementById('globalMenu');
-    if(!btn || !menu) return;
-
-    function openMenu(){ menu.classList.add('open'); btn.classList.add('active'); document.body.style.overflow='hidden'; }
-    function closeMenu(){ menu.classList.remove('open'); btn.classList.remove('active'); document.body.style.overflow=''; }
-    function toggle(){ menu.classList.contains('open') ? closeMenu() : openMenu(); }
-
-    btn.addEventListener('click', toggle);
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
-    menu.addEventListener('click', e => { if(e.target === menu) closeMenu(); });
-    window.addEventListener('resize', () => { if(window.innerWidth >= 768) closeMenu(); });
-  })();
-</script>
-
+  </script>
+  
 
 </body>
 </html>
