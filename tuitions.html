@@ -159,18 +159,27 @@
 .proof{ font-size:13px; opacity:.9; margin:6px 0 4px }
 .who{ font-size:13px; opacity:.9; margin:0 }
     /* === KV bullets: dot | yellow label | description === */
+/* === KV bullets: dot | yellow label | description === */
 .points.kv li{
-  display:grid;                      /* 3 columns: dot | label | text */
-  grid-template-columns:14px 240px 1fr;  /* tweak 240px if you want wider labels */
+  display:grid;
+  /* dot | label (flexible) | value (takes the rest) */
+  grid-template-columns:14px minmax(160px, 32%) minmax(0,1fr);
   gap:12px;
   align-items:flex-start;
 }
-@media (min-width:900px){
-  .points.kv li{ grid-template-columns:14px 260px 1fr; }
+
+@media (min-width:1200px){
+  .points.kv li{
+    grid-template-columns:14px minmax(200px, 36%) minmax(0,1fr);
+  }
 }
-@media (max-width:480px){
-  .points.kv li{ grid-template-columns:14px 180px 1fr; }
+
+@media (max-width:600px){
+  .points.kv li{
+    grid-template-columns:14px minmax(140px, 44%) minmax(0,1fr);
+  }
 }
+
 .points.kv li::before{
   grid-column:1;
   width:10px; height:10px; border-radius:50%;
@@ -207,7 +216,7 @@
   hyphens: auto;
 }
 .course-card .one-liner,
-.course-card .points,
+
 .course-card .proof{ max-width:58ch; }
 
 /* extra bottom space so floating CTA doesn't cover text */
