@@ -163,7 +163,8 @@
 .points.kv li{
   display:grid;
   /* dot | label (flexible) | value (takes the rest) */
-  grid-template-columns:14px minmax(160px, 32%) minmax(0,1fr);
+  grid-template-columns:14px 1fr;
+
   gap:12px;
   align-items:flex-start;
 }
@@ -191,11 +192,13 @@
 .points.kv .k{                      /* LABEL */
   grid-column:2;
   font-weight:900;
+  display:block;
   color:#ffd54a;                    /* yellow */
   line-height:1.55;
 }
 .points.kv .v{                      /* VALUE */
-  grid-column:3;
+  grid-column:2;
+  margin-top:2px;
   color:#e8ecf2;
   line-height:1.55;
 }
