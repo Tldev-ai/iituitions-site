@@ -701,11 +701,11 @@
         <button class="hamb" id="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
        <nav class="menu" id="menu" aria-hidden="true">
   <div class="sheet" role="menu">
-    <a href="/" role="menuitem">🏠 Home</a>
-    <a href="/sat" role="menuitem">📚 SAT</a>
-    <a href="/iit" role="menuitem">🎓 IIT</a>
-    <a href="/tuitions" role="menuitem">🏛️ Tuitions</a>
-    <a href="/tutor-register" role="menuitem">👩‍🏫 Register as a Tutor</a>
+    <a href="index.html" role="menuitem">🏠 Home</a>
+    <a href="sat.html" role="menuitem">📚 SAT</a>
+    <a href="iit.html" role="menuitem">🎓 IIT</a>
+    <a href="tuitions.html" role="menuitem">🏛️ Tuitions</a>
+    <a href="register.html" role="menuitem">👩‍🏫 Register as a Tutor</a>
   </div>
 </nav>
 
@@ -849,7 +849,7 @@
 /* FAQ: hide answers by default; show only on click */
 #faqs .acc-b { display:none; }
 #faqs .accordion.open .acc-b { display:inline-block; }  /* keeps the white card centered */
-      <style>
+ 
 /* MOBILE: stack How It Works images one per row */
 @media (max-width: 768px){
   .how-photos{
@@ -871,7 +871,7 @@
   }
   .how-photos img:last-child{ margin-bottom:0; }
 }
-</style>
+
 
 
     </style>
@@ -1049,7 +1049,14 @@
     .glogo svg{width:18px;height:18px}
     .stars{color:#facc15;font-size:18px;letter-spacing:1px}
     .rev-rail{position:relative}
-    .rev-list{ display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory; padding:8px 2px 14px }
+    .rev-list{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:8px 2px 14px;
+}
+
     .rev-list::-webkit-scrollbar{display:none}
     .rev-card{ scroll-snap-align=start;min-width:clamp(280px,78vw,360px); background:#fff;border:1px solid #eef2f7;border-radius:18px;padding:16px; box-shadow:0 12px 28px rgba(0,0,0,.06) }
     .rev-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
