@@ -150,6 +150,21 @@
 }
 .proof{ font-size:13px; opacity:.9; margin:6px 0 4px }
 .who{ font-size:13px; opacity:.9; margin:0 }
+    /* keep bullets wrapping normally + limit line length */
+.course-card .points,
+.course-card .points *{
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto;
+}
+.course-card .one-liner,
+.course-card .points,
+.course-card .proof{ max-width:58ch; }
+
+/* extra bottom space so floating CTA doesn't cover text */
+#courses{ padding-bottom:64px; }
+
 
 
     /* ===== News Headline Bar (under header) ===== */
@@ -575,7 +590,14 @@
         One mentor teaches your child 1-on-1. Board syllabus and JEE prep move together,
         so concepts stay strong and marks keep improving.
       </p>
-      
+      <ul class="points">
+  <li><strong>Personal IIT/NIT mentor:</strong> simple weekly plan + a small “mistake list” we fix every week.</li>
+  <li><strong>Past JEE papers, the right way:</strong> how to write steps so examiners give full marks.</li>
+  <li><strong>Weekly mock + WhatsApp update:</strong> topics covered, scores, and next week’s plan.</li>
+</ul>
+<p class="proof">In 8–12 weeks, most students write better long answers, make fewer careless mistakes, and see a clear jump in mock scores.</p>
+<p class="who">For: Grade 11, Grade 12 &amp; Drop-year students</p>
+
     </article>
 
     <!-- Card 2 — NEET-UG -->
@@ -586,7 +608,14 @@
         NCERT-first, 1-on-1 coaching that builds strong recall and application in
         Biology, Chemistry, and Physics.
       </p>
-     
+     <ul class="points">
+  <li><strong>NCERT line-by-line:</strong> high-yield diagrams and quick recalls your child won’t forget.</li>
+  <li><strong>Timed practice sets:</strong> OMR practice with simple speed &amp; accuracy targets.</li>
+  <li><strong>Weekly WhatsApp update:</strong> coverage done, accuracy %, and focus for next week.</li>
+</ul>
+<p class="proof">In 8–12 weeks, students usually remember BIO facts faster, handle organic mechanisms better, and improve OMR accuracy.</p>
+<p class="who">For: Grade 11, Grade 12 &amp; Drop-year students</p>
+
     </article>
 
     <!-- Card 3 — Offline & Online Tuitions (Grades 1–12) -->
