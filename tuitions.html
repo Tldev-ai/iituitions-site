@@ -140,14 +140,22 @@
 .points{
   list-style:none; padding:0; margin:0 0 10px; display:grid; gap:8px;
 }
+/* bullets: keep text in one wide column */
 .points li{
-  display:grid; grid-template-columns:14px 1fr; gap:10px;
+  display:flex;                /* was grid */
+  align-items:flex-start;
+  gap:10px;
 }
 .points li::before{
-  content:""; width:10px; height:10px; margin-top:8px; border-radius:999px;
-  background: var(--brand, #06d6a0);
-  box-shadow: 0 0 0 3px rgba(6,214,160,.18);
+  content:"";
+  flex:0 0 10px;               /* fixed dot width */
+  width:10px; height:10px;
+  margin-top:.6em;             /* aligns with first line of text */
+  border-radius:50%;
+  background:var(--brand, #06d6a0);
+  box-shadow:0 0 0 3px rgba(6,214,160,.18);
 }
+
 .proof{ font-size:13px; opacity:.9; margin:6px 0 4px }
 .who{ font-size:13px; opacity:.9; margin:0 }
     /* keep bullets wrapping normally + limit line length */
