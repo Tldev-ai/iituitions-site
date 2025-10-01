@@ -158,6 +158,46 @@
 
 .proof{ font-size:13px; opacity:.9; margin:6px 0 4px }
 .who{ font-size:13px; opacity:.9; margin:0 }
+    /* === KV bullets: dot | yellow label | description === */
+.points.kv li{
+  display:grid;                      /* 3 columns: dot | label | text */
+  grid-template-columns:14px 240px 1fr;  /* tweak 240px if you want wider labels */
+  gap:12px;
+  align-items:flex-start;
+}
+@media (min-width:900px){
+  .points.kv li{ grid-template-columns:14px 260px 1fr; }
+}
+@media (max-width:480px){
+  .points.kv li{ grid-template-columns:14px 180px 1fr; }
+}
+.points.kv li::before{
+  grid-column:1;
+  width:10px; height:10px; border-radius:50%;
+  margin-top:.6em;
+  background:var(--brand, #06d6a0);
+  box-shadow:0 0 0 3px rgba(6,214,160,.18);
+  content:"";
+}
+.points.kv .k{                      /* LABEL */
+  grid-column:2;
+  font-weight:900;
+  color:#ffd54a;                    /* yellow */
+  line-height:1.55;
+}
+.points.kv .v{                      /* VALUE */
+  grid-column:3;
+  color:#e8ecf2;
+  line-height:1.55;
+}
+/* ensure normal wrapping */
+.points.kv .k, .points.kv .v{
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:break-word !important;
+  hyphens:auto;
+}
+
     /* keep bullets wrapping normally + limit line length */
 .course-card .points,
 .course-card .points *{
@@ -598,11 +638,12 @@
         One mentor teaches your child 1-on-1. Board syllabus and JEE prep move together,
         so concepts stay strong and marks keep improving.
       </p>
-      <ul class="points">
-  <li><strong>Personal IIT/NIT mentor:</strong> simple weekly plan + a small “mistake list” we fix every week.</li>
-  <li><strong>Past JEE papers, the right way:</strong> how to write steps so examiners give full marks.</li>
-  <li><strong>Weekly mock + WhatsApp update:</strong> topics covered, scores, and next week’s plan.</li>
+      <ul class="points kv">
+  <li><span class="k">Personal IIT/NIT mentor:</span><span class="v">simple weekly plan + a small “mistake list” we fix every week.</span></li>
+  <li><span class="k">Past JEE papers, the right way:</span><span class="v">how to write steps so examiners give full marks.</span></li>
+  <li><span class="k">Weekly mock + WhatsApp update:</span><span class="v">topics covered, scores, and next week’s plan.</span></li>
 </ul>
+
 <p class="proof">In 8–12 weeks, most students write better long answers, make fewer careless mistakes, and see a clear jump in mock scores.</p>
 <p class="who">For: Grade 11, Grade 12 &amp; Drop-year students</p>
 
@@ -616,11 +657,12 @@
         NCERT-first, 1-on-1 coaching that builds strong recall and application in
         Biology, Chemistry, and Physics.
       </p>
-     <ul class="points">
-  <li><strong>NCERT line-by-line:</strong> high-yield diagrams and quick recalls your child won’t forget.</li>
-  <li><strong>Timed practice sets:</strong> OMR practice with simple speed &amp; accuracy targets.</li>
-  <li><strong>Weekly WhatsApp update:</strong> coverage done, accuracy %, and focus for next week.</li>
+     <ul class="points kv">
+  <li><span class="k">NCERT line-by-line:</span><span class="v">high-yield diagrams and quick recalls your child won’t forget.</span></li>
+  <li><span class="k">Timed practice sets:</span><span class="v">OMR practice with simple speed &amp; accuracy targets.</span></li>
+  <li><span class="k">Weekly WhatsApp update:</span><span class="v">coverage done, accuracy %, and focus for next week.</span></li>
 </ul>
+
 <p class="proof">In 8–12 weeks, students usually remember BIO facts faster, handle organic mechanisms better, and improve OMR accuracy.</p>
 <p class="who">For: Grade 11, Grade 12 &amp; Drop-year students</p>
 
@@ -634,11 +676,12 @@
         Home tutor at your doorstep or live 1-on-1 online — same mentor quality, same weekly parent updates.
       </p>
       <p class="boards">CBSE • ICSE • Cambridge (IGCSE &amp; A Levels) • State (TS/AP)</p>
-      <ul class="points">
-        <li><strong>Syllabus-aligned weekly plan:</strong> short micro-tests + recap sheet to track progress.</li>
-        <li><strong>Past-paper style answers:</strong> how to write neatly for full marks in long answers.</li>
-        <li><strong>Switch mentor anytime:</strong> if the fit isn’t perfect, we’ll change — no extra fee.</li>
-      </ul>
+     <ul class="points kv">
+  <li><span class="k">Syllabus-aligned weekly plan:</span><span class="v">short micro-tests + recap sheet to track progress.</span></li>
+  <li><span class="k">Past-paper style answers:</span><span class="v">how to write neatly for full marks in long answers.</span></li>
+  <li><span class="k">Switch mentor anytime:</span><span class="v">if the fit isn’t perfect, we’ll change — no extra fee.</span></li>
+</ul>
+
       <p class="proof">In 8–12 weeks, most children show +15–25% in mocks, neater steps, and steady homework habits.</p>
       <p class="who">For: Grades 1–12 (all subjects)</p>
     </article>
