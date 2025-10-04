@@ -40,6 +40,48 @@
     }
     .ii-logo{ display:flex; align-items:center; gap:8px; font-weight:900; font-size:18px }
     .ii-logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--brand) }
+    /* ===== Tutor Replacement Policy (Premium vs Standard) ===== */
+.policy{ padding:22px 0 6px }
+.policy .wrap{ max-width:1000px; margin:0 auto }
+.kicker{
+  color:#7de3c6; font-weight:900; letter-spacing:.3px; font-size:12px; margin:0 0 8px;
+  text-transform:uppercase;
+}
+.policy h3{
+  margin:0 0 10px; font-size:36px; line-height:1.2; font-weight:900; color:#fff;
+}
+.policy p.lead{
+  margin:0 0 18px; color:#cfd6df; line-height:1.6; max-width:70ch;
+}
+.policy .grid{
+  display:grid; gap:14px; margin-top:14px;
+}
+.policy .item{
+  display:grid; grid-template-columns:56px 1fr; gap:12px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+  border-radius:14px; padding:14px; align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.policy .ic{
+  width:56px; height:56px; border-radius:999px; display:grid; place-items:center;
+  background: radial-gradient(100% 100% at 30% 20%, #2b2b2b 0%, #181a1f 60%, #101216 100%);
+  border:1px solid rgba(255,255,255,.18); font-size:24px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.16);
+}
+.policy .title{ font-weight:900; font-size:18px; color:#fff; margin-bottom:4px }
+.policy .text{ color:#e2e8f0; opacity:.92; line-height:1.55 }
+.policy .pill{
+  display:inline-block; font-size:11px; font-weight:900; letter-spacing:.2px;
+  padding:4px 8px; border-radius:999px; margin-left:6px;
+  border:1px solid rgba(255,255,255,.18); color:#0b1220; background:#ffd54a;
+}
+
+/* responsive tweaks */
+@media (min-width:900px){
+  .policy h3{ font-size:40px }
+  .policy .grid{ grid-template-columns:1fr 1fr }
+}
+
 
     /* ===== Hamburger (top-right) ===== */
     .ii-burger{
@@ -728,6 +770,50 @@
       </div>
     </div>
   </section>
+  <!-- ===== Tutor Replacement Policy (add this ABOVE Our Success Formula) ===== -->
+<section class="policy container" id="tutor-policy" aria-labelledby="policy-title">
+  <div class="wrap">
+    <div class="kicker">Why we are different</div>
+    <h3 id="policy-title">Parents Have the Right to Change the Tutor.</h3>
+    <p class="lead">
+      Every child learns differently—sometimes a change helps. We make matching simple and transparent.
+      Your replacement policy depends on the plan you choose.
+    </p>
+
+    <div class="grid" role="list">
+      <!-- Item 1 -->
+      <article class="item" role="listitem">
+        <div class="ic" aria-hidden="true">🔁</div>
+        <div>
+          <div class="title">
+            Tutor Replacement
+            <span class="pill">Premium = Managed</span>
+          </div>
+          <div class="text">
+            <strong>Premium:</strong> If the fit isn’t perfect, <em>we arrange a smooth replacement</em>—no extra fee, no pause in learning.
+            <br>
+            <strong>Standard:</strong> You’re free to change tutors, but the <em>replacement is coordinated by the parent</em> directly with the tutor.
+          </div>
+        </div>
+      </article>
+
+      <!-- Item 2 -->
+      <article class="item" role="listitem">
+        <div class="ic" aria-hidden="true">🕑</div>
+        <div>
+          <div class="title">Support & Continuity</div>
+          <div class="text">
+            <strong>Premium:</strong> Weekly plan, mistake list, and schedule continue seamlessly with the new mentor; quick help on WhatsApp.
+            <br>
+            <strong>Standard:</strong> Onboarding support provided; ongoing adjustments and changes are parent-managed.
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ===== /Tutor Replacement Policy ===== -->
+
 
   <!-- ===== 3-Step Success Formula ===== -->
    <!-- ===== Our Success Formula (heading only) ===== -->
