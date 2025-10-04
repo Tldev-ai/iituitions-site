@@ -42,7 +42,7 @@
       100%{ transform:translateX(-50%) } /* because we duplicate content once */
     }
     @media (min-width:768px){
-      .tv-text{font-size:17px}
+      .tv-text{font-size:19px}
     }
 
     /* ===== Success Formula ===== */
@@ -141,6 +141,23 @@
     .hero-ctas .btn{border-radius:999px}
     .hero-ctas .btn.btn-outline{box-shadow:inset 0 0 0 2px #000}
     .hero-note{font-size:13px;color:#555;margin-top:8px}
+    /* Center the hero content */
+.hero-wrap { 
+  justify-items: center;          /* centers items in the grid cell */
+}
+
+.hero h1,
+.hero p,
+.hero-note {
+  text-align: center;             /* center the text itself */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-ctas {
+  justify-content: center;        /* center the buttons row */
+}
+
 
     /* Trust bar */
     .trustbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin:18px 0 6px}
