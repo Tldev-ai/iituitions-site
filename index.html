@@ -20,10 +20,56 @@
     }
     .container{max-width:1200px;margin:0 auto;padding:0 16px;width:100%}
 
+    /* ===== TV-style Headline (ticker) ===== */
+    .tv-headline{
+      position:sticky; top:0; z-index:120;      /* stays at top when scrolling, above hero */
+      background: radial-gradient(120% 120% at 50% -10%, #1b1f26 0%, #0f1216 60%, #0b0d10 100%);
+      color:#fff; border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.1);
+      overflow:hidden;
+    }
+    .tv-track{
+      display:flex; gap:40px; align-items:center; white-space:nowrap;
+      padding:12px 0; 
+      will-change:transform;
+      animation:tv-marquee 20s linear infinite;
+    }
+    .tv-bullet{opacity:.7;margin:0 12px}
+    .tv-text{
+      font-size:10px; font-weight:900; letter-spacing:.2px; text-shadow:0 2px 12px rgba(0,0,0,.45);
+    }
+    @keyframes tv-marquee{
+      0%{ transform:translateX(0) }
+      100%{ transform:translateX(-50%) } /* because we duplicate content once */
+    }
+    @media (min-width:768px){
+      .tv-text{font-size:17px}
+    }
+
+    /* ===== Success Formula ===== */
+    .success-formula{background:#0c0f14; padding:34px 0 40px; border-top:1px solid rgba(255,255,255,.06)}
+    .success-formula .section-title{color:#fff; margin:8px 0 18px}
+    .sf-list{display:grid; grid-template-columns:1fr; gap:14px; list-style:none; padding:0; margin:0}
+    .sf-item{
+      background:#111418; color:#e8ecf2; border:1px solid rgba(255,255,255,.05);
+      border-radius:18px; padding:16px; display:flex; gap:14px; align-items:flex-start;
+      box-shadow:0 8px 28px rgba(0,0,0,.25);
+    }
+    .sf-num{
+      flex:0 0 48px; height:48px; border-radius:999px; background:#f6c544; color:#111;
+      display:flex; align-items:center; justify-content:center; font-weight:900; font-size:20px;
+      box-shadow:0 6px 16px rgba(246,197,68,.35); border:2px solid #eab308;
+    }
+    .sf-text h3{margin:0 0 4px; font-size:20px; line-height:1.2; color:#fff}
+    .sf-text p{margin:0; color:#b8c2cf}
+    @media (min-width:768px){
+      .sf-item{padding:20px}
+      .sf-text h3{font-size:22px}
+    }
+
     /* =========================
        Header (single sticky bar)
        ========================= */
-    .site-header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:0;z-index:100;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+    .site-header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:0;z-index:150;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.08)}
     .header-row{display:flex;align-items:center;min-height:44px;gap:12px}
     .branding{display:flex;align-items:center;gap:10px;flex:1}
     .logo-circle{width:44px;height:44px;background:linear-gradient(135deg,#000,#333);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
@@ -63,37 +109,17 @@
     /* ===== How We Start — dark style ===== */
     .process-dark{background:#0b0b0b;padding:46px 0 56px;border-top:1px solid rgba(255,255,255,.06)}
     .process-dark .section-title{color:#fff;margin-top:0;margin-bottom:22px}
-
     .process-center{display:flex;justify-content:center;margin:10px 0 26px}
-    .process-center figure{
-      max-width:220px;width:100%;border-radius:20px;overflow:hidden;
-      box-shadow:0 18px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;
-    }
+    .process-center figure{max-width:220px;width:100%;border-radius:20px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;}
     .process-center img{display:block;width:100%;height:auto}
-
     .process-cards{list-style:none;display:grid;grid-template-columns:1fr;gap:18px;margin:0;padding:0}
-    .step-card{
-      background:#ffffff;         /* WHITE card */
-      color:#111;                 /* dark text */
-      border-radius:26px;
-      padding:26px 22px;
-      box-shadow:0 20px 40px rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.10); /* subtle edge on black bg */
-      min-height:220px;
-      position:relative;
-    }
+    .step-card{background:#ffffff;color:#111;border-radius:26px;padding:26px 22px;box-shadow:0 20px 40px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.10);min-height:220px;position:relative;}
     .step-card:hover{transform:translateY(-2px);box-shadow:0 26px 60px rgba(0,0,0,.35);transition:all .25s ease}
-
-    /* Icon/CTA tweaks so white cards look right on black */
-    .process-dark .step-icon{
-      width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-      background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.12);margin:0 auto 14px;font-size:38px;color:#111
-    }
+    .process-dark .step-icon{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.12);margin:0 auto 14px;font-size:38px;color:#111}
     .step-eyebrow{opacity:.9;font-size:14px;text-align:center;margin-bottom:6px}
     .step-title{font-size:24px;font-weight:900;text-align:center;margin-bottom:10px}
     .step-text{font-size:18px;line-height:1.5;text-align:center;opacity:.98}
     .process-dark .step-cta{display:block;text-align:center;margin-top:14px;color:#111;font-weight:800;text-decoration:underline}
-
     @media (min-width:768px){
       .process-center figure{max-width:280px}
       .process-cards{grid-template-columns:repeat(4,1fr);gap:22px}
@@ -143,11 +169,7 @@
     /* WHY IITUITIONS */
     .why-wrap{margin:10px 0 34px}
     .why-grid{display:grid;grid-template-columns:1fr;gap:18px}
-    .why-item{
-      display:flex;align-items:flex-start;gap:14px;background:#fff;border-radius:16px;
-      padding:18px 16px;border:1px solid rgba(0,0,0,.12);
-      box-shadow:0 2px 10px rgba(0,0,0,.05);position:relative;
-    }
+    .why-item{display:flex;align-items:flex-start;gap:14px;background:#fff;border-radius:16px;padding:18px 16px;border:1px solid rgba(0,0,0,.12);box-shadow:0 2px 10px rgba(0,0,0,.05);position:relative;}
     .why-item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:#000;border-top-left-radius:16px;border-bottom-left-radius:16px}
     .why-ico{font-size:26px;min-width:30px}
     .why-title{font-weight:800;color:#000;margin-bottom:6px;font-size:18px}
@@ -188,17 +210,9 @@
 
     /* Founder */
     .founder-wrap { margin: 16px 0 42px; }
-    .founder-card{
-      background: linear-gradient(180deg,#0e0f12 0%, #111317 100%);
-      color:#eef1f5; border-radius:24px; padding:22px;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 12px 40px rgba(0,0,0,.25);
-    }
+    .founder-card{background: linear-gradient(180deg,#0e0f12 0%, #111317 100%);color:#eef1f5; border-radius:24px; padding:22px;border:1px solid rgba(255,255,255,.08);box-shadow:0 12px 40px rgba(0,0,0,.25);}
     .founder-grid{ display:grid; grid-template-columns:1fr; gap:22px; align-items:start; }
-    .founder-pic{
-      width:180px; height:180px; border-radius:50%; object-fit:cover;
-      border:4px solid rgba(255,255,255,.1); box-shadow:0 10px 28px rgba(0,0,0,.45);
-    }
+    .founder-pic{width:180px; height:180px; border-radius:50%; object-fit:cover;border:4px solid rgba(255,255,255,.1); box-shadow:0 10px 28px rgba(0,0,0,.45);}
     .founder-head h3{font-size:30px;line-height:1.15;font-weight:900;letter-spacing:.2px;color:#fff;margin-bottom:6px}
     .founder-sub{ color:#aeb5c1; font-style:italic; margin-bottom:12px; }
     .founder-copy{ color:#d7dde7; }
@@ -234,7 +248,6 @@
     .wa-float{position:fixed;bottom:20px;left:16px;width:56px;height:56px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .25s ease;z-index:50}
     .wa-float:hover{transform:scale(1.05);box-shadow:0 6px 25px rgba(37,211,102,.6);background:#20BA5A}
     .cta-float{position:fixed;bottom:20px;right:16px;background:#000;color:#fff;padding:12px 16px;border-radius:28px;text-decoration:none;font-weight:800;font-size:12px;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:all .25s ease;text-align:center;line-height:1.3;min-height:48px;display:flex;align-items:center;justify-content:center;white-space:nowrap;max-width:210px;z-index:50}
-    .cta-float:hover{background:#222;transform:translateY(-2px);box-shadow:0 6px 25px rgba(0,0,0,.6)}
 
     /* Desktop tweaks */
     @media (min-width:768px){
@@ -255,7 +268,6 @@
       .why-grid{grid-template-columns:1fr 1fr;gap:20px}
       .process-grid{grid-template-columns:repeat(3,1fr);gap:16px}
       .timeline{padding-left:0}
-      .timeline .step{padding-left:16px}
       .timeline .step:before{display:none}
     }
     @media (min-width:1024px){.contact-head h2{font-size:38px}}
@@ -271,8 +283,6 @@
         <div class="logo-circle" aria-hidden="true">II</div>
         <div class="brand-name">IITuitions</div>
       </div>
-
-      <!-- Desktop nav (right) -->
       <nav class="nav-actions" aria-label="Primary">
         <a class="btn btn-outline" href="index.html" aria-current="page">Home</a>
         <a class="btn btn-outline" href="iit.html">IIT</a>
@@ -281,14 +291,10 @@
         <a class="btn" href="register.html">Register as Tutor</a>
         <a class="btn" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20book%20my%20free%20assessment&utm_source=site&utm_medium=header-btn&utm_campaign=home" target="_blank" rel="noopener">Book Free Assessment</a>
       </nav>
-
-      <!-- Mobile hamburger -->
       <button class="hamburger-menu" id="hamburgerBtn" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
     </div>
-
-    <!-- Mobile menu overlay -->
     <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
       <a href="index.html">🏠 Home</a>
       <a href="iit.html">🎓 IIT</a>
@@ -298,6 +304,19 @@
       <a href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20book%20my%20free%20assessment&utm_source=site&utm_medium=mobile-menu&utm_campaign=home" target="_blank" rel="noopener">💬 Book Free Assessment</a>
     </nav>
   </header>
+
+  <!-- =========================
+       TV Headline (ticker) — placed RIGHT AFTER HEADER
+       ========================= -->
+  <section class="tv-headline" aria-label="Key promise">
+    <!-- We duplicate the track so it loops seamlessly -->
+    <div class="tv-track" aria-hidden="true">
+      <span class="tv-text">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</span>
+      <span class="tv-bullet">• • •</span>
+      <span class="tv-text">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</span>
+      <span class="tv-bullet">• • •</span>
+    </div>
+  </section>
 
   <!-- =========================
        HERO
@@ -312,8 +331,6 @@
           <a class="btn btn-outline" href="#programs" aria-label="See our programs">See Programs</a>
         </div>
         <div class="hero-note">No spam. Instant WhatsApp • Limited intake • We prioritise quality over quantity</div>
-
-        <!-- Trust bar -->
         <div class="trustbar" role="list" aria-label="Trust markers">
           <span class="trustchip" role="listitem">Since 2017</span>
           <span class="trustchip" role="listitem">IIT/NIT mentor team</span>
@@ -322,8 +339,6 @@
           <span class="trustchip" role="listitem">Weekly reports</span>
         </div>
       </div>
-
-      <!-- Right visual -->
       <div aria-hidden="true" style="display:flex;justify-content:center">
         <figure style="max-width:560px;width:100%;border-radius:18px;background:#fff;box-shadow:0 12px 40px rgba(0,0,0,.10);border:1px solid rgba(0,0,0,.06);overflow:hidden">
           <picture>
@@ -448,42 +463,73 @@
   <section class="process-dark" aria-labelledby="process-title">
     <div class="container">
       <h2 id="process-title" class="section-title">How We Start</h2>
-
       <ul class="process-cards">
         <li class="step-card">
           <div class="step-icon" aria-hidden="true">🧑‍💼</div>
           <div class="step-eyebrow">Step 1</div>
           <div class="step-title">Submit Your Request</div>
           <p class="step-text">Share your child’s needs so we can tailor the right plan.</p>
-          <a class="step-cta" target="_blank" rel="noopener"
-             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20submit%20my%20tutoring%20request">Get started →</a>
+          <a class="step-cta" target="_blank" rel="noopener" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20submit%20my%20tutoring%20request">Get started →</a>
         </li>
-
         <li class="step-card">
           <div class="step-icon" aria-hidden="true">🏫</div>
           <div class="step-eyebrow">Step 2</div>
           <div class="step-title">Tutor Matching</div>
           <p class="step-text">We match you with IIT/NIT mentors by subject, goals, and schedule.</p>
-          <a class="step-cta" target="_blank" rel="noopener"
-             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20match%20me%20with%20a%20mentor">Match me →</a>
+          <a class="step-cta" target="_blank" rel="noopener" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20match%20me%20with%20a%20mentor">Match me →</a>
         </li>
-
         <li class="step-card">
           <div class="step-icon" aria-hidden="true">🗓️</div>
           <div class="step-eyebrow">Step 3</div>
           <div class="step-title">Schedule a Session</div>
           <p class="step-text">Pick a convenient slot — home, online, or hybrid.</p>
-          <a class="step-cta" target="_blank" rel="noopener"
-             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20schedule%20a%20session">Book a slot →</a>
+          <a class="step-cta" target="_blank" rel="noopener" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20schedule%20a%20session">Book a slot →</a>
         </li>
-
         <li class="step-card">
           <div class="step-icon" aria-hidden="true">💻</div>
           <div class="step-eyebrow">Step 4</div>
           <div class="step-title">Start Learning</div>
           <p class="step-text">Recorded sessions, error-logs, and weekly parent reviews.</p>
-          <a class="step-cta" target="_blank" rel="noopener"
-             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20share%20a%20sample%20weekly%20report">See a sample report →</a>
+          <a class="step-cta" target="_blank" rel="noopener" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20share%20a%20sample%20weekly%20report">See a sample report →</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- =========================
+       Our Success Formula — MOVED HERE (right under How We Start)
+       ========================= -->
+  <section class="success-formula" aria-labelledby="sf-title">
+    <div class="container">
+      <h2 id="sf-title" class="section-title" style="color:#fff">Our 4 Step Success Formula</h2>
+      <ul class="sf-list">
+        <li class="sf-item">
+          <div class="sf-num" aria-hidden="true">1</div>
+          <div class="sf-text">
+            <h3>Free Assessment</h3>
+            <p>Know exactly where your child stands.</p>
+          </div>
+        </li>
+        <li class="sf-item">
+          <div class="sf-num" aria-hidden="true">2</div>
+          <div class="sf-text">
+            <h3>Personalized Roadmap</h3>
+            <p>Your child’s clear path to score improvement.</p>
+          </div>
+        </li>
+        <li class="sf-item">
+          <div class="sf-num" aria-hidden="true">3</div>
+          <div class="sf-text">
+            <h3>1-on-1 Mentorship</h3>
+            <p>100% focused sessions — no batches, no distractions.</p>
+          </div>
+        </li>
+        <li class="sf-item">
+          <div class="sf-num" aria-hidden="true">4</div>
+          <div class="sf-text">
+            <h3>Continuous Tracking</h3>
+            <p>Weekly updates & real-time corrections for steady progress.</p>
+          </div>
         </li>
       </ul>
     </div>
@@ -498,26 +544,21 @@
         <div style="display:flex;justify-content:center">
           <img src="assets/founder.jpg" alt="Prudhvi — Founder, iiTuitions" class="founder-pic" loading="lazy" width="220" height="220">
         </div>
-
         <div class="founder-content">
           <header class="founder-head">
             <h3>Founded by Prudhvi — NIT Warangal</h3>
             <div class="founder-sub">(Former Physics HOD, Hyderabad)</div>
           </header>
-
           <div class="founder-copy">
             I led large batches as a <b>Physics HOD</b>. Big classes moved fast; many slipped behind.
             In <b>2017</b>, I built the opposite: limited seats and true 1-on-1 attention.
           </div>
-
           <ul class="kpis">
             <li><span class="ico">🎓</span><span><b>100% 1-on-1 classes</b> with IIT/NIT mentors</span></li>
             <li><span class="ico">🎯</span><span><b>Only limited intake</b> = quality over quantity</span></li>
             <li><span class="ico">📞</span><span><b>Weekly parent reviews</b> & fast course-corrections</span></li>
           </ul>
-
           <p class="founder-para">At <b>iiTuitions</b>, we teach <b>one child at a time</b>. Every child gets a plan, a mentor, and attention big batches can’t provide.</p>
-
           <div class="founder-block">
             <h4>What we stand for</h4>
             <ul class="founder-list">
