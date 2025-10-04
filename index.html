@@ -60,52 +60,46 @@
     .mobile-menu.active a:nth-child(5){transition-delay:.4s}
     .mobile-menu a:hover{background:rgba(255,255,255,.18);transform:translateY(0) scale(1.04)}
 
-
-
-
     /* ===== How We Start — dark style ===== */
-.process-dark{background:#0b0b0b;padding:46px 0 56px;border-top:1px solid rgba(255,255,255,.06)}
-.process-dark .section-title{color:#fff;margin-top:0;margin-bottom:22px}
+    .process-dark{background:#0b0b0b;padding:46px 0 56px;border-top:1px solid rgba(255,255,255,.06)}
+    .process-dark .section-title{color:#fff;margin-top:0;margin-bottom:22px}
 
-.process-center{display:flex;justify-content:center;margin:10px 0 26px}
-.process-center figure{
-  max-width:220px;width:100%;border-radius:20px;overflow:hidden;
-  box-shadow:0 18px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;
-}
-.process-center img{display:block;width:100%;height:auto}
+    .process-center{display:flex;justify-content:center;margin:10px 0 26px}
+    .process-center figure{
+      max-width:220px;width:100%;border-radius:20px;overflow:hidden;
+      box-shadow:0 18px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;
+    }
+    .process-center img{display:block;width:100%;height:auto}
 
-.process-cards{
-  list-style:none;display:grid;grid-template-columns:1fr;gap:18px;margin:0;padding:0
-}
-.step-card{
-  background:#ffffff;         /* WHITE card */
-  color:#111;                 /* dark text */
-  border-radius:26px;
-  padding:26px 22px;
-  box-shadow:0 20px 40px rgba(0,0,0,.25);
-  border:1px solid rgba(255,255,255,.10); /* subtle edge on black bg */
-  min-height:220px;
-  position:relative;
-}
+    .process-cards{list-style:none;display:grid;grid-template-columns:1fr;gap:18px;margin:0;padding:0}
+    .step-card{
+      background:#ffffff;         /* WHITE card */
+      color:#111;                 /* dark text */
+      border-radius:26px;
+      padding:26px 22px;
+      box-shadow:0 20px 40px rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10); /* subtle edge on black bg */
+      min-height:220px;
+      position:relative;
+    }
+    .step-card:hover{transform:translateY(-2px);box-shadow:0 26px 60px rgba(0,0,0,.35);transition:all .25s ease}
 
-.step-card:hover{transform:translateY(-2px);box-shadow:0 26px 60px rgba(0,0,0,.35);transition:all .25s ease}
+    /* Icon/CTA tweaks so white cards look right on black */
+    .process-dark .step-icon{
+      width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.12);margin:0 auto 14px;font-size:38px;color:#111
+    }
+    .step-eyebrow{opacity:.9;font-size:14px;text-align:center;margin-bottom:6px}
+    .step-title{font-size:24px;font-weight:900;text-align:center;margin-bottom:10px}
+    .step-text{font-size:18px;line-height:1.5;text-align:center;opacity:.98}
+    .process-dark .step-cta{display:block;text-align:center;margin-top:14px;color:#111;font-weight:800;text-decoration:underline}
 
-.step-icon{
-  width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);margin:0 auto 14px;font-size:38px
-}
-.step-eyebrow{opacity:.9;font-size:14px;text-align:center;margin-bottom:6px}
-.step-title{font-size:24px;font-weight:900;text-align:center;margin-bottom:10px}
-.step-text{font-size:18px;line-height:1.5;text-align:center;opacity:.98}
-.step-cta{display:block;text-align:center;margin-top:14px;color:#fff;font-weight:800;text-decoration:underline}
-
-@media (min-width:768px){
-  .process-center figure{max-width:280px}
-  .process-cards{grid-template-columns:repeat(4,1fr);gap:22px}
-  .step-title{font-size:22px}
-  .step-text{font-size:16px}
-}
-
+    @media (min-width:768px){
+      .process-center figure{max-width:280px}
+      .process-cards{grid-template-columns:repeat(4,1fr);gap:22px}
+      .step-title{font-size:22px}
+      .step-text{font-size:16px}
+    }
 
     /* Section titles */
     .section-title{font-size:28px;font-weight:800;text-align:center;margin:38px 0 22px;color:#000}
@@ -159,14 +153,30 @@
     .why-title{font-weight:800;color:#000;margin-bottom:6px;font-size:18px}
     .why-text{color:#333;font-size:15px}
 
-    /* 3-step process */
+    /* Contact section (added) */
+    .contact-wrap{margin:24px 0 40px}
+    .contact-card{background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:16px;padding:20px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+    .contact-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .contact-head h2{margin:0;font-size:28px;font-weight:900}
+    .badge-open{background:#0f0f0f;color:#fff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700}
+    .contact-grid{display:grid;grid-template-columns:1fr;gap:18px}
+    .info-row{display:flex;align-items:flex-start;gap:10px;margin:12px 0}
+    .icon{font-size:20px;min-width:22px}
+    .info-title{font-weight:800;color:#000}
+    .info-sub{color:#555}
+    .info-links{margin-top:6px}
+    .chip{display:inline-block;border:1px solid #000;border-radius:999px;padding:8px 12px;text-decoration:none;color:#000;font-weight:700}
+    .hours{list-style:none;margin-top:12px;padding:0}
+    .hours li{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(0,0,0,.1);padding:6px 0}
+    .hours li span{color:#555}
+    .quick-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+
+    /* 3-step process (legacy timeline styles kept, not used here) */
     .process{margin:8px 0 40px}
     .process-grid{display:grid;grid-template-columns:1fr;gap:14px}
     .process .step{border:1px solid rgba(0,0,0,.12);border-radius:14px;padding:16px;background:#fff}
     .step small{display:block;color:#666;margin-bottom:4px}
     .step b{display:block;font-size:16px;margin-bottom:6px}
-
-    /* Timeline upgrades */
     .process .step{position:relative;transition:box-shadow .25s ease, transform .25s ease}
     .process .step:hover{box-shadow:0 10px 30px rgba(0,0,0,.10);transform:translateY(-2px)}
     .step-ico{position:absolute;top:-14px;left:-14px;background:#000;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,.15)}
@@ -174,10 +184,7 @@
     .step-cta:hover{text-decoration:underline}
     .timeline{list-style:none;counter-reset:proc;display:grid;grid-template-columns:1fr;gap:14px;margin:8px 0 4px;padding-left:10px}
     .timeline .step{padding-left:22px}
-    .timeline .step:before{
-      content:"";position:absolute;left:4px;top:0;bottom:0;width:2px;background:linear-gradient(#ddd,transparent 80%);
-      border-radius:2px;
-    }
+    .timeline .step:before{content:"";position:absolute;left:4px;top:0;bottom:0;width:2px;background:linear-gradient(#ddd,transparent 80%);border-radius:2px}
 
     /* Founder */
     .founder-wrap { margin: 16px 0 42px; }
@@ -293,7 +300,7 @@
   </header>
 
   <!-- =========================
-       HERO (polished)
+       HERO
        ========================= -->
   <section class="hero">
     <div class="container hero-wrap">
@@ -316,11 +323,10 @@
         </div>
       </div>
 
-      <!-- Right visual: glass card + picture fallback -->
+      <!-- Right visual -->
       <div aria-hidden="true" style="display:flex;justify-content:center">
         <figure style="max-width:560px;width:100%;border-radius:18px;background:#fff;box-shadow:0 12px 40px rgba(0,0,0,.10);border:1px solid rgba(0,0,0,.06);overflow:hidden">
           <picture>
-            <!-- Update these paths to actual files in /assets -->
             <source srcset="assets/hero-mentoring.webp" type="image/webp">
             <img src="assets/hero-mentoring.png" alt="" width="560" height="360" loading="eager" style="display:block;width:100%;height:auto;">
           </picture>
@@ -437,55 +443,51 @@
   </section>
 
   <!-- =========================
-       3-Step Process (timeline + micro-CTAs)
+       How We Start (dark)
        ========================= -->
-       <section class="process-dark" aria-labelledby="process-title">
-        <div class="container">
-          <h2 id="process-title" class="section-title">How We Start</h2>
-      
-          <!-- centered image in the section -->
-          
-          <!-- four cards like the reference -->
-          <ul class="process-cards">
-            <li class="step-card">
-              <div class="step-icon" aria-hidden="true">🧑‍💼</div>
-              <div class="step-eyebrow">Step 1</div>
-              <div class="step-title">Submit Your Request</div>
-              <p class="step-text">Share your child’s needs so we can tailor the right plan.</p>
-              <a class="step-cta" target="_blank" rel="noopener"
-                 href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20submit%20my%20tutoring%20request">Get started →</a>
-            </li>
-      
-            <li class="step-card">
-              <div class="step-icon" aria-hidden="true">🏫</div>
-              <div class="step-eyebrow">Step 2</div>
-              <div class="step-title">Tutor Matching</div>
-              <p class="step-text">We match you with IIT/NIT mentors by subject, goals, and schedule.</p>
-              <a class="step-cta" target="_blank" rel="noopener"
-                 href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20match%20me%20with%20a%20mentor">Match me →</a>
-            </li>
-      
-            <li class="step-card">
-              <div class="step-icon" aria-hidden="true">🗓️</div>
-              <div class="step-eyebrow">Step 3</div>
-              <div class="step-title">Schedule a Session</div>
-              <p class="step-text">Pick a convenient slot — home, online, or hybrid.</p>
-              <a class="step-cta" target="_blank" rel="noopener"
-                 href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20schedule%20a%20session">Book a slot →</a>
-            </li>
-      
-            <li class="step-card">
-              <div class="step-icon" aria-hidden="true">💻</div>
-              <div class="step-eyebrow">Step 4</div>
-              <div class="step-title">Start Learning</div>
-              <p class="step-text">Recorded sessions, error-logs, and weekly parent reviews.</p>
-              <a class="step-cta" target="_blank" rel="noopener"
-                 href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20share%20a%20sample%20weekly%20report">See a sample report →</a>
-            </li>
-          </ul>
-        </div>
-      </section>
-      
+  <section class="process-dark" aria-labelledby="process-title">
+    <div class="container">
+      <h2 id="process-title" class="section-title">How We Start</h2>
+
+      <ul class="process-cards">
+        <li class="step-card">
+          <div class="step-icon" aria-hidden="true">🧑‍💼</div>
+          <div class="step-eyebrow">Step 1</div>
+          <div class="step-title">Submit Your Request</div>
+          <p class="step-text">Share your child’s needs so we can tailor the right plan.</p>
+          <a class="step-cta" target="_blank" rel="noopener"
+             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20submit%20my%20tutoring%20request">Get started →</a>
+        </li>
+
+        <li class="step-card">
+          <div class="step-icon" aria-hidden="true">🏫</div>
+          <div class="step-eyebrow">Step 2</div>
+          <div class="step-title">Tutor Matching</div>
+          <p class="step-text">We match you with IIT/NIT mentors by subject, goals, and schedule.</p>
+          <a class="step-cta" target="_blank" rel="noopener"
+             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20match%20me%20with%20a%20mentor">Match me →</a>
+        </li>
+
+        <li class="step-card">
+          <div class="step-icon" aria-hidden="true">🗓️</div>
+          <div class="step-eyebrow">Step 3</div>
+          <div class="step-title">Schedule a Session</div>
+          <p class="step-text">Pick a convenient slot — home, online, or hybrid.</p>
+          <a class="step-cta" target="_blank" rel="noopener"
+             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20I%20want%20to%20schedule%20a%20session">Book a slot →</a>
+        </li>
+
+        <li class="step-card">
+          <div class="step-icon" aria-hidden="true">💻</div>
+          <div class="step-eyebrow">Step 4</div>
+          <div class="step-title">Start Learning</div>
+          <p class="step-text">Recorded sessions, error-logs, and weekly parent reviews.</p>
+          <a class="step-cta" target="_blank" rel="noopener"
+             href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20share%20a%20sample%20weekly%20report">See a sample report →</a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
   <!-- =========================
        Founder
@@ -533,9 +535,74 @@
   </section>
 
   <!-- =========================
-       Contact
+       Contact (NEW)
        ========================= -->
-<!-- =========================
+  <section class="container contact-wrap" id="contact">
+    <div class="contact-card" aria-labelledby="contact-title">
+      <div class="contact-head">
+        <h2 id="contact-title">Talk to Us</h2>
+        <span class="badge-open">We reply within 2 hours</span>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <div class="info-row">
+            <div class="icon" aria-hidden="true">📞</div>
+            <div>
+              <div class="info-title">Call</div>
+              <div class="info-sub">Mon–Sun, 9:00–20:30</div>
+              <div class="info-links">
+                <a class="chip" href="tel:+917207467565">+91 7207467565</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="icon" aria-hidden="true">💬</div>
+            <div>
+              <div class="info-title">WhatsApp</div>
+              <div class="info-links">
+                <a class="chip" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20book%20my%20free%20assessment&utm_source=site&utm_medium=contact-chip&utm_campaign=home" target="_blank" rel="noopener">Book Free Assessment</a>
+              </div>
+            </div>
+          </div>
+
+          <ul class="hours" aria-label="Working hours">
+            <li><span>Mon–Fri</span><b>09:00–20:30</b></li>
+            <li><span>Sat–Sun</span><b>10:00–19:00</b></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="info-row">
+            <div class="icon" aria-hidden="true">✉️</div>
+            <div>
+              <div class="info-title">Email</div>
+              <div class="info-links">
+                <a class="chip" href="mailto:hello@iituitions.com">hello@iituitions.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="icon" aria-hidden="true">📍</div>
+            <div>
+              <div class="info-title">Location</div>
+              <div class="info-sub">iiTuitions Hub LLP, Nallagandla, Hyderabad 500019</div>
+            </div>
+          </div>
+
+          <div class="quick-actions">
+            <a class="btn w-100" href="#programs">See Programs</a>
+            <a class="btn w-100" href="iit.html">Explore IIT</a>
+            <a class="btn w-100" href="sat.html">Explore SAT</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
        Footer
        ========================= -->
   <footer class="footer-pro">
@@ -612,7 +679,7 @@
       }
     }
 
-    // Contact modal
+    // Contact modal (placeholder hooks)
     function openContactModal(){const m=document.getElementById('contactModal');if(m){m.classList.add('active');document.body.style.overflow='hidden';}}
     function closeContactModal(){const m=document.getElementById('contactModal');if(m){m.classList.remove('active');document.body.style.overflow='';}}
     function handleFormSubmit(e){e.preventDefault();alert('Thank you! We will get back within 24 hours.');closeContactModal();e.target.reset();}
