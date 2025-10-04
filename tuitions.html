@@ -13,14 +13,20 @@
   padding:0 18px;background:linear-gradient(180deg,rgba(15,17,22,.65),transparent);
   backdrop-filter:saturate(120%) blur(6px);
 }
+/* neat 3-line menu icon */
 .hamburger{
-  width:44px;height:44px;border:1px solid var(--line);border-radius:12px;
-  background:#0e0f12;display:grid;place-items:center;gap:5px;cursor:pointer;
+  width:42px;height:42px;padding:8px;
+  display:grid;place-items:center;gap:6px;
+  background:transparent;border:none;box-shadow:none;border-radius:10px;
+  cursor:pointer;
 }
 .hamburger span{
-  width:20px;height:3px;background:#e6edf7;border-radius:3px;display:block;
+  width:24px;height:2px;            /* thinner lines */
+  background:#e8edf7;border-radius:2px;
 }
+.hamburger:hover{background:rgba(255,255,255,.06)}
 .hamburger:focus{outline:2px solid #4aa3ff;outline-offset:2px}
+
 
 /* Full-screen drawer */
 .drawer{
@@ -239,13 +245,29 @@ body{
 .k{color:#ffd54a;font-weight:900}
 .v{color:#e8ecf2}
 /* Left-bottom WhatsApp emoji button */
+/* circular WhatsApp FAB, bottom-right, soft white drop shadow */
+/* OVERRIDE: round WhatsApp button on the LEFT; chat pill stays RIGHT */
+.whatsapp{ right:16px; z-index:60; }  /* pill on right as usual */
+
 .wa-fab{
-  position:fixed;left:18px;bottom:18px;z-index:60;
-  width:64px;height:64px;border-radius:50%;
-  display:grid;place-items:center;text-decoration:none;
-  box-shadow:0 10px 24px rgba(0,0,0,.35);
-  background:#25D366 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>') center/50% no-repeat;
+  left:18px; right:auto; bottom:18px; z-index:55;
+  width:60px;height:60px;border-radius:50%;
+  display:grid;place-items:center;text-decoration:none;border:none;box-shadow:none;
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>') center/52% no-repeat,
+    radial-gradient(100% 100% at 30% 20%, #28e06b 0%, #25D366 60%, #1db955 100%) no-repeat;
 }
+.wa-fab::after{
+  content:"";position:absolute;left:14%;right:14%;bottom:-10px;height:18px;
+  border-radius:100px;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 70%);
+  filter:blur(6px);pointer-events:none;
+}
+
+
+/* soft white ellipse shadow like your ref image */
+
+
 
 
 /* ===== WHY DIFFERENT (policy) ===== */
@@ -269,6 +291,31 @@ body{
   padding:4px 8px; border-radius:999px; margin-left:6px;
   border:1px solid var(--line); color:#0b1220; background:var(--pill);
 }
+/* keep the text pill visible – move it left to make space for the round FAB */
+
+
+/* fix the FAB icon + keep it on the right edge */
+.wa-fab{
+  right:18px;                 /* stick to right side */
+  bottom:18px;
+  z-index:55;
+  width:60px;height:60px;border-radius:50%;
+  display:grid;place-items:center;text-decoration:none;border:none;box-shadow:none;
+  /* IMPORTANT: SVG first so it sits ON TOP of the gradient */
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>') center/52% no-repeat,
+    radial-gradient(100% 100% at 30% 20%, #28e06b 0%, #25D366 60%, #1db955 100%) no-repeat;
+}
+
+/* soft white ellipse shadow under the round button */
+
+
+/* fix the FAB icon + keep it on the right edge */
+
+
+/* soft white ellipse shadow under the round button */
+
+
 
 /* ===== Tutor Jobs CTA (mono) ===== */
 .jobs{
@@ -362,13 +409,64 @@ body{
       <a href="register.html">👩‍🏫 Register as a Tutor</a>
     </div>
   </nav>
+
+  <section class="ticker" aria-label="Headline">
+    <div class="belt">
+      <div class="msg">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</div>
+      <div class="msg" aria-hidden="true">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</div>
+    </div>
+  </section>
+  
+  
+
+  <!-- Rolling Headline (news-style ticker) -->
+  <style>
+    .ticker{
+  position:sticky;top:64px;z-index:65;
+  background:rgba(255,255,255,.03);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  overflow:hidden;
+  margin-bottom:14px; /* ADD THIS for gap below the ticker */
+}
+
+    .ticker .belt{
+      display:flex;gap:20px;white-space:nowrap;padding:6px 12px;
+      width:max-content;animation:ticker-move 32s linear infinite;
+    }
+    .ticker .msg{
+      flex:0 0 auto;font-weight:900;
+      font-size:clamp(12px,1.35vw,18px);
+      color:#fff;letter-spacing:.01em;
+    }
+    @keyframes ticker-move{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-50%)}
+    }
+    /* FLOAT/DRAG settings for the round WhatsApp button */
+.wa-fab{
+  position:fixed;           /* stays on screen while scrolling  */
+  left:18px; bottom:18px;   /* start on the left                 */
+  z-index:90;               /* above footer & cards              */
+  cursor:grab;              /* shows draggable hand              */
+  user-select:none;
+  touch-action:none;        /* avoids page scroll while dragging */
+  box-shadow:0 10px 24px rgba(0,0,0,.35); /* subtle lift shadow */
+}
+.wa-fab.dragging{ cursor:grabbing; }
+
+  </style>
+  
+
+
+
   
 
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="kicker">WELCOME TO MY HOME TUITIONS</div>
+      
       <h1 class="h1">Best Home Tuitions in Hyderabad</h1>
       <p class="lead">Home Tuitions in Hyderabad offering personalized learning, expert tutors, and guaranteed academic success.</p>
       <div class="cta-row">
@@ -692,6 +790,63 @@ body{
 </script>
 <a class="wa-fab" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment" aria-label="Chat on WhatsApp"></a>
 
-
+<script>
+  (() => {
+    const fab = document.querySelector('.wa-fab');
+    if (!fab) return;
+  
+    let offsetX = 0, offsetY = 0, dragging = false, moved = false;
+  
+    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  
+    const onDown = (e) => {
+      moved = false;
+      dragging = true;
+      fab.classList.add('dragging');
+  
+      const r = fab.getBoundingClientRect();
+      offsetX = e.clientX - r.left;
+      offsetY = e.clientY - r.top;
+  
+      // switch to top/left positioning for free drag
+      fab.style.right = 'auto';
+      fab.style.bottom = 'auto';
+      fab.style.left = r.left + 'px';
+      fab.style.top  = r.top  + 'px';
+  
+      fab.setPointerCapture(e.pointerId);
+    };
+  
+    const onMove = (e) => {
+      if (!dragging) return;
+      moved = true;
+  
+      const maxX = window.innerWidth  - fab.offsetWidth  - 8;
+      const maxY = window.innerHeight - fab.offsetHeight - 8;
+  
+      const nx = clamp(e.clientX - offsetX, 8, maxX);
+      const ny = clamp(e.clientY - offsetY, 8, maxY);
+  
+      fab.style.left = nx + 'px';
+      fab.style.top  = ny + 'px';
+    };
+  
+    const onUp = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      fab.classList.remove('dragging');
+      fab.releasePointerCapture(e.pointerId);
+  
+      // prevent opening WhatsApp if it was a drag
+      if (moved) { e.preventDefault(); e.stopPropagation(); }
+    };
+  
+    fab.addEventListener('pointerdown', onDown);
+    fab.addEventListener('pointermove', onMove);
+    fab.addEventListener('pointerup', onUp);
+    fab.addEventListener('pointercancel', onUp);
+  })();
+  </script>
+  
 </body>
 </html>
