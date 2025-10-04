@@ -1,785 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IITuitions — Tuitions (IB • IGCSE • Cambridge)</title>
-  <meta name="description" content="Hyderabad’s best online & offline 1-on-1 tuitions for IB/IGCSE/Cambridge, Grades 1–12. Marking-scheme mastery, weekly parent updates, micro-tests." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IITuitions — Home Tuitions in Hyderabad</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Top bar with right hamburger */
+.nav{
+  position:fixed;top:0;left:0;right:0;height:64px;z-index:70;
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:0 18px;background:linear-gradient(180deg,rgba(15,17,22,.65),transparent);
+  backdrop-filter:saturate(120%) blur(6px);
+}
+.hamburger{
+  width:44px;height:44px;border:1px solid var(--line);border-radius:12px;
+  background:#0e0f12;display:grid;place-items:center;gap:5px;cursor:pointer;
+}
+.hamburger span{
+  width:20px;height:3px;background:#e6edf7;border-radius:3px;display:block;
+}
+.hamburger:focus{outline:2px solid #4aa3ff;outline-offset:2px}
 
-  <style>
-    /* ===== Base / Tokens ===== */
-    :root{
-      --brand: #06d6a0;
-      --ink: #0b1220;
-      --muted: #98a2b3;
-      --card: rgba(255,255,255,.06);
-      --card-bd: rgba(255,255,255,.18);
-      --sheet-w: min(560px, 92vw);
-      --blur: 12px;
-    }
-    *{ box-sizing: border-box }
-    html,body{ margin:0; padding:0 }
-    body{
-      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 1200px at 20% -10%, #1b1f2a 0%, #0b0f17 55%, #06080e 100%);
-      color:#fff;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    a{ color:inherit; text-decoration:none }
+/* Full-screen drawer */
+.drawer{
+  position:fixed;inset:0;z-index:80;display:none;
+  background:rgba(4,6,10,.72);backdrop-filter:saturate(130%) blur(6px);
+}
+.drawer.open{display:block}
+.drawer-box{
+  max-width:820px;margin:90px auto 0;padding:0 20px;display:grid;gap:18px;
+}
+.drawer-box a{
+  display:block;text-align:center;padding:22px;border-radius:22px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);
+  color:#fff;text-decoration:none;font-size:clamp(20px,3.2vw,36px);font-weight:900;
+}
+.drawer-box a:hover{background:rgba(255,255,255,.1)}
 
-    /* ===== Sticky Header ===== */
-    .ii-header{
-      position:sticky; top:0; z-index:1000;
-      background:rgba(10,10,10,.55);
-      backdrop-filter:saturate(130%) blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .ii-header .row{
-      max-width:1200px; margin:0 auto; padding:10px 16px;
-      display:flex; align-items:center; justify-content:space-between; min-height:56px;
-    }
-    .ii-logo{ display:flex; align-items:center; gap:8px; font-weight:900; font-size:18px }
-    .ii-logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--brand) }
-    /* ===== Tutor Replacement Policy (Premium vs Standard) ===== */
-/* more breathing space above & below the policy section */
-.policy{ padding:36px 0 24px; margin-top:28px }
-.policy + .section-title{ margin-top:32px }
-.policy .wrap{ max-width:1000px; margin:0 auto }
-.kicker{
-  color:#7de3c6; font-weight:900; letter-spacing:.3px; font-size:12px; margin:0 0 8px;
-  text-transform:uppercase;
+/* ===== Mono Tokens ===== */
+:root{
+  --bg:#0b0c10;           /* page background (blackish) */
+  --panel:#111318;        /* panels/cards */
+  --panel-2:#0e0f12;      /* deeper panels */
+  --ink:#ffffff;          /* main text (white) */
+  --muted:#b8c0cc;        /* secondary */
+  --line:rgba(255,255,255,.14);
+  --pill:#ffd54a;         /* tiny accent for small labels */
+  --accent:#06d6a0;       /* subtle green for bullets/dots */
+  --shadow:0 18px 50px rgba(0,0,0,.50);
+  --radius:22px;
 }
-.policy h3{
-  margin:0 0 10px; font-size:36px; line-height:1.2; font-weight:900; color:#fff;
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background: radial-gradient(1200px 1200px at 20% -10%, #171a22 0%, #0b0c10 55%, #06080e 100%);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
-.policy p.lead{
-  margin:0 0 18px; color:#cfd6df; line-height:1.6; max-width:70ch;
+/* Big heading for the policy section */
+.policy .section-head{
+  font-size: clamp(32px, 4.6vw, 56px);
+  line-height: 1.1;
+  font-weight: 900;
+  margin: 0 0 12px;
+  color: #fff;           /* keep white on your dark background */
+  letter-spacing: .02em;
 }
-.policy .grid{
-  display:grid; gap:14px; margin-top:14px;
+/* Hide the old tiny kicker if you still have one anywhere */
+.policy .kicker{ display:none; }
+
+/* ===== Layout helpers ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.section{padding:64px 0}
+.section.tight{padding:42px 0}
+.h1{font-size:54px;line-height:1.05;font-weight:900;letter-spacing:.2px;margin:12px 0 12px}
+.h2{font-size:38px;line-height:1.15;font-weight:900;margin:0 0 14px}
+.h3{font-size:26px;font-weight:800;margin:0 0 8px}
+.lead{font-size:22px;line-height:1.5;color:var(--muted)}
+.kicker{font-weight:900;letter-spacing:.2em;color:#9ee6d3;text-transform:uppercase;font-size:12px}
+
+/* ===== Buttons ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  border:1px solid var(--line);border-radius:16px;padding:16px 22px;font-weight:800;
+  text-decoration:none;white-space:nowrap;background:#000;color:#fff;
+  box-shadow:var(--shadow);transition:.15s transform, .15s background;
 }
-.policy .item{
-  display:grid; grid-template-columns:56px 1fr; gap:12px;
-  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
-  border-radius:14px; padding:14px; align-items:center;
-  box-shadow:0 10px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:#000}
+.btn.primary:hover{background:#15171c}
+.btn.light{background:#0e0f12}
+.btn.light:hover{background:#171a22}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative; overflow:hidden; padding:64px 0 26px;
+  background:linear-gradient(180deg,#0c0e13 0%, #0b0c10 70%, #0b0c10 100%);
 }
-.policy .ic{
-  width:56px; height:56px; border-radius:999px; display:grid; place-items:center;
+.hero-grid{display:grid;gap:24px;grid-template-columns:1.15fr .85fr;align-items:center}
+@media (max-width:1000px){ .hero-grid{grid-template-columns:1fr} }
+.hero .cta-row{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap}
+.hero img{width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);object-fit:cover}
+
+/* ===== Feature strip (mono pills) ===== */
+.features-strip{background:#0e0f12;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:1000px){ .fgrid{grid-template-columns:1fr} }
+.fcard{background:#0e0f12;border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;box-shadow:var(--shadow)}
+.f-ic{
+  width:72px;height:72px;border-radius:999px;display:grid;place-items:center;
+  background:#12151c;color:#fff;font-size:30px;border:1px solid var(--line)
+}
+.fcard p{color:var(--muted)}
+
+
+/* ==== Centered headings + yellow underline in WHY DIFFERENT ==== */
+.policy .wrap { text-align: center; }
+
+.policy .section-head{
+  font-size: clamp(28px, 4.2vw, 48px);
+  line-height: 1.05;
+  font-weight: 900;
+  margin: 0 0 8px;
+  color:#fff;
+  letter-spacing:.02em;
+}
+
+#policy-title{
+  position: relative;
+  display:inline-block;           /* needed to center underline */
+  margin: 6px auto 18px;
+  padding-bottom: 6px;
+  font-size: clamp(18px, 2.0vw, 28px);
+  font-weight: 900;
+  color:#ffd54a;
+}
+
+/* yellow gradient bar under the h3 */
+#policy-title::after{
+  content:"";
+  display:block;
+  height:8px;
+  width:min(520px, 90%);
+  margin:8px auto 0;
+  border-radius:6px;
+  background:linear-gradient(90deg,#ffc46b,#ff9b3d 60%,#ff8b3a);
+}
+
+/* keep cards/text below left-aligned */
+.policy .grid,
+.policy .item { text-align: left; }
+
+/* Why IITuitions heading block */
+/* Why IITuitions case study block */
+.why-casestudy{padding:18px 0 40px}
+
+.cs-wrap{
+  max-width:1200px;margin:0 auto;padding:0 20px;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch;
+}
+@media (max-width:1000px){ .cs-wrap{grid-template-columns:1fr;gap:16px} }
+.cs-img img{
+  width:100%;height:100%;object-fit:cover;border-radius:24px;
+  border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.cs-card{
+  background:#0e0f12;border:1px solid var(--line);border-radius:24px;
+  padding:24px;box-shadow:var(--shadow);color:#e6ebf3;
+  display:flex;flex-direction:column;gap:12px
+}
+.cs-pill{
+  align-self:flex-start;background:#122018;border:1px solid rgba(255,255,255,.18);
+  color:#bff3d5;padding:8px 12px;border-radius:999px;font-weight:800;font-size:14px
+}
+.cs-title{margin:0;color:#fff;font-size:clamp(20px,2.6vw,28px);line-height:1.25}
+.cs-text{margin:0;color:#cfd7e2;font-size:18px;line-height:1.55}
+
+.why-intro{
+  text-align:center;
+  padding: 18px 0 10px;         /* tight, like your screenshot */
+}
+.why-title{
+  font-size: clamp(34px, 5.2vw, 64px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin: 0 0 10px;
+  color:#fff;
+}
+.why-sub{
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: clamp(16px, 2.2vw, 24px);
+  line-height: 1.45;
+  color:#dbe2ea;
+}
+
+/* ===== Courses (dark cards like your image #2) ===== */
+.courses-dark{background:#06080e}
+.courses-dark .title{
+  display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:18px
+}
+.courses-dark .title h2{font-size:48px;margin:0}
+.courses-dark .title .mark{
+  position:relative;color:#ff9b3d;font-weight:900
+}
+.courses-dark .title .mark::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:10px;
+  background: linear-gradient(90deg,#ffc46b,#ff9b3d 60%,#ff8b3a);
+  opacity:.7; border-radius:6px;
+}
+.dark-rail{
+  background:#070a10;border:1px solid var(--line);
+  border-radius:30px;padding:24px;box-shadow:var(--shadow)
+}
+.dark-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px
+}
+@media (max-width:1100px){ .dark-grid{grid-template-columns:1fr} }
+.dark-card{
+  background:#0e0f12;border:1px solid var(--line);border-radius:24px;padding:22px;color:#e8ecf2;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), var(--shadow)
+}
+.dark-card .icon{
+  width:64px;height:64px;border-radius:999px;display:grid;place-items:center;font-size:26px;margin-bottom:8px;
   background: radial-gradient(100% 100% at 30% 20%, #2b2b2b 0%, #181a1f 60%, #101216 100%);
-  border:1px solid rgba(255,255,255,.18); font-size:24px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.16);
+  border:1px solid var(--line)
 }
-.policy .title{ font-weight:900; font-size:18px; color:#fff; margin-bottom:4px }
-.policy .text{ color:#e2e8f0; opacity:.92; line-height:1.55 }
-.policy .pill{
+.dark-card h3{margin:8px 0 8px;font-size:26px;color:#fff}
+.dark-card p{margin:0 0 10px;color:#cfd6df}
+.points{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+.points li{display:flex;gap:12px;align-items:flex-start}
+.points li::before{
+  content:""; width:10px;height:10px;border-radius:50%;
+  margin-top:.55em;background:var(--accent); box-shadow:0 0 0 3px rgba(6,214,160,.18)
+}
+.k{color:#ffd54a;font-weight:900}
+.v{color:#e8ecf2}
+/* Left-bottom WhatsApp emoji button */
+.wa-fab{
+  position:fixed;left:18px;bottom:18px;z-index:60;
+  width:64px;height:64px;border-radius:50%;
+  display:grid;place-items:center;text-decoration:none;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+  background:#25D366 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>') center/50% no-repeat;
+}
+
+
+/* ===== WHY DIFFERENT (policy) ===== */
+.policy{ padding:36px 0 24px }
+.policy .wrap{ max-width:1000px; margin:0 auto }
+.policy h3{margin:8px 0 12px; font-size:40px; line-height:1.2}
+.policy p.lead{ color:var(--muted) }
+.grid{display:grid;gap:16px;margin-top:14px}
+@media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
+.item{
+  display:grid; grid-template-columns:56px 1fr; gap:12px;
+  background:#0e0f12; border:1px solid var(--line);
+  border-radius:14px; padding:16px; align-items:center; box-shadow:var(--shadow)
+}
+.ic{ width:56px; height:56px; border-radius:999px; display:grid; place-items:center;
+  background:#12151c; border:1px solid var(--line); font-size:24px }
+.title{ font-weight:900; font-size:18px; color:#fff; margin-bottom:4px }
+.text{ color:#e2e8f0; opacity:.92; line-height:1.55 }
+.pill{
   display:inline-block; font-size:11px; font-weight:900; letter-spacing:.2px;
   padding:4px 8px; border-radius:999px; margin-left:6px;
-  border:1px solid rgba(255,255,255,.18); color:#0b1220; background:#ffd54a;
+  border:1px solid var(--line); color:#0b1220; background:var(--pill);
 }
 
-/* responsive tweaks */
-@media (min-width:900px){
-  .policy h3{ font-size:40px }
-  .policy .grid{ grid-template-columns:1fr 1fr }
+/* ===== Tutor Jobs CTA (mono) ===== */
+.jobs{
+  position:relative;background:url('https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+}
+.jobs .veil{
+  background:rgba(10,11,14,.62);backdrop-filter:saturate(120%) blur(2px);
+  border-radius:26px;border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 24px 70px rgba(0,0,0,.55);
+  padding:28px 32px;text-align:center;color:#fff;max-width:760px;margin:0 auto
 }
 
-
-    /* ===== Hamburger (top-right) ===== */
-    .ii-burger{
-      width:42px; height:42px; display:grid; place-items:center; border-radius:12px;
-      border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);
-      cursor:pointer; transition:transform .18s;
-    }
-    .ii-burger:active{ transform:scale(.96) }
-    .ii-burger i, .ii-burger i::before, .ii-burger i::after{
-      content:""; display:block; width:18px; height:2px; background:#fff; border-radius:2px;
-      transition:all .25s cubic-bezier(.4,0,.2,1);
-    }
-    .ii-burger i::before{ margin-top:-6px }
-    .ii-burger i::after{ margin-top:4px }
-    .ii-burger.active i{ background:transparent }
-    .ii-burger.active i::before{ transform:translateY(6px) rotate(45deg) }
-    .ii-burger.active i::after{ transform:translateY(-6px) rotate(-45deg) }
-
-    /* ===== Fullscreen overlay menu ===== */
-    .ii-overlay{
-      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-      background:rgba(0,0,0,.55); backdrop-filter:blur(var(--blur));
-      opacity:0; visibility:hidden; transform:translateY(6px);
-      transition:opacity .25s, transform .25s, visibility .25s; z-index:999;
-    }
-    .ii-overlay.open{ opacity:1; visibility:visible; transform:none }
-    .ii-sheet{
-      width:var(--sheet-w); padding:14px; border-radius:26px;
-      border:1px solid rgba(255,255,255,.22);
-      background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.12));
-      box-shadow: 0 28px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.25);
-    }
-    .ii-item{
-      display:flex; align-items:center; gap:14px;
-      padding:22px; margin:14px 10px; border-radius:22px;
-      font-size:24px; font-weight:800; color:#fff;
-      background:var(--card); border:1px solid var(--card-bd);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 8px 30px rgba(0,0,0,.25);
-      transition:transform .15s, background .2s, border-color .2s;
-    }
-    .ii-item:hover{ transform:translateY(-1px); background:rgba(255,255,255,.12) }
-    .ii-item:active{ transform:scale(.98) }
-    .ii-ic{ width:32px; display:grid; place-items:center; font-size:26px }
-    .ii-item.current{
-      box-shadow:0 0 0 2px rgba(0,255,170,.35), inset 0 1px 0 rgba(255,255,255,.2);
-      background:rgba(6,214,160,.18); border-color:rgba(6,214,160,.5);
-    }
-    .ii-close{
-      position:absolute; top:16px; right:16px; width:44px; height:44px;
-      border:0; border-radius:999px; cursor:pointer;
-      background:rgba(255,255,255,.9); color:#111; font-size:20px; font-weight:700;
-      box-shadow:0 14px 34px rgba(0,0,0,.28);
-    }
-    /* ===== Courses We Offer ===== */
-.courses { padding: 22px 0 8px }
-.courses-title{
-  font-weight: 900; text-align: left; font-size: 40px; margin: 0 0 18px;
+/* ===== How it works ===== */
+.hiw .stepgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media (max-width:1000px){ .hiw .stepgrid{grid-template-columns:1fr} }
+.step{
+  background:#0e0f12;color:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);text-align:center
 }
-.courses-title .mark{
-  position: relative; color: #ff7a2f; font-weight: 900;
+.step .ic{font-size:44px;margin:6px 0 10px}
+.step p{color:#d9e1ec}
+/* ===== Success Formula ===== */
+.formula{padding:48px 0}
+.formula .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.formula h2{margin:0 0 20px;text-align:center;font-size:clamp(28px,3.8vw,44px)}
+.formula .list{display:grid;gap:18px}
+.formula .card{
+  display:grid;grid-template-columns:72px 1fr;align-items:center;
+  background:#0e0f12;border:1px solid var(--line);border-radius:20px;
+  padding:18px 20px;box-shadow:var(--shadow)
 }
-.courses-title .mark::after{
-  content:""; position:absolute; left:0; right:0; bottom:-2px; height:10px;
-  background: linear-gradient(90deg,#ffc46b,#ff9b3d 60%,#ff8b3a); opacity:.7;
-  border-radius:6px; z-index:-1;
+.formula .n{
+  width:56px;height:56px;border-radius:999px;display:grid;place-items:center;
+  font-weight:900;font-size:22px;color:#0b0c10;background:#ffd54a;
+  box-shadow:inset 0 0 0 3px rgba(0,0,0,.08)
 }
-
-.course-grid{
-  background:#000;                        /* black container */
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:28px; padding:22px;
-  display:grid; gap:18px;
-  grid-template-columns:1fr;
-  box-shadow: 0 18px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
-}
-@media (min-width: 900px){
-  .course-grid{ grid-template-columns: repeat(3, 1fr); padding:24px; gap:20px }
-}
-
-.course-card{
-  background:#0e0f12;                     /* black card */
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:24px; padding:20px 18px;
-  color:#e8ecf2;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 14px 40px rgba(0,0,0,.35);
-}
-.course-icon{
-  width:64px; height:64px; border-radius:999px;
-  display:grid; place-items:center; font-size:28px; margin-bottom:8px;
-  background: radial-gradient(100% 100% at 30% 20%, #2b2b2b 0%, #1a1a1a 60%, #111 100%);
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
-}
-.course-card h3{ margin:6px 0 8px; font-size:22px; font-weight:900; color:#fff }
-.course-card .one-liner{ margin:0 0 10px; opacity:.92; line-height:1.55 }
-.course-card .boards{ margin:2px 0 10px; opacity:.9; font-weight:700; color:#d8dee7 }
-
-.points{
-  list-style:none; padding:0; margin:0 0 10px; display:grid; gap:8px;
-}
-/* bullets: keep text in one wide column */
-.points li{
-  display:flex;                /* was grid */
-  align-items:flex-start;
-  gap:10px;
-}
-.points li::before{
-  content:"";
-  flex:0 0 10px;               /* fixed dot width */
-  width:10px; height:10px;
-  margin-top:.6em;             /* aligns with first line of text */
-  border-radius:50%;
-  background:var(--brand, #06d6a0);
-  box-shadow:0 0 0 3px rgba(6,214,160,.18);
-}
-
-.proof{ font-size:13px; opacity:.9; margin:6px 0 4px }
-.who{ font-size:13px; opacity:.9; margin:0 }
-    /* === KV bullets: dot | yellow label | description === */
-/* === KV bullets: dot | yellow label | description === */
-.points.kv li{
-  display:grid;
-  /* dot | label (flexible) | value (takes the rest) */
-  grid-template-columns:14px 1fr;
-
-  gap:12px;
-  align-items:flex-start;
-}
-
-@media (min-width:1200px){
-  .points.kv li{
-    grid-template-columns:14px minmax(200px, 36%) minmax(0,1fr);
-  }
-}
-
-@media (max-width:600px){
-  .points.kv li{
-    grid-template-columns:14px minmax(140px, 44%) minmax(0,1fr);
-  }
-}
-
-.points.kv li::before{
-  grid-column:1;
-  width:10px; height:10px; border-radius:50%;
-  margin-top:.6em;
-  background:var(--brand, #06d6a0);
-  box-shadow:0 0 0 3px rgba(6,214,160,.18);
-  content:"";
-}
-.points.kv .k{                      /* LABEL */
-  grid-column:2;
-  font-weight:900;
-  display:block;
-  color:#ffd54a;                    /* yellow */
-  line-height:1.55;
-}
-.points.kv .v{                      /* VALUE */
-  grid-column:2;
-  margin-top:2px;
-  color:#e8ecf2;
-  line-height:1.55;
-}
-/* ensure normal wrapping */
-.points.kv .k, .points.kv .v{
-  white-space:normal !important;
-  word-break:normal !important;
-  overflow-wrap:break-word !important;
-  hyphens:auto;
-}
-
-    /* keep bullets wrapping normally + limit line length */
-.course-card .points,
-.course-card .points *{
-  white-space: normal !important;
-  word-break: normal !important;
-  overflow-wrap: break-word !important;
-  hyphens: auto;
-}
-.course-card .one-liner,
-
-.course-card .proof{ max-width:58ch; }
-
-/* extra bottom space so floating CTA doesn't cover text */
-#courses{ padding-bottom:64px; }
+.formula .ttl{margin:0;font-size:22px;font-weight:900;color:#fff}
+.formula .sub{margin:4px 0 0;color:#cfd7e2;font-size:18px;line-height:1.5}
 
 
 
-    /* ===== News Headline Bar (under header) ===== */
-    /* ===== News Headline (ticker scroll) ===== */
-.headline{
-  position:sticky; top:56px; z-index:900;
-  background:#0e1117; border-bottom:1px solid rgba(255,255,255,.08);
-}
-.headline .wrap{
-  max-width:1200px; margin:0 auto; padding:10px 16px; min-height:44px;
-  display:flex; align-items:center; gap:12px;
-}
-.tag{
-  font-weight:900; font-size:12px; letter-spacing:.4px; color:#0ff; text-transform:uppercase
-}
-/* ticker area */
-.ticker{
-  flex:1; overflow:hidden; white-space:nowrap;
-  font-weight:900; font-size:15px; line-height:1;
-}
-.ticker span{
-  display:inline-block;
-  padding-left:100%;                /* start off-screen to the right */
-  will-change:transform;
-  animation:headline-slide 18s linear infinite;
-}
-@keyframes headline-slide{
-  to{ transform:translateX(-100%); } /* move fully to the left */
-}
-/* ==== Reviews: horizontal cards ==== */
-.reviews { padding: 18px 0 10px }
-.reviews .rail{ position:relative; max-width:1100px; margin:0 auto; }
-.rtrack{
-  display:flex; gap:16px; padding:10px 8px 18px;
-  overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding:8px;
-  -webkit-overflow-scrolling:touch;
-}
-.rtrack::-webkit-scrollbar{ display:none; } /* hide scrollbar */
-
-.rcard{
-  background:#fff; color:#0b1220;
-  min-width:480px; max-width:520px; flex:0 0 auto;
-  border:1px solid #e5e7eb; border-radius:18px; padding:18px 18px 20px;
-  box-shadow:0 14px 38px rgba(0,0,0,.20);
-  scroll-snap-align:start;
-}
-.rhead{ display:flex; align-items:center; gap:12px; margin-bottom:6px }
-.ravatar{
-  width:56px; height:56px; border-radius:50%; overflow:hidden; flex:0 0 56px;
-  border:1px solid #eef2f7;
-}
-.ravatar img{ width:100%; height:100%; object-fit:cover }
-.rname{ font-weight:900; font-size:20px }
-.rdate{ font-size:13px; color:#64748b; margin-top:2px }
-
-.rstars{ margin:6px 0 10px; color:#f59e0b; font-size:18px; letter-spacing:2px }
-.rtext{ font-size:20px; line-height:1.6 }
-.pill{
-  display:inline-block; padding:6px 10px; border-radius:10px;
-  background:#eef2f7; font-weight:900; margin:0 6px;
-}
-.pill.dark{ background:#0b1220; color:#fff }
-
-.rnav{
-  position:absolute; inset:0; pointer-events:none;
-}
-.rbtn{
-  position:absolute; top:50%; transform:translateY(-50%);
-  pointer-events:auto; border:0; width:42px; height:42px; border-radius:999px;
-  background:rgba(255,255,255,.92); color:#111; font-weight:900;
-  box-shadow:0 10px 24px rgba(0,0,0,.25);
-}
-.rbtn.prev{ left:-6px } .rbtn.next{ right:-6px }
-
-@media (max-width:900px){
-  .rcard{ min-width:320px; }
-  .rtext{ font-size:18px }
-}
-/* ===== Footer styles ===== */
-.ii-footer{
-  background:#0e0f12;
-  border-top:1px solid rgba(255,255,255,.08);
-  color:#e8ecf2;
-}
-.ii-footer a{ color:#e8ecf2; text-decoration:none }
-.ii-footer a:hover{ text-decoration:underline }
-
-/* grid */
-.footgrid{
-  max-width:1200px; margin:0 auto; padding:36px 16px 22px;
-  display:grid; gap:24px;
-  grid-template-columns:1fr;
-}
-@media (min-width:900px){
-  .footgrid{ grid-template-columns:1.2fr .9fr .9fr 1.1fr; gap:28px }
-}
-
-.foot-col{ min-width:0 }
-.foot-title{
-  font-weight:900; font-size:22px; margin-bottom:12px; color:#ffffff;
-}
-.foot-list{ list-style:none; padding:0; margin:0 }
-.foot-list li{ margin:10px 0; line-height:1.45 }
-.foot-list.contact li{ margin:12px 0 }
-
-/* brand */
-.foot-brand{ display:flex; align-items:center; gap:10px; margin-bottom:10px }
-.logo-ic{ font-size:26px }
-.logo-text{ font-weight:900; font-size:28px }
-.foot-mission{ margin:8px 0 14px; color:#cfd6df }
-.foot-social a{ font-weight:700 }
-
-/* bottom bar */
-.foot-bottom{
-  border-top:1px solid rgba(255,255,255,.08);
-  margin-top:18px; padding:12px 16px;
-  display:flex; align-items:center; justify-content:space-between;
-  gap:16px; background:#0c0d10;
-}
-.foot-copy{ opacity:.9 }
-.foot-legal{ display:flex; gap:20px; flex-wrap:wrap }
-.foot-legal a{ opacity:.9 }
-.foot-legal a:hover{ opacity:1 }
-
-/* floating CTA */
-.foot-cta{
-  position:fixed; right:16px; bottom:18px; z-index:1000;
-  display:inline-flex; align-items:center; gap:8px;
-  background:#000; color:#fff; font-weight:800;
-  padding:12px 18px; border-radius:999px;
-  box-shadow:0 10px 30px rgba(0,0,0,.45);
-  border:1px solid rgba(255,255,255,.12);
-}
-.foot-cta:active{ transform:translateY(1px) }
 
 
 
-    /* ===== Sections ===== */
-    .container{ max-width:1100px; margin:0 auto; padding:0 16px }
-
-    /* Hero (simple — CTA only, headline handled above) */
-    .hero{ text-align:center; padding:56px 16px 24px }
-    .hero p{ max-width:780px; margin:0 auto 18px; opacity:.9 }
-    .cta{
-      display:inline-flex; align-items:center; gap:8px; font-weight:800;
-      background:#000; color:#fff; padding:14px 18px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.14); box-shadow:0 8px 30px rgba(0,0,0,.35);
-    }
-
-    /* Modes */
-    /* Modes (new, like your 2nd image) */
- .modes{ padding:42px 0 8px }
-.section-title{
-  font-size:40px; font-weight:900; text-align:center;
-  /* ↑ increased bottom margin to push the cards down */
-  margin:18px 0 42px; 
-  line-height:1.15; color:#fff;
+/* ===== Testimonials ===== */
+.testi .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:1000px){ .testi .grid{grid-template-columns:1fr} }
+.tcard{
+  background:#0e0f12;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);color:#e8ecf2
 }
+.stars{color:#f59e0b;letter-spacing:2px;margin:6px 0 10px}
 
-.choice-grid{
-  display:grid; gap:24px; max-width:1100px; margin:0 auto;
-  grid-template-columns:1fr;
-}
-.choice-card{
-  position:relative; border-radius:22px;
-  background:#f4f6f9; color:#111;
-  border:1px solid #dde3ea;
-  box-shadow:0 16px 40px rgba(0,0,0,.20);
-  padding:26px 26px 28px;
-  /* ↓ centers everything (including the button) */
-  text-align:center;
+/* ===== Footer ===== */
+.footer{background:#0e0f12;color:#e9eef7;padding:36px 0 14px;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr 1.1fr;gap:26px}
+@media (max-width:1000px){ .foot-grid{grid-template-columns:1fr} }
+.footer h4{margin:0 0 10px;color:#fff}
+.footer a{color:#cfe6ff;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.copy{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#bcc6d6}
+
+/* ===== Floating WhatsApp ===== */
+.whatsapp{
+  position:fixed;right:16px;bottom:16px;z-index:50;
+  display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;
+  padding:12px 14px;border-radius:999px;border:1px solid var(--line);box-shadow:var(--shadow);text-decoration:none;font-weight:800
 }
 
-.choice-card .emoji{ font-size:38px; text-align:center; margin-top:4px }
-.choice-card h3{ font-size:28px; text-align:center; margin:14px 0 10px }
-.choice-card .desc{
-  text-align:center; font-size:16px; line-height:1.6; color:#26323f; margin:0 auto 18px; max-width:560px;
+/* responsive heading sizes */
+@media (max-width:780px){
+  .h1{font-size:42px}
+  .h2{font-size:30px}
 }
-.choice-card hr{
-  border:0; border-top:1px solid #e7edf3; margin:18px auto;
-}
-.metrics{
-  display:grid; grid-template-columns:repeat(2,1fr); gap:10px; max-width:560px; margin:0 auto 18px;
-}
-.metric{ text-align:center }
-.m-num{ font-weight:900; font-size:24px; color:#0b1220; }
-.m-label{ font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:#5a6776 }
-.btn-big{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  width:fit-content; margin:8px auto 0; padding:14px 22px; border-radius:999px;
-  background:#000; color:#fff; font-weight:800; border:1px solid rgba(0,0,0,.6);
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-}
-.badge-top{
-  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
-  background:#111; color:#fff; font-weight:800; font-size:13px;
-  padding:6px 12px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.35);
-  border:1px solid rgba(255,255,255,.5);
-}
-/* makes the note prominent + adds extra vertical space */
-.switch-note{
-  text-align:center;
-  color:#ffd54a;                 /* warm yellow */
-  font-weight:900;
-  letter-spacing:.2px;
-  text-shadow:0 1px 0 rgba(0,0,0,.35);
-  opacity:1;
-  margin:28px 0 42px;            /* more gap above & below */
-  font-size:20px;
-}
-/* ===== Why IITuitions section ===== */
-.why{ padding:28px 0 16px }
-.why h2{
-  font-size:34px; font-weight:900; text-align:center; margin:0 0 14px;
-}
-.whywrap{ max-width:1100px; margin:0 auto; }
-.whyimg{
-  width:100%; border-radius:18px; overflow:hidden;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 14px 44px rgba(0,0,0,.35);
-}
-.whyline{
-  text-align:center; margin:14px auto 0; max-width:900px;
-  font-size:20px; line-height:1.5; opacity:.95;
-}
-/* Vertical 1→4 flow under Why IITuitions */
-.flow{
-  max-width:900px; margin:18px auto 0; padding:0; list-style:none;
-  display:grid; gap:12px;
-}
-.flow li{
-  display:grid; grid-template-columns:40px 1fr; align-items:center;
-  gap:12px; background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:12px; padding:12px 14px;
-  box-shadow:0 8px 22px rgba(0,0,0,.25);
-}
-.flow .n{
-  width:32px; height:32px; border-radius:999px; display:grid; place-items:center;
-  font-weight:900; background:#06d6a0; color:#091015;
-  box-shadow:0 2px 6px rgba(6,214,160,.35);
-}
-.flow .title{ font-weight:800 }
-.flow .sub{ opacity:.9 }
-
-
-/* desktop */
-@media (min-width:900px){
-  .choice-grid{ grid-template-columns:repeat(2,1fr) }
-}
-
-
-    /* Student case */
-    .case{ padding:18px 0 }
-    .casewrap{ display:grid; gap:16px; grid-template-columns:1fr; max-width:1000px; margin:0 auto }
-    .case img{
-      width:100%; border-radius:16px; border:1px solid rgba(255,255,255,.14); box-shadow:0 10px 30px rgba(0,0,0,.3);
-      object-fit:cover; max-height:420px;
-    }
-    .case .box{ background:var(--card); border:1px solid var(--card-bd); padding:18px; border-radius:16px }
-    .badge{ display:inline-block; font-weight:800; font-size:12px; opacity:.9; background:rgba(6,214,160,.18); border:1px solid rgba(6,214,160,.45); color:#d8fff2; padding:6px 10px; border-radius:999px; margin-bottom:10px }
-
-    /* 3-Step Formula */
-    .steps{ padding:8px 0 8px }
-    .stepgrid{ display:grid; grid-template-columns:1fr; gap:14px; max-width:1000px; margin:10px auto }
-    .step{ background:var(--card); border:1px solid var(--card-bd); border-left:3px solid var(--brand); padding:16px; border-radius:14px }
-    .step h4{ margin:0 0 6px; font-size:16px }
-    .step p{ margin:0; opacity:.93 }
-    .deliver{ margin-top:8px; font-size:13px; opacity:.85 }
-
-    /* Reviews */
-    .reviews{ padding:10px 0 6px }
-    .reviewbox{ background:#fff; color:#111; border-radius:14px; padding:0; overflow:hidden; border:1px solid #e5e7eb }
-    .review-fallback{ display:grid; gap:12px; grid-template-columns:1fr; padding:16px; background:#111; color:#fff }
-    .quote{ background:var(--card); border:1px solid var(--card-bd); border-radius:12px; padding:12px; font-style:italic }
-
-    /* Footer */
-    footer{ margin:26px 0 90px }
-    .foot{
-      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12);
-      border-radius:16px; padding:18px; max-width:1100px; margin:0 auto;
-      display:grid; gap:12px;
-    }
-    .row2{ display:flex; flex-wrap:wrap; gap:10px; opacity:.9 }
-    .tag2{ padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.18) }
-
-    /* Floats */
-    .wa-float{
-      position:fixed; bottom:16px; left:12px; width:52px; height:52px; border-radius:999px;
-      display:grid; place-items:center; background:#25D366; color:#fff; z-index:1000;
-      box-shadow:0 8px 30px rgba(37,211,102,.4);
-    }
-    .book-float{
-      position:fixed; bottom:16px; right:12px; z-index:1000;
-      background:#000; color:#fff; padding:12px 16px; border-radius:999px; font-weight:800;
-      box-shadow:0 8px 30px rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.12)
-    }
-
-    /* Responsive */
-    @media (min-width:768px){
-      .cards{ grid-template-columns:repeat(2,1fr) }
-      .casewrap{ grid-template-columns:1.2fr .8fr }
-      .stepgrid{ grid-template-columns:repeat(3,1fr) }
-      .section-title{ font-size:28px }
-    }
-  </style>
+</style>
 </head>
 <body>
-
-  <!-- ===== Header ===== -->
-  <header class="ii-header" role="banner">
-    <div class="row">
-      <a class="ii-logo" href="index.html" aria-label="IITuitions Home">
-        <span class="dot" aria-hidden="true"></span> IITuitions
-      </a>
-      <button class="ii-burger" id="iiBurger" aria-label="Open menu" aria-expanded="false" aria-controls="iiOverlay">
-        <i></i>
-      </button>
-    </div>
+  <header class="nav">
+    <!-- (optional) logo can go in .brand -->
+    <a class="brand" href="index.html" aria-label="IITuitions Home"></a>
+  
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
-
-  <!-- ===== News-Style Headline (sticky under header) ===== -->
-  <div class="headline" role="region" aria-label="Headline">
-    <div class="wrap">
-      
-      <div class="ticker" aria-live="polite">
-        <span>Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way • Weekly Reports • Real Results</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== Overlay Menu ===== -->
-  <nav class="ii-overlay" id="iiOverlay" aria-label="Main Menu">
-    <button class="ii-close" type="button" aria-label="Close menu">✕</button>
-    <div class="ii-sheet">
-      <a class="ii-item" href="index.html"><span class="ii-ic">🏠</span><span>Home</span></a>
-      <a class="ii-item" href="sat.html"><span class="ii-ic">📚</span><span>SAT</span></a>
-      <a class="ii-item" href="iit.html"><span class="ii-ic">🎓</span><span>IIT</span></a>
-      <a class="ii-item" href="tuitions.html"><span class="ii-ic">🏛️</span><span>Tuitions</span></a>
-      <a class="ii-item" href="register.html"><span class="ii-ic">📝</span><span>Register</span></a>
-      <a class="ii-item" href="tutor.html"><span class="ii-ic">👩‍🏫</span><span>Register as a Tutor</span></a>
+  
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-box">
+      <a href="index.html">🏠 Home</a>
+      <a href="sat.html">📚 SAT</a>
+      <a href="iit.html">🎓 IIT</a>
+      <a href="tuitions.html">🏛️ Tuitions</a>
+      <a href="register.html">👩‍🏫 Register as a Tutor</a>
     </div>
   </nav>
-
-  <!-- ===== Hero (short; headline is above) ===== -->
-  <section class="hero container" id="top">
-    <p>Helping students, turn average grades into top scores — with personal mentors who truly care.One mentor, one child, one goal — turning effort into proud results.</p>
-    <a class="cta" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment">📋 Book Free Assessment</a>
-  </section>
-
-  <!-- ===== Online & Offline Tuitions ===== -->
-  <section class="modes container" id="modes">
-    <h2 class="section-title">Choose Your Perfect Learning Mode</h2>
   
-    <div class="choice-grid">
-      <!-- Home Tuitions -->
-      <div class="choice-card featured">
-        <span class="badge-top">Most Popular</span>
-        <div class="emoji">🏠</div>
-        <h3>Home Tuitions</h3>
-        <p class="desc">
-          Expert teachers come to your home for personalized 1-on-1 sessions.
-          Perfect for all subjects, grades 1–12, IIT-JEE, and SAT prep.
-        </p>
-        <hr>
-        <div class="metrics">
-          <div class="metric">
-            <div class="m-num">100%</div>
-            <div class="m-label">Personal Attention</div>
-          </div>
-          <div class="metric">
-            <div class="m-num">Flexible</div>
-            <div class="m-label">Timings</div>
-          </div>
-        </div>
-        <a class="btn-big"
-           href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20I%20want%20a%20home%20tutor%20for%20my%20child">
-          Book Home Tutor
-        </a>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="kicker">WELCOME TO MY HOME TUITIONS</div>
+      <h1 class="h1">Best Home Tuitions in Hyderabad</h1>
+      <p class="lead">Home Tuitions in Hyderabad offering personalized learning, expert tutors, and guaranteed academic success.</p>
+      <div class="cta-row">
+        <a class="btn brand" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20I%20want%20a%20free%20demo">Book Free Demo →</a>
+        <a class="btn ghost" href="register.html">Join as Tutor 👩‍🏫</a>
       </div>
-  
-      <!-- Online Tuitions -->
-      <div class="choice-card">
-        <div class="emoji">💻</div>
-        <h3>Online Tuitions</h3>
-        <p class="desc">
-          Interactive online classes with recorded sessions. Access expert tutors from anywhere
-          with digital whiteboard and real-time doubt solving.
-        </p>
-        <hr>
-        <div class="metrics">
-          <div class="metric">
-            <div class="m-num">24/7</div>
-            <div class="m-label">Access</div>
-          </div>
-          <div class="metric">
-            <div class="m-num">Record</div>
-            <div class="m-label">Sessions</div>
-          </div>
-        </div>
-        <a class="btn-big"
-           href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20I%20want%20an%20online%20tutor%20for%20my%20child">
-          Book Online Classes
-        </a>
-      </div>
-    </div>
-  
-    <p class="switch-note">Switch between modes any time — no extra fee.</p>
-  </section>
-
-  <!-- ===== Courses We Offer ===== -->
-<section class="courses container" id="courses">
-  <h2 class="courses-title">
-    Courses <span class="mark">We Offer</span>
-  </h2>
-
-  <div class="course-grid">
-    <!-- Card 1 — JEE Main & Advanced -->
-    <article class="course-card">
-      <div class="course-icon"><span aria-hidden="true">🎯</span></div>
-      <h3>JEE Main &amp; Advanced</h3>
-      <p class="one-liner">
-        One mentor teaches your child 1-on-1. Board syllabus and JEE prep move together,
-        so concepts stay strong and marks keep improving.
-      </p>
-      <ul class="points kv">
-  <li><span class="k">Personal IIT/NIT mentor:</span><span class="v">simple weekly plan + a small “mistake list” we fix every week.</span></li>
-  <li><span class="k">Past JEE papers, the right way:</span><span class="v">how to write steps so examiners give full marks.</span></li>
-  <li><span class="k">Weekly mock + WhatsApp update:</span><span class="v">topics covered, scores, and next week’s plan.</span></li>
-</ul>
-
-
-
-    </article>
-
-    <!-- Card 2 — NEET-UG -->
-    <article class="course-card">
-      <div class="course-icon"><span aria-hidden="true">🩺</span></div>
-      <h3>NEET-UG</h3>
-      <p class="one-liner">
-        NCERT-first, 1-on-1 coaching that builds strong recall and application in
-        Biology, Chemistry, and Physics.
-      </p>
-     <ul class="points kv">
-  <li><span class="k">NCERT line-by-line:</span><span class="v">high-yield diagrams and quick recalls your child won’t forget.</span></li>
-  <li><span class="k">Timed practice sets:</span><span class="v">OMR practice with simple speed &amp; accuracy targets.</span></li>
-  <li><span class="k">Weekly WhatsApp update:</span><span class="v">coverage done, accuracy %, and focus for next week.</span></li>
-</ul>
-
-
-
-    </article>
-
-    <!-- Card 3 — Offline & Online Tuitions (Grades 1–12) -->
-    <article class="course-card">
-      <div class="course-icon"><span aria-hidden="true">🏠💻</span></div>
-      <h3>Offline &amp; Online Tuitions (Grades 1–12)</h3>
-      <p class="one-liner">
-        Home tutor at your doorstep or live 1-on-1 online — same mentor quality, same weekly parent updates.
-      </p>
-      <p class="boards">CBSE • ICSE • Cambridge (IGCSE &amp; A Levels) • State (TS/AP)</p>
-     <ul class="points kv">
-  <li><span class="k">Syllabus-aligned weekly plan:</span><span class="v">short micro-tests + recap sheet to track progress.</span></li>
-  <li><span class="k">Past-paper style answers:</span><span class="v">how to write neatly for full marks in long answers.</span></li>
-  <li><span class="k">Switch mentor anytime:</span><span class="v">if the fit isn’t perfect, we’ll change — no extra fee.</span></li>
-</ul>
-
       
-    </article>
+    </div>
+
+    <div aria-hidden="true">
+      <img alt="" src="https://images.unsplash.com/photo-1584697964353-582cde1a27c5?q=80&w=1400&auto=format&fit=crop">
+    </div>
   </div>
 </section>
 
-  <!-- ===== Why IITuitions? ===== -->
-<section class="why container" id="why">
-  <h2>Why IITuitions?</h2>
-
- 
-
-    <!-- Use your real image path here -->
-    
-
-    <!-- Single parent-friendly line BELOW the image -->
-    <p class="whyline">
-      Real mentors, real outcomes — from exam scores to showcase-ready projects, with weekly parent updates.
-    </p>
-  </div>
-</section>
-
-       
-  
-
-  <!-- ===== Student Image + Case Story ===== -->
-  <section class="case container" id="case">
-    <div class="casewrap">
-      <!-- Replace src with your real student image -->
-      <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop" alt="Student studying with tutor">
-      <div class="box">
-        <span class="badge">12 weeks • Home Tuition — Kondapur</span>
-        <h3 style="margin:6px 0 10px">From 62% to 92% in Cambridge Math (Grade 10)</h3>
-        <p>Arjun knew concepts but lost marks on extended-response questions. We mapped gaps to <strong>Cambridge command words</strong> (justify, evaluate), retrained answer framing, and ran 6 targeted micro-tests. Scores stabilized at 85%+ by week 6; final at 92%.</p>
+<!-- ===== Feature strip ===== -->
+<section class="features-strip section tight">
+  <div class="container fgrid">
+    <div class="fcard">
+      <div class="f-ic">📅</div>
+      <div>
+        <div class="h3">Flexible Classes</div>
+        <p>In-home tutoring sessions with flexible scheduling compatible with USA/UK/INDIA/AUSTRALIA Timings.</p>
       </div>
     </div>
-  </section>
-  <!-- ===== Tutor Replacement Policy (add this ABOVE Our Success Formula) ===== -->
-<section class="policy container" id="tutor-policy" aria-labelledby="policy-title">
+    <div class="fcard">
+      <div class="f-ic">💻</div>
+      <div>
+        <div class="h3">Online / Offline Modes</div>
+        <p>We offer both online and offline mode tutoring for students.</p>
+      </div>
+    </div>
+    <div class="fcard">
+      <div class="f-ic">🧑‍👦</div>
+      <div>
+        <div class="h3">Parent Choice</div>
+        <p>Parent can choose male and female tutors depending on their convenience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Courses (dark) — PLACE THIS BEFORE POLICY ===== -->
+<section class="courses-dark section" id="courses">
+  <div class="container">
+    <div class="title">
+      <h2 class="h2" style="font-size:48px">Courses <span class="mark">We Offer</span></h2>
+    </div>
+
+    <div class="dark-rail">
+      <div class="dark-grid">
+        <!-- Card 1 -->
+        <article class="dark-card">
+          <div class="icon">🎯</div>
+          <h3>JEE Main & Advanced</h3>
+          <p>One mentor teaches your child 1-on-1. Board syllabus and JEE prep move together, so concepts stay strong and marks keep improving.</p>
+          <ul class="points">
+            <li><span class="k">Personal IIT/NIT mentor:</span>&nbsp;<span class="v">simple weekly plan + a small “mistake list” we fix every week.</span></li>
+            <li><span class="k">Past JEE papers, the right way:</span>&nbsp;<span class="v">how to write steps so examiners give full marks.</span></li>
+            <li><span class="k">Weekly mock + WhatsApp update:</span>&nbsp;<span class="v">topics covered, scores, and next week’s plan.</span></li>
+          </ul>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="dark-card">
+          <div class="icon">🩺</div>
+          <h3>NEET-UG</h3>
+          <p>NCERT-first, 1-on-1 coaching that builds strong recall and application in Biology, Chemistry, and Physics.</p>
+          <ul class="points">
+            <li><span class="k">NCERT line-by-line:</span>&nbsp;<span class="v">high-yield diagrams and quick recalls your child won’t forget.</span></li>
+            <li><span class="k">Timed practice sets:</span>&nbsp;<span class="v">OMR practice with simple speed & accuracy targets.</span></li>
+            <li><span class="k">Weekly WhatsApp update:</span>&nbsp;<span class="v">coverage done, accuracy %, and focus for next week.</span></li>
+          </ul>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="dark-card">
+          <div class="icon">🏠💻</div>
+          <h3>Offline & Online Tuitions (Grades 1–12)</h3>
+          <p>Home tutor at your doorstep or live 1-on-1 online — same mentor quality, same weekly parent updates.</p>
+          <p style="color:#d7dde7;font-weight:700">CBSE • ICSE • Cambridge (IGCSE & A Levels) • State (TS/AP)</p>
+          <ul class="points">
+            <li><span class="k">Syllabus-aligned weekly plan:</span>&nbsp;<span class="v">short micro-tests + recap sheet to track progress.</span></li>
+            <li><span class="k">Past-paper style answers:</span>&nbsp;<span class="v">how to write neatly for full marks in long answers.</span></li>
+            <li><span class="k">Switch mentor anytime:</span>&nbsp;<span class="v">if the fit isn’t perfect, we’ll change — no extra fee.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== Why IITuitions? (big heading + subhead) ===== -->
+<section class="why-intro container" id="why-intro">
+  <h2 class="why-title">Why IITuitions?</h2>
+  <p class="why-sub">
+    Real mentors, real outcomes — from exam scores to showcase-ready projects,
+    with weekly parent updates.
+  </p>
+</section>
+<section class="why-casestudy">
+  <div class="cs-wrap">
+    <div class="cs-img">
+      <img src="https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1600&auto=format&fit=crop"
+           alt="Graduate cap" />
+    </div>
+    <aside class="cs-card">
+      <div class="cs-pill">12 weeks • Home Tuition — Kondapur</div>
+      <h3 class="cs-title">From 62% to 92% in Cambridge Math (Grade 10)</h3>
+      <p class="cs-text">
+        Arjun knew concepts but lost marks on extended-response questions. We mapped gaps
+        to <strong>Cambridge command words</strong> (justify, evaluate), retrained answer
+        framing, and ran 6 targeted micro-tests. Scores stabilized at 85%+ by week 6; final at 92%.
+      </p>
+    </aside>
+  </div>
+</section>
+
+
+<!-- ===== WHY WE ARE DIFFERENT (Policy) ===== -->
+<section class="policy container section" id="different" aria-labelledby="policy-title">
   <div class="wrap">
-    <div class="kicker">Why we are different</div>
-    <h3 id="policy-title">Parents Have the Right to Change the Tutor.</h3>
+    <h2 class="section-head">WHY WE ARE DIFFERENT?</h2>
+<h3 id="policy-title">Parents Have the Right to Change the Tutor.</h3>
+
     <p class="lead">
-      Every child learns differently—sometimes a change helps. We make matching simple and transparent.
-      Your replacement policy depends on the plan you choose.
+      Our platform connects families with dedicated educators who cater to each child's unique needs, fostering academic growth and confidence. With a focus on quality and customization, we make it easy to create a meaningful and impactful learning experience.
     </p>
 
     <div class="grid" role="list">
@@ -814,250 +529,169 @@
     </div>
   </div>
 </section>
-<!-- ===== /Tutor Replacement Policy ===== -->
 
-
-  <!-- ===== 3-Step Success Formula ===== -->
-   <!-- ===== Our Success Formula (heading only) ===== -->
-<h2 class="section-title">Our Success Formula</h2>
-  <ol class="flow">
-    <li>
-      <span class="n">1</span>
-      <div>
-        <div class="title">Free Assessment</div>
-        <div class="sub">Know exactly where your child stands.</div>
-      </div>
-    </li>
-    <li>
-      <span class="n">2</span>
-      <div>
-        <div class="title">Personalized Roadmap</div>
-        <div class="sub">Your child’s clear path to score improvement.</div>
-      </div>
-    </li>
-    <li>
-      <span class="n">3</span>
-      <div>
-        <div class="title">1-on-1 Mentorship</div>
-        <div class="sub">100% focused sessions — no batches, no distractions.</div>
-      </div>
-    </li>
-    <li>
-      <span class="n">4</span>
-      <div>
-        <div class="title">Continuous Tracking</div>
-        <div class="sub">Weekly updates & real-time corrections for steady progress.</div>
-      </div>
-    </li>
-  </ol>
-  
-  <!-- ===== Google Reviews ===== -->
-  <section class="reviews container" id="reviews">
-    <h2 class="section-title">What Hyderabad Parents Say</h2>
-  
-    <div class="rail">
-      <div class="rtrack" id="rtrack">
-  
-        <!-- Card 1 -->
-        <article class="rcard">
-          <div class="rhead">
-            <div class="ravatar"><img src="images/review1.jpg" alt="Parent photo"></div>
-            <div>
-              <div class="rname">Srinivas Reddy</div>
-              <div class="rdate">Posted May 2025</div>
-            </div>
-          </div>
-          <div class="rstars">★★★★★</div>
-          <p class="rtext">
-            “The weekly WhatsApp progress reports made everything transparent. We could see improvements topic-wise after every micro-test.”
-          </p>
-        </article>
-  
-        <!-- Card 2 -->
-        <article class="rcard">
-          <div class="rhead">
-            <div class="ravatar"><img src="images/review2.jpg" alt="Parent photo"></div>
-            <div>
-              <div class="rname">Megha Sharma</div>
-              <div class="rdate">Posted Jun 2025</div>
-            </div>
-          </div>
-          <div class="rstars">★★★★★</div>
-          <p class="rtext">
-            “Our daughter’s Math marks jumped from 64% to 88% within 6 weeks. The tutor explained Cambridge command words so clearly that she finally started scoring in long answers.”
-          </p>
-        </article>
-  
-        <!-- Card 3 -->
-        <article class="rcard">
-          <div class="rhead">
-            <div class="ravatar"><img src="images/review3.jpg" alt="Parent photo"></div>
-            <div>
-              <div class="rname">Rahul & Anitha</div>
-              <div class="rdate">Posted Jul 2025</div>
-            </div>
-          </div>
-          <div class="rstars">★★★★★</div>
-          <p class="rtext">
-            Physics used to be a nightmare — now it’s my son’s favorite subject. The mentor patiently re-taught basics and connected every concept to past-paper patterns.
-          </p>
-        </article>
-  
-        <!-- Card 4 -->
-        <article class="rcard">
-          <div class="rhead">
-            <div class="ravatar"><img src="images/review4.jpg" alt="Parent photo"></div>
-            <div>
-              <div class="rname">Praveen Kumar</div>
-              <div class="rdate">Posted Aug 2025</div>
-            </div>
-          </div>
-          <div class="rstars">★★★★★</div>
-          <p class="rtext">
-            “The personalized roadmap helped my son manage both board and JEE prep without stress. By week 10 his mock marks crossed 90.”
-          </p>
-        </article>
-  
-      </div>
-  
-      <!-- arrows (tap/click) -->
-      <div class="rnav" aria-hidden="true">
-        <button class="rbtn prev" type="button" id="rprev">‹</button>
-        <button class="rbtn next" type="button" id="rnext">›</button>
-      </div>
-    </div>
-  </section>
-  
-
-  <!-- ===== Footer ===== -->
-  <!-- ===== Footer (4-column, dark) ===== -->
-<footer class="ii-footer">
-  <div class="footgrid">
-    <!-- Brand / Mission -->
-    <div class="foot-col">
-      <div class="foot-brand">
-        <span class="logo-ic">📘</span>
-        <span class="logo-text">IITuitions</span>
-      </div>
-      <p class="foot-mission">
-        Helping students achieve <strong>1500+ SAT</strong> scores and
-        helping IIT aspirants convert effort into ranks — since 2010.
+<!-- ===== Tutor Jobs CTA ===== -->
+<section class="jobs section" id="jobs" aria-label="Part Home Tutor Jobs">
+  <div class="container">
+    <div class="veil">
+      <h2 class="h2">Part Home Tutor Jobs in Hyderabad</h2>
+      <p class="lead" style="color:#e8fdf8;margin:6px 0 12px">
+        Flexible part-time home tutor jobs in Hyderabad. Teach students, earn well, and make a difference in their learning journey.
       </p>
-      <p class="foot-social">
-        📷 <a href="#" aria-label="Instagram">Instagram</a>
-      </p>
-    </div>
-
-    <!-- Quick Links -->
-    <div class="foot-col">
-      <div class="foot-title">Quick Links</div>
-      <ul class="foot-list">
-        <li><a href="#">Student Results</a></li>
-        <li><a href="#">What We Offer</a></li>
-        <li><a href="#">Our Faculty</a></li>
-        <li><a href="#">Student Community</a></li>
-        <li><a href="register.html">Register</a></li>
-      </ul>
-    </div>
-
-    <!-- Programs -->
-    <div class="foot-col">
-      <div class="foot-title">Programs</div>
-      <ul class="foot-list">
-        <li><a href="#">SAT Elite Program</a></li>
-        <li><a href="#">SAT Foundation Course</a></li>
-        <li><a href="#">SAT Math Intensive</a></li>
-        <li><a href="#">SAT Verbal Excellence</a></li>
-        <li><a href="#">College Application Guidance</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact Us -->
-    <div class="foot-col">
-      <div class="foot-title">Contact Us</div>
-      <ul class="foot-list contact">
-        <li>📞 <a href="tel:+917207467565">+91 7207467565</a></li>
-        <li>✉️ <a href="mailto:hello@iituitions.com">hello@iituitions.com</a></li>
-        <li>📍 iiTuitions Hub LLP,<br>
-            Nallagandla, Hyderabad<br>
-            500019, India
-        </li>
-      </ul>
+      <!-- changed to register.html -->
+      <a class="btn primary" href="register.html">GET STARTED →</a>
     </div>
   </div>
+</section>
 
-  <div class="foot-bottom">
-    <div class="foot-copy">© 2025 IITuitions. All rights reserved.</div>
-    <nav class="foot-legal">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Cookie Policy</a>
-    </nav>
+<!-- ===== HOW IT WORKS ===== -->
+<section class="hiw section" id="how">
+  <div class="container">
+    <h2 class="h2" style="text-align:center">How it works</h2>
+    <p style="text-align:center;max-width:820px;margin:6px auto 26px;color:#c9d1dd">
+      Schedule personalized consultations with expert tutors to address your learning needs and achieve academic excellence.
+    </p>
+
+    <div class="stepgrid">
+      <div class="step">
+        <div class="ic">📝</div>
+        <h4 style="margin:4px 0 6px">Submit Your Request</h4>
+        <p>Share your requirements to find the perfect tutor tailored to your needs.</p>
+      </div>
+      <div class="step">
+        <div class="ic">🏫</div>
+        <h4 style="margin:4px 0 6px">Tutor Matching</h4>
+        <p>We match you with qualified tutors based on subject, location, and expertise.</p>
+      </div>
+      <div class="step">
+        <div class="ic">🔖</div>
+        <h4 style="margin:4px 0 6px">Schedule a Session</h4>
+        <p>Coordinate with your chosen tutor for convenient and flexible sessions.</p>
+      </div>
+      <div class="step">
+        <div class="ic">💻</div>
+        <h4 style="margin:4px 0 6px">Start Learning</h4>
+        <p>Begin with verified tutors to achieve your educational goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== OUR SUCCESS FORMULA ===== -->
+<section class="formula" id="success-formula">
+  <div class="wrap">
+    <h2>Our Success Formula</h2>
+    <div class="list">
+
+      <article class="card">
+        <div class="n">1</div>
+        <div>
+          <h4 class="ttl">Free Assessment</h4>
+          <p class="sub">Know exactly where your child stands.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="n">2</div>
+        <div>
+          <h4 class="ttl">Personalized Roadmap</h4>
+          <p class="sub">Your child’s clear path to score improvement.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="n">3</div>
+        <div>
+          <h4 class="ttl">1-on-1 Mentorship</h4>
+          <p class="sub">100% focused sessions — no batches, no distractions.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="n">4</div>
+        <div>
+          <h4 class="ttl">Continuous Tracking</h4>
+          <p class="sub">Weekly updates & real-time corrections for steady progress.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testi section" id="reviews">
+  <div class="container">
+    <div class="kicker">TESTIMONIAL</div>
+    <h2 class="h2">Client Feedback & Reviews</h2>
+    <div class="grid">
+      <article class="tcard">
+        <div style="font-weight:800">Laxmi Prashanthi • <span style="color:#8fb7ff">Google</span></div>
+        <div class="stars">★★★★★</div>
+        <p>Amazing</p>
+      </article>
+      <article class="tcard">
+        <div style="font-weight:800">Jagadeesh Kantekar • <span style="color:#8fb7ff">Google</span></div>
+        <div class="stars">★★★★★</div>
+        <p>Excellent</p>
+      </article>
+      <article class="tcard">
+        <div style="font-weight:800">Shivaji Kantekar • <span style="color:#8fb7ff">Google</span></div>
+        <div class="stars">★★★★★</div>
+        <p>Knowledgeable, patient, and truly care about students’ success.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>IITuitions</h4>
+        <p>Helping students achieve <strong>1500+ SAT</strong> scores and helping IIT aspirants convert effort into ranks — since 2010.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p><a href="#courses">What We Offer</a><br><a href="#reviews">Student Results</a><br><a href="register.html">Register</a></p>
+      </div>
+      <div>
+        <h4>Programs</h4>
+        <p>SAT Elite • SAT Foundation • Math Intensive • Verbal Excellence • Application Guidance</p>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <p>📞 <a href="tel:+917207467565">+91 7207467565</a><br>
+           ✉️ <a href="mailto:hello@iituitions.com">hello@iituitions.com</a><br>
+           📍 iiTuitions Hub LLP, Nallagandla, Hyderabad 500019, India</p>
+      </div>
+    </div>
+
+    <div class="copy">
+      <div>© 2025 IITuitions. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Cookies</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<!-- Bottom-right CTA (matches screenshot) -->
-<a class="foot-cta" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment">
-  📋 Book Your Free Assessment
-</a>
+<!-- Floating WhatsApp CTA -->
+<a class="whatsapp" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment">💬 How can we help you today?</a>
+<script>
+  const btn = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  btn.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+  });
+  drawer.addEventListener('click', (e) => {
+    if(e.target === drawer){ drawer.classList.remove('open'); btn.setAttribute('aria-expanded','false'); drawer.setAttribute('aria-hidden','true'); }
+  });
+</script>
+<a class="wa-fab" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment" aria-label="Chat on WhatsApp"></a>
 
-      
 
-  <!-- ===== Floating CTAs ===== -->
-  <a class="wa-float" aria-label="Chat on WhatsApp"
-     href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment">
-    <!-- WhatsApp icon -->
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.051 22.0h-.004A9.87 9.87 0 016.99 20.62l-.361-.214-3.741.982.998-3.648-.235-.374A9.86 9.86 0 011.14 12.105c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
-    </svg>
-  </a>
-
-  <!-- ===== Scripts ===== -->
-  <script>
-    (function(){
-      const burger = document.getElementById('iiBurger');
-      const overlay = document.getElementById('iiOverlay');
-      const closeBtn = overlay.querySelector('.ii-close');
-
-      function openMenu(){
-        overlay.classList.add('open');
-        burger.classList.add('active');
-        burger.setAttribute('aria-expanded','true');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeMenu(){
-        overlay.classList.remove('open');
-        burger.classList.remove('active');
-        burger.setAttribute('aria-expanded','false');
-        document.body.style.overflow = '';
-      }
-      function toggleMenu(){ overlay.classList.contains('open') ? closeMenu() : openMenu(); }
-
-      burger.addEventListener('click', toggleMenu);
-      closeBtn.addEventListener('click', closeMenu);
-      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeMenu(); });
-      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
-      overlay.querySelectorAll('a.ii-item').forEach(a => a.addEventListener('click', closeMenu));
-
-      // highlight current page
-      const path = location.pathname.split('/').pop() || 'index.html';
-      overlay.querySelectorAll('a.ii-item').forEach(a=>{
-        const href = a.getAttribute('href');
-        if ((path === '' && href === 'index.html') || path === href){ a.classList.add('current'); }
-      });
-    })();
-  </script>
-  <script>
-    (function(){
-      const track = document.getElementById('rtrack');
-      const prev  = document.getElementById('rprev');
-      const next  = document.getElementById('rnext');
-      const step  = () => Math.min(520, track.clientWidth * 0.9); // scroll ~1 card
-  
-      prev.addEventListener('click', () => track.scrollBy({left:-step(), behavior:'smooth'}));
-      next.addEventListener('click', () => track.scrollBy({left: step(), behavior:'smooth'}));
-    })();
-  </script>
-  
 </body>
 </html>
