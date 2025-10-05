@@ -157,10 +157,32 @@
 .hero-ctas {
   justify-content: center;        /* center the buttons row */
 }
+/* Full-bleed hero heading on mobile (edge-to-edge) */
 @media (max-width: 767px){
+  /* remove gutters only inside hero */
   .hero .container{ padding-left:0; padding-right:0; }
-  .hero h1{ padding-left:0; padding-right:0; }
+
+  /* let items stretch so H1 can touch edges */
+  .hero .hero-wrap{ justify-items:stretch; }
+
+  /* make H1 truly full-bleed & left aligned */
+  .hero h1{
+    padding-left:0; padding-right:0;
+    margin-left:0;  margin-right:0;   /* overrides earlier auto margins */
+    text-align:left;                  /* overrides earlier center */
+  }
+
+  /* optional: if you also want paragraph/note to align left */
+  .hero p, .hero-note{
+    text-align:left;
+    margin-left:0; margin-right:0;
+    padding-left:16px; padding-right:16px; /* set to 0 for edge-to-edge here too */
+  }
+
+  /* buttons row starts at left */
+  .hero-ctas{ justify-content:flex-start; padding-left:16px; }
 }
+
 
     /* Trust bar */
     .trustbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin:18px 0 6px}
