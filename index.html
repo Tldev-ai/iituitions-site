@@ -59,18 +59,14 @@
 }
 
 /* Tutors (bottom) — fixed floater 30px above bottom */
+/* Tutors strip — static (not floating), sits 30px above footer */
 .info-strip--tutors{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:30px;         /* 30px above bottom edge */
-  z-index:40;         /* above content & CTAs (which use z-index:50) */
+  position:static;           /* back to normal flow */
+  margin:30px auto 0;        /* 30px gap before the footer */
   width:min(92vw, 720px);
-  pointer-events:none; /* so it won’t block taps on content under it */
 }
-    /* Reserve space for the fixed bottom strip so it doesn't cover the footer */
-body{ padding-bottom:110px; } /* tweak to 90–130px if your text wraps */
 
+  
 
 /* On small phones, push it higher to avoid overlapping your right CTA */
 @media (max-width:480px){
@@ -653,6 +649,9 @@ body{ padding-bottom:110px; } /* tweak to 90–130px if your text wraps */
   </section>
 
   <!-- ========================
+<div class="info-strip info-strip--tutors" aria-label="Tutor network scale">
+  3,320+ Expert Tutors in Hyderabad • One-on-One Specialists
+</div>
 
 
   <!-- =========================
@@ -703,11 +702,7 @@ body{ padding-bottom:110px; } /* tweak to 90–130px if your text wraps */
 
 
   
-  <div class="info-strip info-strip--tutors" aria-label="Tutor network scale">
-  3,320+ Expert Tutors in Hyderabad • One-on-One Specialists
-</div>
-
-
+  
   <!-- =========================
        Floating CTAs
        ========================= -->
