@@ -89,14 +89,14 @@
 /* Hero heading — nicer on mobile */
 @media (max-width:767px){
   .hero h1{
-    font-size:28px;          /* down from 34 */
+    font-size:26px;     /* smaller */
     line-height:1.25;
     letter-spacing:.2px;
-    max-width:22ch;          /* keeps the line organized */
+    max-width:20ch;     /* narrower lines */
   }
-  /* show mobile-only line breaks */
   .m-only{ display:inline; }
 }
+
 /* hide mobile-only <br> on desktop */
 .m-only{ display:none; }
 
@@ -210,12 +210,25 @@
     .hero h1,.hero p,.hero-note{text-align:center;margin-left:auto;margin-right:auto}
     .hero-ctas{justify-content:center}
     @media (max-width:767px){
-      .hero .container{padding-left:0;padding-right:0}
-      .hero .hero-wrap{justify-items:stretch}
-      .hero h1{margin:0;text-align:left}
-      .hero p,.hero-note{padding:0 16px;text-align:left}
-      .hero-ctas{justify-content:flex-start;padding-left:16px}
-    }
+  .hero .container{padding-left:0;padding-right:0}
+  .hero .hero-wrap{justify-items:center}
+  .hero h1{
+    margin:0 auto;
+    text-align:center;
+  }
+  .hero p,
+  .hero-note{
+    padding:0 16px;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .hero-ctas{
+    justify-content:center;
+    padding-left:0;
+  }
+}
+
 
     /* Trust chips (clickable) */
     .trustbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin:18px 0 6px}
