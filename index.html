@@ -88,17 +88,10 @@
 
 /* Hero heading — nicer on mobile */
 @media (max-width:767px){
-  .hero h1{
-    font-size:22px;          /* a bit smaller so it fits */
-    line-height:1.22;
-    letter-spacing:.1px;
-    max-width:none;           /* <-- remove the 20ch cap */
-    width:100%;               /* let it span from left to right */
-    margin:0 auto;
-    text-align:center;
-  }
-  .m-only{ display:none !important; }  /* hide the forced <br> on mobile */
+  .hero h1{ margin:0; text-align:left; }
+  .m-only{ display:none !important; }
 }
+
 
 
 /* hide mobile-only <br> on desktop */
@@ -217,27 +210,28 @@
   
   @media (max-width:767px){
   .hero .container{ padding-left:0; padding-right:0; }
-  .hero .hero-wrap{ justify-items:center; }
+  .hero .hero-wrap{ justify-items:stretch; }
   .hero h1{
-    margin:0 auto;
-    text-align:center;
-    font-size:22px;       /* smaller title */
+    font-size:22px;
     line-height:1.22;
-    max-width:18ch;       /* tighter line length */
     letter-spacing:.1px;
+    margin:0;
+    padding:0;
+    width:100%;
+    max-width:none;
+    text-align:left;
   }
+  .hero h1 br{ display:none; }
   .hero p,
   .hero-note{
     padding:0 16px;
-    text-align:center;
-    margin-left:auto;
-    margin-right:auto;
+    text-align:left;
+    margin-left:0;
+    margin-right:0;
   }
-  .hero-ctas{
-    justify-content:center;
-    padding-left:0;
-  }
+  .hero-ctas{ justify-content:flex-start; padding-left:16px; }
 }
+
 
 
 
