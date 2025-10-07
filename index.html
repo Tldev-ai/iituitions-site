@@ -156,11 +156,57 @@
     .trustchip:hover{background:#f6f6f6;transform:translateY(-1px)}
 
     /* Reviews */
-    .h-scroll{display:flex;gap:20px;overflow-x:auto;overflow-y:hidden;padding:20px 0 30px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#000 transparent}
-    .h-scroll::-webkit-scrollbar{height:6px}
-    .h-scroll::-webkit-scrollbar-thumb{background:#000;border-radius:3px}
-    .card{background:var(--card);border-radius:16px;padding:24px;box-shadow:var(--shadow-card);transition:transform .25s ease;border:1px solid var(--line)}
-    .card:hover{transform:translateY(-3px)}
+    /* Reviews */
+.h-scroll{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;           /* mobile side scroll */
+  overflow-y:hidden;
+  padding:20px 0 30px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scroll-behavior:smooth;
+}
+.h-scroll::-webkit-scrollbar{height:6px}
+.h-scroll::-webkit-scrollbar-thumb{background:#000;border-radius:3px}
+
+/* Card look like image-2 */
+.review-card{
+  scroll-snap-align:start;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:22px;
+  box-shadow:0 18px 40px rgba(0,0,0,.10);
+  padding:22px;
+  min-width:320px;           /* important for side scroll width */
+  max-width:520px;
+}
+.card-profile{
+  display:flex;align-items:center;gap:12px;margin-bottom:10px
+}
+.card-profile .avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:#f0f2f5;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800
+}
+.card-profile .muted{color:#666;font-size:14px}
+.review-card .quote{
+  margin-top:6px;
+  font-size:22px; line-height:1.5; color:#111;
+}
+
+/* Desktop: grid layout instead of scroll */
+@media (min-width:768px){
+  .h-scroll{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:26px;
+    overflow:visible;
+    padding:24px 0 6px;
+  }
+  .review-card{min-width:auto}
+}
+
 
     /* Programs */
     .section-title{font-size:32px;font-weight:900;text-align:center;margin:0 0 18px;color:#000}
