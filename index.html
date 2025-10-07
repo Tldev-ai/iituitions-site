@@ -186,9 +186,14 @@
   display:flex;align-items:center;gap:12px;margin-bottom:10px
 }
 .card-profile .avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:#f0f2f5;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800
+  width:40px;height:40px;border-radius:50%;
+  background:#fff url('assets/your-logo-round.png') center/cover no-repeat; /* ⬅️ put your logo path */
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+  color:transparent;           /* hide A/V/R/N letter */
+  font-size:0;                 /* extra safety */
+  display:inline-block;
 }
+
 .card-profile .muted{color:#666;font-size:14px}
 .review-card .quote{
   margin-top:6px;
@@ -391,8 +396,10 @@
 
   <!-- Info strip (students) -->
   <div class="info-strip" aria-label="Students served">
-    6,100+ Students Mentored — 3,900 Online • 2,200 Home
-  </div>
+  6,100+ Students Mentored<br>
+  3,900 Online • 2,200 Home
+</div>
+
 
   <!-- HERO -->
   <section class="hero section">
