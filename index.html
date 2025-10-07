@@ -19,19 +19,21 @@
       --line:rgba(0,0,0,.10);
       --chip-line:rgba(0,0,0,.18);
 
-      /* WhatsApp-ish two greens (as in your ref) */
+      /* WhatsApp-ish two greens (thick+light like your ref) */
       --green:#25D366;          /* light */
-      --green-dark:#00A884;     /* dark / thick */
+      --green-dark:#00A884;     /* dark */
       --green-grad:linear-gradient(180deg,var(--green-dark),var(--green));
 
-      /* Dark surfaces (for black sections) */
+      /* Light mint section band (your image #3) */
+      --mint:#E9FBF6;
+
+      /* Dark surfaces (used only where you asked) */
       --dark:#0c0f14;
-      --dark-2:#0f1216;
-      --dark-card:#12161b;
+      --dark-card:#111418;
       --dark-line:rgba(255,255,255,.08);
 
-      --section-gap: 68px;   /* more breathing room between sections */
-      --radius-xl: 26px;
+      --section-gap: 68px;
+      --radius-xl: 28px;
       --radius-pill: 999px;
       --shadow-lg: 0 18px 50px rgba(0,0,0,.18);
       --shadow-card: 0 12px 32px rgba(0,0,0,.12);
@@ -49,7 +51,6 @@
       -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     }
     a{color:inherit;text-decoration:none}
-
     .container{max-width:1200px;margin:0 auto;padding:0 16px;width:100%}
     .section{margin:var(--section-gap) 0}
 
@@ -62,7 +63,7 @@
     .logo-circle{width:44px;height:44px;background:linear-gradient(135deg,#000,#333);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
     .brand-name{font-size:22px;font-weight:800;color:#000;white-space:nowrap}
 
-    /* Buttons */
+    /* Buttons (ALL CTAs = dark green now) */
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       font-weight:800;min-height:48px;padding:12px 20px;border-radius:var(--radius-pill);
@@ -70,27 +71,16 @@
       text-decoration:none; white-space:nowrap;
     }
     .btn:focus-visible{outline:3px solid rgba(0,168,132,.35);outline-offset:2px}
-
-    /* Primary (two-tone green like your ref #3) */
-    .btn-green{
-      background:var(--green-grad); color:#fff; box-shadow:var(--shadow-green);
-    }
+    .btn-green{background:var(--green-grad); color:#fff; box-shadow:var(--shadow-green)}
     .btn-green:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(0,168,132,.45) }
     .btn-green:active{ transform:translateY(0) }
-
-    /* Neutral outline (clean, no underline, no double border) */
-    .btn-outline{
-      background:#fff;color:#111;border:2px solid #111;box-shadow:0 6px 16px rgba(0,0,0,.06) inset;
-    }
-    .btn-outline:hover{background:#111;color:#fff}
-
     .w-100{width:100%}
 
-    /* Desktop nav (right) */
+    /* Nav */
     .nav-actions{display:none;gap:10px;align-items:center}
-    .nav-actions a[aria-current="page"]{background:#111;color:#fff;border-color:#111}
+    .nav-actions a{padding:10px 16px;border-radius:14px;font-weight:800}
+    .nav-actions a[aria-current="page"]{background:#111;color:#fff}
 
-    /* Mobile menu trigger (right) */
     .hamburger-menu{background:none;border:none;width:44px;height:44px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:8px;border-radius:8px;transition:background-color .3s ease;-webkit-tap-highlight-color:rgba(0,0,0,.2);margin-left:6px}
     .hamburger-menu:active{background-color:rgba(0,0,0,.08)}
     .hamburger-menu span{width:24px;height:3px;background:#000;border-radius:2px;transition:all .3s cubic-bezier(.68,-.55,.265,1.55);transform-origin:center}
@@ -98,17 +88,10 @@
     .hamburger-menu.active span:nth-child(2){opacity:0;transform:scale(0)}
     .hamburger-menu.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
 
-    /* Full-screen mobile menu */
     .mobile-menu{position:fixed;inset:0;background:rgba(0,0,0,.95);backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:all .4s cubic-bezier(.68,-.55,.265,1.55);z-index:200}
     .mobile-menu.active{opacity:1;visibility:visible}
-    .mobile-menu a{color:#fff;text-decoration:none;font-size:28px;font-weight:700;margin:8px 0;padding:14px 28px;border-radius:12px;transform:translateY(30px);opacity:0;transition:all .4s cubic-bezier(.68,-.55,.265,1.55);min-height:60px;min-width:220px;display:flex;align-items:center;justify-content:center}
+    .mobile-menu a{color:#fff;font-size:28px;font-weight:700;margin:8px 0;padding:14px 28px;border-radius:12px;transform:translateY(30px);opacity:0;transition:all .4s cubic-bezier(.68,-.55,.265,1.55)}
     .mobile-menu.active a{transform:translateY(0);opacity:1}
-    .mobile-menu.active a:nth-child(1){transition-delay:.08s}
-    .mobile-menu.active a:nth-child(2){transition-delay:.16s}
-    .mobile-menu.active a:nth-child(3){transition-delay:.24s}
-    .mobile-menu.active a:nth-child(4){transition-delay:.32s}
-    .mobile-menu.active a:nth-child(5){transition-delay:.4s}
-    .mobile-menu a:hover{background:rgba(255,255,255,.18);transform:translateY(0) scale(1.04)}
 
     /* ===== TV Ticker ===== */
     .tv-headline{
@@ -136,12 +119,10 @@
     /* ===== HERO ===== */
     .hero{background:linear-gradient(180deg,#fafafa 0%,#fff 100%);border-bottom:1px solid rgba(0,0,0,.06)}
     .hero-wrap{display:grid;grid-template-columns:1fr;gap:24px;padding:34px 0 10px}
-    .hero h1{font-size:34px;line-height:1.2;font-weight:900;letter-spacing:0;color:#000}
+    .hero h1{font-size:34px;line-height:1.2;font-weight:900;color:#000}
     .hero p{color:#333;margin-top:10px}
     .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
     .hero-note{font-size:13px;color:#555;margin-top:8px}
-
-    /* center on desktop, edge-to-edge H1 on small like you wanted earlier */
     .hero-wrap{justify-items:center}
     .hero h1,.hero p,.hero-note{text-align:center;margin-left:auto;margin-right:auto}
     .hero-ctas{justify-content:center}
@@ -153,7 +134,7 @@
       .hero-ctas{justify-content:flex-start;padding-left:16px}
     }
 
-    /* Trust bar — clickable chips */
+    /* Trust chips (clickable) */
     .trustbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin:18px 0 6px}
     .trustchip{display:inline-flex;align-items:center;justify-content:center;border:1px dashed var(--chip-line);border-radius:var(--radius-pill);padding:10px 14px;font-size:14px;color:#111;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.04);transition:background .15s ease,transform .15s ease}
     .trustchip:hover{background:#f6f6f6;transform:translateY(-1px)}
@@ -161,16 +142,9 @@
     /* Reviews */
     .h-scroll{display:flex;gap:20px;overflow-x:auto;overflow-y:hidden;padding:20px 0 30px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#000 transparent}
     .h-scroll::-webkit-scrollbar{height:6px}
-    .h-scroll::-webkit-scrollbar-track{background:rgba(0,0,0,.1);border-radius:3px}
     .h-scroll::-webkit-scrollbar-thumb{background:#000;border-radius:3px}
     .card{background:var(--card);border-radius:16px;padding:24px;box-shadow:var(--shadow-card);transition:transform .25s ease;border:1px solid var(--line)}
-    .card:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(0,0,0,.12)}
-    .review-card{min-width:280px;scroll-snap-align:start}
-    .card-profile{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-    .avatar{width:50px;height:50px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
-    .quote{font-style:italic;color:#333;margin-bottom:12px;font-size:16px}
-    .muted{color:#666;font-size:14px}
-    .stars::before{content:"⭐⭐⭐⭐⭐";color:#000}
+    .card:hover{transform:translateY(-3px)}
 
     /* Programs */
     .section-title{font-size:32px;font-weight:900;text-align:center;margin:0 0 18px;color:#000}
@@ -188,11 +162,11 @@
     .why-title{font-weight:800;color:#000;margin-bottom:6px;font-size:18px}
     .why-text{color:#333;font-size:15px}
 
-    /* ===== How We Start — dark cards with green CTAs ===== */
-    .process-dark{background:#0b0b0b;padding:56px 0;border-top:1px solid rgba(255,255,255,.06)}
-    .process-dark .section-title{color:#fff;margin-top:0;margin-bottom:28px}
+    /* ===== How We Start — MINT background & green CTAs ===== */
+    .process-dark{background:var(--mint);padding:56px 0;border-top:1px solid rgba(0,0,0,.06)}
+    .process-dark .section-title{color:#0d0d0d;margin-top:0;margin-bottom:28px}
     .process-cards{list-style:none;display:grid;grid-template-columns:1fr;gap:22px;margin:0;padding:0}
-    .step-card{background:#ffffff;color:#111;border-radius:28px;padding:30px 24px;box-shadow:0 20px 40px rgba(0,0,0,.25);border:1px solid rgba(0,0,0,.08);min-height:240px;position:relative}
+    .step-card{background:#ffffff;color:#111;border-radius:var(--radius-xl);padding:30px 24px;box-shadow:0 20px 40px rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.06);min-height:240px;position:relative}
     .process-dark .step-icon{width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#f1f3f5;border:1px solid rgba(0,0,0,.08);margin:0 auto 14px;font-size:40px;color:#111}
     .step-eyebrow{opacity:.8;font-size:14px;text-align:center;margin-bottom:6px}
     .step-title{font-size:28px;font-weight:900;text-align:center;margin-bottom:12px}
@@ -201,24 +175,25 @@
     .process-dark .step-cta.btn{background:var(--green-grad);color:#fff;box-shadow:var(--shadow-green)}
     .process-dark .step-cta.btn:hover{transform:translateY(-1px)}
 
-    /* ===== Success Formula — black container ===== */
+    /* ===== Success Formula — BLACK section; green numbers ===== */
     .success-formula{background:var(--dark); padding:48px 0; border-top:1px solid var(--dark-line)}
     .success-formula .section-title{color:#fff;margin:8px 0 24px}
     .sf-list{display:grid; grid-template-columns:1fr; gap:18px; list-style:none; padding:0; margin:0}
     .sf-item{
-      background:#111418; color:#e8ecf2; border:1px solid rgba(255,255,255,.05);
-      border-radius:18px; padding:18px 18px; display:flex; gap:14px; align-items:center;
+      background:var(--dark-card); color:#e8ecf2; border:1px solid rgba(255,255,255,.05);
+      border-radius:18px; padding:18px; display:flex; gap:14px; align-items:center;
       box-shadow:0 8px 28px rgba(0,0,0,.25);
     }
     .sf-num{
-      flex:0 0 56px; height:56px; border-radius:999px; background:#f6c544; color:#111;
+      flex:0 0 56px; height:56px; border-radius:999px; 
+      background:var(--green-grad); color:#fff;
       display:flex; align-items:center; justify-content:center; font-weight:900; font-size:22px;
-      box-shadow:0 6px 16px rgba(246,197,68,.35); border:2px solid #eab308;
+      box-shadow:0 10px 26px rgba(0,168,132,.35); border:2px solid rgba(0,0,0,.12);
     }
     .sf-text h3{margin:0 0 6px; font-size:22px; line-height:1.2; color:#fff}
     .sf-text p{margin:0; color:#b8c2cf}
 
-    /* ===== Founder — dark card like your refs ===== */
+    /* ===== Founder — dark card; page background stays light ===== */
     .founder-wrap{margin:var(--section-gap) 0}
     .founder-card{background: linear-gradient(180deg,#0e0f12 0%, #111317 100%);color:#eef1f5; border-radius:32px; padding:28px;border:1px solid rgba(255,255,255,.08);box-shadow:0 16px 46px rgba(0,0,0,.28);}
     .founder-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start; }
@@ -228,19 +203,15 @@
     .founder-copy{ color:#d7dde7; }
     .kpis{ list-style:none; margin:12px 0 8px; padding:0; }
     .kpis li{ display:flex; gap:10px; align-items:center; margin:8px 0; color:#e6ebf5; font-weight:700; }
-    .kpis .ico{ width:22px; text-align:center; font-size:18px; }
     .founder-para{ margin:12px 0 14px; color:#cfd6e3; }
     .founder-block h4{ font-size:20px; color:#fff; margin:10px 0 8px; }
     .founder-list{ color:#d7dde7; }
-    .founder-list li{ margin:6px 0; }
     .founder-quote{ margin-top:10px; color:#c7cedb; font-style:italic; }
     .founder-attrib{ margin-top:8px; color:#fff; font-weight:800; }
 
     /* Footer */
     .footer-pro{background:#000;color:#fff;margin-top:66px}
     .footer-top{padding:36px 16px;display:grid;grid-template-columns:1fr;gap:26px}
-    .brand-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-    .brand-logo{font-size:22px}.brand-name{font-size:22px;font-weight:900;color:#fff}
     .brand-copy{color:#ccc;margin-bottom:16px;line-height:1.6}
     .foot-title{font-size:16px;font-weight:800;margin-bottom:12px;color:#eee}
     .foot-links{list-style:none}.foot-links li{margin-bottom:8px}
@@ -248,13 +219,12 @@
     .foot-links a:hover,.foot-contacts a:hover{color:#fff}
     .foot-contacts{list-style:none}
     .foot-contacts li{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px}
-    .ico{font-size:16px;min-width:20px}
     .footer-bar{background:#111;padding:16px 16px;text-align:center;border-top:1px solid #222}
     .bar-grid{display:flex;flex-direction:column;gap:12px;align-items:center}
     .bar-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
     .bar-links a{color:#ccc;text-decoration:none;font-size:14px}
 
-    /* Floating CTA — ONLY this stays, label changed, green gradient */
+    /* Floating CTA — ONLY this remains; label changed */
     .cta-float{
       position:fixed; bottom:20px; right:16px;
       background:var(--green-grad); color:#fff; padding:12px 18px; border-radius:28px;
@@ -291,11 +261,11 @@
         <div class="brand-name">IITuitions</div>
       </div>
       <nav class="nav-actions" aria-label="Primary">
-        <a class="btn btn-outline" href="index.html" aria-current="page">Home</a>
-        <a class="btn btn-outline" href="iit.html">IIT</a>
-        <a class="btn btn-outline" href="sat.html">SAT</a>
-        <a class="btn btn-outline" href="tuitions.html">Tuitions</a>
-        <a class="btn btn-outline" href="register.html">Register as Tutor</a>
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="iit.html">IIT</a>
+        <a href="sat.html">SAT</a>
+        <a href="tuitions.html">Tuitions</a>
+        <a class="btn-green" href="register.html">Register as Tutor</a>
         <a class="btn btn-green" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20talk%20to%20us&utm_source=site&utm_medium=header-btn&utm_campaign=home" target="_blank" rel="noopener">Talk to Us</a>
       </nav>
       <button class="hamburger-menu" id="hamburgerBtn" aria-label="Open menu">
@@ -331,8 +301,8 @@
         <h1>1-on-1 IIT-JEE & SAT Coaching by IIT/NIT Mentors — Online or Home in Hyderabad</h1>
         <p>Personal mentorship, weekly parent reviews, recorded classes for revision, and flexible mode switching.</p>
         <div class="hero-ctas">
-          <a class="btn btn-green" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20talk%20to%20us&utm_source=site&utm_medium=hero-primary&utm_campaign=home" target="_blank" rel="noopener" aria-label="Talk to Us on WhatsApp">Talk to Us</a>
-          <a class="btn btn-outline" href="#programs" aria-label="See our programs">See Programs</a>
+          <a class="btn btn-green" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20talk%20to%20us&utm_source=site&utm_medium=hero-primary&utm_campaign=home" target="_blank" rel="noopener">Talk to Us</a>
+          <a class="btn btn-green" href="#programs">See Programs</a>
         </div>
         <div class="hero-note">No spam. Instant WhatsApp • Limited intake • We prioritise quality over quantity</div>
 
@@ -391,19 +361,19 @@
         <div class="card-emoji" aria-hidden="true">🎓</div>
         <h3>IIT Coaching</h3>
         <p>Crack IIT with diagnostics, personalised plans, and focused 1-on-1 mentorship.</p>
-        <a href="iit.html" class="btn btn-outline w-100">Explore IIT Program</a>
+        <a href="iit.html" class="btn btn-green w-100">Explore IIT Program</a>
       </article>
       <article class="card">
         <div class="card-emoji" aria-hidden="true">📚</div>
         <h3>SAT Coaching</h3>
         <p>1500+ scores with our elite methodology and mentor feedback loops.</p>
-        <a href="sat.html" class="btn btn-outline w-100">Explore SAT Program</a>
+        <a href="sat.html" class="btn btn-green w-100">Explore SAT Program</a>
       </article>
       <article class="card">
         <div class="card-emoji" aria-hidden="true">🏛️</div>
         <h3>Tuitions</h3>
         <p>Grade 1–12 (IB/IGCSE/CBSE/ICSE) — online, home, or hybrid. Switch any time.</p>
-        <a href="tuitions.html" class="btn btn-outline w-100">Explore School Tuitions</a>
+        <a href="tuitions.html" class="btn btn-green w-100">Explore School Tuitions</a>
       </article>
     </div>
   </section>
@@ -412,52 +382,16 @@
   <section class="container why-wrap" id="why" aria-labelledby="why-title">
     <h2 id="why-title" class="section-title">Why Choose IITuitions?</h2>
     <div class="why-grid">
-      <div class="why-item">
-        <div class="why-ico" aria-hidden="true">🏠</div>
-        <div>
-          <div class="why-title">Home Tuition Experts</div>
-          <div class="why-text">Qualified teachers at your home. 100% personalised attention.</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-ico" aria-hidden="true">💻</div>
-        <div>
-          <div class="why-title">Interactive Online Classes</div>
-          <div class="why-text">Live whiteboard, screen-share, and recordings for revision.</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-ico" aria-hidden="true">🎓</div>
-        <div>
-          <div class="why-title">Top Mentors</div>
-          <div class="why-text">Mentors include IIT/NIT alumni with top AIRs and strong teaching track records.</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-ico" aria-hidden="true">🌍</div>
-        <div>
-          <div class="why-title">SAT Specialists</div>
-          <div class="why-text">Guidance that consistently pushes students to 1500+ scores.</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-ico" aria-hidden="true">⚡</div>
-        <div>
-          <div class="why-title">Fast Doubt Support</div>
-          <div class="why-text">WhatsApp doubt resolution with quick turnarounds.</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-ico" aria-hidden="true">📈</div>
-        <div>
-          <div class="why-title">Flexible Learning</div>
-          <div class="why-text">Home, online, or hybrid — switch modes any time.</div>
-        </div>
-      </div>
+      <div class="why-item"><div class="why-ico" aria-hidden="true">🏠</div><div><div class="why-title">Home Tuition Experts</div><div class="why-text">Qualified teachers at your home. 100% personalised attention.</div></div></div>
+      <div class="why-item"><div class="why-ico" aria-hidden="true">💻</div><div><div class="why-title">Interactive Online Classes</div><div class="why-text">Live whiteboard, screen-share, and recordings for revision.</div></div></div>
+      <div class="why-item"><div class="why-ico" aria-hidden="true">🎓</div><div><div class="why-title">Top Mentors</div><div class="why-text">Mentors include IIT/NIT alumni with top AIRs and strong teaching track records.</div></div></div>
+      <div class="why-item"><div class="why-ico" aria-hidden="true">🌍</div><div><div class="why-title">SAT Specialists</div><div class="why-text">Guidance that consistently pushes students to 1500+ scores.</div></div></div>
+      <div class="why-item"><div class="why-ico" aria-hidden="true">⚡</div><div><div class="why-title">Fast Doubt Support</div><div class="why-text">WhatsApp doubt resolution with quick turnarounds.</div></div></div>
+      <div class="why-item"><div class="why-ico" aria-hidden="true">📈</div><div><div class="why-title">Flexible Learning</div><div class="why-text">Home, online, or hybrid — switch modes any time.</div></div></div>
     </div>
   </section>
 
-  <!-- How We Start (dark) -->
+  <!-- How We Start (mint) -->
   <section class="process-dark section" id="process" aria-labelledby="process-title">
     <div class="container">
       <h2 id="process-title" class="section-title">How We Start</h2>
@@ -494,39 +428,15 @@
     </div>
   </section>
 
-  <!-- Success Formula (black section) -->
+  <!-- Success Formula (black) -->
   <section class="success-formula section" aria-labelledby="sf-title">
     <div class="container">
       <h2 id="sf-title" class="section-title" style="color:#fff">Our 4 Step Success Formula</h2>
       <ul class="sf-list">
-        <li class="sf-item">
-          <div class="sf-num" aria-hidden="true">1</div>
-          <div class="sf-text">
-            <h3>Free Assessment</h3>
-            <p>Know exactly where your child stands.</p>
-          </div>
-        </li>
-        <li class="sf-item">
-          <div class="sf-num" aria-hidden="true">2</div>
-          <div class="sf-text">
-            <h3>Personalized Roadmap</h3>
-            <p>Your child’s clear path to score improvement.</p>
-          </div>
-        </li>
-        <li class="sf-item">
-          <div class="sf-num" aria-hidden="true">3</div>
-          <div class="sf-text">
-            <h3>1-on-1 Mentorship</h3>
-            <p>100% focused sessions — no batches, no distractions.</p>
-          </div>
-        </li>
-        <li class="sf-item">
-          <div class="sf-num" aria-hidden="true">4</div>
-          <div class="sf-text">
-            <h3>Continuous Tracking</h3>
-            <p>Weekly updates & real-time corrections for steady progress.</p>
-          </div>
-        </li>
+        <li class="sf-item"><div class="sf-num" aria-hidden="true">1</div><div class="sf-text"><h3>Free Assessment</h3><p>Know exactly where your child stands.</p></div></li>
+        <li class="sf-item"><div class="sf-num" aria-hidden="true">2</div><div class="sf-text"><h3>Personalized Roadmap</h3><p>Your child’s clear path to score improvement.</p></div></li>
+        <li class="sf-item"><div class="sf-num" aria-hidden="true">3</div><div class="sf-text"><h3>1-on-1 Mentorship</h3><p>100% focused sessions — no batches, no distractions.</p></div></li>
+        <li class="sf-item"><div class="sf-num" aria-hidden="true">4</div><div class="sf-text"><h3>Continuous Tracking</h3><p>Weekly updates & real-time corrections for steady progress.</p></div></li>
       </ul>
     </div>
   </section>
@@ -618,7 +528,7 @@
     </div>
   </footer>
 
-  <!-- FLOAT CTA (WhatsApp green) -->
+  <!-- FLOAT CTA -->
   <a class="cta-float" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20talk%20to%20us&utm_source=site&utm_medium=fab-primary&utm_campaign=home" target="_blank" rel="noopener">
     Talk to Us
   </a>
@@ -639,7 +549,6 @@
       }
     }
     document.addEventListener('DOMContentLoaded',()=>{
-      const year=document.getElementById('yr'); if(year) year.textContent=new Date().getFullYear();
       const hb=document.getElementById('hamburgerBtn'); if(hb) hb.addEventListener('click',toggleMobileMenu);
       document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',closeMenuOnLinkClick));
       document.addEventListener('click',e=>{
@@ -648,6 +557,8 @@
           menu.classList.remove('active'); btn.classList.remove('active');
         }
       });
+      // year
+      const y=document.getElementById('yr'); if(y) y.textContent=new Date().getFullYear();
     });
     window.addEventListener('resize',()=>{
       const menu=document.getElementById('mobileMenu'); const btn=document.getElementById('hamburgerBtn');
