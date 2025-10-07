@@ -193,12 +193,24 @@
   font-size:0;                 /* extra safety */
   display:inline-block;
 }
+    .card-profile .avatar-img{
+  width:44px;height:44px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  box-shadow:0 2px 6px rgba(0,0,0,.10);
+  background:#f2f3f5;                   /* nice fallback bg while loading */
+}
+@media (min-width:768px){
+  .card-profile .avatar-img{ width:48px;height:48px; }
+}
 
 .card-profile .muted{color:#666;font-size:14px}
 .review-card .quote{
   margin-top:6px;
   font-size:22px; line-height:1.5; color:#111;
 }
+    
 
 /* Desktop: grid layout instead of scroll */
 @media (min-width:768px){
@@ -362,7 +374,7 @@
   <header class="site-header">
     <div class="container header-row">
       <div class="branding">
-        <div class="logo-circle" aria-hidden="true">II</div>
+        <img class="brand-logo" src="assets/logo.png" alt="IITuitions logo" />
         <div class="brand-name">IITuitions</div>
       </div>
       <nav class="nav-actions" aria-label="Primary">
@@ -438,22 +450,41 @@
     <h2 id="reviews-title" class="section-title">Student Success Stories</h2>
     <div class="h-scroll" aria-label="Student reviews">
       <article class="review-card card" tabindex="0">
-        <div class="card-profile"><div class="avatar" aria-hidden="true">A</div><div><strong>Arjun Sharma</strong><div class="muted">IIT Bombay (CSE)</div></div></div>
+        <div class="card-profile">
+  <img class="avatar-img" src="assets/reviews/arjun.jpg" alt="Arjun Sharma" loading="lazy">
+  <div><strong>Arjun Sharma</strong><div class="muted">IIT Bombay (CSE)</div></div>
+</div>
+
         <p class="quote">“My math grades improved from 65% to 92% in 6 months. Recorded sessions helped me revise concepts multiple times.”</p>
         <div class="stars" aria-label="5 star rating"></div>
       </article>
       <article class="review-card card" tabindex="0">
-        <div class="card-profile"><div class="avatar" aria-hidden="true">V</div><div><strong>Vikram Patel</strong><div class="muted">IIT Delhi (EE)</div></div></div>
+        <!-- Vikram Patel -->
+<div class="card-profile">
+  <img class="avatar-img" src="assets/reviews/vikram.jpg" alt="Vikram Patel" loading="lazy">
+  <div><strong>Vikram Patel</strong><div class="muted">IIT Delhi (EE)</div></div>
+</div>
+
         <p class="quote">“Home one-on-one attention finally unlocked Chemistry for me.”</p>
         <div class="stars" aria-label="5 star rating"></div>
       </article>
       <article class="review-card card" tabindex="0">
-        <div class="card-profile"><div class="avatar" aria-hidden="true">R</div><div><strong>Rahul — AIR 120</strong><div class="muted">IIT Madras (ME)</div></div></div>
+        <!-- Rahul — AIR 120 -->
+<div class="card-profile">
+  <img class="avatar-img" src="assets/reviews/rahul.jpg" alt="Rahul — AIR 120" loading="lazy">
+  <div><strong>Rahul — AIR 120</strong><div class="muted">IIT Madras (ME)</div></div>
+</div>
+
         <p class="quote">“Proctored mocks felt like the real exam.”</p>
         <div class="stars" aria-label="4.5 star rating"></div>
       </article>
       <article class="review-card card" tabindex="0">
-        <div class="card-profile"><div class="avatar" aria-hidden="true">N</div><div><strong>Nandhini — 1580</strong><div class="muted">Harvard</div></div></div>
+ <!-- Nandhini — 1580 -->
+<div class="card-profile">
+  <img class="avatar-img" src="assets/reviews/nandhini.jpg" alt="Nandhini — 1580" loading="lazy">
+  <div><strong>Nandhini — 1580</strong><div class="muted">Harvard</div></div>
+</div>
+
         <p class="quote">“Elite mentor feedback turned tricky RC into a strength.”</p>
         <div class="stars" aria-label="5 star rating"></div>
       </article>
