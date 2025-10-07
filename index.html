@@ -21,29 +21,21 @@
     .container{max-width:1200px;margin:0 auto;padding:0 16px;width:100%}
 
     /* ===== TV-style Headline (ticker) ===== */
-    .tv-headline{
-      position:sticky; top:0; z-index:120;      /* stays at top when scrolling, above hero */
-      background: radial-gradient(120% 120% at 50% -10%, #1b1f26 0%, #0f1216 60%, #0b0d10 100%);
-      color:#fff; border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.1);
-      overflow:hidden;
-    }
-    .tv-track{
-      display:flex; gap:40px; align-items:center; white-space:nowrap;
-      padding:12px 0; 
-      will-change:transform;
-      animation:tv-marquee 20s linear infinite;
-    }
-    .tv-bullet{opacity:.7;margin:0 12px}
-    .tv-text{
-      font-size:10px; font-weight:900; letter-spacing:.2px; text-shadow:0 2px 12px rgba(0,0,0,.45);
-    }
-    @keyframes tv-marquee{
-      0%{ transform:translateX(0) }
-      100%{ transform:translateX(-50%) } /* because we duplicate content once */
-    }
-    @media (min-width:768px){
-      .tv-text{font-size:19px}
-    }
+    /* ===== TV-style Headline (one-by-one ticker) ===== */
+.tv-headline{
+  position:sticky; top:0; z-index:120;
+  background: radial-gradient(120% 120% at 50% -10%, #1b1f26 0%, #0f1216 60%, #0b0d10 100%);
+  color:#fff; border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.1);
+}
+.tv-viewport{ position:relative; overflow:hidden; padding:12px 0; }
+.tv-text{
+  position:absolute; left:0; top:50%; transform:translateY(-50%);
+  white-space:nowrap; will-change:transform;
+  text-shadow:0 2px 12px rgba(0,0,0,.45);
+  font-size:18px; font-weight:900; letter-spacing:.2px;
+}
+@media (min-width:768px){ .tv-text{font-size:19px} }
+
 
     /* ===== Success Formula ===== */
     .success-formula{background:#0c0f14; padding:34px 0 40px; border-top:1px solid rgba(255,255,255,.06)}
@@ -350,15 +342,12 @@
   <!-- =========================
        TV Headline (ticker) — placed RIGHT AFTER HEADER
        ========================= -->
-  <section class="tv-headline" aria-label="Key promise">
-    <!-- We duplicate the track so it loops seamlessly -->
-    <div class="tv-track" aria-hidden="true">
-      <span class="tv-text">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</span>
-      <span class="tv-bullet">• • •</span>
-      <span class="tv-text">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</span>
-      <span class="tv-bullet">• • •</span>
-    </div>
-  </section>
+ <section class="tv-headline" aria-label="Key promise">
+  <div class="tv-viewport">
+    <span id="tvTicker" class="tv-text"></span>
+  </div>
+</section>
+
 
   <!-- =========================
        HERO
@@ -725,6 +714,56 @@
     // Esc to close
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeContactModal();closeMenuOnLinkClick();}});
   </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const messages = [
+      "Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way",
+      "IIT/NIT Mentors • Weekly Parent Reviews • Recorded Classes for Revision",
+      "Switch Anytime: Home • Online • Hybrid — Limited Seats"
+    ];
+
+    const ticker = document.getElementById('tvTicker');
+    const viewport = ticker.parentElement;
+
+    const SPEED_PX_PER_SEC = 120;   // adjust speed
+    const GAP_AFTER_MSG_MS = 600;   // pause after each line
+
+    let idx = 0, anim;
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function playOne() {
+      ticker.textContent = messages[idx];
+      const vw = viewport.clientWidth;
+      const tw = ticker.scrollWidth;
+      const startX = vw;
+      const endX   = -tw - 20;
+      ticker.style.transform = `translate(${startX}px, -50%)`;
+
+      if (prefersReduced) { setTimeout(next, 1800); return; }
+
+      const distance = startX - endX;
+      const duration = Math.max((distance / SPEED_PX_PER_SEC) * 1000, 1000);
+
+      anim = ticker.animate(
+        [{ transform:`translate(${startX}px, -50%)` },
+         { transform:`translate(${endX}px, -50%)` }],
+        { duration, easing: 'linear' }
+      );
+      anim.onfinish = () => setTimeout(next, GAP_AFTER_MSG_MS);
+    }
+    function next(){ idx = (idx + 1) % messages.length; playOne(); }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      if (anim) anim.cancel();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(playOne, 150);
+    });
+
+    playOne();
+  });
+</script>
+
 
   <!-- =========================
        JSON-LD: FAQ + LocalBusiness
