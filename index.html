@@ -64,6 +64,28 @@
   border-top:1px solid rgba(0,0,0,.06);
 }
 
+    /* WhatsApp green button */
+.btn-wa{
+  background:#25D366;        /* WhatsApp green */
+  color:#fff;
+  box-shadow:0 10px 26px rgba(37,211,102,.35);
+}
+.btn-wa:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(29,168,81,.45) }
+
+/* Hero heading — nicer on mobile */
+@media (max-width:767px){
+  .hero h1{
+    font-size:28px;          /* down from 34 */
+    line-height:1.25;
+    letter-spacing:.2px;
+    max-width:22ch;          /* keeps the line organized */
+  }
+  /* show mobile-only line breaks */
+  .m-only{ display:inline; }
+}
+/* hide mobile-only <br> on desktop */
+.m-only{ display:none; }
+
 
     /* ======================
        Header
@@ -131,6 +153,21 @@
       box-shadow:0 8px 24px rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.08);
       width:min(92vw, 900px); margin:24px auto;
     }
+    /* WhatsApp green button (kept from before) */
+.btn-wa{ background:#25D366; color:#fff; box-shadow:0 10px 26px rgba(37,211,102,.35) }
+.btn-wa:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(29,168,81,.45) }
+
+/* icon inside the button */
+.btn-wa .wa-ic{
+  width:20px; height:20px;
+  margin-right:8px; flex:0 0 20px; display:block;
+}
+
+/* if your icon file isn’t already white, force it to white */
+.btn-wa .wa-ic:not([data-white="true"]){
+  filter: invert(1) brightness(2); /* turns green logos white on the green btn */
+}
+
 
     /* ===== HERO ===== */
     .hero{background:linear-gradient(180deg,#fafafa 0%,#fff 100%);border-bottom:1px solid rgba(0,0,0,.06)}
@@ -342,14 +379,27 @@
     .bar-links a{color:#ccc;text-decoration:none;font-size:14px}
 
     /* Floating CTA — ONLY this remains; label changed */
-    .cta-float{
-      position:fixed; bottom:20px; right:16px;
-      background:var(--green-grad); color:#fff; padding:12px 18px; border-radius:28px;
-      text-decoration:none; font-weight:800; font-size:13px; box-shadow:var(--shadow-green);
-      transition:transform .2s ease, box-shadow .2s ease; text-align:center; line-height:1.3;
-      min-height:48px; display:flex; align-items:center; justify-content:center; white-space:nowrap; max-width:220px; z-index:50
-    }
-    .cta-float:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(0,168,132,.45) }
+    /* Floating WhatsApp FAB */
+.cta-wa{
+  position:fixed; bottom:20px; right:16px;
+  background:#25D366; color:#fff;
+  display:flex; align-items:center; gap:10px;
+  height:56px; padding:0 18px; border-radius:999px;
+  font-weight:800; text-decoration:none;
+  box-shadow:0 12px 30px rgba(37,211,102,.35);
+  z-index:1000;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.cta-wa:hover{ transform:translateY(-1px); box-shadow:0 16px 36px rgba(29,168,81,.45) }
+.cta-wa .wa-ic{ width:24px; height:24px; display:block; flex:0 0 24px }
+/* if your icon isn’t already white, this makes it white */
+.cta-wa .wa-ic:not([data-white="true"]){ filter: invert(1) brightness(2) }
+@media (max-width:380px){
+  .cta-wa{ padding:0 14px; height:54px }
+  .cta-wa .label{ display:none }
+  .cta-wa{ width:54px; justify-content:center }
+}
+
 
     /* Desktop tweaks */
     @media (min-width:768px){
@@ -417,7 +467,11 @@
   <section class="hero section">
     <div class="container hero-wrap">
       <div>
-        <h1>1-on-1 IIT-JEE & SAT Coaching by IIT/NIT Mentors — Online or Home in Hyderabad</h1>
+        <h1>
+  1-on-1 IIT-JEE & SAT Coaching by IIT/NIT Mentors
+  <br class="m-only"> — Online or Home in Hyderabad
+</h1>
+
         <p>Personal mentorship, weekly parent reviews, recorded classes for revision, and flexible mode switching.</p>
         <div class="hero-ctas">
           <a class="btn btn-green" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20talk%20to%20us&utm_source=site&utm_medium=hero-primary&utm_campaign=home" target="_blank" rel="noopener">Talk to Us</a>
@@ -671,9 +725,14 @@
   </footer>
 
   <!-- FLOAT CTA -->
-  <a class="cta-float" href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20talk%20to%20us&utm_source=site&utm_medium=fab-primary&utm_campaign=home" target="_blank" rel="noopener">
-    Talk to Us
-  </a>
+  <!-- FLOAT WhatsApp CTA -->
+<a class="cta-wa"
+   href="https://wa.me/917207467565?text=Hi%20iiTuitions%2C%20talk%20to%20us&utm_source=site&utm_medium=fab-primary&utm_campaign=home"
+   target="_blank" rel="noopener">
+  <img class="wa-ic" src="assets/icons/whatsapp.svg" alt="" aria-hidden="true" data-white="true">
+  <span class="label">Talk to Us</span>
+</a>
+
 
   <!-- Scripts -->
   <script>
