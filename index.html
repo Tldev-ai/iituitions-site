@@ -209,12 +209,18 @@
     .hero-wrap{justify-items:center}
     .hero h1,.hero p,.hero-note{text-align:center;margin-left:auto;margin-right:auto}
     .hero-ctas{justify-content:center}
-    @media (max-width:767px){
-  .hero .container{padding-left:0;padding-right:0}
-  .hero .hero-wrap{justify-items:center}
+    
+  
+  @media (max-width:767px){
+  .hero .container{ padding-left:0; padding-right:0; }
+  .hero .hero-wrap{ justify-items:center; }
   .hero h1{
     margin:0 auto;
     text-align:center;
+    font-size:22px;       /* smaller title */
+    line-height:1.22;
+    max-width:18ch;       /* tighter line length */
+    letter-spacing:.1px;
   }
   .hero p,
   .hero-note{
@@ -228,6 +234,7 @@
     padding-left:0;
   }
 }
+
 
 
     /* Trust chips (clickable) */
@@ -438,9 +445,7 @@
 .cta-wa:hover{ transform:translateY(-1px); box-shadow:0 22px 42px rgba(29,168,81,.45) }
 .cta-wa .wa-ic{ width:22px; height:22px; display:block; flex:0 0 22px }
 .cta-wa .label{ line-height:1 }
-@media (max-width:380px){
-  .cta-wa .label{ display:none }  /* hide text on very small screens */
-}
+
 
 
 
