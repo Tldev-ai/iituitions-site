@@ -200,6 +200,9 @@
     .hero{background:linear-gradient(180deg,#fafafa 0%,#fff 100%);border-bottom:1px solid rgba(0,0,0,.06)}
     .hero-wrap{display:grid;grid-template-columns:1fr;gap:24px;padding:34px 0 10px}
     .hero h1{font-size:34px;line-height:1.2;font-weight:900;color:#000}
+    /* force the sub-line onto its own line */
+.hero h1 .h1-sub{ display:block; }
+
     .hero p{color:#333;margin-top:10px}
     .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
     .hero-note{font-size:13px;color:#555;margin-top:8px}
@@ -456,6 +459,8 @@
       .hamburger-menu{display:none}
       .hero-wrap{grid-template-columns:1.05fr .95fr;align-items:center;padding:48px 0 22px}
       .hero h1{font-size:42px}
+        .hero h1 .h1-sub{ margin-left:10px; } 
+      
       .cards-grid{grid-template-columns:repeat(3,1fr);gap:26px}
       .why-grid{grid-template-columns:1fr 1fr;gap:20px}
       .process-cards{grid-template-columns:repeat(4,1fr);gap:24px}
