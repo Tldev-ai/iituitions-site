@@ -20,12 +20,13 @@
       --chip-line:rgba(0,0,0,.18);
 
       /* WhatsApp-ish two greens (thick+light like your ref) */
-      --green:#25D366;          /* light */
-      --green-dark:#00A884;     /* dark */
-      --green-grad:linear-gradient(180deg,var(--green-dark),var(--green));
+--green:#33A69B;        /* thick green you asked */
+--green-dark:#33A69B;   /* same => solid */
+--green-grad:linear-gradient(180deg,#33A69B,#33A69B); /* solid fill */
 
-      /* Light mint section band (your image #3) */
-      --mint:#E9FBF6;
+/* Light mint section band */
+--mint:#ECFFFC;  /* your light-green */
+
 
       /* Dark surfaces (used only where you asked) */
       --dark:#0c0f14;
@@ -53,6 +54,16 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:1200px;margin:0 auto;padding:0 16px;width:100%}
     .section{margin:var(--section-gap) 0}
+
+
+
+    /* Light-green band behind founder card */
+.founder-band{
+  background:var(--mint);         /* #ECFFFC */
+  padding:48px 0;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+
 
     /* ======================
        Header
@@ -181,26 +192,31 @@
     .process-dark .step-cta.btn:hover{transform:translateY(-1px)}
 
     /* ===== Success Formula — BLACK section; green numbers ===== */
-    .success-formula{background:var(--dark); padding:48px 0; border-top:1px solid var(--dark-line)}
-    .success-formula .section-title{color:#fff;margin:8px 0 24px}
-    .sf-list{display:grid; grid-template-columns:1fr; gap:18px; list-style:none; padding:0; margin:0}
-    .sf-item{
-      background:var(--dark-card); color:#e8ecf2; border:1px solid rgba(255,255,255,.05);
-      border-radius:18px; padding:18px; display:flex; gap:14px; align-items:center;
-      box-shadow:0 8px 28px rgba(0,0,0,.25);
-    }
-    .sf-num{
-  flex:0 0 56px; height:56px; border-radius:999px;
-  background:var(--green-grad);   /* <-- two-tone green */
-  color:#fff;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:900; font-size:22px;
-  box-shadow:0 10px 26px rgba(0,168,132,.35);
-  border:2px solid rgba(0,0,0,.12);
+    /* ===== Success Formula — LIGHT GREEN band with thick-green numbers ===== */
+.success-formula{
+  background:var(--mint);            /* #ECFFFC */
+  padding:48px 0;
+  border-top:1px solid rgba(0,0,0,.06);
 }
+.success-formula .section-title{color:#0d0d0d;margin:8px 0 24px}
+.sf-list{display:grid;grid-template-columns:1fr;gap:18px;list-style:none;padding:0;margin:0}
+.sf-item{
+  background:#ffffff;color:#111;border:1px solid rgba(0,0,0,.08);
+  border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+.sf-num{
+  flex:0 0 56px;height:56px;border-radius:999px;
+  background:var(--green-grad);   /* solid #33A69B from tokens */
+  color:#fff;font-weight:900;font-size:22px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 26px rgba(51,166,155,.35);
+  border:2px solid rgba(0,0,0,.06);
+}
+.sf-text h3{margin:0 0 6px;font-size:22px;line-height:1.2;color:#111}
+.sf-text p{margin:0;color:#444}
 
-    .sf-text h3{margin:0 0 6px; font-size:22px; line-height:1.2; color:#fff}
-    .sf-text p{margin:0; color:#b8c2cf}
+    
 
     /* ===== Founder — dark card; page background stays light ===== */
     .founder-wrap{margin:var(--section-gap) 0}
@@ -448,10 +464,13 @@
         <li class="sf-item"><div class="sf-num" aria-hidden="true">4</div><div class="sf-text"><h3>Continuous Tracking</h3><p>Weekly updates & real-time corrections for steady progress.</p></div></li>
       </ul>
     </div>
+     </div>
   </section>
 
   <!-- Founder -->
-  <section class="container founder-wrap section" id="founder">
+  <section class="founder-band section" id="founder">
+  <div class="container founder-wrap">
+
     <div class="founder-card">
       <div class="founder-grid">
         <div style="display:flex;justify-content:center">
