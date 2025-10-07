@@ -89,13 +89,17 @@
 /* Hero heading — nicer on mobile */
 @media (max-width:767px){
   .hero h1{
-    font-size:26px;     /* smaller */
-    line-height:1.25;
-    letter-spacing:.2px;
-    max-width:20ch;     /* narrower lines */
+    font-size:22px;          /* a bit smaller so it fits */
+    line-height:1.22;
+    letter-spacing:.1px;
+    max-width:none;           /* <-- remove the 20ch cap */
+    width:100%;               /* let it span from left to right */
+    margin:0 auto;
+    text-align:center;
   }
-  .m-only{ display:inline; }
+  .m-only{ display:none !important; }  /* hide the forced <br> on mobile */
 }
+
 
 /* hide mobile-only <br> on desktop */
 .m-only{ display:none; }
