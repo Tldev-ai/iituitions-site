@@ -219,29 +219,50 @@
     
 
     /* ===== Founder — dark card; page background stays light ===== */
-    .founder-wrap{margin:var(--section-gap) 0}
-    .founder-card{
-  background:#fff;
-  color:#111;
+    /* ===== Founder — light-green CARD on white band (text = black) ===== */
+.founder-wrap{ margin: var(--section-gap) 0 }
+
+/* band (section background) => WHITE now */
+.founder-band{
+  background:#fff;                  /* was var(--mint) */
+  padding:48px 0;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+
+/* CARD => LIGHT GREEN (#ECFFFC) */
+.founder-card{
+  background: var(--mint);          /* #ECFFFC */
+  color:#111;                       /* black text */
   border-radius:32px;
   padding:28px;
   border:1px solid rgba(0,0,0,.08);
   box-shadow:0 16px 46px rgba(0,0,0,.10);
 }
 
-    .founder-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start; }
-    .founder-pic{width:200px; height:200px; border-radius:50%; object-fit:cover;border:4px solid rgba(255,255,255,.12); box-shadow:0 10px 28px rgba(0,0,0,.45); background:#0e0f12}
-    .founder-head h3{font-size:34px;line-height:1.15;font-weight:900;letter-spacing:.2px;color:#fff;margin-bottom:6px}
-    .founder-sub{ color:#aeb5c1; font-style:italic; margin-bottom:12px; }
-    .founder-copy{ color:#d7dde7; }
-    .kpis{ list-style:none; margin:12px 0 8px; padding:0; }
-    .kpis li{ display:flex; gap:10px; align-items:center; margin:8px 0; color:#e6ebf5; font-weight:700; }
-    .founder-para{ margin:12px 0 14px; color:#cfd6e3; }
-    .founder-block h4{ font-size:20px; color:#fff; margin:10px 0 8px; }
-    .founder-list{ color:#d7dde7; }
-    .founder-quote{ margin-top:10px; color:#c7cedb; font-style:italic; }
-    .founder-attrib{ margin-top:8px; color:#fff; font-weight:800; }
+.founder-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start }
 
+/* photo keeps circular look; lighter border on mint */
+.founder-pic{
+  width:200px; height:200px; border-radius:50%; object-fit:cover;
+  border:4px solid rgba(0,0,0,.06);
+  box-shadow:0 10px 28px rgba(0,0,0,.12);
+  background:#fff;
+}
+
+/* TEXT = BLACK family */
+.founder-head h3{ font-size:34px; line-height:1.15; font-weight:900; letter-spacing:.2px; color:#111; margin-bottom:6px }
+.founder-sub{ color:#444; font-style:italic; margin-bottom:12px }
+.founder-copy{ color:#222 }
+.kpis{ list-style:none; margin:12px 0 8px; padding:0 }
+.kpis li{ display:flex; gap:10px; align-items:center; margin:8px 0; color:#111; font-weight:700 }
+.founder-para{ margin:12px 0 14px; color:#222 }
+.founder-block h4{ font-size:20px; color:#111; margin:10px 0 8px }
+.founder-list{ color:#222 }
+.founder-quote{ margin-top:10px; color:#333; font-style:italic }
+.founder-attrib{ margin-top:8px; color:#111; font-weight:800 }
+
+
+    
     /* Footer */
     .footer-pro{background:#000;color:#fff;margin-top:66px}
     .footer-top{padding:36px 16px;display:grid;grid-template-columns:1fr;gap:26px}
@@ -465,6 +486,7 @@
   <section class="success-formula section" aria-labelledby="sf-title">
     <div class="container">
       <h2 id="sf-title" class="section-title">Our 4 Step Success Formula</h2>
+
 
       <ul class="sf-list">
         <li class="sf-item"><div class="sf-num" aria-hidden="true">1</div><div class="sf-text"><h3>Free Assessment</h3><p>Know exactly where your child stands.</p></div></li>
