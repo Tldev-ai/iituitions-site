@@ -36,6 +36,45 @@
 }
 @media (min-width:768px){ .tv-text{font-size:19px} }
 
+    /* ===== Info Strips (students + tutors) ===== */
+.info-strip{
+  background:#000;
+  color:#ffd54a;               /* warm yellow */
+  border-radius:999px;
+  padding:10px 16px;
+  font-weight:900;
+  text-align:center;
+  line-height:1.3;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.08);
+  width:min(92vw, 900px);
+  margin:0 auto;
+}
+.info-strip b{ color:#ffd54a; } /* keep numbers extra bold if you wrap in <b> */
+
+/* Students (top) — sits in normal flow with spacing */
+.info-strip--students{
+  margin-top:30px;    /* 30px below the ticker */
+  margin-bottom:10px; /* small gap before hero */
+}
+
+/* Tutors (bottom) — fixed floater 30px above bottom */
+.info-strip--tutors{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:30px;         /* 30px above bottom edge */
+  z-index:140;         /* above content & CTAs (which use z-index:50) */
+  width:min(92vw, 720px);
+  pointer-events:none; /* so it won’t block taps on content under it */
+}
+
+/* On small phones, push it higher to avoid overlapping your right CTA */
+@media (max-width:480px){
+  .info-strip--tutors{ bottom:84px; }
+}
+
+
 
     /* ===== Success Formula ===== */
     .success-formula{background:#0c0f14; padding:34px 0 40px; border-top:1px solid rgba(255,255,255,.06)}
@@ -349,6 +388,10 @@
 </section>
 
 
+  <div class="info-strip info-strip--students" aria-label="Students served">
+  6,100+ Students Mentored — 3,900 Online • 2,200 Home
+</div>
+
   <!-- =========================
        HERO
        ========================= -->
@@ -654,6 +697,13 @@
       </div>
     </div>
   </footer>
+
+
+  
+  <div class="info-strip info-strip--tutors" aria-label="Tutor network scale">
+  3,320+ Expert Tutors in Hyderabad • One-on-One Specialists
+</div>
+
 
   <!-- =========================
        Floating CTAs
