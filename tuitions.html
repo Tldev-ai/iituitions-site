@@ -5,269 +5,309 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IITuitions — Home Tuitions in Hyderabad</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
 <style>
-/* =========================================================
-   COLOR TOKENS — ONLY THREE BASE COLORS (plus alpha)
-   ========================================================= */
+/* =========================
+   THEME TOKENS (ONLY 4 COLORS)
+   ========================= */
 :root{
-  --green:#33A69B;                   /* dark green */
-  --mint:#ECFFFC;                    /* light green */
-  --white:#FFFFFF;                   /* white */
+  --green:#33A69B;
+  --mint:#ECFFFC;
+  --black:#000;
+  --white:#fff;
 
-  /* derived tints using alpha of base colors only */
-  --green-10:rgba(51,166,155,.10);
-  --green-16:rgba(51,166,155,.16);
-  --green-22:rgba(51,166,155,.22);
-  --green-28:rgba(51,166,155,.28);
-  --green-36:rgba(51,166,155,.36);
-  --shadow-lg:0 18px 46px var(--green-22);
-  --shadow-md:0 10px 26px var(--green-16);
-  --shadow-sm:0 4px 14px var(--green-10);
+  --radius-lg:24px;
+  --radius-md:16px;
 
-  --radius-xl:26px;
-  --radius-lg:20px;
-  --radius-pill:999px;
+  --shadow-sm:0 4px 14px rgba(0,0,0,.08);
+  --shadow-md:0 10px 28px rgba(0,0,0,.12);
+  --shadow-lg:0 18px 50px rgba(0,0,0,.16);
 }
 
-/* =========================================================
-   BASE
-   ========================================================= */
 *{box-sizing:border-box}
 html,body{margin:0}
 body{
   font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--black);
   background:var(--white);
-  color:var(--green);                        /* text uses dark green */
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
-a{color:inherit;text-decoration:none}
+
+/* =========================
+   TOP NAV + DRAWER
+   ========================= */
+.nav{
+  position:sticky;top:0;left:0;right:0;z-index:70;
+  height:64px;display:flex;align-items:center;justify-content:flex-end;
+  padding:0 18px;background:var(--white);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.hamburger{
+  width:42px;height:42px;padding:8px;border-radius:10px;
+  display:grid;place-items:center;gap:6px;border:1px solid rgba(0,0,0,.10);
+  background:var(--white);cursor:pointer;box-shadow:var(--shadow-sm);
+}
+.hamburger span{width:22px;height:2px;background:var(--black);border-radius:2px}
+.hamburger:hover{background:var(--mint)}
+
+.drawer{
+  position:fixed;inset:0;z-index:80;display:none;
+  background:rgba(0,0,0,.50);
+}
+.drawer.open{display:block}
+.drawer-box{
+  max-width:820px;margin:90px auto 0;padding:0 20px;display:grid;gap:14px;
+}
+.drawer-box a{
+  display:block;text-align:center;padding:18px;border-radius:var(--radius-md);
+  background:var(--white);border:2px solid var(--green);color:var(--black);
+  text-decoration:none;font-size:clamp(18px,3vw,28px);font-weight:900;
+  box-shadow:var(--shadow-sm);
+}
+.drawer-box a:hover{background:var(--mint)}
+
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 .section{padding:64px 0}
 .section.tight{padding:42px 0}
 
-.h1{font-size:54px;line-height:1.06;font-weight:900;margin:10px 0}
-.h2{font-size:38px;line-height:1.15;font-weight:900;margin:0 0 14px}
-.h3{font-size:24px;font-weight:800;margin:0 0 8px}
-.lead{font-size:20px;line-height:1.55;color:var(--green)}
+.h1{font-size:clamp(36px,6vw,56px);line-height:1.05;font-weight:900;margin:10px 0}
+.h2{font-size:clamp(28px,4.2vw,44px);line-height:1.12;font-weight:900;margin:0 0 12px}
+.h3{font-size:22px;font-weight:800;margin:0 0 8px}
+.lead{font-size:18px;line-height:1.6;color:rgba(0,0,0,.72)}
 
-/* =========================================================
-   HEADER (right hamburger like your example)
-   ========================================================= */
-.nav{
-  position:sticky;top:0;left:0;right:0;height:64px;z-index:70;
-  display:flex;align-items:center;justify-content:flex-end;gap:10px;
-  padding:0 18px;background:var(--mint);
-  border-bottom:2px solid var(--green);
-  box-shadow:var(--shadow-sm);
-}
-
-/* Hamburger */
-.hamburger{
-  width:42px;height:42px;padding:8px;border-radius:12px;
-  display:grid;place-items:center;gap:6px;background:transparent;border:2px solid var(--green);
-  cursor:pointer;transition:.15s background;
-}
-.hamburger span{width:22px;height:3px;background:var(--green);border-radius:2px}
-.hamburger:hover{background:var(--mint)}
-
-/* Full-screen Drawer */
-.drawer{
-  position:fixed;inset:0;z-index:80;display:none;
-  background:var(--green-16);
-  backdrop-filter:blur(4px) saturate(120%);
-}
-.drawer.open{display:block}
-.drawer-box{
-  max-width:820px;margin:90px auto 0;padding:0 20px;display:grid;gap:16px;
-}
-.drawer-box a{
-  display:block;text-align:center;padding:18px;border-radius:18px;
-  background:var(--white);border:2px solid var(--green);
-  color:var(--green);font-size:clamp(18px,3.2vw,30px);font-weight:900;
-  box-shadow:var(--shadow-sm);
-}
-.drawer-box a:hover{box-shadow:var(--shadow-md)}
-
-/* Buttons */
-.btn{
-  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
-  border-radius:var(--radius-pill);padding:14px 20px;font-weight:900;
-  border:2px solid var(--green);background:var(--green);color:var(--white);
-  box-shadow:var(--shadow-md);transition:transform .12s ease, box-shadow .12s ease, opacity .15s;
-}
-.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg)}
-.btn:active{transform:translateY(0)}
-.btn.ghost{background:var(--white);color:var(--green)}
-
-/* Hero */
-.hero{
-  background:var(--mint);
-  border-bottom:2px solid var(--green);
-}
-.hero-grid{display:grid;gap:24px;grid-template-columns:1.15fr .85fr;align-items:center}
-@media (max-width:1000px){ .hero-grid{grid-template-columns:1fr} }
-.hero .cta-row{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
-.hero img{
-  width:100%;border-radius:18px;border:2px solid var(--green);
-  box-shadow:var(--shadow-md);object-fit:cover;background:var(--white)
-}
-
-/* Scrolling headline (ticker) */
+/* =========================
+   TICKER
+   ========================= */
 .ticker{
   position:sticky;top:64px;z-index:65;background:var(--mint);
   border-top:2px solid var(--green);border-bottom:2px solid var(--green);
-  overflow:hidden;margin-bottom:14px;
+  overflow:hidden;
 }
-.ticker .belt{display:flex;gap:28px;white-space:nowrap;padding:8px 12px;width:max-content;animation:ticker 32s linear infinite}
-.ticker .msg{flex:0 0 auto;font-weight:900;font-size:clamp(12px,1.35vw,18px);color:var(--green)}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker .belt{
+  display:flex;gap:28px;white-space:nowrap;padding:10px 16px;
+  width:max-content;animation:ticker-move 36s linear infinite;
+}
+.ticker .msg{font-weight:900;color:var(--green)}
+@keyframes ticker-move{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* Feature cards strip */
-.features-strip{background:var(--white);border-top:2px solid var(--green);border-bottom:2px solid var(--green)}
+/* =========================
+   BUTTONS
+   ========================= */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  padding:14px 20px;border-radius:999px;border:2px solid var(--green);
+  text-decoration:none;font-weight:900;box-shadow:var(--shadow-sm);
+  transition:.15s transform,.15s box-shadow,.15s background,.15s color;
+}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--green);color:var(--white)}
+.btn.primary:hover{box-shadow:var(--shadow-md)}
+.btn.ghost{background:var(--white);color:var(--green)}
+.btn.ghost:hover{background:var(--mint)}
+.btn.block{width:100%;justify-content:center}
+
+/* =========================
+   HERO
+   ========================= */
+.hero{
+  background:var(--white);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  padding:48px 0 20px;
+}
+.hero-grid{display:grid;gap:24px;grid-template-columns:1.15fr .85fr;align-items:center}
+@media (max-width:1000px){ .hero-grid{grid-template-columns:1fr} }
+.hero .cta-row{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+.hero figure{margin:0}
+.hero img{width:100%;border-radius:18px;border:2px solid var(--green);box-shadow:var(--shadow-md);object-fit:cover}
+
+/* =========================
+   FEATURE STRIP (MINT)
+   ========================= */
+.features-strip{background:var(--mint);border-top:2px solid var(--green);border-bottom:2px solid var(--green)}
 .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 @media (max-width:1000px){ .fgrid{grid-template-columns:1fr} }
 .fcard{
-  background:var(--mint);border:2px solid var(--green);border-radius:var(--radius-lg);
-  padding:22px;display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;
-  box-shadow:var(--shadow-sm)
+  background:var(--white);border:2px solid var(--green);border-radius:var(--radius-lg);
+  padding:24px;display:grid;grid-template-columns:78px 1fr;gap:16px;align-items:center;
+  box-shadow:var(--shadow-sm);
 }
 .f-ic{
-  width:72px;height:72px;border-radius:999px;display:grid;place-items:center;
-  background:var(--white);color:var(--green);font-size:30px;border:2px solid var(--green)
+  width:78px;height:78px;border-radius:999px;display:grid;place-items:center;
+  background:var(--mint);border:2px solid var(--green);font-size:34px;
 }
-.fcard p{color:var(--green)}
 
-/* Courses section */
-.courses-dark{background:var(--white)}
-.courses-dark .title{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.courses-dark .title .mark{position:relative;color:var(--green);font-weight:900}
-.courses-dark .title .mark::after{
-  content:"";position:absolute;left:0;right:0;bottom:-6px;height:10px;background:var(--mint);border:2px solid var(--green);border-radius:6px
-}
-.dark-rail{
-  background:var(--mint);border:2px solid var(--green);
-  border-radius:var(--radius-xl);padding:22px;box-shadow:var(--shadow-md)
-}
-.dark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-@media (max-width:1100px){ .dark-grid{grid-template-columns:1fr} }
-.dark-card{
-  background:var(--white);border:2px solid var(--green);border-radius:20px;padding:20px;color:var(--green);
+/* =========================
+   COURSES (WHITE + GREEN)
+   ========================= */
+.courses .title{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.courses .mark{color:var(--green);font-weight:900;border-bottom:8px solid var(--green)}
+.rail{
+  background:var(--mint);border:2px solid var(--green);border-radius:32px;padding:22px;
   box-shadow:var(--shadow-sm)
 }
-.dark-card .icon{
-  width:64px;height:64px;border-radius:999px;display:grid;place-items:center;font-size:26px;margin-bottom:8px;
-  background:var(--mint);border:2px solid var(--green);color:var(--green)
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:1100px){ .cards{grid-template-columns:1fr} }
+.card{
+  background:var(--white);border:2px solid var(--green);border-radius:20px;padding:20px;
+  box-shadow:var(--shadow-sm);color:var(--black)
 }
-.points{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+.card .icon{
+  width:64px;height:64px;border-radius:999px;display:grid;place-items:center;font-size:28px;margin-bottom:8px;
+  background:var(--mint);border:2px solid var(--green)
+}
+.points{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
 .points li{display:flex;gap:10px;align-items:flex-start}
 .points li::before{
-  content:"";width:10px;height:10px;border-radius:50%;margin-top:.55em;background:var(--green);box-shadow:0 0 0 4px var(--green-16)
+  content:"";width:10px;height:10px;border-radius:50%;
+  margin-top:.55em;background:var(--green);box-shadow:0 0 0 3px rgba(0,0,0,.06)
 }
 .k{color:var(--green);font-weight:900}
-.v{color:var(--green)}
+.v{color:var(--black)}
 
-/* Why IITuitions intro + case study */
-.why-intro{text-align:center;padding:24px 0 10px}
-.why-title{font-size:clamp(34px,5.2vw,64px);font-weight:900;line-height:1.05;margin:0 0 8px}
-.why-sub{max-width:960px;margin:0 auto;font-size:clamp(16px,2.2vw,22px);line-height:1.45;color:var(--green)}
-.why-casestudy{padding:18px 0 40px}
-.cs-wrap{
-  max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:stretch
+/* =========================
+   WHY INTRO + CASE STUDY
+   ========================= */
+.why-intro{text-align:center;padding:18px 0 10px}
+.why-title{font-size:clamp(32px,5vw,56px);font-weight:900;margin:0 0 10px}
+.why-sub{max-width:1000px;margin:0 auto;color:rgba(0,0,0,.74);font-size:clamp(16px,2.2vw,22px)}
+
+.why-cs{padding:18px 0 40px}
+.cs-grid{
+  max-width:1200px;margin:0 auto;padding:0 20px;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch;
 }
-@media (max-width:1000px){ .cs-wrap{grid-template-columns:1fr} }
-.cs-img img{width:100%;height:100%;object-fit:cover;border-radius:22px;border:2px solid var(--green);box-shadow:var(--shadow-sm);background:var(--white)}
+@media (max-width:1000px){ .cs-grid{grid-template-columns:1fr} }
+.cs-img img{
+  width:100%;height:100%;object-fit:cover;border-radius:22px;
+  border:2px solid var(--green);box-shadow:var(--shadow-md);
+}
 .cs-card{
-  background:var(--mint);border:2px solid var(--green);border-radius:22px;padding:20px;box-shadow:var(--shadow-sm);color:var(--green);
-  display:flex;flex-direction:column;gap:10px
+  background:var(--white);border:2px solid var(--green);border-radius:22px;
+  padding:22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px
 }
-.cs-pill{align-self:flex-start;background:var(--white);border:2px solid var(--green);color:var(--green);padding:6px 10px;border-radius:999px;font-weight:900;font-size:13px}
-.cs-title{margin:0}
-.cs-text{margin:0;font-size:18px;line-height:1.55}
+.cs-pill{
+  align-self:flex-start;background:var(--mint);border:2px solid var(--green);
+  color:var(--black);padding:6px 10px;border-radius:999px;font-weight:900;font-size:13px
+}
 
-/* WHY WE ARE DIFFERENT */
-.policy.container{border-top:2px solid var(--green)}
-.policy .wrap{text-align:center}
-.policy .section-head{font-size:clamp(28px,4.2vw,48px);line-height:1.05;font-weight:900;margin:0 0 8px}
-#policy-title{position:relative;display:inline-block;margin:6px auto 16px;padding-bottom:6px;font-weight:900;color:var(--green)}
-#policy-title::after{content:"";display:block;height:8px;width:min(520px,90%);margin:8px auto 0;border-radius:6px;background:var(--mint);border:2px solid var(--green)}
+/* =========================
+   POLICY (DIFFERENT)
+   ========================= */
+.policy{padding:40px 0}
+.policy .wrap{max-width:1000px;margin:0 auto;text-align:center}
+.policy .lead{color:rgba(0,0,0,.74)}
+#policy-title{
+  display:inline-block;margin:6px auto 18px;padding-bottom:6px;
+  font-size:clamp(18px,2vw,26px);font-weight:900;color:var(--green);
+  border-bottom:8px solid var(--green);
+}
 .grid{display:grid;gap:16px;margin-top:14px}
 @media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
 .item{
-  display:grid;grid-template-columns:56px 1fr;gap:12px;background:var(--white);
-  border:2px solid var(--green);border-radius:16px;padding:16px;align-items:center;box-shadow:var(--shadow-sm)
+  display:grid;grid-template-columns:56px 1fr;gap:12px;
+  background:var(--white);border:2px solid var(--green);
+  border-radius:16px;padding:16px;align-items:center;box-shadow:var(--shadow-sm);text-align:left
 }
-.ic{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;background:var(--mint);border:2px solid var(--green);font-size:22px}
-.title{font-weight:900;font-size:18px}
-.text{line-height:1.55}
-.pill{display:inline-block;font-size:11px;font-weight:900;padding:4px 8px;border-radius:999px;margin-left:6px;border:2px solid var(--green);color:var(--green);background:var(--mint)}
+.ic{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;
+  background:var(--mint);border:2px solid var(--green);font-size:24px}
+.title{font-weight:900;font-size:18px;margin-bottom:4px}
+.text{color:rgba(0,0,0,.9);line-height:1.55}
+.pill{
+  display:inline-block;font-size:11px;font-weight:900;padding:4px 8px;border-radius:999px;margin-left:6px;
+  border:2px solid var(--green);color:var(--black);background:var(--mint)
+}
 
-/* Tutor Jobs CTA */
-.jobs{position:relative;background:var(--mint)}
+/* =========================
+   JOBS CTA (IMAGE OPTIONAL)
+   ========================= */
+.jobs{
+  position:relative;background:var(--mint);
+  border-top:2px solid var(--green);border-bottom:2px solid var(--green);
+}
 .jobs .veil{
-  background:var(--white);border:2px solid var(--green);border-radius:var(--radius-xl);
-  box-shadow:var(--shadow-md);padding:28px 32px;text-align:center;color:var(--green);max-width:760px;margin:0 auto
+  border-radius:var(--radius-lg);border:2px solid var(--green);
+  box-shadow:var(--shadow-md);padding:28px 32px;text-align:center;color:var(--black);
+  background:var(--white);max-width:760px;margin:0 auto
 }
 
-/* How it works */
+/* =========================
+   HOW IT WORKS
+   ========================= */
 .hiw .stepgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 @media (max-width:1000px){ .hiw .stepgrid{grid-template-columns:1fr} }
-.step{background:var(--white);color:var(--green);border:2px solid var(--green);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm);text-align:center}
-.step .ic{font-size:40px;margin:6px 0 8px}
+.step{
+  background:var(--white);color:var(--black);border:2px solid var(--green);
+  border-radius:18px;padding:22px;box-shadow:var(--shadow-sm);text-align:center
+}
+.step .ic{font-size:40px;margin:6px 0 10px}
+.step p{color:rgba(0,0,0,.74)}
 
-/* Success Formula */
-.formula{padding:48px 0;background:var(--white)}
+/* =========================
+   SUCCESS FORMULA
+   ========================= */
+.formula{padding:48px 0;background:var(--mint);border-top:2px solid var(--green);border-bottom:2px solid var(--green)}
 .formula .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
-.formula h2{text-align:center}
 .formula .list{display:grid;gap:16px}
 .formula .card{
-  display:grid;grid-template-columns:72px 1fr;align-items:center;background:var(--mint);
-  border:2px solid var(--green);border-radius:20px;padding:16px 18px;box-shadow:var(--shadow-sm)
+  display:grid;grid-template-columns:72px 1fr;align-items:center;
+  background:var(--white);border:2px solid var(--green);border-radius:18px;
+  padding:16px 18px;box-shadow:var(--shadow-sm)
 }
-.formula .n{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;font-weight:900;font-size:22px;color:var(--white);background:var(--green)}
+.formula .n{
+  width:56px;height:56px;border-radius:999px;display:grid;place-items:center;
+  font-weight:900;font-size:22px;color:var(--white);background:var(--green);
+}
+.formula .ttl{margin:0;font-size:20px;font-weight:900}
+.formula .sub{margin:4px 0 0;color:rgba(0,0,0,.74);font-size:16px}
 
-/* Testimonials */
+/* =========================
+   TESTIMONIALS
+   ========================= */
 .testi .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 @media (max-width:1000px){ .testi .grid{grid-template-columns:1fr} }
-.tcard{background:var(--white);border:2px solid var(--green);border-radius:20px;padding:20px;box-shadow:var(--shadow-sm);color:var(--green)}
-.stars{color:var(--green);letter-spacing:2px;margin:6px 0 10px}
+.tcard{
+  background:var(--white);border:2px solid var(--green);border-radius:18px;padding:20px;
+  box-shadow:var(--shadow-sm);color:var(--black)
+}
+.stars{color:var(--green);letter-spacing:2px;margin:6px 0 10px;font-weight:900}
 
-/* Footer */
-.footer{background:var(--mint);color:var(--green);padding:36px 0 14px;border-top:2px solid var(--green)}
-.foot-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr 1.1fr;gap:24px}
+/* =========================
+   FOOTER
+   ========================= */
+.footer{background:var(--black);color:var(--white);padding:36px 0 14px;border-top:2px solid var(--green)}
+.foot-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr 1.1fr;gap:26px}
 @media (max-width:1000px){ .foot-grid{grid-template-columns:1fr} }
-.footer h4{margin:0 0 10px}
-.footer a{text-decoration:underline}
-.copy{border-top:2px solid var(--green);margin-top:16px;padding-top:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.footer h4{margin:0 0 10px;color:var(--white)}
+.footer a{color:var(--mint);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.copy{border-top:1px solid rgba(255,255,255,.22);margin-top:16px;padding-top:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--mint)}
 
-/* Floating WhatsApp pill */
+/* =========================
+   FLOATING WHATSAPP
+   ========================= */
 .whatsapp{
-  position:fixed;right:16px;bottom:16px;z-index:50;
+  position:fixed;right:16px;bottom:16px;z-index:60;
   display:inline-flex;align-items:center;gap:10px;background:var(--green);color:var(--white);
-  padding:12px 14px;border-radius:var(--radius-pill);border:2px solid var(--white);
-  box-shadow:var(--shadow-lg);font-weight:900
+  padding:12px 14px;border-radius:999px;border:2px solid var(--green);box-shadow:var(--shadow-lg);
+  text-decoration:none;font-weight:900
 }
 
-/* Round draggable WhatsApp FAB (optional, like your file) */
+/* Fab (round) on the other side if you want both */
 .wa-fab{
-  position:fixed;left:18px;bottom:18px;z-index:90;width:60px;height:60px;border-radius:50%;
-  display:grid;place-items:center;border:2px solid var(--white);background:var(--green);
-  box-shadow:var(--shadow-lg);
+  position:fixed;left:18px;bottom:18px;z-index:55;width:60px;height:60px;border-radius:50%;
+  display:grid;place-items:center;text-decoration:none;border:2px solid var(--green);
+  background:var(--green);box-shadow:var(--shadow-lg);color:var(--white);font-weight:900;
 }
-.wa-fab::before{content:"";display:block;width:26px;height:26px;mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>') center / contain no-repeat;background:var(--white)}
-.wa-fab.dragging{cursor:grabbing}
 
-/* Responsive heading sizes */
+/* Responsive heading tweaks */
 @media (max-width:780px){
-  .h1{font-size:42px}
-  .h2{font-size:30px}
+  .h1{font-size:36px}
+  .h2{font-size:28px}
 }
 </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- NAV -->
   <header class="nav">
     <a class="brand" href="index.html" aria-label="IITuitions Home"></a>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -275,7 +315,7 @@ a{color:inherit;text-decoration:none}
     </button>
   </header>
 
-  <!-- Drawer -->
+  <!-- DRAWER -->
   <nav class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer-box">
       <a href="index.html">🏠 Home</a>
@@ -286,11 +326,11 @@ a{color:inherit;text-decoration:none}
     </div>
   </nav>
 
-  <!-- Ticker -->
+  <!-- TICKER -->
   <section class="ticker" aria-label="Headline">
     <div class="belt">
-      <div class="msg">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan — Where Every Child Learns Their Way</div>
-      <div class="msg" aria-hidden="true">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan — Where Every Child Learns Their Way</div>
+      <div class="msg">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</div>
+      <div class="msg" aria-hidden="true">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</div>
     </div>
   </section>
 
@@ -301,13 +341,13 @@ a{color:inherit;text-decoration:none}
         <h1 class="h1">Best Home Tuitions in Hyderabad</h1>
         <p class="lead">Home Tuitions in Hyderabad offering personalized learning, expert tutors, and steady academic progress.</p>
         <div class="cta-row">
-          <a class="btn" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20I%20want%20a%20free%20demo" target="_blank" rel="noopener">Book Free Demo →</a>
+          <a class="btn primary" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20I%20want%20a%20free%20demo">Book Free Demo →</a>
           <a class="btn ghost" href="register.html">Join as Tutor 👩‍🏫</a>
         </div>
       </div>
-      <div aria-hidden="true">
+      <figure aria-hidden="true">
         <img alt="" src="https://images.unsplash.com/photo-1584697964353-582cde1a27c5?q=80&w=1400&auto=format&fit=crop">
-      </div>
+      </figure>
     </div>
   </section>
 
@@ -318,65 +358,65 @@ a{color:inherit;text-decoration:none}
         <div class="f-ic">📅</div>
         <div>
           <div class="h3">Flexible Classes</div>
-          <p>In-home sessions with scheduling that works for you.</p>
+          <p class="lead" style="font-size:16px">In-home sessions with scheduling that works for you.</p>
         </div>
       </div>
       <div class="fcard">
         <div class="f-ic">💻</div>
         <div>
           <div class="h3">Online / Offline Modes</div>
-          <p>Pick live online or home tutoring — switch anytime.</p>
+          <p class="lead" style="font-size:16px">Pick live online or home tutoring — switch anytime.</p>
         </div>
       </div>
       <div class="fcard">
         <div class="f-ic">🧑‍👦</div>
         <div>
           <div class="h3">Parent Choice</div>
-          <p>Choose tutors by subject, approach, and availability.</p>
+          <p class="lead" style="font-size:16px">Choose tutors by subject and approach.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- COURSES -->
-  <section class="courses-dark section" id="courses">
+  <section class="courses section" id="courses">
     <div class="container">
       <div class="title">
-        <h2 class="h2" style="font-size:48px">Courses <span class="mark">We Offer</span></h2>
+        <h2 class="h2">Courses <span class="mark">We Offer</span></h2>
       </div>
 
-      <div class="dark-rail">
-        <div class="dark-grid">
-          <article class="dark-card">
+      <div class="rail">
+        <div class="cards">
+          <article class="card">
             <div class="icon">🎯</div>
             <h3>JEE Main & Advanced</h3>
-            <p>Board syllabus and JEE prep move together; concepts stay strong and marks keep improving.</p>
+            <p>One mentor teaches your child 1-on-1. Board syllabus and JEE prep move together.</p>
             <ul class="points">
-              <li><span class="k">Personal IIT/NIT mentor:</span>&nbsp;<span class="v">clear weekly plan + “mistake list”.</span></li>
-              <li><span class="k">Past papers, the right way:</span>&nbsp;<span class="v">how to present for full marks.</span></li>
-              <li><span class="k">Weekly mock + update:</span>&nbsp;<span class="v">coverage, scores, and next week’s plan.</span></li>
+              <li><span class="k">Personal IIT/NIT mentor:</span>&nbsp;<span class="v">weekly plan + small “mistake list”.</span></li>
+              <li><span class="k">Past JEE papers, right way:</span>&nbsp;<span class="v">marks through clean steps.</span></li>
+              <li><span class="k">Weekly mock + update:</span>&nbsp;<span class="v">scores and next week’s plan.</span></li>
             </ul>
           </article>
 
-          <article class="dark-card">
+          <article class="card">
             <div class="icon">🩺</div>
             <h3>NEET-UG</h3>
-            <p>NCERT-first 1-on-1 coaching that builds recall and application in PCB.</p>
+            <p>NCERT-first, 1-on-1 coaching that builds recall and application.</p>
             <ul class="points">
-              <li><span class="k">NCERT line-by-line:</span>&nbsp;<span class="v">high-yield diagrams & quick recalls.</span></li>
-              <li><span class="k">Timed sets:</span>&nbsp;<span class="v">OMR practice with speed & accuracy goals.</span></li>
-              <li><span class="k">Weekly update:</span>&nbsp;<span class="v">accuracy %, and focus for next week.</span></li>
+              <li><span class="k">NCERT line-by-line:</span>&nbsp;<span class="v">high-yield diagrams & recalls.</span></li>
+              <li><span class="k">Timed sets:</span>&nbsp;<span class="v">OMR practice with accuracy targets.</span></li>
+              <li><span class="k">Weekly update:</span>&nbsp;<span class="v">coverage and focus next week.</span></li>
             </ul>
           </article>
 
-          <article class="dark-card">
+          <article class="card">
             <div class="icon">🏠💻</div>
             <h3>Offline & Online Tuitions (Grades 1–12)</h3>
-            <p><strong>CBSE • ICSE • Cambridge (IGCSE & A Levels) • State (TS/AP)</strong></p>
+            <p>Home tutor or live online — same mentor quality, same parent updates.</p>
             <ul class="points">
-              <li><span class="k">Syllabus-aligned plan:</span>&nbsp;<span class="v">micro-tests + recap tracking.</span></li>
+              <li><span class="k">Syllabus-aligned plan:</span>&nbsp;<span class="v">micro-tests + recap sheet.</span></li>
               <li><span class="k">Past-paper answers:</span>&nbsp;<span class="v">write neatly for full marks.</span></li>
-              <li><span class="k">Switch mentor anytime:</span>&nbsp;<span class="v">if the fit isn’t perfect.</span></li>
+              <li><span class="k">Switch mentor anytime:</span>&nbsp;<span class="v">if fit isn’t perfect.</span></li>
             </ul>
           </article>
         </div>
@@ -387,33 +427,29 @@ a{color:inherit;text-decoration:none}
   <!-- WHY INTRO -->
   <section class="why-intro container" id="why-intro">
     <h2 class="why-title">Why IITuitions?</h2>
-    <p class="why-sub">Real mentors, real outcomes — from exam scores to confidence — with weekly parent updates.</p>
+    <p class="why-sub">Real mentors, real outcomes — weekly parent updates and steady progress.</p>
   </section>
 
   <!-- CASE STUDY -->
-  <section class="why-casestudy">
-    <div class="cs-wrap">
+  <section class="why-cs">
+    <div class="cs-grid">
       <div class="cs-img">
-        <img src="https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1600&auto=format&fit=crop" alt="Graduate cap" />
+        <img src="https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1600&auto=format&fit=crop" alt="">
       </div>
       <aside class="cs-card">
         <div class="cs-pill">12 weeks • Home Tuition — Kondapur</div>
-        <h3 class="cs-title">From 62% to 92% in Cambridge Math (Grade 10)</h3>
-        <p class="cs-text">
-          Arjun knew concepts but lost marks on extended-response questions. We mapped gaps to command words,
-          retrained answer framing, and ran 6 targeted micro-tests. Scores stabilized at 85%+ by week 6; final at 92%.
-        </p>
+        <h3 style="margin:0">From 62% to 92% in Cambridge Math (Grade 10)</h3>
+        <p>Arjun knew concepts but lost marks on extended responses. We mapped gaps to <strong>command words</strong>, retrained answer framing, and ran 6 targeted micro-tests. Scores stabilized at 85%+ by week 6; final at 92%.</p>
       </aside>
     </div>
   </section>
 
-  <!-- WHY WE ARE DIFFERENT -->
-  <section class="policy container section" id="different" aria-labelledby="policy-title">
+  <!-- POLICY -->
+  <section class="policy container" id="different" aria-labelledby="policy-title">
     <div class="wrap">
-      <h2 class="section-head">WHY WE ARE DIFFERENT?</h2>
+      <h2 class="h2">WHY WE ARE DIFFERENT?</h2>
       <h3 id="policy-title">Parents Have the Right to Change the Tutor.</h3>
-
-      <p class="lead">We keep quality high with 1-on-1 focus and clear weekly communication.</p>
+      <p class="lead">We focus on quality and customization so each child gets a plan that works.</p>
 
       <div class="grid" role="list">
         <article class="item" role="listitem">
@@ -421,8 +457,8 @@ a{color:inherit;text-decoration:none}
           <div>
             <div class="title">Tutor Replacement <span class="pill">Premium = Managed</span></div>
             <div class="text">
-              <strong>Premium:</strong> If the fit isn’t perfect, <em>we arrange a smooth replacement</em>—no extra fee, no pause in learning.<br>
-              <strong>Standard:</strong> You can change tutors; the coordination is parent-managed.
+              <strong>Premium:</strong> If the fit isn’t perfect, <em>we arrange a smooth replacement</em> — no pause in learning.<br>
+              <strong>Standard:</strong> You can change tutors; coordination is parent-managed.
             </div>
           </div>
         </article>
@@ -432,7 +468,7 @@ a{color:inherit;text-decoration:none}
           <div>
             <div class="title">Support & Continuity</div>
             <div class="text">
-              <strong>Premium:</strong> Weekly plan, mistake list, and schedule continue seamlessly with the new mentor.<br>
+              <strong>Premium:</strong> Weekly plan and mistake list continue seamlessly with the new mentor.<br>
               <strong>Standard:</strong> Onboarding support provided; ongoing changes are parent-managed.
             </div>
           </div>
@@ -446,8 +482,8 @@ a{color:inherit;text-decoration:none}
     <div class="container">
       <div class="veil">
         <h2 class="h2">Part Home Tutor Jobs in Hyderabad</h2>
-        <p class="lead">Flexible part-time home tutor jobs. Teach students, earn well, and make a difference.</p>
-        <a class="btn" href="register.html">GET STARTED →</a>
+        <p class="lead" style="margin:6px 0 14px">Teach students, earn well, and make a difference.</p>
+        <a class="btn primary" href="register.html">GET STARTED →</a>
       </div>
     </div>
   </section>
@@ -456,28 +492,28 @@ a{color:inherit;text-decoration:none}
   <section class="hiw section" id="how">
     <div class="container">
       <h2 class="h2" style="text-align:center">How it works</h2>
-      <p style="text-align:center;max-width:820px;margin:6px auto 22px;">Simple steps to begin 1-on-1 learning.</p>
+      <p style="text-align:center;max-width:820px;margin:6px auto 24px;color:rgba(0,0,0,.74)">Personalized consultations with expert tutors to achieve academic excellence.</p>
 
       <div class="stepgrid">
         <div class="step">
           <div class="ic">📝</div>
           <h4 style="margin:4px 0 6px">Submit Your Request</h4>
-          <p>Share requirements to find the perfect tutor.</p>
+          <p>Share your requirements to find the perfect tutor.</p>
         </div>
         <div class="step">
           <div class="ic">🏫</div>
           <h4 style="margin:4px 0 6px">Tutor Matching</h4>
-          <p>We match by subject, goals, and schedule.</p>
+          <p>We match qualified tutors by subject and location.</p>
         </div>
         <div class="step">
           <div class="ic">🔖</div>
           <h4 style="margin:4px 0 6px">Schedule a Session</h4>
-          <p>Pick a convenient slot — home or online.</p>
+          <p>Coordinate convenient and flexible sessions.</p>
         </div>
         <div class="step">
           <div class="ic">💻</div>
           <h4 style="margin:4px 0 6px">Start Learning</h4>
-          <p>Recorded sessions & weekly updates.</p>
+          <p>Begin with verified tutors and steady progress.</p>
         </div>
       </div>
     </div>
@@ -486,12 +522,36 @@ a{color:inherit;text-decoration:none}
   <!-- SUCCESS FORMULA -->
   <section class="formula" id="success-formula">
     <div class="wrap">
-      <h2 class="h2">Our Success Formula</h2>
+      <h2 class="h2" style="text-align:center">Our Success Formula</h2>
       <div class="list">
-        <article class="card"><div class="n">1</div><div><h4 class="ttl">Free Assessment</h4><p class="sub">Know exactly where your child stands.</p></div></article>
-        <article class="card"><div class="n">2</div><div><h4 class="ttl">Personalized Roadmap</h4><p class="sub">A clear path to score improvement.</p></div></article>
-        <article class="card"><div class="n">3</div><div><h4 class="ttl">1-on-1 Mentorship</h4><p class="sub">Zero distractions. 100% focus.</p></div></article>
-        <article class="card"><div class="n">4</div><div><h4 class="ttl">Continuous Tracking</h4><p class="sub">Weekly updates & quick corrections.</p></div></article>
+        <article class="card">
+          <div class="n">1</div>
+          <div>
+            <h4 class="ttl">Free Assessment</h4>
+            <p class="sub">Know exactly where your child stands.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="n">2</div>
+          <div>
+            <h4 class="ttl">Personalized Roadmap</h4>
+            <p class="sub">Your child’s clear path to score improvement.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="n">3</div>
+          <div>
+            <h4 class="ttl">1-on-1 Mentorship</h4>
+            <p class="sub">100% focused sessions — no batches.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="n">4</div>
+          <div>
+            <h4 class="ttl">Continuous Tracking</h4>
+            <p class="sub">Weekly updates & real-time corrections.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -499,22 +559,23 @@ a{color:inherit;text-decoration:none}
   <!-- TESTIMONIALS -->
   <section class="testi section" id="reviews">
     <div class="container">
-      <div class="h3" style="margin-bottom:6px">Client Feedback & Reviews</div>
+      <div class="h3" style="letter-spacing:.15em;color:var(--green)">TESTIMONIAL</div>
+      <h2 class="h2">Client Feedback & Reviews</h2>
       <div class="grid">
         <article class="tcard">
-          <div style="font-weight:800">Laxmi Prashanthi • <span>Google</span></div>
+          <div style="font-weight:800">Laxmi Prashanthi • <span style="color:var(--green)">Google</span></div>
           <div class="stars">★★★★★</div>
-          <p>“Amazing.”</p>
+          <p>Amazing</p>
         </article>
         <article class="tcard">
-          <div style="font-weight:800">Jagadeesh Kantekar • <span>Google</span></div>
+          <div style="font-weight:800">Jagadeesh Kantekar • <span style="color:var(--green)">Google</span></div>
           <div class="stars">★★★★★</div>
-          <p>“Excellent.”</p>
+          <p>Excellent</p>
         </article>
         <article class="tcard">
-          <div style="font-weight:800">Shivaji Kantekar • <span>Google</span></div>
+          <div style="font-weight:800">Shivaji Kantekar • <span style="color:var(--green)">Google</span></div>
           <div class="stars">★★★★★</div>
-          <p>“Knowledgeable, patient, and truly care about students’ success.”</p>
+          <p>Knowledgeable, patient, and truly care about students’ success.</p>
         </article>
       </div>
     </div>
@@ -526,7 +587,7 @@ a{color:inherit;text-decoration:none}
       <div class="foot-grid">
         <div>
           <h4>IITuitions</h4>
-          <p>Helping students achieve <strong>1500+ SAT</strong> scores and converting effort into ranks — since 2017.</p>
+          <p>Helping students achieve <strong>1500+ SAT</strong> scores and helping IIT aspirants convert effort into ranks — since 2010.</p>
         </div>
         <div>
           <h4>Quick Links</h4>
@@ -534,7 +595,7 @@ a{color:inherit;text-decoration:none}
         </div>
         <div>
           <h4>Programs</h4>
-          <p>SAT Elite • IIT/JEE • IB/IGCSE/CBSE/ICSE Tuitions</p>
+          <p>SAT Elite • SAT Foundation • Math Intensive • Verbal Excellence • Application Guidance</p>
         </div>
         <div>
           <h4>Contact Us</h4>
@@ -546,19 +607,19 @@ a{color:inherit;text-decoration:none}
 
       <div class="copy">
         <div>© 2025 IITuitions. All rights reserved.</div>
-        <div><a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Cookies</a></div>
+        <div>
+          <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Cookies</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp CTA -->
-  <a class="whatsapp" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment" target="_blank" rel="noopener">💬 How can we help you today?</a>
-
-  <!-- Optional round draggable FAB -->
-  <a class="wa-fab" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment" aria-label="Chat on WhatsApp"></a>
+  <!-- Floating CTAs -->
+  <a class="whatsapp" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment">💬 How can we help you today?</a>
+  <a class="wa-fab" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment" aria-label="Chat on WhatsApp">WA</a>
 
 <script>
-  // Mobile drawer
+  // Drawer toggle
   const btn = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   btn.addEventListener('click', () => {
@@ -569,38 +630,7 @@ a{color:inherit;text-decoration:none}
   drawer.addEventListener('click', (e) => {
     if(e.target === drawer){ drawer.classList.remove('open'); btn.setAttribute('aria-expanded','false'); drawer.setAttribute('aria-hidden','true'); }
   });
-
-  // Simple drag for FAB (prevents accidental open if dragged)
-  (() => {
-    const fab = document.querySelector('.wa-fab');
-    if (!fab) return;
-    let offsetX = 0, offsetY = 0, dragging = false, moved = false;
-    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-    const onDown = (e) => {
-      moved = false; dragging = true; fab.classList.add('dragging');
-      const r = fab.getBoundingClientRect();
-      offsetX = e.clientX - r.left; offsetY = e.clientY - r.top;
-      fab.style.right = 'auto'; fab.style.bottom = 'auto';
-      fab.style.left = r.left + 'px'; fab.style.top  = r.top  + 'px';
-      fab.setPointerCapture(e.pointerId);
-    };
-    const onMove = (e) => {
-      if (!dragging) return; moved = true;
-      const maxX = window.innerWidth  - fab.offsetWidth  - 8;
-      const maxY = window.innerHeight - fab.offsetHeight - 8;
-      const nx = clamp(e.clientX - offsetX, 8, maxX);
-      const ny = clamp(e.clientY - offsetY, 8, maxY);
-      fab.style.left = nx + 'px'; fab.style.top  = ny + 'px';
-    };
-    const onUp = (e) => {
-      if (!dragging) return; dragging = false; fab.classList.remove('dragging'); fab.releasePointerCapture(e.pointerId);
-      if (moved) { e.preventDefault(); e.stopPropagation(); }
-    };
-    fab.addEventListener('pointerdown', onDown);
-    fab.addEventListener('pointermove', onMove);
-    fab.addEventListener('pointerup', onUp);
-    fab.addEventListener('pointercancel', onUp);
-  })();
 </script>
 </body>
 </html>
+s
