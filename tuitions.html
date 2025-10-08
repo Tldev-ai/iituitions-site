@@ -389,6 +389,176 @@ body{
   .h2{font-size:30px}
 }
 </style>
+  /* ======== 3-COLOR THEME OVERRIDES ======== */
+/* Colors allowed: #33A69B (dark green), #ECFFFC (light green), #FFFFFF (white) */
+
+:root{
+  --bg:#FFFFFF;
+  --panel:#ECFFFC;
+  --panel-2:#ECFFFC;
+  --ink:#33A69B;
+  --muted:#33A69B;
+  --line: rgba(51,166,155,.35);         /* same green, translucent */
+  --pill:#33A69B;
+  --accent:#33A69B;
+  --shadow: 0 10px 24px rgba(51,166,155,.20);
+}
+
+/* Page */
+body{
+  color:var(--ink);
+  background:#FFFFFF;
+}
+
+/* Top bar */
+.nav{
+  background: rgba(51,166,155,.10);
+  backdrop-filter:none;
+  border-bottom:1px solid var(--line);
+}
+.hamburger span{ background:#33A69B; }
+.hamburger:hover{ background:rgba(51,166,155,.12); }
+.hamburger:focus{ outline:2px solid #33A69B; }
+
+/* Full-screen drawer */
+.drawer{ background: rgba(51,166,155,.18); }
+.drawer-box a{
+  background:#FFFFFF;
+  border:1px solid var(--line);
+  color:#33A69B;
+}
+.drawer-box a:hover{ background:#ECFFFC; }
+
+/* Ticker */
+.ticker{
+  background:#ECFFFC;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.ticker .msg{ color:#33A69B; }
+
+/* Buttons */
+.btn{
+  background:#33A69B;
+  color:#FFFFFF;
+  border:0;
+  box-shadow:var(--shadow);
+}
+.btn.primary,
+.btn.light{ background:#33A69B; color:#FFFFFF; }
+.btn:hover{ transform:translateY(-1px); }
+
+/* Hero */
+.hero{
+  background: linear-gradient(180deg,#ECFFFC 0%, #FFFFFF 100%);
+}
+.lead{ color:#33A69B; }
+
+/* Feature strip & cards */
+.features-strip{ background:#ECFFFC; border-color:var(--line); }
+.fcard{
+  background:#FFFFFF; border:1px solid var(--line);
+  color:#33A69B;
+}
+.f-ic{ background:#ECFFFC; color:#33A69B; border:1px solid var(--line); }
+
+/* Courses */
+.courses-dark{ background:#ECFFFC; }
+.dark-rail{ background:#FFFFFF; border:1px solid var(--line); }
+.dark-grid{}
+.dark-card{
+  background:#FFFFFF; border:1px solid var(--line); color:#33A69B;
+  box-shadow:var(--shadow);
+}
+.dark-card .icon{
+  background:#ECFFFC; color:#33A69B; border:1px solid var(--line);
+}
+.points li::before{
+  background:#33A69B; box-shadow:0 0 0 3px rgba(51,166,155,.18);
+}
+.k{ color:#33A69B; }
+.v{ color:#33A69B; }
+
+/* Why IITuitions */
+.why-intro{ color:#33A69B; }
+.why-title{ color:#33A69B; }
+.why-sub{ color:#33A69B; }
+
+/* Case study */
+.cs-card{
+  background:#FFFFFF; color:#33A69B; border:1px solid var(--line);
+}
+.cs-pill{
+  background:#ECFFFC; color:#33A69B; border:1px solid var(--line);
+}
+.cs-title{ color:#33A69B; }
+.cs-text{ color:#33A69B; }
+
+/* Policy section */
+.policy{ background:#FFFFFF; color:#33A69B; }
+.policy .section-head{ color:#33A69B; }
+#policy-title{ color:#33A69B; }
+#policy-title::after{
+  background: linear-gradient(90deg,#33A69B,#33A69B);
+}
+
+/* Jobs CTA */
+.jobs{
+  background:#ECFFFC !important;  /* remove photo */
+}
+.jobs .veil{
+  background:#FFFFFF; color:#33A69B;
+  border:1px solid var(--line);
+}
+.jobs .btn{ background:#33A69B; color:#FFFFFF; }
+
+/* How it works */
+.step{
+  background:#FFFFFF; color:#33A69B; border:1px solid var(--line);
+}
+.step p{ color:#33A69B; }
+
+/* Success Formula */
+.formula{ background:#ECFFFC; color:#33A69B; }
+.formula .card{
+  background:#FFFFFF; border:1px solid var(--line);
+}
+.formula .n{
+  background:#33A69B; color:#FFFFFF; box-shadow:none;
+}
+
+/* Testimonials */
+.testi .grid{}
+.tcard{
+  background:#FFFFFF; border:1px solid var(--line); color:#33A69B;
+}
+.stars{ color:#33A69B; }
+
+/* Footer */
+.footer{
+  background:#FFFFFF; color:#33A69B; border-top:1px solid var(--line);
+}
+.footer a{ color:#33A69B; }
+.copy{ border-top:1px solid var(--line); color:#33A69B; }
+
+/* WhatsApp elements */
+.whatsapp{
+  background:#33A69B; color:#FFFFFF; border:0; box-shadow:var(--shadow);
+}
+.wa-fab{
+  background:#33A69B !important;
+  box-shadow:var(--shadow);
+}
+.wa-fab::after{ display:none; }
+
+/* Images: add soft mint frame so they sit in white theme */
+.hero img, .cs-img img{
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  background:#ECFFFC;
+  border-radius:18px;
+}
+
 </head>
 <body>
   <header class="nav">
