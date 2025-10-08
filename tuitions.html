@@ -5,571 +5,189 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IITuitions — Home Tuitions in Hyderabad</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+
 <style>
-  /* Top bar with right hamburger */
-.nav{
-  position:fixed;top:0;left:0;right:0;height:64px;z-index:70;
-  display:flex;align-items:center;justify-content:flex-end;
-  padding:0 18px;background:linear-gradient(180deg,rgba(15,17,22,.65),transparent);
-  backdrop-filter:saturate(120%) blur(6px);
-}
-/* neat 3-line menu icon */
-.hamburger{
-  width:42px;height:42px;padding:8px;
-  display:grid;place-items:center;gap:6px;
-  background:transparent;border:none;box-shadow:none;border-radius:10px;
-  cursor:pointer;
-}
-.hamburger span{
-  width:24px;height:2px;            /* thinner lines */
-  background:#e8edf7;border-radius:2px;
-}
-.hamburger:hover{background:rgba(255,255,255,.06)}
-.hamburger:focus{outline:2px solid #4aa3ff;outline-offset:2px}
-
-
-/* Full-screen drawer */
-.drawer{
-  position:fixed;inset:0;z-index:80;display:none;
-  background:rgba(4,6,10,.72);backdrop-filter:saturate(130%) blur(6px);
-}
-.drawer.open{display:block}
-.drawer-box{
-  max-width:820px;margin:90px auto 0;padding:0 20px;display:grid;gap:18px;
-}
-.drawer-box a{
-  display:block;text-align:center;padding:22px;border-radius:22px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);
-  color:#fff;text-decoration:none;font-size:clamp(20px,3.2vw,36px);font-weight:900;
-}
-.drawer-box a:hover{background:rgba(255,255,255,.1)}
-
-/* ===== Mono Tokens ===== */
+/* ===== THREE-COLOR THEME ===== */
 :root{
-  --bg:#0b0c10;           /* page background (blackish) */
-  --panel:#111318;        /* panels/cards */
-  --panel-2:#0e0f12;      /* deeper panels */
-  --ink:#ffffff;          /* main text (white) */
-  --muted:#b8c0cc;        /* secondary */
-  --line:rgba(255,255,255,.14);
-  --pill:#ffd54a;         /* tiny accent for small labels */
-  --accent:#06d6a0;       /* subtle green for bullets/dots */
-  --shadow:0 18px 50px rgba(0,0,0,.50);
-  --radius:22px;
+  --green: #33A69B;   /* dark green */
+  --mint:  #ECFFFC;   /* light green */
+  --white: #FFFFFF;   /* white      */
 }
-*{box-sizing:border-box}
-html,body{margin:0}
+
+/* ===== RESET / BASE ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
 body{
   font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--ink);
-  background: radial-gradient(1200px 1200px at 20% -10%, #171a22 0%, #0b0c10 55%, #06080e 100%);
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  background:var(--white);
+  color:var(--green);
 }
-/* Big heading for the policy section */
-.policy .section-head{
-  font-size: clamp(32px, 4.6vw, 56px);
-  line-height: 1.1;
-  font-weight: 900;
-  margin: 0 0 12px;
-  color: #fff;           /* keep white on your dark background */
-  letter-spacing: .02em;
-}
-/* Hide the old tiny kicker if you still have one anywhere */
-.policy .kicker{ display:none; }
 
-/* ===== Layout helpers ===== */
+/* Links */
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Containers */
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
-.section{padding:64px 0}
-.section.tight{padding:42px 0}
-.h1{font-size:54px;line-height:1.05;font-weight:900;letter-spacing:.2px;margin:12px 0 12px}
-.h2{font-size:38px;line-height:1.15;font-weight:900;margin:0 0 14px}
-.h3{font-size:26px;font-weight:800;margin:0 0 8px}
-.lead{font-size:22px;line-height:1.5;color:var(--muted)}
-.kicker{font-weight:900;letter-spacing:.2em;color:#9ee6d3;text-transform:uppercase;font-size:12px}
+.section{padding:56px 0}
+.section.tight{padding:36px 0}
 
-/* ===== Buttons ===== */
-.btn{
-  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
-  border:1px solid var(--line);border-radius:16px;padding:16px 22px;font-weight:800;
-  text-decoration:none;white-space:nowrap;background:#000;color:#fff;
-  box-shadow:var(--shadow);transition:.15s transform, .15s background;
+/* Headings */
+.h1{font-weight:900;letter-spacing:.2px;font-size:clamp(32px,5.0vw,56px);line-height:1.08;color:var(--green)}
+.h2{font-weight:900;font-size:clamp(24px,3.4vw,40px);line-height:1.15;color:var(--green);margin:0 0 12px}
+.h3{font-weight:800;font-size:22px;color:var(--green);margin:0 0 8px}
+.lead{font-size:18px;line-height:1.55;color:var(--green)}
+
+/* ===== NAV (right hamburger) ===== */
+.nav{
+  position:fixed;inset:0 auto auto 0;right:0;height:64px;z-index:70;
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:0 18px;background:var(--mint); border-bottom:2px solid var(--green);
 }
-.btn:active{transform:translateY(1px)}
-.btn.primary{background:#000}
-.btn.primary:hover{background:#15171c}
-.btn.light{background:#0e0f12}
-.btn.light:hover{background:#171a22}
+.hamburger{
+  width:42px;height:42px;padding:8px;border-radius:10px;border:2px solid var(--green);
+  background:var(--white); display:grid;place-items:center;gap:6px;cursor:pointer;
+}
+.hamburger span{width:22px;height:2px;background:var(--green);display:block;border-radius:2px}
+
+/* Drawer */
+.drawer{position:fixed;inset:0;display:none;z-index:80;background:var(--mint);border-top:2px solid var(--green)}
+.drawer.open{display:block}
+.drawer-box{max-width:820px;margin:90px auto 0;padding:0 20px;display:grid;gap:16px}
+.drawer-box a{
+  display:block;text-align:center;padding:18px;border-radius:18px;
+  background:var(--white);border:2px solid var(--green);color:var(--green);
+  font-size:clamp(18px,3.2vw,28px);font-weight:900;text-decoration:none;
+}
+.drawer-box a:hover{background:var(--mint)}
+
+/* ===== TICKER ===== */
+.ticker{position:sticky;top:64px;z-index:65;background:var(--mint);border-top:2px solid var(--green);border-bottom:2px solid var(--green);overflow:hidden;margin-bottom:14px}
+.ticker .belt{display:flex;gap:30px;white-space:nowrap;padding:8px 12px;width:max-content;animation:t-move 32s linear infinite}
+.ticker .msg{flex:0 0 auto;font-weight:900;font-size:clamp(12px,1.35vw,18px);color:var(--green)}
+@keyframes t-move{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:900; padding:14px 20px; border-radius:18px; border:2px solid var(--green);
+  text-decoration:none; white-space:nowrap;
+}
+.btn.brand{background:var(--green);color:var(--white)}
+.btn.ghost{background:var(--white);color:var(--green)}
+.btn.brand:hover{opacity:.9}
+.btn.ghost:hover{background:var(--mint)}
 
 /* ===== HERO ===== */
-.hero{
-  position:relative; overflow:hidden; padding:64px 0 26px;
-  background:linear-gradient(180deg,#0c0e13 0%, #0b0c10 70%, #0b0c10 100%);
-}
-.hero-grid{display:grid;gap:24px;grid-template-columns:1.15fr .85fr;align-items:center}
+.hero{padding-top:94px; background:var(--white); border-bottom:2px solid var(--green)}
+.hero-grid{display:grid;gap:24px;grid-template-columns:1.05fr .95fr;align-items:center}
 @media (max-width:1000px){ .hero-grid{grid-template-columns:1fr} }
-.hero .cta-row{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap}
-.hero img{width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);object-fit:cover}
+.hero img{width:100%;height:auto;border-radius:18px;border:2px solid var(--green);background:var(--white)}
 
-/* ===== Feature strip (mono pills) ===== */
-.features-strip{background:#0e0f12;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+/* ===== FEATURE STRIP ===== */
+.features-strip{background:var(--mint);border-top:2px solid var(--green);border-bottom:2px solid var(--green)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media (max-width:1000px){ .fgrid{grid-template-columns:1fr} }
-.fcard{background:#0e0f12;border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;box-shadow:var(--shadow)}
-.f-ic{
-  width:72px;height:72px;border-radius:999px;display:grid;place-items:center;
-  background:#12151c;color:#fff;font-size:30px;border:1px solid var(--line)
-}
-.fcard p{color:var(--muted)}
+.fcard{background:var(--white);border:2px solid var(--green);border-radius:18px;padding:18px;display:grid;grid-template-columns:60px 1fr;gap:14px;align-items:center}
+.f-ic{width:60px;height:60px;border-radius:999px;display:grid;place-items:center;background:var(--mint);color:var(--green);font-size:26px;border:2px solid var(--green)}
 
-
-/* ==== Centered headings + yellow underline in WHY DIFFERENT ==== */
-.policy .wrap { text-align: center; }
-
-.policy .section-head{
-  font-size: clamp(28px, 4.2vw, 48px);
-  line-height: 1.05;
-  font-weight: 900;
-  margin: 0 0 8px;
-  color:#fff;
-  letter-spacing:.02em;
+/* ===== COURSES (cards) ===== */
+.courses-dark{background:var(--white)}
+.title .mark{color:var(--green);position:relative}
+.title .mark::after{
+  content:"";display:block;height:8px;border-radius:6px;background:var(--mint);margin-top:6px
 }
-
-#policy-title{
-  position: relative;
-  display:inline-block;           /* needed to center underline */
-  margin: 6px auto 18px;
-  padding-bottom: 6px;
-  font-size: clamp(18px, 2.0vw, 28px);
-  font-weight: 900;
-  color:#ffd54a;
-}
-
-/* yellow gradient bar under the h3 */
-#policy-title::after{
-  content:"";
-  display:block;
-  height:8px;
-  width:min(520px, 90%);
-  margin:8px auto 0;
-  border-radius:6px;
-  background:linear-gradient(90deg,#ffc46b,#ff9b3d 60%,#ff8b3a);
-}
-
-/* keep cards/text below left-aligned */
-.policy .grid,
-.policy .item { text-align: left; }
-
-/* Why IITuitions heading block */
-/* Why IITuitions case study block */
-.why-casestudy{padding:18px 0 40px}
-
-.cs-wrap{
-  max-width:1200px;margin:0 auto;padding:0 20px;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch;
-}
-@media (max-width:1000px){ .cs-wrap{grid-template-columns:1fr;gap:16px} }
-.cs-img img{
-  width:100%;height:100%;object-fit:cover;border-radius:24px;
-  border:1px solid var(--line);box-shadow:var(--shadow);
-}
-.cs-card{
-  background:#0e0f12;border:1px solid var(--line);border-radius:24px;
-  padding:24px;box-shadow:var(--shadow);color:#e6ebf3;
-  display:flex;flex-direction:column;gap:12px
-}
-.cs-pill{
-  align-self:flex-start;background:#122018;border:1px solid rgba(255,255,255,.18);
-  color:#bff3d5;padding:8px 12px;border-radius:999px;font-weight:800;font-size:14px
-}
-.cs-title{margin:0;color:#fff;font-size:clamp(20px,2.6vw,28px);line-height:1.25}
-.cs-text{margin:0;color:#cfd7e2;font-size:18px;line-height:1.55}
-
-.why-intro{
-  text-align:center;
-  padding: 18px 0 10px;         /* tight, like your screenshot */
-}
-.why-title{
-  font-size: clamp(34px, 5.2vw, 64px);
-  font-weight: 900;
-  line-height: 1.05;
-  margin: 0 0 10px;
-  color:#fff;
-}
-.why-sub{
-  max-width: 1000px;
-  margin: 0 auto;
-  font-size: clamp(16px, 2.2vw, 24px);
-  line-height: 1.45;
-  color:#dbe2ea;
-}
-
-/* ===== Courses (dark cards like your image #2) ===== */
-.courses-dark{background:#06080e}
-.courses-dark .title{
-  display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:18px
-}
-.courses-dark .title h2{font-size:48px;margin:0}
-.courses-dark .title .mark{
-  position:relative;color:#ff9b3d;font-weight:900
-}
-.courses-dark .title .mark::after{
-  content:""; position:absolute; left:0; right:0; bottom:-6px; height:10px;
-  background: linear-gradient(90deg,#ffc46b,#ff9b3d 60%,#ff8b3a);
-  opacity:.7; border-radius:6px;
-}
-.dark-rail{
-  background:#070a10;border:1px solid var(--line);
-  border-radius:30px;padding:24px;box-shadow:var(--shadow)
-}
-.dark-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:22px
-}
+.dark-rail{background:var(--mint);border:2px solid var(--green);border-radius:26px;padding:22px}
+.dark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media (max-width:1100px){ .dark-grid{grid-template-columns:1fr} }
-.dark-card{
-  background:#0e0f12;border:1px solid var(--line);border-radius:24px;padding:22px;color:#e8ecf2;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), var(--shadow)
-}
-.dark-card .icon{
-  width:64px;height:64px;border-radius:999px;display:grid;place-items:center;font-size:26px;margin-bottom:8px;
-  background: radial-gradient(100% 100% at 30% 20%, #2b2b2b 0%, #181a1f 60%, #101216 100%);
-  border:1px solid var(--line)
-}
-.dark-card h3{margin:8px 0 8px;font-size:26px;color:#fff}
-.dark-card p{margin:0 0 10px;color:#cfd6df}
-.points{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
-.points li{display:flex;gap:12px;align-items:flex-start}
-.points li::before{
-  content:""; width:10px;height:10px;border-radius:50%;
-  margin-top:.55em;background:var(--accent); box-shadow:0 0 0 3px rgba(6,214,160,.18)
-}
-.k{color:#ffd54a;font-weight:900}
-.v{color:#e8ecf2}
-/* Left-bottom WhatsApp emoji button */
-/* circular WhatsApp FAB, bottom-right, soft white drop shadow */
-/* OVERRIDE: round WhatsApp button on the LEFT; chat pill stays RIGHT */
-.whatsapp{ right:16px; z-index:60; }  /* pill on right as usual */
+.dark-card{background:var(--white);border:2px solid var(--green);border-radius:18px;padding:18px;color:var(--green)}
+.dark-card .icon{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;font-size:24px;margin-bottom:8px;background:var(--mint);border:2px solid var(--green)}
+.points{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.points li{display:flex;gap:10px;align-items:flex-start}
+.points li::before{content:"•";font-weight:900;color:var(--green)}
 
-.wa-fab{
-  left:18px; right:auto; bottom:18px; z-index:55;
-  width:60px;height:60px;border-radius:50%;
-  display:grid;place-items:center;text-decoration:none;border:none;box-shadow:none;
-  background:
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>') center/52% no-repeat,
-    radial-gradient(100% 100% at 30% 20%, #28e06b 0%, #25D366 60%, #1db955 100%) no-repeat;
-}
-.wa-fab::after{
-  content:"";position:absolute;left:14%;right:14%;bottom:-10px;height:18px;
-  border-radius:100px;
-  background:radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 70%);
-  filter:blur(6px);pointer-events:none;
-}
+/* ===== WHY INTROS / CASE STUDY ===== */
+.why-intro{padding:24px 0 10px;text-align:center}
+.why-title{font-weight:900;font-size:clamp(28px,5.2vw,56px);color:var(--green);margin:0 0 6px}
+.why-sub{max-width:1000px;margin:0 auto;font-size:clamp(16px,2.2vw,22px);color:var(--green)}
+.why-casestudy{padding:18px 0 40px}
+.cs-wrap{max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:stretch}
+@media (max-width:1000px){ .cs-wrap{grid-template-columns:1fr} }
+.cs-img img{width:100%;height:100%;object-fit:cover;border-radius:20px;border:2px solid var(--green);background:var(--white)}
+.cs-card{background:var(--mint);border:2px solid var(--green);border-radius:20px;padding:18px;color:var(--green);display:flex;flex-direction:column;gap:10px}
+.cs-pill{align-self:flex-start;background:var(--white);border:2px solid var(--green);color:var(--green);padding:6px 10px;border-radius:999px;font-weight:900;font-size:12px}
 
+/* ===== POLICY (WHY DIFFERENT) ===== */
+.policy{padding:36px 0 24px}
+.policy .wrap{max-width:1000px;margin:0 auto;text-align:center}
+.policy .section-head{font-weight:900;font-size:clamp(28px,4.2vw,48px);color:var(--green);margin:0 0 6px}
+#policy-title{display:inline-block;margin:6px auto 16px;padding-bottom:6px;font-size:clamp(16px,2.0vw,22px);font-weight:900;color:var(--green)}
+#policy-title::after{content:"";display:block;height:8px;width:min(520px,90%);margin:8px auto 0;border-radius:6px;background:var(--mint)}
+.policy .grid{display:grid;gap:14px;margin-top:12px;text-align:left}
+@media (min-width:900px){ .policy .grid{grid-template-columns:1fr 1fr} }
+.item{display:grid;grid-template-columns:56px 1fr;gap:12px;background:var(--white);border:2px solid var(--green);border-radius:14px;padding:14px;align-items:center}
+.ic{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;background:var(--mint);border:2px solid var(--green);font-size:22px}
+.title{font-weight:900;font-size:18px;color:var(--green);margin-bottom:4px}
+.text{color:var(--green);line-height:1.55}
+.pill{display:inline-block;font-size:11px;font-weight:900;padding:4px 8px;border-radius:999px;margin-left:6px;border:2px solid var(--green);background:var(--mint);color:var(--green)}
 
-/* soft white ellipse shadow like your ref image */
-
-
-
-
-/* ===== WHY DIFFERENT (policy) ===== */
-.policy{ padding:36px 0 24px }
-.policy .wrap{ max-width:1000px; margin:0 auto }
-.policy h3{margin:8px 0 12px; font-size:40px; line-height:1.2}
-.policy p.lead{ color:var(--muted) }
-.grid{display:grid;gap:16px;margin-top:14px}
-@media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
-.item{
-  display:grid; grid-template-columns:56px 1fr; gap:12px;
-  background:#0e0f12; border:1px solid var(--line);
-  border-radius:14px; padding:16px; align-items:center; box-shadow:var(--shadow)
-}
-.ic{ width:56px; height:56px; border-radius:999px; display:grid; place-items:center;
-  background:#12151c; border:1px solid var(--line); font-size:24px }
-.title{ font-weight:900; font-size:18px; color:#fff; margin-bottom:4px }
-.text{ color:#e2e8f0; opacity:.92; line-height:1.55 }
-.pill{
-  display:inline-block; font-size:11px; font-weight:900; letter-spacing:.2px;
-  padding:4px 8px; border-radius:999px; margin-left:6px;
-  border:1px solid var(--line); color:#0b1220; background:var(--pill);
-}
-/* keep the text pill visible – move it left to make space for the round FAB */
-
-
-/* fix the FAB icon + keep it on the right edge */
-.wa-fab{
-  right:18px;                 /* stick to right side */
-  bottom:18px;
-  z-index:55;
-  width:60px;height:60px;border-radius:50%;
-  display:grid;place-items:center;text-decoration:none;border:none;box-shadow:none;
-  /* IMPORTANT: SVG first so it sits ON TOP of the gradient */
-  background:
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>') center/52% no-repeat,
-    radial-gradient(100% 100% at 30% 20%, #28e06b 0%, #25D366 60%, #1db955 100%) no-repeat;
-}
-
-/* soft white ellipse shadow under the round button */
-
-
-/* fix the FAB icon + keep it on the right edge */
-
-
-/* soft white ellipse shadow under the round button */
-
-
-
-/* ===== Tutor Jobs CTA (mono) ===== */
-.jobs{
-  position:relative;background:url('https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-}
-.jobs .veil{
-  background:rgba(10,11,14,.62);backdrop-filter:saturate(120%) blur(2px);
-  border-radius:26px;border:1px solid rgba(255,255,255,.2);
-  box-shadow:0 24px 70px rgba(0,0,0,.55);
-  padding:28px 32px;text-align:center;color:#fff;max-width:760px;margin:0 auto
-}
-
-/* ===== How it works ===== */
-.hiw .stepgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+/* ===== HOW IT WORKS ===== */
+.hiw .stepgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 @media (max-width:1000px){ .hiw .stepgrid{grid-template-columns:1fr} }
-.step{
-  background:#0e0f12;color:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);text-align:center
-}
-.step .ic{font-size:44px;margin:6px 0 10px}
-.step p{color:#d9e1ec}
-/* ===== Success Formula ===== */
-.formula{padding:48px 0}
+.step{background:var(--white);color:var(--green);border:2px solid var(--green);border-radius:18px;padding:18px;text-align:center}
+.step .ic{font-size:40px;margin:4px 0 8px}
+
+/* ===== SUCCESS FORMULA ===== */
 .formula .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
-.formula h2{margin:0 0 20px;text-align:center;font-size:clamp(28px,3.8vw,44px)}
-.formula .list{display:grid;gap:18px}
-.formula .card{
-  display:grid;grid-template-columns:72px 1fr;align-items:center;
-  background:#0e0f12;border:1px solid var(--line);border-radius:20px;
-  padding:18px 20px;box-shadow:var(--shadow)
-}
-.formula .n{
-  width:56px;height:56px;border-radius:999px;display:grid;place-items:center;
-  font-weight:900;font-size:22px;color:#0b0c10;background:#ffd54a;
-  box-shadow:inset 0 0 0 3px rgba(0,0,0,.08)
-}
-.formula .ttl{margin:0;font-size:22px;font-weight:900;color:#fff}
-.formula .sub{margin:4px 0 0;color:#cfd7e2;font-size:18px;line-height:1.5}
+.formula h2{text-align:center}
+.formula .list{display:grid;gap:14px}
+.formula .card{display:grid;grid-template-columns:62px 1fr;align-items:center;background:var(--white);border:2px solid var(--green);border-radius:18px;padding:14px}
+.formula .n{width:50px;height:50px;border-radius:999px;display:grid;place-items:center;font-weight:900;font-size:20px;color:var(--white);background:var(--green)}
+.formula .ttl{margin:0;font-size:20px;font-weight:900;color:var(--green)}
+.formula .sub{margin:4px 0 0;color:var(--green);font-size:16px;line-height:1.45}
 
-
-
-
-
-
-/* ===== Testimonials ===== */
-.testi .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+/* ===== TESTIMONIALS ===== */
+.testi .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media (max-width:1000px){ .testi .grid{grid-template-columns:1fr} }
-.tcard{
-  background:#0e0f12;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);color:#e8ecf2
-}
-.stars{color:#f59e0b;letter-spacing:2px;margin:6px 0 10px}
+.tcard{background:var(--white);border:2px solid var(--green);border-radius:18px;padding:18px;color:var(--green)}
+.stars{letter-spacing:2px;margin:6px 0 10px;color:var(--green)}
 
-/* ===== Footer ===== */
-.footer{background:#0e0f12;color:#e9eef7;padding:36px 0 14px;border-top:1px solid var(--line)}
-.foot-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr 1.1fr;gap:26px}
+/* ===== FOOTER ===== */
+.footer{background:var(--mint);color:var(--green);padding:32px 0 14px;border-top:2px solid var(--green)}
+.foot-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr 1.1fr;gap:20px}
 @media (max-width:1000px){ .foot-grid{grid-template-columns:1fr} }
-.footer h4{margin:0 0 10px;color:#fff}
-.footer a{color:#cfe6ff;text-decoration:none}
-.footer a:hover{text-decoration:underline}
-.copy{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#bcc6d6}
+.footer h4{margin:0 0 10px;color:var(--green)}
+.copy{border-top:2px solid var(--green);margin-top:16px;padding-top:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--green)}
 
-/* ===== Floating WhatsApp ===== */
+/* ===== FLOATING WHATSAPP ===== */
 .whatsapp{
   position:fixed;right:16px;bottom:16px;z-index:50;
-  display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;
-  padding:12px 14px;border-radius:999px;border:1px solid var(--line);box-shadow:var(--shadow);text-decoration:none;font-weight:800
+  display:inline-flex;align-items:center;gap:10px;background:var(--green);color:var(--white);
+  padding:12px 16px;border-radius:999px;border:2px solid var(--green);text-decoration:none;font-weight:900
 }
 
-/* responsive heading sizes */
-@media (max-width:780px){
-  .h1{font-size:42px}
-  .h2{font-size:30px}
-}
-</style>
-  /* ======== 3-COLOR THEME OVERRIDES ======== */
-/* Colors allowed: #33A69B (dark green), #ECFFFC (light green), #FFFFFF (white) */
-
-:root{
-  --bg:#FFFFFF;
-  --panel:#ECFFFC;
-  --panel-2:#ECFFFC;
-  --ink:#33A69B;
-  --muted:#33A69B;
-  --line: rgba(51,166,155,.35);         /* same green, translucent */
-  --pill:#33A69B;
-  --accent:#33A69B;
-  --shadow: 0 10px 24px rgba(51,166,155,.20);
-}
-
-/* Page */
-body{
-  color:var(--ink);
-  background:#FFFFFF;
-}
-
-/* Top bar */
-.nav{
-  background: rgba(51,166,155,.10);
-  backdrop-filter:none;
-  border-bottom:1px solid var(--line);
-}
-.hamburger span{ background:#33A69B; }
-.hamburger:hover{ background:rgba(51,166,155,.12); }
-.hamburger:focus{ outline:2px solid #33A69B; }
-
-/* Full-screen drawer */
-.drawer{ background: rgba(51,166,155,.18); }
-.drawer-box a{
-  background:#FFFFFF;
-  border:1px solid var(--line);
-  color:#33A69B;
-}
-.drawer-box a:hover{ background:#ECFFFC; }
-
-/* Ticker */
-.ticker{
-  background:#ECFFFC;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-}
-.ticker .msg{ color:#33A69B; }
-
-/* Buttons */
-.btn{
-  background:#33A69B;
-  color:#FFFFFF;
-  border:0;
-  box-shadow:var(--shadow);
-}
-.btn.primary,
-.btn.light{ background:#33A69B; color:#FFFFFF; }
-.btn:hover{ transform:translateY(-1px); }
-
-/* Hero */
-.hero{
-  background: linear-gradient(180deg,#ECFFFC 0%, #FFFFFF 100%);
-}
-.lead{ color:#33A69B; }
-
-/* Feature strip & cards */
-.features-strip{ background:#ECFFFC; border-color:var(--line); }
-.fcard{
-  background:#FFFFFF; border:1px solid var(--line);
-  color:#33A69B;
-}
-.f-ic{ background:#ECFFFC; color:#33A69B; border:1px solid var(--line); }
-
-/* Courses */
-.courses-dark{ background:#ECFFFC; }
-.dark-rail{ background:#FFFFFF; border:1px solid var(--line); }
-.dark-grid{}
-.dark-card{
-  background:#FFFFFF; border:1px solid var(--line); color:#33A69B;
-  box-shadow:var(--shadow);
-}
-.dark-card .icon{
-  background:#ECFFFC; color:#33A69B; border:1px solid var(--line);
-}
-.points li::before{
-  background:#33A69B; box-shadow:0 0 0 3px rgba(51,166,155,.18);
-}
-.k{ color:#33A69B; }
-.v{ color:#33A69B; }
-
-/* Why IITuitions */
-.why-intro{ color:#33A69B; }
-.why-title{ color:#33A69B; }
-.why-sub{ color:#33A69B; }
-
-/* Case study */
-.cs-card{
-  background:#FFFFFF; color:#33A69B; border:1px solid var(--line);
-}
-.cs-pill{
-  background:#ECFFFC; color:#33A69B; border:1px solid var(--line);
-}
-.cs-title{ color:#33A69B; }
-.cs-text{ color:#33A69B; }
-
-/* Policy section */
-.policy{ background:#FFFFFF; color:#33A69B; }
-.policy .section-head{ color:#33A69B; }
-#policy-title{ color:#33A69B; }
-#policy-title::after{
-  background: linear-gradient(90deg,#33A69B,#33A69B);
-}
-
-/* Jobs CTA */
-.jobs{
-  background:#ECFFFC !important;  /* remove photo */
-}
-.jobs .veil{
-  background:#FFFFFF; color:#33A69B;
-  border:1px solid var(--line);
-}
-.jobs .btn{ background:#33A69B; color:#FFFFFF; }
-
-/* How it works */
-.step{
-  background:#FFFFFF; color:#33A69B; border:1px solid var(--line);
-}
-.step p{ color:#33A69B; }
-
-/* Success Formula */
-.formula{ background:#ECFFFC; color:#33A69B; }
-.formula .card{
-  background:#FFFFFF; border:1px solid var(--line);
-}
-.formula .n{
-  background:#33A69B; color:#FFFFFF; box-shadow:none;
-}
-
-/* Testimonials */
-.testi .grid{}
-.tcard{
-  background:#FFFFFF; border:1px solid var(--line); color:#33A69B;
-}
-.stars{ color:#33A69B; }
-
-/* Footer */
-.footer{
-  background:#FFFFFF; color:#33A69B; border-top:1px solid var(--line);
-}
-.footer a{ color:#33A69B; }
-.copy{ border-top:1px solid var(--line); color:#33A69B; }
-
-/* WhatsApp elements */
-.whatsapp{
-  background:#33A69B; color:#FFFFFF; border:0; box-shadow:var(--shadow);
-}
+/* Round floating WA button (drag code kept) */
 .wa-fab{
-  background:#33A69B !important;
-  box-shadow:var(--shadow);
+  position:fixed;right:18px;bottom:18px;z-index:90;width:60px;height:60px;border-radius:50%;
+  display:grid;place-items:center;background:var(--green);border:2px solid var(--green);
+  text-decoration:none;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M19.11 17.48c-.28-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.6.15-.18.28-.69.9-.85 1.08-.16.18-.31.2-.59.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.46.14-.15.18-.25.28-.43.09-.18.05-.33-.02-.46-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.46h-.51c-.16 0-.43.06-.65.3-.22.23-.86.84-.86 2.05s.88 2.38 1.01 2.55c.12.18 1.74 2.66 4.2 3.73.59.26 1.05.41 1.41.53.59.19 1.12.16 1.55.1.47-.07 1.63-.66 1.86-1.3.23-.64.23-1.19.16-1.3-.07-.11-.25-.18-.53-.32z"/><path d="M27 14.53c0-6.82-5.53-12.35-12.35-12.35S2.29 7.71 2.29 14.53c0 2.16.57 4.2 1.56 5.96L2 30l9.7-1.56a12.26 12.26 0 0 0 5.95 1.53C21.47 30 27 23.35 27 16.53zm-12.35 11c-2.06 0-3.98-.62-5.6-1.69l-.4-.26-5.75.93.94-5.6-.26-.41a11.04 11.04 0 1 1 11.07 7.03z"/></svg>');
+  background-repeat:no-repeat;background-position:center;background-size:52%;
 }
-.wa-fab::after{ display:none; }
-
-/* Images: add soft mint frame so they sit in white theme */
-.hero img, .cs-img img{
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-  background:#ECFFFC;
-  border-radius:18px;
-}
-
+.wa-fab.dragging{cursor:grabbing}
+</style>
 </head>
+
 <body>
+  <!-- NAV -->
   <header class="nav">
-    <!-- (optional) logo can go in .brand -->
     <a class="brand" href="index.html" aria-label="IITuitions Home"></a>
-  
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </header>
-  
+
+  <!-- DRAWER -->
   <nav class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer-box">
       <a href="index.html">🏠 Home</a>
@@ -580,373 +198,229 @@ body{
     </div>
   </nav>
 
+  <!-- TICKER -->
   <section class="ticker" aria-label="Headline">
     <div class="belt">
-      <div class="msg">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</div>
-      <div class="msg" aria-hidden="true">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan ✅ — Where Every Child Learns Their Way</div>
+      <div class="msg">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan — Where Every Child Learns Their Way</div>
+      <div class="msg" aria-hidden="true">Hyderabad’s Best 1-on-1 Tuition — One Child • One Mentor • One Clear Plan — Where Every Child Learns Their Way</div>
     </div>
   </section>
-  
-  
 
-  <!-- Rolling Headline (news-style ticker) -->
-  <style>
-    .ticker{
-  position:sticky;top:64px;z-index:65;
-  background:rgba(255,255,255,.03);
-  border-top:1px solid rgba(255,255,255,.06);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  overflow:hidden;
-  margin-bottom:14px; /* ADD THIS for gap below the ticker */
-}
-
-    .ticker .belt{
-      display:flex;gap:20px;white-space:nowrap;padding:6px 12px;
-      width:max-content;animation:ticker-move 32s linear infinite;
-    }
-    .ticker .msg{
-      flex:0 0 auto;font-weight:900;
-      font-size:clamp(12px,1.35vw,18px);
-      color:#fff;letter-spacing:.01em;
-    }
-    @keyframes ticker-move{
-      0%{transform:translateX(0)}
-      100%{transform:translateX(-50%)}
-    }
-    /* FLOAT/DRAG settings for the round WhatsApp button */
-.wa-fab{
-  position:fixed;           /* stays on screen while scrolling  */
-  left:18px; bottom:18px;   /* start on the left                 */
-  z-index:90;               /* above footer & cards              */
-  cursor:grab;              /* shows draggable hand              */
-  user-select:none;
-  touch-action:none;        /* avoids page scroll while dragging */
-  box-shadow:0 10px 24px rgba(0,0,0,.35); /* subtle lift shadow */
-}
-.wa-fab.dragging{ cursor:grabbing; }
-
-  </style>
-  
-
-
-
-  
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      
-      <h1 class="h1">Best Home Tuitions in Hyderabad</h1>
-      <p class="lead">Home Tuitions in Hyderabad offering personalized learning, expert tutors, and guaranteed academic success.</p>
-      <div class="cta-row">
-        <a class="btn brand" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20I%20want%20a%20free%20demo">Book Free Demo →</a>
-        <a class="btn ghost" href="register.html">Join as Tutor 👩‍🏫</a>
-      </div>
-      
-    </div>
-
-    <div aria-hidden="true">
-      <img alt="" src="https://images.unsplash.com/photo-1584697964353-582cde1a27c5?q=80&w=1400&auto=format&fit=crop">
-    </div>
-  </div>
-</section>
-
-<!-- ===== Feature strip ===== -->
-<section class="features-strip section tight">
-  <div class="container fgrid">
-    <div class="fcard">
-      <div class="f-ic">📅</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
       <div>
-        <div class="h3">Flexible Classes</div>
-        <p>In-home tutoring sessions with flexible scheduling compatible with USA/UK/INDIA/AUSTRALIA Timings.</p>
+        <h1 class="h1">Best Home Tuitions in Hyderabad</h1>
+        <p class="lead">Home Tuitions in Hyderabad offering personalized learning, expert tutors, and steady academic progress.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+          <a class="btn brand" href="https://wa.me/919010031000?text=Hi%20IITuitions%2C%20I%20want%20a%20free%20demo">Book Free Demo →</a>
+          <a class="btn ghost" href="register.html">Join as Tutor 👩‍🏫</a>
+        </div>
+      </div>
+      <div aria-hidden="true">
+        <img alt="" src="https://images.unsplash.com/photo-1584697964353-582cde1a27c5?q=80&w=1400&auto=format&fit=crop">
       </div>
     </div>
-    <div class="fcard">
-      <div class="f-ic">💻</div>
-      <div>
-        <div class="h3">Online / Offline Modes</div>
-        <p>We offer both online and offline mode tutoring for students.</p>
-      </div>
-    </div>
-    <div class="fcard">
-      <div class="f-ic">🧑‍👦</div>
-      <div>
-        <div class="h3">Parent Choice</div>
-        <p>Parent can choose male and female tutors depending on their convenience.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== Courses (dark) — PLACE THIS BEFORE POLICY ===== -->
-<section class="courses-dark section" id="courses">
-  <div class="container">
-    <div class="title">
-      <h2 class="h2" style="font-size:48px">Courses <span class="mark">We Offer</span></h2>
+  <!-- FEATURES -->
+  <section class="features-strip section tight">
+    <div class="container fgrid">
+      <div class="fcard">
+        <div class="f-ic">📅</div>
+        <div>
+          <div class="h3">Flexible Classes</div>
+          <p class="lead">In-home sessions with scheduling that works for you.</p>
+        </div>
+      </div>
+      <div class="fcard">
+        <div class="f-ic">💻</div>
+        <div>
+          <div class="h3">Online / Offline Modes</div>
+          <p class="lead">Pick live online or home tutoring — switch anytime.</p>
+        </div>
+      </div>
+      <div class="fcard">
+        <div class="f-ic">🧑‍👦</div>
+        <div>
+          <div class="h3">Parent Choice</div>
+          <p class="lead">Choose tutors by subject, approach, and availability.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="dark-rail">
-      <div class="dark-grid">
-        <!-- Card 1 -->
-        <article class="dark-card">
-          <div class="icon">🎯</div>
-          <h3>JEE Main & Advanced</h3>
-          <p>One mentor teaches your child 1-on-1. Board syllabus and JEE prep move together, so concepts stay strong and marks keep improving.</p>
-          <ul class="points">
-            <li><span class="k">Personal IIT/NIT mentor:</span>&nbsp;<span class="v">simple weekly plan + a small “mistake list” we fix every week.</span></li>
-            <li><span class="k">Past JEE papers, the right way:</span>&nbsp;<span class="v">how to write steps so examiners give full marks.</span></li>
-            <li><span class="k">Weekly mock + WhatsApp update:</span>&nbsp;<span class="v">topics covered, scores, and next week’s plan.</span></li>
-          </ul>
+  <!-- COURSES -->
+  <section class="courses-dark section" id="courses">
+    <div class="container">
+      <div class="title">
+        <h2 class="h2">Courses <span class="mark">We Offer</span></h2>
+      </div>
+
+      <div class="dark-rail">
+        <div class="dark-grid">
+          <article class="dark-card">
+            <div class="icon">🎯</div>
+            <h3 class="h3">JEE Main & Advanced</h3>
+            <p>One mentor teaches 1-on-1. Board syllabus and JEE prep move together for strong concepts and steady marks.</p>
+            <ul class="points">
+              <li><strong>Personal IIT/NIT mentor:</strong>&nbsp;weekly plan + short “mistake list”.</li>
+              <li><strong>Past papers, the right way:</strong>&nbsp;stepwise answers for full marks.</li>
+              <li><strong>Weekly mock + update:</strong>&nbsp;coverage, scores, next plan.</li>
+            </ul>
+          </article>
+
+          <article class="dark-card">
+            <div class="icon">🩺</div>
+            <h3 class="h3">NEET-UG</h3>
+            <p>NCERT-first 1-on-1 coaching focused on recall and application in Bio, Chem, and Physics.</p>
+            <ul class="points">
+              <li><strong>NCERT line-by-line:</strong>&nbsp;high-yield diagrams & quick recalls.</li>
+              <li><strong>Timed practice sets:</strong>&nbsp;simple speed/accuracy targets.</li>
+              <li><strong>Weekly update:</strong>&nbsp;coverage, accuracy %, next focus.</li>
+            </ul>
+          </article>
+
+          <article class="dark-card">
+            <div class="icon">🏠💻</div>
+            <h3 class="h3">Tuitions (Grades 1–12)</h3>
+            <p>Home tutor at your doorstep or live 1-on-1 online — same mentor quality and weekly updates.</p>
+            <p style="font-weight:800;margin:6px 0">CBSE • ICSE • Cambridge (IGCSE & A Levels) • State (TS/AP)</p>
+            <ul class="points">
+              <li><strong>Syllabus-aligned plan:</strong>&nbsp;micro-tests + recap sheets.</li>
+              <li><strong>Past-paper style answers:</strong>&nbsp;neat long answers for marks.</li>
+              <li><strong>Switch mentor anytime:</strong>&nbsp;we change if the fit isn’t perfect.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY INTRO + CASE -->
+  <section class="why-intro container" id="why-intro">
+    <h2 class="why-title">Why IITuitions?</h2>
+    <p class="why-sub">Real mentors, real outcomes — with weekly parent updates.</p>
+  </section>
+
+  <section class="why-casestudy">
+    <div class="cs-wrap">
+      <div class="cs-img">
+        <img src="https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1600&auto=format&fit=crop" alt="Graduate cap" />
+      </div>
+      <aside class="cs-card">
+        <div class="cs-pill">12 weeks • Home Tuition — Kondapur</div>
+        <h3 class="h3">From 62% to 92% in Cambridge Math (Grade 10)</h3>
+        <p>Arjun knew concepts but lost marks on extended-response questions. We mapped gaps to command words, retrained answer framing, and ran 6 targeted micro-tests. Scores stabilized at 85%+ by week 6; final at 92%.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- WHY DIFFERENT -->
+  <section class="policy container section" id="different" aria-labelledby="policy-title">
+    <div class="wrap">
+      <h2 class="section-head">WHY WE ARE DIFFERENT?</h2>
+      <h3 id="policy-title">Parents Have the Right to Change the Tutor.</h3>
+
+      <p class="lead">Our platform connects families with dedicated educators who personalize learning and build confidence.</p>
+
+      <div class="grid" role="list">
+        <article class="item" role="listitem">
+          <div class="ic" aria-hidden="true">🔁</div>
+          <div>
+            <div class="title">Tutor Replacement <span class="pill">Premium = Managed</span></div>
+            <div class="text"><strong>Premium:</strong> If the fit isn’t perfect, we arrange a smooth replacement — no extra fee, no pause. <br><strong>Standard:</strong> Parent coordinates the replacement directly with the tutor.</div>
+          </div>
         </article>
 
-        <!-- Card 2 -->
-        <article class="dark-card">
-          <div class="icon">🩺</div>
-          <h3>NEET-UG</h3>
-          <p>NCERT-first, 1-on-1 coaching that builds strong recall and application in Biology, Chemistry, and Physics.</p>
-          <ul class="points">
-            <li><span class="k">NCERT line-by-line:</span>&nbsp;<span class="v">high-yield diagrams and quick recalls your child won’t forget.</span></li>
-            <li><span class="k">Timed practice sets:</span>&nbsp;<span class="v">OMR practice with simple speed & accuracy targets.</span></li>
-            <li><span class="k">Weekly WhatsApp update:</span>&nbsp;<span class="v">coverage done, accuracy %, and focus for next week.</span></li>
-          </ul>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="dark-card">
-          <div class="icon">🏠💻</div>
-          <h3>Offline & Online Tuitions (Grades 1–12)</h3>
-          <p>Home tutor at your doorstep or live 1-on-1 online — same mentor quality, same weekly parent updates.</p>
-          <p style="color:#d7dde7;font-weight:700">CBSE • ICSE • Cambridge (IGCSE & A Levels) • State (TS/AP)</p>
-          <ul class="points">
-            <li><span class="k">Syllabus-aligned weekly plan:</span>&nbsp;<span class="v">short micro-tests + recap sheet to track progress.</span></li>
-            <li><span class="k">Past-paper style answers:</span>&nbsp;<span class="v">how to write neatly for full marks in long answers.</span></li>
-            <li><span class="k">Switch mentor anytime:</span>&nbsp;<span class="v">if the fit isn’t perfect, we’ll change — no extra fee.</span></li>
-          </ul>
+        <article class="item" role="listitem">
+          <div class="ic" aria-hidden="true">🕑</div>
+          <div>
+            <div class="title">Support & Continuity</div>
+            <div class="text"><strong>Premium:</strong> Weekly plan and mistake list continue seamlessly with the new mentor. <br><strong>Standard:</strong> Onboarding support provided; ongoing adjustments are parent-managed.</div>
+          </div>
         </article>
       </div>
     </div>
-  </div>
-</section>
-<!-- ===== Why IITuitions? (big heading + subhead) ===== -->
-<section class="why-intro container" id="why-intro">
-  <h2 class="why-title">Why IITuitions?</h2>
-  <p class="why-sub">
-    Real mentors, real outcomes — from exam scores to showcase-ready projects,
-    with weekly parent updates.
-  </p>
-</section>
-<section class="why-casestudy">
-  <div class="cs-wrap">
-    <div class="cs-img">
-      <img src="https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1600&auto=format&fit=crop"
-           alt="Graduate cap" />
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="hiw section" id="how">
+    <div class="container">
+      <h2 class="h2" style="text-align:center">How it works</h2>
+      <p style="text-align:center;max-width:820px;margin:6px auto 20px">Schedule a personalised consultation with an expert tutor.</p>
+      <div class="stepgrid">
+        <div class="step"><div class="ic">📝</div><h4 class="h3" style="font-size:20px">Submit Your Request</h4><p>Share requirements to find the right tutor.</p></div>
+        <div class="step"><div class="ic">🏫</div><h4 class="h3" style="font-size:20px">Tutor Matching</h4><p>We match by subject, location, and goals.</p></div>
+        <div class="step"><div class="ic">🔖</div><h4 class="h3" style="font-size:20px">Schedule a Session</h4><p>Pick a convenient slot — home or online.</p></div>
+        <div class="step"><div class="ic">💻</div><h4 class="h3" style="font-size:20px">Start Learning</h4><p>1-on-1 sessions with steady feedback.</p></div>
+      </div>
     </div>
-    <aside class="cs-card">
-      <div class="cs-pill">12 weeks • Home Tuition — Kondapur</div>
-      <h3 class="cs-title">From 62% to 92% in Cambridge Math (Grade 10)</h3>
-      <p class="cs-text">
-        Arjun knew concepts but lost marks on extended-response questions. We mapped gaps
-        to <strong>Cambridge command words</strong> (justify, evaluate), retrained answer
-        framing, and ran 6 targeted micro-tests. Scores stabilized at 85%+ by week 6; final at 92%.
-      </p>
-    </aside>
-  </div>
-</section>
+  </section>
 
+  <!-- SUCCESS FORMULA -->
+  <section class="formula section" id="success-formula">
+    <div class="wrap">
+      <h2 class="h2">Our Success Formula</h2>
+      <div class="list">
+        <article class="card"><div class="n">1</div><div><h4 class="ttl">Free Assessment</h4><p class="sub">Know exactly where your child stands.</p></div></article>
+        <article class="card"><div class="n">2</div><div><h4 class="ttl">Personalized Roadmap</h4><p class="sub">A clear path to score improvement.</p></div></article>
+        <article class="card"><div class="n">3</div><div><h4 class="ttl">1-on-1 Mentorship</h4><p class="sub">Focused sessions — no batches.</p></div></article>
+        <article class="card"><div class="n">4</div><div><h4 class="ttl">Continuous Tracking</h4><p class="sub">Weekly updates and quick corrections.</p></div></article>
+      </div>
+    </div>
+  </section>
 
-<!-- ===== WHY WE ARE DIFFERENT (Policy) ===== -->
-<section class="policy container section" id="different" aria-labelledby="policy-title">
-  <div class="wrap">
-    <h2 class="section-head">WHY WE ARE DIFFERENT?</h2>
-<h3 id="policy-title">Parents Have the Right to Change the Tutor.</h3>
+  <!-- TESTIMONIALS -->
+  <section class="testi section" id="reviews">
+    <div class="container">
+      <h2 class="h2">Client Feedback & Reviews</h2>
+      <div class="grid">
+        <article class="tcard"><div style="font-weight:800">Laxmi Prashanthi • Google</div><div class="stars">★★★★★</div><p>Great experience.</p></article>
+        <article class="tcard"><div style="font-weight:800">Jagadeesh Kantekar • Google</div><div class="stars">★★★★★</div><p>Excellent.</p></article>
+        <article class="tcard"><div style="font-weight:800">Shivaji Kantekar • Google</div><div class="stars">★★★★★</div><p>Knowledgeable, patient, and supportive.</p></article>
+      </div>
+    </div>
+  </section>
 
-    <p class="lead">
-      Our platform connects families with dedicated educators who cater to each child's unique needs, fostering academic growth and confidence. With a focus on quality and customization, we make it easy to create a meaningful and impactful learning experience.
-    </p>
-
-    <div class="grid" role="list">
-      <!-- Item 1 -->
-      <article class="item" role="listitem">
-        <div class="ic" aria-hidden="true">🔁</div>
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="foot-grid">
         <div>
-          <div class="title">
-            Tutor Replacement
-            <span class="pill">Premium = Managed</span>
-          </div>
-          <div class="text">
-            <strong>Premium:</strong> If the fit isn’t perfect, <em>we arrange a smooth replacement</em>—no extra fee, no pause in learning.
-            <br>
-            <strong>Standard:</strong> You’re free to change tutors, but the <em>replacement is coordinated by the parent</em> directly with the tutor.
-          </div>
+          <h4>IITuitions</h4>
+          <p>Helping students achieve strong scores and convert effort into results — since 2010.</p>
         </div>
-      </article>
-
-      <!-- Item 2 -->
-      <article class="item" role="listitem">
-        <div class="ic" aria-hidden="true">🕑</div>
         <div>
-          <div class="title">Support & Continuity</div>
-          <div class="text">
-            <strong>Premium:</strong> Weekly plan, mistake list, and schedule continue seamlessly with the new mentor; quick help on WhatsApp.
-            <br>
-            <strong>Standard:</strong> Onboarding support provided; ongoing adjustments and changes are parent-managed.
-          </div>
+          <h4>Quick Links</h4>
+          <p><a href="#courses">What We Offer</a><br><a href="#reviews">Student Results</a><br><a href="register.html">Register</a></p>
         </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Tutor Jobs CTA ===== -->
-<section class="jobs section" id="jobs" aria-label="Part Home Tutor Jobs">
-  <div class="container">
-    <div class="veil">
-      <h2 class="h2">Part Home Tutor Jobs in Hyderabad</h2>
-      <p class="lead" style="color:#e8fdf8;margin:6px 0 12px">
-        Flexible part-time home tutor jobs in Hyderabad. Teach students, earn well, and make a difference in their learning journey.
-      </p>
-      <!-- changed to register.html -->
-      <a class="btn primary" href="register.html">GET STARTED →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== HOW IT WORKS ===== -->
-<section class="hiw section" id="how">
-  <div class="container">
-    <h2 class="h2" style="text-align:center">How it works</h2>
-    <p style="text-align:center;max-width:820px;margin:6px auto 26px;color:#c9d1dd">
-      Schedule personalized consultations with expert tutors to address your learning needs and achieve academic excellence.
-    </p>
-
-    <div class="stepgrid">
-      <div class="step">
-        <div class="ic">📝</div>
-        <h4 style="margin:4px 0 6px">Submit Your Request</h4>
-        <p>Share your requirements to find the perfect tutor tailored to your needs.</p>
-      </div>
-      <div class="step">
-        <div class="ic">🏫</div>
-        <h4 style="margin:4px 0 6px">Tutor Matching</h4>
-        <p>We match you with qualified tutors based on subject, location, and expertise.</p>
-      </div>
-      <div class="step">
-        <div class="ic">🔖</div>
-        <h4 style="margin:4px 0 6px">Schedule a Session</h4>
-        <p>Coordinate with your chosen tutor for convenient and flexible sessions.</p>
-      </div>
-      <div class="step">
-        <div class="ic">💻</div>
-        <h4 style="margin:4px 0 6px">Start Learning</h4>
-        <p>Begin with verified tutors to achieve your educational goals.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ===== OUR SUCCESS FORMULA ===== -->
-<section class="formula" id="success-formula">
-  <div class="wrap">
-    <h2>Our Success Formula</h2>
-    <div class="list">
-
-      <article class="card">
-        <div class="n">1</div>
         <div>
-          <h4 class="ttl">Free Assessment</h4>
-          <p class="sub">Know exactly where your child stands.</p>
+          <h4>Programs</h4>
+          <p>SAT • IIT/JEE • Math Intensive • Verbal Excellence</p>
         </div>
-      </article>
-
-      <article class="card">
-        <div class="n">2</div>
         <div>
-          <h4 class="ttl">Personalized Roadmap</h4>
-          <p class="sub">Your child’s clear path to score improvement.</p>
+          <h4>Contact Us</h4>
+          <p>📞 <a href="tel:+917207467565">+91 7207467565</a><br>
+             ✉️ <a href="mailto:hello@iituitions.com">hello@iituitions.com</a><br>
+             📍 iiTuitions Hub LLP, Nallagandla, Hyderabad 500019, India</p>
         </div>
-      </article>
-
-      <article class="card">
-        <div class="n">3</div>
-        <div>
-          <h4 class="ttl">1-on-1 Mentorship</h4>
-          <p class="sub">100% focused sessions — no batches, no distractions.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="n">4</div>
-        <div>
-          <h4 class="ttl">Continuous Tracking</h4>
-          <p class="sub">Weekly updates & real-time corrections for steady progress.</p>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===== TESTIMONIALS ===== -->
-<section class="testi section" id="reviews">
-  <div class="container">
-    <div class="kicker">TESTIMONIAL</div>
-    <h2 class="h2">Client Feedback & Reviews</h2>
-    <div class="grid">
-      <article class="tcard">
-        <div style="font-weight:800">Laxmi Prashanthi • <span style="color:#8fb7ff">Google</span></div>
-        <div class="stars">★★★★★</div>
-        <p>Amazing</p>
-      </article>
-      <article class="tcard">
-        <div style="font-weight:800">Jagadeesh Kantekar • <span style="color:#8fb7ff">Google</span></div>
-        <div class="stars">★★★★★</div>
-        <p>Excellent</p>
-      </article>
-      <article class="tcard">
-        <div style="font-weight:800">Shivaji Kantekar • <span style="color:#8fb7ff">Google</span></div>
-        <div class="stars">★★★★★</div>
-        <p>Knowledgeable, patient, and truly care about students’ success.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer" id="contact">
-  <div class="container">
-    <div class="foot-grid">
-      <div>
-        <h4>IITuitions</h4>
-        <p>Helping students achieve <strong>1500+ SAT</strong> scores and helping IIT aspirants convert effort into ranks — since 2010.</p>
       </div>
-      <div>
-        <h4>Quick Links</h4>
-        <p><a href="#courses">What We Offer</a><br><a href="#reviews">Student Results</a><br><a href="register.html">Register</a></p>
-      </div>
-      <div>
-        <h4>Programs</h4>
-        <p>SAT Elite • SAT Foundation • Math Intensive • Verbal Excellence • Application Guidance</p>
-      </div>
-      <div>
-        <h4>Contact Us</h4>
-        <p>📞 <a href="tel:+917207467565">+91 7207467565</a><br>
-           ✉️ <a href="mailto:hello@iituitions.com">hello@iituitions.com</a><br>
-           📍 iiTuitions Hub LLP, Nallagandla, Hyderabad 500019, India</p>
+      <div class="copy">
+        <div>© 2025 IITuitions. All rights reserved.</div>
+        <div><a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Cookies</a></div>
       </div>
     </div>
+  </footer>
 
-    <div class="copy">
-      <div>© 2025 IITuitions. All rights reserved.</div>
-      <div>
-        <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Cookies</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  <!-- Floating WhatsApp CTA -->
+  <a class="whatsapp" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment">💬 How can we help you today?</a>
 
-<!-- Floating WhatsApp CTA -->
-<a class="whatsapp" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment">💬 How can we help you today?</a>
+  <!-- Round WA FAB (draggable behavior kept) -->
+  <a class="wa-fab" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment" aria-label="Chat on WhatsApp"></a>
+
 <script>
+  // Drawer
   const btn = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   btn.addEventListener('click', () => {
@@ -957,66 +431,31 @@ body{
   drawer.addEventListener('click', (e) => {
     if(e.target === drawer){ drawer.classList.remove('open'); btn.setAttribute('aria-expanded','false'); drawer.setAttribute('aria-hidden','true'); }
   });
-</script>
-<a class="wa-fab" href="https://wa.me/917207467565?text=Hi%20IITuitions%2C%20I%20want%20free%20assessment" aria-label="Chat on WhatsApp"></a>
 
-<script>
+  // Draggable WA FAB
   (() => {
     const fab = document.querySelector('.wa-fab');
     if (!fab) return;
-  
-    let offsetX = 0, offsetY = 0, dragging = false, moved = false;
-  
-    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-  
-    const onDown = (e) => {
-      moved = false;
-      dragging = true;
-      fab.classList.add('dragging');
-  
-      const r = fab.getBoundingClientRect();
-      offsetX = e.clientX - r.left;
-      offsetY = e.clientY - r.top;
-  
-      // switch to top/left positioning for free drag
-      fab.style.right = 'auto';
-      fab.style.bottom = 'auto';
-      fab.style.left = r.left + 'px';
-      fab.style.top  = r.top  + 'px';
-  
+    let offsetX=0, offsetY=0, dragging=false, moved=false;
+    const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+    const onDown=(e)=>{ moved=false; dragging=true; fab.classList.add('dragging');
+      const r=fab.getBoundingClientRect(); offsetX=e.clientX-r.left; offsetY=e.clientY-r.top;
+      fab.style.right='auto'; fab.style.bottom='auto'; fab.style.left=r.left+'px'; fab.style.top=r.top+'px';
       fab.setPointerCapture(e.pointerId);
     };
-  
-    const onMove = (e) => {
-      if (!dragging) return;
-      moved = true;
-  
-      const maxX = window.innerWidth  - fab.offsetWidth  - 8;
-      const maxY = window.innerHeight - fab.offsetHeight - 8;
-  
-      const nx = clamp(e.clientX - offsetX, 8, maxX);
-      const ny = clamp(e.clientY - offsetY, 8, maxY);
-  
-      fab.style.left = nx + 'px';
-      fab.style.top  = ny + 'px';
+    const onMove=(e)=>{ if(!dragging) return; moved=true;
+      const maxX=window.innerWidth-fab.offsetWidth-8; const maxY=window.innerHeight-fab.offsetHeight-8;
+      const nx=clamp(e.clientX-offsetX,8,maxX); const ny=clamp(e.clientY-offsetY,8,maxY);
+      fab.style.left=nx+'px'; fab.style.top=ny+'px';
     };
-  
-    const onUp = (e) => {
-      if (!dragging) return;
-      dragging = false;
-      fab.classList.remove('dragging');
-      fab.releasePointerCapture(e.pointerId);
-  
-      // prevent opening WhatsApp if it was a drag
-      if (moved) { e.preventDefault(); e.stopPropagation(); }
+    const onUp=(e)=>{ if(!dragging) return; dragging=false; fab.classList.remove('dragging'); fab.releasePointerCapture(e.pointerId);
+      if(moved){ e.preventDefault(); e.stopPropagation(); }
     };
-  
-    fab.addEventListener('pointerdown', onDown);
-    fab.addEventListener('pointermove', onMove);
-    fab.addEventListener('pointerup', onUp);
-    fab.addEventListener('pointercancel', onUp);
+    fab.addEventListener('pointerdown',onDown);
+    fab.addEventListener('pointermove',onMove);
+    fab.addEventListener('pointerup',onUp);
+    fab.addEventListener('pointercancel',onUp);
   })();
-  </script>
-  
+</script>
 </body>
 </html>
