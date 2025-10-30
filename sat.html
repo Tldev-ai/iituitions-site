@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>iiTuitions • SAT Elite Program</title>
 <meta name="description" content="Unlock your path to Ivy League Success with iiTuitions’ SAT Elite Program. 1:1 coaching, mock tests, analysis, score guarantee, and alumni network." />
+<meta name="theme-color" content="#0B1020" />
 <link rel="preconnect" href="https://wa.me" />
 <style>
 /* =========================
-   BASE / TOKENS
+   MOBILE-FIRST DESIGN TOKENS
    ========================= */
 :root{
   --bg-deep:#0B1020;
@@ -20,37 +21,37 @@
   --blue:#2446FF;
   --blue-2:#203BDE;
   --gold:#FFC445;
-  --gold-2:#F4B400;
   --accent:#1f2a5c;
-  --card:#ffffff;
   --soft:#f6f7fb;
-  --soft-2:#eef2ff;
   --success:#22C55E;
   --danger:#ef4444;
   --radius-xl:26px;
   --radius-lg:20px;
   --radius-md:14px;
-  --shadow-1:0 10px 28px rgba(0,0,0,.12);
-  --shadow-2:0 18px 42px rgba(0,0,0,.18);
-  --shadow-soft:0 14px 36px rgba(17,23,46,.12);
+  --shadow-1:0 8px 20px rgba(0,0,0,.12);
+  --shadow-2:0 14px 32px rgba(0,0,0,.18);
+  --shadow-soft:0 10px 26px rgba(17,23,46,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
   color:var(--ink); background:#fff; line-height:1.55;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
-img{max-width:100%; display:block}
-a{text-decoration:none; color:inherit}
-.container{max-width:1200px; margin:0 auto; padding:24px 16px}
-.section-title{
-  font-size:44px; font-weight:900; letter-spacing:.2px; line-height:1.12;
-}
-.section-title .em{color:var(--blue)}
-.subhead{color:#495372; font-size:20px; margin-top:10px}
-@media (max-width:900px){
-  .section-title{font-size:34px}
-  .subhead{font-size:18px}
+img{max-width:100%; display:block; height:auto}
+a{text-decoration:none; color:inherit; -webkit-tap-highlight-color:transparent}
+.container{max-width:1200px; margin:0 auto; padding:20px 16px}
+.center{text-align:center}
+.kicker{text-transform:uppercase; letter-spacing:.18em; font-weight:800; font-size:12px; color:#8EA2FF}
+
+/* Type scales using clamp for fluid sizing */
+.section-title{font-weight:900; letter-spacing:.2px; line-height:1.15; font-size:clamp(26px,6vw,44px)}
+.subhead{color:#495372; font-size:clamp(16px,3.8vw,20px); margin-top:8px}
+
+/* Reduce heavy effects for users who prefer less motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
 }
 
 /* =========================
@@ -62,76 +63,69 @@ a{text-decoration:none; color:inherit}
   backdrop-filter:saturate(1.2) blur(6px);
   color:#fff; border-bottom:1px solid rgba(255,255,255,.08);
 }
-.header .row{display:flex; align-items:center; justify-content:space-between; gap:12px}
-.brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:22px}
+.header .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px}
 .brand .logo{
   width:28px; height:28px; border-radius:6px; display:grid; place-items:center;
   background:linear-gradient(135deg, #FFD34F, #F2B61E); color:#111; font-weight:900;
 }
-.h-ctas{display:flex; gap:12px; align-items:center}
+.h-ctas{display:none} /* hide on mobile for clean hero */
+@media (min-width:901px){ .h-ctas{display:flex; gap:12px; align-items:center} }
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
   padding:12px 18px; border-radius:999px; font-weight:800; cursor:pointer;
-  transition:.15s ease; border:2px solid transparent;
+  transition:transform .15s ease; border:2px solid transparent;
 }
 .btn.primary{background:#FFB020; color:#111}
 .btn.primary:hover{transform:translateY(-1px)}
 .btn.alt{background:var(--blue); color:#fff}
 .btn.alt:hover{background:#1B38E8}
 
-/* Hide header buttons on mobile (to match the clean hero look) */
-@media (max-width:900px){
-  .h-ctas{display:none}
-}
-
 /* =========================
    HERO
    ========================= */
 .hero{
-  background:radial-gradient(900px 600px at 25% 10%, #1a234a 0%, #0B1020 48%, #0B1020 100%);
-  color:#fff; padding:48px 0 24px;
+  background:radial-gradient(800px 520px at 25% 10%, #1a234a 0%, #0B1020 48%, #0B1020 100%);
+  color:#fff; padding:28px 0 20px;
 }
-.hero .grid{display:grid; grid-template-columns:1.35fr 1fr; gap:26px}
-@media (max-width:980px){ .hero .grid{grid-template-columns:1fr} }
-.hero h1{
-  font-size:64px; line-height:1.05; font-weight:900; letter-spacing:.2px;
-}
+.hero .grid{display:grid; gap:20px}
+@media (min-width:981px){ .hero .grid{grid-template-columns:1.35fr 1fr; gap:26px} }
+.hero h1{font-size:clamp(30px,7.2vw,64px); line-height:1.07; font-weight:900; letter-spacing:.2px}
 .hero h1 .em{color:#FFC53D}
-.hero p{color:#cbd5ff; margin:14px 0 18px; font-size:20px; max-width:720px}
-@media (max-width:980px){ .hero h1{font-size:44px} .hero p{font-size:18px} }
+.hero p{color:#cbd5ff; margin:12px 0 16px; font-size:clamp(15px,3.8vw,20px); max-width:72ch}
 
-.hero .proof{
-  margin-top:20px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
-  border-radius:18px; padding:18px; box-shadow:var(--shadow-2)
+.proof{
+  margin-top:16px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  border-radius:16px; padding:16px; box-shadow:var(--shadow-2)
 }
-.proof h3{font-size:22px; font-weight:900; display:flex; gap:10px; align-items:center}
-.proof ul{margin-top:10px; display:grid; gap:8px}
-.proof li{list-style:none; display:flex; gap:8px; align-items:flex-start; color:#e6e9ff}
+.proof h3{font-size:clamp(18px,4.2vw,22px); font-weight:900; display:flex; gap:10px; align-items:center}
+.proof ul{margin-top:8px; display:grid; gap:6px}
+.proof li{list-style:none; display:flex; gap:8px; align-items:flex-start; color:#e6e9ff; font-size:clamp(14px,3.6vw,16px)}
 
 .hero-card{
-  border-radius:24px; overflow:hidden; background:#fff; color:#111; box-shadow:var(--shadow-2); border:1px solid #e5e7eb
+  border-radius:20px; overflow:hidden; background:#fff; color:#111; box-shadow:var(--shadow-2); border:1px solid #e5e7eb
 }
 .hero-card .cap{
   background:var(--blue); color:#fff; padding:14px 16px; font-weight:900; display:flex; align-items:center; gap:10px; font-size:18px
 }
 .hero-card .body{padding:16px}
-.hero-card .list{display:grid; gap:12px; margin-top:6px}
-.hero-card .item{display:flex; align-items:center; gap:12px; font-size:16px}
+.hero-card .list{display:grid; gap:10px; margin-top:6px}
+.hero-card .item{display:flex; align-items:center; gap:10px; font-size:15px}
 .hero-card .item i{color:var(--blue)}
 .progress{
-  margin:16px 0; border:1px solid #e5e7eb; border-radius:12px; padding:10px 14px; background:#fafbff;
+  margin:14px 0; border:1px solid #e5e7eb; border-radius:12px; padding:10px 12px; background:#fafbff;
 }
-.progress .meta{display:flex; justify-content:space-between; font-weight:700; color:#111; margin-bottom:8px}
+.progress .meta{display:flex; justify-content:space-between; font-weight:700; color:#111; margin-bottom:8px; font-size:14px}
 .progress .bar{height:8px; border-radius:999px; background:#E5E7EB; overflow:hidden}
-.progress .bar>span{display:block; width:86%; height:100%; background:linear-gradient(90deg,#2446FF,#6A8DFF);}
-
-.hero-card .cta{padding:16px; border-top:1px solid #eef2ff; background:#f8faff}
+.progress .bar>span{display:block; width:86%; height:100%; background:linear-gradient(90deg,#2446FF,#6A8DFF)}
+.hero-card .cta{padding:14px; border-top:1px solid #eef2ff; background:#f8faff}
 .hero-card .cta .btn{width:100%; font-size:16px}
 
 /* =========================
    SECTION WRAPPERS
    ========================= */
-.section{padding:52px 0}
+.section{padding:40px 0}
 .section.alt{background:linear-gradient(180deg,#0e1432 0%, #0e1432 45%, #182469 100%); color:#fff}
 .section.soft{background:#f8fbff}
 .section.soft-cream{background:#FFF1D9}
@@ -139,156 +133,141 @@ a{text-decoration:none; color:inherit}
 /* =========================
    H-SCROLL (mobile carousels)
    ========================= */
-@media (max-width:900px){
-  .scroll-x{
-    display:grid;
-    grid-auto-flow:column;
-    grid-auto-columns:80%;
-    overflow-x:auto;
-    gap:14px;
-    padding-bottom:6px;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-  }
-  .scroll-x > *{scroll-snap-align:start}
-  .scroll-x::-webkit-scrollbar{display:none}
+.scroll-x{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:86%;
+  overflow-x:auto;
+  gap:14px;
+  padding-bottom:6px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
 }
+.scroll-x > *{scroll-snap-align:start}
+.scroll-x::-webkit-scrollbar{display:none}
+@media (min-width:981px){ .scroll-x{grid-auto-flow:dense; grid-auto-columns:unset; overflow:visible} }
 
 /* =========================
    RESULTS CARDS
    ========================= */
-.kicker{text-transform:uppercase; letter-spacing:.18em; font-weight:800; font-size:12px; color:#8EA2FF}
-.results-grid{margin-top:26px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-@media (max-width:980px){ .results-grid{grid-template-columns:1fr} }
-@media (max-width:900px){ .results-grid{grid-template-columns:unset} }
+.results-grid{margin-top:20px; display:grid; gap:16px}
+@media (min-width:981px){ .results-grid{grid-template-columns:repeat(3,1fr)} }
 .result-card{
-  border-radius:22px; overflow:hidden; background:#fff; color:#111; box-shadow:var(--shadow-soft); border:1px solid #eef1f6
+  border-radius:20px; overflow:hidden; background:#fff; color:#111; box-shadow:var(--shadow-soft); border:1px solid #eef1f6
 }
-.result-card .img-wrap{height:210px; overflow:hidden}
+.result-card .img-wrap{height:220px; overflow:hidden}
 .result-card .img{width:100%; height:100%; object-fit:cover}
 .result-card .meta{display:flex; justify-content:space-between; gap:8px; padding:10px 14px; background:linear-gradient(90deg,#0d1a44,#0d1a44 50%, #e9ecf7 50%, #e9ecf7)}
 .result-card .meta .left{color:#FFD34F; font-weight:900}
-.result-card .body{padding:18px}
-.result-card .body h4{font-size:22px; font-weight:900; margin-bottom:6px}
-.result-card p{color:#37446b}
+.result-card .body{padding:16px}
+.result-card .body h4{font-size:20px; font-weight:900; margin-bottom:6px}
+.result-card p{color:#37446b; font-size:15px}
 .result-card .score{
-  margin-top:14px; background:#F2F6FF; border:1px solid #e6ebff; border-radius:14px; padding:14px; display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center
+  margin-top:12px; background:#F2F6FF; border:1px solid #e6ebff; border-radius:14px; padding:12px; display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center; font-size:15px
 }
-.result-card .score strong{color:var(--blue); font-size:20px}
+.result-card .score strong{color:var(--blue); font-size:18px}
 .result-card .score .uni{color:#1f35c9; font-weight:900}
 
 /* =========================
    COMPARISON
    ========================= */
-.compare{margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:24px; position:relative}
-@media (max-width:980px){ .compare{grid-template-columns:1fr} }
+.compare{margin-top:18px; display:grid; gap:18px; position:relative}
+@media (min-width:981px){ .compare{grid-template-columns:1fr 1fr} }
 .compare .col{
   background:#fff; border:1px solid #e9ecf5; border-radius:22px; box-shadow:var(--shadow-soft); overflow:hidden
 }
-.compare .head{padding:16px 18px; font-weight:900}
-.compare .head.blue{background:#2446FF; color:#fff; font-size:26px}
-.compare .head.dark{background:#121a2d; color:#fff; font-size:26px}
-.compare ul{padding:10px 18px 18px; display:grid; gap:14px}
+.compare .head{padding:14px 16px; font-weight:900}
+.compare .head.blue{background:#2446FF; color:#fff; font-size:clamp(20px,4.6vw,26px)}
+.compare .head.dark{background:#121a2d; color:#fff; font-size:clamp(20px,4.6vw,26px)}
+.compare ul{padding:10px 16px 16px; display:grid; gap:12px; font-size:15px}
 .compare li{list-style:none; display:flex; gap:12px; align-items:flex-start}
-
-/* VS badge */
 .badge-vs{
-  width:68px; height:68px; border-radius:999px; background:#132145;
-  color:#fff; display:grid; place-items:center; font-weight:900; border:6px solid #e9edff;
+  width:64px; height:64px; border-radius:999px; background:#132145;
+  color:#fff; display:grid; place-items:center; font-weight:900; border:6px solid #e9edff; margin:0 auto;
 }
-@media (min-width:901px){
-  .badge-vs{position:absolute; left:50%; bottom:-34px; transform:translateX(-50%); box-shadow:var(--shadow-1)}
-}
-@media (max-width:900px){
-  .compare{grid-auto-flow:row}
-  .compare .col:first-child{order:1}
-  .badge-vs{order:2; margin:12px auto 0; position:static; transform:none}
-  .compare .col:last-child{order:3}
-}
+@media (min-width:901px){ .badge-vs{position:absolute; left:50%; bottom:-32px; transform:translateX(-50%); box-shadow:var(--shadow-1)} }
 
 /* =========================
    BIG QUOTE
    ========================= */
 .big-quote{
-  background:#fff; border:1px solid #eaeef7; border-radius:22px; box-shadow:var(--shadow-soft);
-  padding:20px; color:#1b2242
+  background:#fff; border:1px solid #eaeef7; border-radius:20px; box-shadow:var(--shadow-soft);
+  padding:18px; color:#1b2242; font-size:clamp(16px,3.8vw,18px)
 }
-.big-quote .face{display:flex; gap:12px; align-items:center; margin-top:16px}
-.face .avatar{width:56px; height:56px; border-radius:999px; background:#e8efff; display:grid; place-items:center; font-weight:900; color:#2446FF}
+.big-quote .face{display:flex; gap:12px; align-items:center; margin-top:14px}
+.face .avatar{width:52px; height:52px; border-radius:999px; background:#e8efff; display:grid; place-items:center; font-weight:900; color:#2446FF}
 
 /* =========================
    FEATURE GRID
    ========================= */
-.grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:20px}
-@media (max-width:1100px){ .grid-4{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:640px){ .grid-4{grid-template-columns:1fr} }
+.grid-4{display:grid; gap:16px; margin-top:18px}
+@media (min-width:641px){ .grid-4{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1101px){ .grid-4{grid-template-columns:repeat(4,1fr)} }
 .feature{
-  background:#fff; border:1px solid #ebeff6; border-radius:20px; padding:18px; box-shadow:var(--shadow-soft)
+  background:#fff; border:1px solid #ebeff6; border-radius:18px; padding:16px; box-shadow:var(--shadow-soft)
 }
-.feature .ic{width:48px; height:48px; border-radius:14px; background:#F1F5FF; display:grid; place-items:center; font-size:22px; color:#1e33c8; margin-bottom:12px}
-.feature h4{font-size:22px; font-weight:900; margin-bottom:6px}
-.feature p{color:#47506c}
+.feature .ic{width:44px; height:44px; border-radius:12px; background:#F1F5FF; display:grid; place-items:center; font-size:20px; color:#1e33c8; margin-bottom:10px}
+.feature h4{font-size:20px; font-weight:900; margin-bottom:6px}
+.feature p{color:#47506c; font-size:15px}
 
 /* =========================
    FACULTY
    ========================= */
-.faculty-grid{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-@media (max-width:980px){ .faculty-grid{grid-template-columns:1fr} }
-@media (max-width:900px){ .faculty-grid{grid-template-columns:unset} }
-.fac-card{border-radius:22px; overflow:hidden; background:#0E1432; color:#fff; border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow-2)}
-.fac-card .ph{height:260px; background:#0A0F24; position:relative; overflow:hidden}
+.faculty-grid{margin-top:18px; display:grid; gap:16px}
+@media (min-width:981px){ .faculty-grid{grid-template-columns:repeat(3,1fr)} }
+.fac-card{border-radius:20px; overflow:hidden; background:#0E1432; color:#fff; border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow-2)}
+.fac-card .ph{height:240px; background:#0A0F24; position:relative; overflow:hidden}
 .fac-card .ph img{width:100%; height:100%; object-fit:cover; opacity:.95}
-.fac-card .name{position:absolute; left:18px; bottom:16px; font-size:26px; font-weight:900; text-shadow:0 6px 16px rgba(0,0,0,.6)}
-.fac-card .body{padding:18px; display:grid; gap:12px}
-.fac-bullets{display:grid; gap:10px}
+.fac-card .name{position:absolute; left:16px; bottom:14px; font-size:22px; font-weight:900; text-shadow:0 6px 16px rgba(0,0,0,.6)}
+.fac-card .body{padding:16px; display:grid; gap:10px; font-size:15px}
+.fac-bullets{display:grid; gap:8px}
 .fac-bullets li{list-style:none; display:flex; gap:10px; align-items:flex-start}
 .fac-bullets i{color:#FFC53D}
 
 /* =========================
    BATCH INFO
    ========================= */
-.batch-grid{margin-top:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-@media (max-width:980px){ .batch-grid{grid-template-columns:1fr} }
+.batch-grid{margin-top:16px; display:grid; gap:16px}
+@media (min-width:981px){ .batch-grid{grid-template-columns:repeat(3,1fr)} }
 .card-dark{
   background:linear-gradient(180deg,#0F1530,#0C1229); color:#fff; border:1px solid rgba(255,255,255,.08);
-  border-radius:22px; padding:18px; box-shadow:var(--shadow-2)
+  border-radius:20px; padding:16px; box-shadow:var(--shadow-2)
 }
-.card-dark h4{font-size:26px; font-weight:900; margin-bottom:10px}
+.card-dark h4{font-size:22px; font-weight:900; margin-bottom:8px}
 .card-dark .cta-btn{
-  margin-top:16px; display:inline-flex; padding:14px 18px; border-radius:12px; font-weight:900; background:#FFB020; color:#111; border:none; cursor:pointer
+  margin-top:14px; display:inline-flex; padding:14px 18px; border-radius:12px; font-weight:900; background:#FFB020; color:#111; border:none; cursor:pointer
 }
 
 /* =========================
    PARENTS SAY
    ========================= */
-.parent-cards{margin-top:24px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-@media (max-width:1100px){ .parent-cards{grid-template-columns:1fr} }
-@media (max-width:900px){ .parent-cards{grid-template-columns:unset} }
+.parent-cards{margin-top:18px; display:grid; gap:16px}
+@media (min-width:1101px){ .parent-cards{grid-template-columns:repeat(3,1fr)} }
 .parent{
-  background:#fff; border:1px solid #e8edf8; border-radius:22px; box-shadow:var(--shadow-soft); padding:18px; position:relative;
+  background:#fff; border:1px solid #e8edf8; border-radius:20px; box-shadow:var(--shadow-soft); padding:16px; position:relative; font-size:15px
 }
-.parent .quote-mark{position:absolute; left:16px; top:8px; color:#e5ecff; font-size:54px; font-weight:900}
-.parent .head{display:flex; gap:12px; align-items:center; margin-top:12px}
-.parent .avatar{width:64px; height:64px; border-radius:999px; overflow:hidden; background:#f1f5ff}
-.parent .name{font-weight:900; font-size:20px}
-.stars{color:#FFC53D; letter-spacing:1px; font-size:18px; margin-top:2px}
+.parent .quote-mark{position:absolute; left:14px; top:6px; color:#e5ecff; font-size:48px; font-weight:900}
+.parent .head{display:flex; gap:12px; align-items:center; margin-top:10px}
+.parent .avatar{width:60px; height:60px; border-radius:999px; overflow:hidden; background:#f1f5ff}
+.parent .name{font-weight:900; font-size:18px}
+.stars{color:#FFC53D; letter-spacing:1px; font-size:16px; margin-top:2px}
 .parent .score{
-  margin-top:16px; display:grid; grid-template-columns:1fr auto; gap:10px; background:#F2F6FF; border:1px solid #e6ebff; padding:14px; border-radius:14px
+  margin-top:12px; display:grid; grid-template-columns:1fr auto; gap:8px; background:#F2F6FF; border:1px solid #e6ebff; padding:12px; border-radius:12px
 }
 .parent .score strong{color:#1c33cf}
 
 /* =========================
    COMMUNITY + ALUMNI
    ========================= */
-.community{padding:56px 0; background:#FFF1D9}
-.community .grid{display:grid; grid-template-columns:1.1fr 1fr; gap:22px}
-@media (max-width:980px){ .community .grid{grid-template-columns:1fr} }
-.bullets{display:grid; gap:16px; margin-top:14px}
+.community{padding:44px 0; background:#FFF1D9}
+.community .grid{display:grid; gap:16px}
+@media (min-width:981px){ .community .grid{grid-template-columns:1.1fr 1fr} }
+.bullets{display:grid; gap:14px; margin-top:12px; font-size:15px}
 .bullets li{list-style:none; display:flex; gap:12px; align-items:flex-start}
-.bullet-ic{width:42px; height:42px; border-radius:14px; background:#FBE8B7; display:grid; place-items:center; font-weight:900; color:#7A4C00}
-.alumni-card{background:#fff; border-radius:22px; border:1px solid #f0dcb0; overflow:hidden; box-shadow:var(--shadow-soft)}
+.bullet-ic{width:40px; height:40px; border-radius:12px; background:#FBE8B7; display:grid; place-items:center; font-weight:900; color:#7A4C00}
+.alumni-card{background:#fff; border-radius:20px; border:1px solid #f0dcb0; overflow:hidden; box-shadow:var(--shadow-soft)}
 .alumni-hero{
-  background:#9E0D3D; color:#FFD36A; padding:22px; display:grid; gap:10px; font-weight:900;
+  background:#9E0D3D; color:#FFD36A; padding:18px; display:grid; gap:8px; font-weight:900;
   background-image:url('images/sat/confetti.svg'); background-size:cover; background-blend-mode:multiply;
 }
 .alumni-img{aspect-ratio:4/3; object-fit:cover; width:100%}
@@ -296,39 +275,38 @@ a{text-decoration:none; color:inherit}
 /* =========================
    FAQ
    ========================= */
-.faqs{margin-top:20px}
+.faqs{margin-top:16px}
 details{
-  border:1px solid #e6eaf6; background:#fff; border-radius:16px; margin:14px 0; padding:16px 18px; box-shadow:var(--shadow-soft)
+  border:1px solid #e6eaf6; background:#fff; border-radius:16px; margin:12px 0; padding:14px 16px; box-shadow:var(--shadow-soft)
 }
 summary{
-  list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; font-weight:900; font-size:26px; color:#0b1220
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; font-weight:900; font-size:clamp(18px,4.8vw,26px); color:#0b1220
 }
 summary::-webkit-details-marker{display:none}
 summary .car{margin-left:auto; transition:transform .2s ease}
 details[open] summary .car{transform:rotate(180deg)}
-.faq-body{color:#495372; font-size:18px; margin-top:10px}
+.faq-body{color:#495372; font-size:16px; margin-top:8px}
 
 /* =========================
    FOOTER
    ========================= */
 footer{
-  background:#0E1432; color:#dde3ff; padding:36px 0 26px; margin-top:36px; border-top:1px solid rgba(255,255,255,.08)
+  background:#0E1432; color:#dde3ff; padding:28px 0 22px; margin-top:28px; border-top:1px solid rgba(255,255,255,.08)
 }
-.footer-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:18px}
-@media (max-width:980px){ .footer-grid{grid-template-columns:1fr} }
+.footer-grid{display:grid; gap:16px}
+@media (min-width:981px){ .footer-grid{grid-template-columns:1.2fr 1fr 1fr 1fr} }
 footer a{color:#dde3ff}
-footer h4{color:#fff; font-size:24px; font-weight:900; margin-bottom:10px}
-footer ul{display:grid; gap:10px; margin-top:6px}
-.footer-note{margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,.12); color:#aeb8e5}
+footer h4{color:#fff; font-size:20px; font-weight:900; margin-bottom:8px}
+footer ul{display:grid; gap:8px; margin-top:6px; font-size:15px}
+.footer-note{margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.12); color:#aeb8e5}
 .ig{width:36px; height:36px; border-radius:12px; display:grid; place-items:center; background:#10173a}
 
 /* =========================
    FLOATING BUTTONS
    ========================= */
-/* WhatsApp: ALWAYS bottom-left, above everything (even the drawer) */
 .wa-float{
   position:fixed; left:16px; bottom:18px;
-  z-index:10000;                            /* above overlay */
+  z-index:10000;
   width:56px; height:56px; border-radius:999px;
   background:#25D366; color:#fff;
   display:flex; align-items:center; justify-content:center;
@@ -345,11 +323,11 @@ footer ul{display:grid; gap:10px; margin-top:6px}
 .book-float{
   position:fixed; right:16px; bottom:18px; z-index:60;
   background:#0b1220; color:#fff; font-weight:800;
-  padding:14px 18px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.25)
+  padding:12px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.25); font-size:14px
 }
 
 /* =========================
-   HAMBURGER + FULL-SCREEN OVERLAY MENU (IMAGE-2)
+   HAMBURGER + FULL-SCREEN OVERLAY MENU
    ========================= */
 .hamburger{
   --size:42px;
@@ -369,40 +347,35 @@ footer ul{display:grid; gap:10px; margin-top:6px}
 .hamburger[aria-expanded="true"] span:nth-child(2){ opacity:0 }
 .hamburger[aria-expanded="true"] span:nth-child(3){ transform:rotate(-45deg) }
 
-/* Overlay container */
+/* Overlay */
 .drawer{
-  position:fixed; inset:0; z-index:900; display:none;
-  background:rgba(0,0,0,.86);
+  position:fixed; inset:0; z-index:900; display:none; background:rgba(0,0,0,.86);
 }
 .drawer.open{ display:block }
-
-/* Centered content panel */
 .drawer-panel{
   position:absolute; inset:0; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:26px; color:#fff;
+  align-items:center; justify-content:center; gap:22px; color:#fff; padding:16px;
 }
-
-/* Top-right close inside overlay */
 .drawer-close{
   position:absolute; top:18px; right:18px;
-  width:42px; height:42px; border-radius:12px;
+  width:46px; height:46px; border-radius:12px;
   border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.08); color:#fff; font-size:22px;
+  background:rgba(255,255,255,.08); color:#fff; font-size:24px;
   display:grid; place-items:center; cursor:pointer;
 }
-
-.drawer-head{ display:none } /* clean centered look */
+.drawer-head{ display:none }
 .drawer-links{
-  list-style:none; padding:0; margin:0; display:grid; gap:22px; width:min(92vw, 680px);
+  list-style:none; padding:0; margin:0; display:grid; gap:16px; width:min(92vw, 680px);
 }
 .drawer-links a{
   display:flex; align-items:center; justify-content:center; gap:10px;
-  padding:18px 22px; border-radius:16px;
+  padding:16px 18px; border-radius:16px;
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.12);
-  color:#fff; font-weight:900; font-size:clamp(20px, 4.2vw, 36px);
+  color:#fff; font-weight:900; font-size:clamp(18px,4.2vw,32px);
   text-shadow:0 1px 0 rgba(0,0,0,.25);
 }
+.drawer-links a:focus-visible{outline:3px solid #FFD34F; outline-offset:2px}
 .drawer-links a:hover{ background:rgba(255,255,255,.12) }
 </style>
 </head>
@@ -413,30 +386,28 @@ footer ul{display:grid; gap:10px; margin-top:6px}
      ========================= -->
 <header class="header">
   <div class="container row">
-    <div class="brand">
-      <div class="logo">📘</div>
+    <div class="brand" aria-label="iiTuitions">
+      <div class="logo" aria-hidden="true">📘</div>
       <div>iiTuitions</div>
     </div>
-    <div class="h-ctas">
+    <div class="h-ctas" role="navigation" aria-label="Primary">
       <a class="btn primary" href="#registration">Register For Free Session</a>
       <a class="btn alt" href="https://wa.me/917207467565" target="_blank" rel="noopener">Talk to Us Now</a>
     </div>
-
-    <!-- Top-right 3-lines (hamburger) -->
-    <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">
+    <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false" aria-controls="drawer">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<!-- Full-screen overlay menu (image-2 style) -->
+<!-- Full-screen overlay menu -->
 <nav class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
-    <button class="drawer-close" id="closeDrawer" aria-label="Close">×</button>
+    <button class="drawer-close" id="closeDrawer" aria-label="Close menu">×</button>
     <ul class="drawer-links" aria-label="Main">
       <li><a href="index.html">🏠 Home</a></li>
       <li><a href="sat.html">📚 SAT</a></li>
-      <li><a href="iit.html">🎓 IIT </a></li>
+      <li><a href="iit.html">🎓 IIT</a></li>
       <li><a href="tuitions.html">🏛️ Tuitions</a></li>
       <li><a href="register.html">👩‍🏫 Register as a Tutor</a></li>
     </ul>
@@ -452,7 +423,7 @@ footer ul{display:grid; gap:10px; margin-top:6px}
       <h1>Unlock Your Path to <span class="em">Ivy League</span> Success</h1>
       <p>Join iiTuitions' elite SAT program and achieve a 1500+ score with our proven methodology and experienced faculty.</p>
 
-      <div class="proof">
+      <div class="proof" role="region" aria-label="Proven Success Record">
         <h3>🏅 Proven Success Record</h3>
         <ul>
           <li>🌟 <b>Outstanding 1500+ SAT scores</b> consistently</li>
@@ -462,26 +433,26 @@ footer ul{display:grid; gap:10px; margin-top:6px}
       </div>
     </div>
 
-    <aside>
+    <aside aria-label="Registration card">
       <div class="hero-card" id="registration">
         <div class="cap">📘 SAT Elite Program</div>
         <div class="body">
           <div class="kicker">What you'll get:</div>
-          <div class="list">
-            <div class="item"><i>✅</i> 1:1 Classes with Expert Faculty</div>
-            <div class="item"><i>✅</i> Personalized Study Plan</div>
-            <div class="item"><i>✅</i> Weekly Mock Tests &amp; Analysis</div>
-            <div class="item"><i>✅</i> 24/7 Doubt Clearing Support</div>
-            <div class="item"><i>✅</i> Exclusive Study Materials</div>
-            <div class="item"><i>✅</i> Ivy League Application Guidance</div>
+          <div class="list" role="list">
+            <div class="item"><i aria-hidden="true">✅</i> 1:1 Classes with Expert Faculty</div>
+            <div class="item"><i aria-hidden="true">✅</i> Personalized Study Plan</div>
+            <div class="item"><i aria-hidden="true">✅</i> Weekly Mock Tests &amp; Analysis</div>
+            <div class="item"><i aria-hidden="true">✅</i> 24/7 Doubt Clearing Support</div>
+            <div class="item"><i aria-hidden="true">✅</i> Exclusive Study Materials</div>
+            <div class="item"><i aria-hidden="true">✅</i> Ivy League Application Guidance</div>
           </div>
-          <div class="progress">
+          <div class="progress" aria-label="Availability">
             <div class="meta"><span>Limited Spots Available</span><span style="color:#d12">Only 5 left</span></div>
-            <div class="bar"><span></span></div>
+            <div class="bar" aria-hidden="true"><span></span></div>
           </div>
         </div>
         <div class="cta">
-          <a class="btn primary" href="https://wa.me/917207467565?text=I%20want%20to%20join%20SAT%20Elite" target="_blank" rel="noopener">Secure Your Spot Now</a>
+          <a class="btn primary" href="https://wa.me/917207467565?text=I%20want%20to%20join%20SAT%20Elite" target="_blank" rel="noopener" aria-label="Secure your spot on WhatsApp">Secure Your Spot Now</a>
         </div>
       </div>
     </aside>
@@ -498,12 +469,14 @@ footer ul{display:grid; gap:10px; margin-top:6px}
       <p class="subhead">iiTuitions has consistently helped students achieve top SAT scores and gain admission to the world's most prestigious universities.</p>
     </div>
 
-    <div class="results-grid scroll-x">
+    <div class="results-grid scroll-x" role="list">
       <!-- card 1 -->
-      <article class="result-card">
-        <div class="img-wrap"><img class="img" src="images/sat/results/nandhini.jpg" alt="Nandhini" /></div>
+      <article class="result-card" role="listitem">
+        <div class="img-wrap">
+          <img class="img" src="images/sat/results/nandhini.jpg" alt="Nandhini" loading="lazy" decoding="async" width="640" height="420" />
+        </div>
         <div class="meta">
-          <div class="left">⭐ 1580/1600</div>
+          <div class="left" aria-label="Score 1580 of 1600">⭐ 1580/1600</div>
           <div class="right" style="color:#0a1a4d;font-weight:900">NANDHINI</div>
         </div>
         <div class="body">
@@ -515,8 +488,10 @@ footer ul{display:grid; gap:10px; margin-top:6px}
       </article>
 
       <!-- card 2 -->
-      <article class="result-card">
-        <div class="img-wrap"><img class="img" src="images/sat/results/sri-charan.jpg" alt="Sri Charan" /></div>
+      <article class="result-card" role="listitem">
+        <div class="img-wrap">
+          <img class="img" src="images/sat/results/sri-charan.jpg" alt="Sri Charan" loading="lazy" decoding="async" width="640" height="420" />
+        </div>
         <div class="meta">
           <div class="left">⭐ 1550/1600</div>
           <div class="right" style="color:#0a1a4d;font-weight:900">SRI CHARAN</div>
@@ -530,8 +505,10 @@ footer ul{display:grid; gap:10px; margin-top:6px}
       </article>
 
       <!-- card 3 -->
-      <article class="result-card">
-        <div class="img-wrap"><img class="img" src="images/sat/results/tanishqa.jpg" alt="Tanishqa" /></div>
+      <article class="result-card" role="listitem">
+        <div class="img-wrap">
+          <img class="img" src="images/sat/results/tanishqa.jpg" alt="Tanishqa" loading="lazy" decoding="async" width="640" height="420" />
+        </div>
         <div class="meta">
           <div class="left">⭐ 1540/1600</div>
           <div class="right" style="color:#0a1a4d;font-weight:900">TANISHQA</div>
@@ -545,7 +522,7 @@ footer ul{display:grid; gap:10px; margin-top:6px}
       </article>
     </div>
 
-    <div class="center" style="margin-top:26px">
+    <div class="center" style="margin-top:22px">
       <a class="btn alt" href="#difference">Experience the IITuitions Difference</a>
     </div>
   </div>
@@ -561,7 +538,7 @@ footer ul{display:grid; gap:10px; margin-top:6px}
       <p class="subhead">See how our elite program compares to conventional SAT coaching approaches</p>
     </div>
 
-    <div class="compare">
+    <div class="compare" role="region" aria-label="Comparison">
       <div class="col">
         <div class="head blue">IITuitions<br/><small style="font-weight:600;opacity:.85">THE ELITE CHOICE</small></div>
         <ul>
@@ -573,7 +550,7 @@ footer ul{display:grid; gap:10px; margin-top:6px}
         </ul>
       </div>
 
-      <div class="badge-vs">VS</div>
+      <div class="badge-vs" aria-hidden="true">VS</div>
 
       <div class="col">
         <div class="head dark">Others<br/><small style="font-weight:600;opacity:.85">CONVENTIONAL APPROACH</small></div>
@@ -594,10 +571,10 @@ footer ul{display:grid; gap:10px; margin-top:6px}
      ========================= -->
 <section class="section soft" style="padding-top:10px">
   <div class="container">
-    <article class="big-quote">
-      <p style="font-size:22px">“My child struggled with standardized tests until we found IITuitions. Their unlimited support approach and personalized attention made all the difference. After scoring 1540 on the SAT, my daughter is now at Cornell with a scholarship!”</p>
+    <article class="big-quote" aria-label="Parent Testimonial">
+      <p style="font-size:clamp(18px,4.6vw,22px)">“My child struggled with standardized tests until we found IITuitions. Their unlimited support approach and personalized attention made all the difference. After scoring 1540 on the SAT, my daughter is now at Cornell with a scholarship!”</p>
       <div class="face">
-        <div class="avatar">PS</div>
+        <div class="avatar" aria-hidden="true">PS</div>
         <div><div style="font-weight:900">Priya Sharma</div><div class="muted">Parent of Cornell University Student</div></div>
       </div>
     </article>
@@ -614,43 +591,43 @@ footer ul{display:grid; gap:10px; margin-top:6px}
 
     <div class="grid-4">
       <div class="feature">
-        <div class="ic">📘</div>
+        <div class="ic" aria-hidden="true">📘</div>
         <h4>Customized Study Plans</h4>
         <p>Tailored learning paths based on strengths, weaknesses, and target universities.</p>
       </div>
       <div class="feature">
-        <div class="ic">👤</div>
+        <div class="ic" aria-hidden="true">👤</div>
         <h4>1:1 Personal Coaching</h4>
         <p>Dedicated expert sessions ensuring maximum improvement.</p>
       </div>
       <div class="feature">
-        <div class="ic">📅</div>
+        <div class="ic" aria-hidden="true">📅</div>
         <h4>Weekly Progress Tracking</h4>
         <p>Regular assessments and reports to keep you informed.</p>
       </div>
       <div class="feature">
-        <div class="ic">📊</div>
+        <div class="ic" aria-hidden="true">📊</div>
         <h4>Mock Tests &amp; Analysis</h4>
         <p>Simulated tests that mirror the real exam followed by in-depth analysis.</p>
       </div>
 
       <div class="feature">
-        <div class="ic">⏱️</div>
+        <div class="ic" aria-hidden="true">⏱️</div>
         <h4>Unlimited Support Hours</h4>
         <p>We commit to your success—no arbitrary time limits.</p>
       </div>
       <div class="feature">
-        <div class="ic">👨‍👩‍👧</div>
+        <div class="ic" aria-hidden="true">👨‍👩‍👧</div>
         <h4>Parent Involvement</h4>
         <p>Scheduled consultations about your child’s progress and next steps.</p>
       </div>
       <div class="feature">
-        <div class="ic">🏆</div>
+        <div class="ic" aria-hidden="true">🏆</div>
         <h4>1500+ Score Guarantee</h4>
         <p>Our methodology ensures 98% of students hit stellar scores.</p>
       </div>
       <div class="feature">
-        <div class="ic">✨</div>
+        <div class="ic" aria-hidden="true">✨</div>
         <h4>University Networking</h4>
         <p>Connect with alumni at Harvard, Stanford, Princeton and more.</p>
       </div>
@@ -679,48 +656,48 @@ footer ul{display:grid; gap:10px; margin-top:6px}
     <h2 class="section-title center" style="color:#fff">Learn from India’s Most <span style="color:#FFD35D">Exclusive</span> SAT Faculty</h2>
     <p class="subhead center" style="color:#cdd6ff">Our hand-picked experts with 13+ years of excellence accept only a limited number of students each year</p>
 
-    <div class="faculty-grid scroll-x">
-      <article class="fac-card">
+    <div class="faculty-grid scroll-x" role="list">
+      <article class="fac-card" role="listitem">
         <div class="ph">
-          <img src="images/sat/faculty/ravi-kumar.jpg" alt="Dr. Ravi Kumar"/>
+          <img src="images/sat/faculty/ravi-kumar.jpg" alt="Dr. Ravi Kumar" loading="lazy" decoding="async" width="640" height="480"/>
           <div class="name">Dr. Ravi Kumar</div>
         </div>
         <div class="body">
           <div style="opacity:.9">📘 Mathematics Expert</div>
           <ul class="fac-bullets">
-            <li><i>✔</i><span>Trained 250+ students to achieve 800/800 in SAT Math</span></li>
-            <li><i>✔</i><span>Developed proprietary formula shortcuts</span></li>
-            <li><i>✔</i><span>Author of ‘SAT Math Mastery’ practice book</span></li>
+            <li><i aria-hidden="true">✔</i><span>Trained 250+ students to achieve 800/800 in SAT Math</span></li>
+            <li><i aria-hidden="true">✔</i><span>Developed proprietary formula shortcuts</span></li>
+            <li><i aria-hidden="true">✔</i><span>Author of ‘SAT Math Mastery’ practice book</span></li>
           </ul>
         </div>
       </article>
 
-      <article class="fac-card">
+      <article class="fac-card" role="listitem">
         <div class="ph">
-          <img src="images/sat/faculty/anjali-mehta.jpg" alt="Prof. Anjali Mehta"/>
+          <img src="images/sat/faculty/anjali-mehta.jpg" alt="Prof. Anjali Mehta" loading="lazy" decoding="async" width="640" height="480"/>
           <div class="name">Prof. Anjali Mehta</div>
         </div>
         <div class="body">
           <div style="opacity:.9">📘 English &amp; Reading Expert</div>
           <ul class="fac-bullets">
-            <li><i>✔</i><span>Specialized in SAT Critical Reading &amp; Writing</span></li>
-            <li><i>✔</i><span>Custom vocabulary enhancement techniques</span></li>
-            <li><i>✔</i><span>Former admissions consultant for US universities</span></li>
+            <li><i aria-hidden="true">✔</i><span>Specialized in SAT Critical Reading &amp; Writing</span></li>
+            <li><i aria-hidden="true">✔</i><span>Custom vocabulary enhancement techniques</span></li>
+            <li><i aria-hidden="true">✔</i><span>Former admissions consultant for US universities</span></li>
           </ul>
         </div>
       </article>
 
-      <article class="fac-card">
+      <article class="fac-card" role="listitem">
         <div class="ph">
-          <img src="images/sat/faculty/vikram-singh.jpg" alt="Mr. Vikram Singh"/>
+          <img src="images/sat/faculty/vikram-singh.jpg" alt="Mr. Vikram Singh" loading="lazy" decoding="async" width="640" height="480"/>
           <div class="name">Mr. Vikram Singh</div>
         </div>
         <div class="body">
           <div style="opacity:.9">📘 Program Director</div>
           <ul class="fac-bullets">
-            <li><i>✔</i><span>Oversees personalized learning development</span></li>
-            <li><i>✔</i><span>Created the 5-stage SAT methodology</span></li>
-            <li><i>✔</i><span>Workshops at 50+ premier schools</span></li>
+            <li><i aria-hidden="true">✔</i><span>Oversees personalized learning development</span></li>
+            <li><i aria-hidden="true">✔</i><span>Created the 5-stage SAT methodology</span></li>
+            <li><i aria-hidden="true">✔</i><span>Workshops at 50+ premier schools</span></li>
           </ul>
         </div>
       </article>
@@ -755,16 +732,16 @@ footer ul{display:grid; gap:10px; margin-top:6px}
     <p class="subhead">Hear from parents whose children achieved their SAT dreams with iiTuitions</p>
   </div>
 
-  <div class="container parent-cards scroll-x">
+  <div class="container parent-cards scroll-x" role="list">
     <!-- p1 -->
-    <article class="parent">
-      <div class="quote-mark">“</div>
+    <article class="parent" role="listitem">
+      <div class="quote-mark" aria-hidden="true">“</div>
       <div class="head">
-        <div class="avatar"><img src="images/sat/parents/rajeshwari.jpg" alt="" /></div>
+        <div class="avatar"><img src="images/sat/parents/rajeshwari.jpg" alt="Rajeshwari" loading="lazy" decoding="async" width="120" height="120" /></div>
         <div>
           <div class="name">Rajeshwari</div>
           <div class="muted">Parent</div>
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 star rating">★★★★★</div>
         </div>
       </div>
       <p class="mt-10">"Our son had always been good at academics but was struggling with the SAT format. IITuitions' methodical approach and personalized attention transformed his preparation."</p>
@@ -773,14 +750,14 @@ footer ul{display:grid; gap:10px; margin-top:6px}
     </article>
 
     <!-- p2 -->
-    <article class="parent">
-      <div class="quote-mark">“</div>
+    <article class="parent" role="listitem">
+      <div class="quote-mark" aria-hidden="true">“</div>
       <div class="head">
-        <div class="avatar"><img src="images/sat/parents/meera.jpg" alt="" /></div>
+        <div class="avatar"><img src="images/sat/parents/meera.jpg" alt="Meera Patel" loading="lazy" decoding="async" width="120" height="120" /></div>
         <div>
           <div class="name">Meera Patel</div>
           <div class="muted">Parent</div>
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 star rating">★★★★★</div>
         </div>
       </div>
       <p class="mt-10">"We tried several SAT coaching institutes before finding IITuitions, and I can confidently say they are in a league of their own. The regular progress reports and parent meetings kept us informed about our daughter's improvement."</p>
@@ -789,14 +766,14 @@ footer ul{display:grid; gap:10px; margin-top:6px}
     </article>
 
     <!-- p3 -->
-    <article class="parent">
-      <div class="quote-mark">“</div>
+    <article class="parent" role="listitem">
+      <div class="quote-mark" aria-hidden="true">“</div>
       <div class="head">
-        <div class="avatar"><img src="images/sat/parents/anjali.jpg" alt="" /></div>
+        <div class="avatar"><img src="images/sat/parents/anjali.jpg" alt="Anjali" loading="lazy" decoding="async" width="120" height="120" /></div>
         <div>
           <div class="name">Anjali</div>
           <div class="muted">Parent</div>
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 star rating">★★★★★</div>
         </div>
       </div>
       <p class="mt-10">"When we enrolled our son at IITuitions, we were impressed by their commitment to excellence. The faculty's expertise and innovative methods prepared my son academically and mentally for the exam."</p>
@@ -817,30 +794,30 @@ footer ul{display:grid; gap:10px; margin-top:6px}
 
     <div class="grid" style="display:grid;grid-template-columns:1.1fr 1fr;gap:18px;margin-top:12px">
       <div>
-        <h3 style="font-size:32px; font-weight:900">Building Connections That Last a Lifetime</h3>
+        <h3 style="font-size:clamp(22px,5.4vw,32px); font-weight:900">Building Connections That Last a Lifetime</h3>
         <p class="subhead" style="margin-top:8px;color:#5c4b24">At IITuitions, we believe success extends beyond test scores. We focus on building a strong community where lifelong connections are formed.</p>
 
         <ul class="bullets">
-          <li><div class="bullet-ic">👥</div><div><b>Peer Learning Networks</b><br/>Study groups and collaborative sessions with like-minded students.</div></li>
-          <li><div class="bullet-ic">🎓</div><div><b>Alumni Mentorship</b><br/>Direct guidance from our successful alumni studying at top universities.</div></li>
-          <li><div class="bullet-ic">🌐</div><div><b>Global Networking Opportunities</b><br/>Connect with our international community of achievers.</div></li>
-          <li><div class="bullet-ic">🤝</div><div><b>Community Support System</b><br/>Lifelong friends and mentors cheering for your success.</div></li>
+          <li><div class="bullet-ic" aria-hidden="true">👥</div><div><b>Peer Learning Networks</b><br/>Study groups and collaborative sessions with like-minded students.</div></li>
+          <li><div class="bullet-ic" aria-hidden="true">🎓</div><div><b>Alumni Mentorship</b><br/>Direct guidance from our successful alumni studying at top universities.</div></li>
+          <li><div class="bullet-ic" aria-hidden="true">🌐</div><div><b>Global Networking Opportunities</b><br/>Connect with our international community of achievers.</div></li>
+          <li><div class="bullet-ic" aria-hidden="true">🤝</div><div><b>Community Support System</b><br/>Lifelong friends and mentors cheering for your success.</div></li>
         </ul>
       </div>
 
-      <aside class="alumni-card">
+      <aside class="alumni-card" aria-label="Alumni highlight">
         <div class="alumni-hero">
-          <div style="font-size:40px; line-height:1.0">Exclusive Alumni Interaction</div>
-          <div style="font-size:22px">GET DIRECT GUIDANCE FROM OUR ACHIEVERS</div>
-          <div style="font-size:28px">Talk to the Students Who Already Made It!</div>
+          <div style="font-size:clamp(26px,6vw,40px); line-height:1.0">Exclusive Alumni Interaction</div>
+          <div style="font-size:clamp(18px,4.8vw,22px)">GET DIRECT GUIDANCE FROM OUR ACHIEVERS</div>
+          <div style="font-size:clamp(20px,5.2vw,28px)">Talk to the Students Who Already Made It!</div>
         </div>
-        <img class="alumni-img" src="images/sat/alumni-nandhini.jpg" alt="Alumni"/>
+        <img class="alumni-img" src="images/sat/alumni-nandhini.jpg" alt="Alumni" loading="lazy" decoding="async" width="800" height="600"/>
       </aside>
     </div>
 
     <div class="container" style="padding:0;margin-top:18px">
       <article class="big-quote" style="background:#fff7e0; border-color:#f0dcb0">
-        <h3 style="font-size:28px; font-weight:900; margin-bottom:8px">Exclusive Alumni Events</h3>
+        <h3 style="font-size:clamp(20px,5vw,28px); font-weight:900; margin-bottom:8px">Exclusive Alumni Events</h3>
         <p>We organize alumni meetups, webinars with successful graduates, and networking events that help our students build connections that last throughout their academic and professional careers.</p>
         <div class="face mt-10">
           <div class="avatar" style="background:#FFE7A6;color:#7A4C00">Alum</div>
@@ -862,31 +839,31 @@ footer ul{display:grid; gap:10px; margin-top:6px}
 
   <div class="container faqs">
     <details>
-      <summary>What makes IITuitions different from other SAT coaching centers?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <summary>What makes IITuitions different from other SAT coaching centers?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="faq-body">A proven methodology, unlimited support hours, one-to-one mentorship, rigorous mock tests, and our alumni network.</div>
     </details>
     <details>
-      <summary>How long does the SAT preparation program typically last?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <summary>How long does the SAT preparation program typically last?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="faq-body">Most students complete in 12–16 weeks with weekly assessments and targeted practice.</div>
     </details>
     <details>
-      <summary>Do you guarantee a 1500+ score on the SAT?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <summary>Do you guarantee a 1500+ score on the SAT?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="faq-body">We offer a results-driven plan and work with you until you succeed—98% of our students achieve 1500+.</div>
     </details>
     <details>
-      <summary>How are the classes conducted?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <summary>How are the classes conducted?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="faq-body">Live 1:1 online sessions or premium in-person classes based on your choice and location.</div>
     </details>
     <details>
-      <summary>What study materials will be provided?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <summary>What study materials will be provided?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="faq-body">Curated practice sets, proprietary notes, and full-length mock tests with analytics.</div>
     </details>
     <details>
-      <summary>How do you monitor student progress?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <summary>How do you monitor student progress?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="faq-body">Weekly scorecards, concept-mastery charts, and parent-teacher consultations.</div>
     </details>
     <details>
-      <summary>What is the fee structure for the program?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <summary>What is the fee structure for the program?<svg class="car" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0b1220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="faq-body">Fees depend on mode, duration, and customization. Contact us and we’ll share the best option for your goals.</div>
     </details>
 
@@ -902,10 +879,10 @@ footer ul{display:grid; gap:10px; margin-top:6px}
 <footer>
   <div class="container footer-grid">
     <div>
-      <div class="brand" style="color:#ffd34f"><div class="logo">📘</div><div style="color:#fff">iiTuitions</div></div>
+      <div class="brand" style="color:#ffd34f"><div class="logo" aria-hidden="true">📘</div><div style="color:#fff">iiTuitions</div></div>
       <p class="mt-10">Helping students achieve 1500+ SAT scores and gain admission to the world’s most prestigious universities since 2010.</p>
-      <div class="ig mt-10">📸</div>
-      <div class="footer-note">© <span id="yr"></span> IITuitions. All rights reserved.</div>
+      <div class="ig mt-10" aria-label="Instagram">📸</div>
+      <div class="footer-note">© <span id="yr"></span> iiTuitions. All rights reserved.</div>
     </div>
     <div>
       <h4>Quick Links</h4>
@@ -952,9 +929,10 @@ footer ul{display:grid; gap:10px; margin-top:6px}
 <a class="book-float" href="#registration" aria-label="Book Your Free Assessment">Book Your Free Assessment</a>
 
 <script>
+/* Year stamp */
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* FAQ: only one open at a time */
+/* Collapse: only one FAQ open at a time */
 document.querySelectorAll('.faqs details').forEach(d=>{
   d.addEventListener('toggle', () => {
     if (d.open) {
@@ -966,40 +944,61 @@ document.querySelectorAll('.faqs details').forEach(d=>{
 /* === Drawer toggle (hamburger) – full-screen overlay === */
 const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('drawer');
-const closeDrawerBtn = document.getElementById('closeDrawer'); // top-right ×
+const closeDrawerBtn = document.getElementById('closeDrawer'); // kept for id reference in case of external code
+// In this build we renamed Close to 'drawer-close' but keep compatibility:
+const drawerClose = document.getElementById('closeDrawer') || document.querySelector('.drawer-close');
+
+// Focus trap for accessibility
+let lastFocused = null;
+function trapFocus(e){
+  if(!drawer.classList.contains('open')) return;
+  const focusable = drawer.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+  if(!focusable.length) return;
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if(e.key === 'Tab'){
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
+}
 
 function openDrawer(){
+  lastFocused = document.activeElement;
   drawer.classList.add('open');
   hamburger.setAttribute('aria-expanded','true');
   drawer.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden'; // prevent background scroll
+  document.body.style.overflow = 'hidden';
+  // move focus inside
+  setTimeout(()=> {
+    const firstLink = drawer.querySelector('a, button');
+    firstLink && firstLink.focus();
+  }, 0);
 }
 function closeDrawer(){
   drawer.classList.remove('open');
   hamburger.setAttribute('aria-expanded','false');
   drawer.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
+  lastFocused && lastFocused.focus();
 }
 
 hamburger.addEventListener('click', () => {
   drawer.classList.contains('open') ? closeDrawer() : openDrawer();
 });
-closeDrawerBtn.addEventListener('click', closeDrawer);
+drawerClose.addEventListener('click', closeDrawer);
 
 // Close when clicking overlay outside the center list
 drawer.addEventListener('click', (e) => {
   if (e.target === drawer) closeDrawer();
 });
 
-// Close on ESC
+// Close on ESC + trap focus
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+  trapFocus(e);
 });
 
 // Close drawer when a link is clicked
-drawer.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => closeDrawer());
-});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
 </script>
 </body>
 </html>
