@@ -56,8 +56,14 @@ src="https://www.facebook.com/tr?id=3734412066776378&ev=PageView&noscript=1"
     .hamb{width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center}
     .hamb span{width:24px;height:3px;background:#000;border-radius:2px}
     /* Force-hide hamburger + dropdown on all screens */
-    .hamb, .menu { display:none !important; }
+    .hamb { display:none !important; }
+    .menu { display:none !important; }
     .nav-actions{display:none}
+    
+    /* Show faculty button on desktop */
+    @media (min-width:768px){
+      .faculty-btn-desktop { display:inline-flex !important; }
+    }
     .menu{position:absolute;top:100%;right:12px;width:260px;background:#fff;border:1px solid var(--ring);border-radius:14px;box-shadow:0 14px 34px var(--shadow2);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.2s}
     .menu a{display:block;padding:14px 16px;color:#111;font-weight:600;border-bottom:1px solid #f1f5f9}
     .menu a:last-child{border-bottom:none}
